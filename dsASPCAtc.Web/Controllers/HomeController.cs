@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using dsASPCAtc.Web.Models;
+using dsASPCAtc.DataAccess;
+using Microsoft.Extensions.Configuration;
+using EntidadesAtc;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using dsASPCAtc.Web.ViewModels;
+
+namespace dsASPCAtc.Web.Controllers
+{
+    public class HomeController : Controller
+    {
+        private IConfiguration _configuration;
+
+        public HomeController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        public IActionResult Index()
+        {
+            HttpContext.Session.SetString("Test", "Ben Rules!");
+            var Objeto = new FormModel();
+            Objeto.campo1 = "A";
+            Objeto.campo2 = "B";
+            Objeto.campo3 = "C";
+            HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = HttpContext.Session.GetString("Test");
+            ViewData["Objeto"] = HttpContext.Session.GetObjectFromJson<FormModel>("Objeto");
+
+            return View();
+        }
+
+        public IActionResult Productos(CampoBusqueda cm)
+        {
+            ViewData["Data"] = new ProductosViewModel(_configuration, cm);
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+        public IActionResult Mia()
+        {
+            ViewData["Message"] = "Mi paginilla.";
+            //var ad = new AdaptadorAtc(_configuration);
+            //var result = ad.CargaLeer();
+            //ViewData["Contenido"] = result;
+            var modelo = new FormModel();
+            modelo.campo3 = "Campo Oculto";
+            modelo.campo2 = "Campo Rellenado";
+            return View(modelo);
+        }
+        [HttpPost]
+        public IActionResult Form(FormModel form)
+        {
+            var b = form.campo4.OpenReadStream();
+            ViewData["Message"] = form.campo1 + " " + form.campo2 + " " + form.campo3;
+            
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+    }
+    public static class SessionExtensions
+    {
+        public static void SetObjectAsJson(this ISession session, string key, object value)
+        {
+            session.SetString(key, JsonConvert.SerializeObject(value));
+        }
+
+        public static T GetObjectFromJson<T>(this ISession session, string key)
+        {
+            var value = session.GetString(key);
+
+            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+        }
+    }
+}

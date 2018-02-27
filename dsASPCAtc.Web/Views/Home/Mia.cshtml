@@ -1,0 +1,33 @@
+﻿@{
+    @using EntidadesAtc;
+    @model FormModel;
+    ViewData["Title"] = "Mi Página";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<h3>@ViewData["Contenido"]</h3>
+@{  
+    var a = (Carga)ViewData["Contenido"];
+    var cat = a.Categorias;
+
+}
+@foreach(Categoria ct in cat)
+{
+    <h4>@ct.NombreCategoria</h4>
+
+}
+<form method="post" asp-action="Form" asp-controller="Home" enctype="multipart/form-data">
+    @Html.EditorFor(model => model.campo1, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+    @Html.TextAreaFor(model => model.campo2);
+    @Html.EditorFor(model => model.campo4, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+    
+    <div style="display:none;">
+        @Html.EditorForModel()
+    </div>
+    <input type="submit" />
+    <button>
+        Holi
+    </button>
+</form>
+
+<p>Use this area to provide additional information.</p>
