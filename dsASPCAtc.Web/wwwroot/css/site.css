@@ -42,19 +42,27 @@
     /*margin: 10px 0 0;*/
     border: 1px solid #eee;
     font-family:, Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    width: 100%;
+    width: 101%;
 }
-.otrainfo {
-    text-align:right;
-    font-style:italic;
+.tablaresultados tr.otrainfo {
+    text-align: right;
+    font-style: italic;
+    background-color: #e2e8ef;
+    height:15px;
 }
 .tablaresultados {
-    width:100%;
+    width:97%;
+    margin:5px 10px;
 }
-.otrainfo a {
+
+.tablaresultados tr{
+    height:25px;
+}
+tr.otrainfo td a {
     font-size: 12px;
-    /* background: red; */
-    color: black;
+    color: #282828;
+    padding: 25px;
+    font-weight:bold;
 }
 
 /* Hide/rearrange for smaller screens */

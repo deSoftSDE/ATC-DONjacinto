@@ -25,9 +25,9 @@
             <div class="row">
                 <form asp-controller="Home" asp-action="Productos" method="POST">
                     @model CampoBusqueda;
-                    <div class="col-md-offset-3 col-md-6 ">
+                    <div class="col-md-offset-2 col-md-8 ">
                         <div class="tabbable-line">
-                            <ul class="nav nav-tabs ">
+                            <ul class="nav nav-tabs nav-justified ">
                                 <li class="active">
                                     <a href="#tab_15_1" data-toggle="tab">  <h3 class="text-center font-white">Busca en Grupo ATC</h3> </a>
                                 </li>
@@ -43,7 +43,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <div>
-                                                        <input type="text" class="form-control" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
+                                                        <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
 
                                                     </div>
                                                     <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
@@ -63,22 +63,22 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr class="" ng-if="loading">
-                                                        <td class="otrainfo">
+                                                    <tr class="otrainfo" ng-if="loading">
+                                                        <td class="">
                                                             <a>
                                                                 <img class="img-fluid" src="~/img/cargando.gif" />
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr ng-show="resultadobusqueda.length<1">
-                                                        <td class="otrainfo">
+                                                    <tr ng-show="resultadobusqueda.length<1" class="otrainfo">
+                                                        <td >
                                                             <a>
                                                                 No hay resultados que mostrar
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr ng-if="!loading">
-                                                        <td class="otrainfo" ng-if="resultadobusqueda.length<NumReg">
+                                                    <tr ng-if="!loading" class="otrainfo">
+                                                        <td  ng-if="resultadobusqueda.length<NumReg">
                                                             <a>
                                                                 Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
                                                             </a>
