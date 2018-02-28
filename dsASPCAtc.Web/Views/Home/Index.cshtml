@@ -25,22 +25,25 @@
             <div class="row">
                 <form asp-controller="Home" asp-action="Productos" method="POST">
                     @model CampoBusqueda;
-                    
                     <div class="col-md-offset-3 col-md-6 ">
-                        <div class="dropdown" id="dropdown_busqueda">
-                            <a data-toggle="dropdown" aria-expanded="false">
+                        <div>
+                            <div>
+                                <!---->
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena" >
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default boton-buscar" type="button" onclick="" id="btn_buscar" tabindex="2">
+                                        <div>
+                                            <input type="text" class="form-control" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
+
+                                        </div>
+                                        <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
                                             <i class="glyphicon glyphicon-search"></i>
                                         </button>
                                     </span>
 
                                 </div>
-                            </a>
-                            <div class="dropdown-menu " id="menu-busqueda" ng-if="mostrardesplegable">
-                                <table class="">
+                            </div>
+                            <div class="desplegable" style="display:none" id="desplegable" ng-hide="!mostrardesplegable">
+                                <table class="tablaresultados">
                                     <tbody>
                                         <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
                                             <td class="">
@@ -50,28 +53,28 @@
                                             </td>
                                         </tr>
                                         <tr class="" ng-if="loading">
-                                            <td class="">
+                                            <td class="otrainfo">
                                                 <a>
-                                                    Cargando...
+                                                    <img class="img-fluid" src="~/img/cargando.gif" />
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="" ng-show="resultadobusqueda.length<1">
+                                        <tr ng-show="resultadobusqueda.length<1">
+                                            <td class="otrainfo">
                                                 <a>
                                                     No hay resultados que mostrar
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="" ng-if="resultadobusqueda.length<NumReg">
+                                        <tr ng-if="!loading">
+                                            <td class="otrainfo" ng-if="resultadobusqueda.length<NumReg">
                                                 <a>
                                                     Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
+                                            <td class="otrainfo" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
                                                 <a>
                                                     Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
                                                 </a>
@@ -82,33 +85,16 @@
                             </div>
 
                         </div>
-                        <!--<div class="form-body">
-                            <div class="form-group form-md-line-input">
-                                <input ng-change="cambiobusqueda()" autocomplete="off" ng-model="cadena" type="text" style="background:white"class="form-control" asp-for="cadena" />
-                                
-                                <div ng-if="loading"  style="background:white">
-                                    Cargando...
-                                </div>
-                                <span ng-if="mostrardesplegable">
-                                    <select class="form-control" data-live-search="false" multiple style="background:white">
-                                        <option ng-repeat="resultado in resultadobusqueda | filter:cadena" style="background:white">
-                                            {{resultado.descripcion}}
-                                        </option>
-                                        <option >No hay resultados que mostrar</option>
-                                    </select>
-                                </span>
-                                
-                            </div>
-                        </div>-->
+                        
                     </div>
                     <div class="col-md-offset-3 col-md-6 ">
                         <div class="form-body">
-                            <div class="form-group form-md-line-input">
-                                <!--<button type="button" class="btn blue-madison btn-block">
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Buscar</font></font>
-                                </button>-->
+                            <!--<div class="form-group form-md-line-input">
+                                <button type="submit" class="btn blue-madison btn-block">
+                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Buscarr</font></font>
+                                </button>
                                 <input class="btn blue-madison btn-block" type="submit" value="Buscar" />
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </form>

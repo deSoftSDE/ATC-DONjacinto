@@ -17,7 +17,12 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
                     $scope.NumReg = respuesta.data.numReg;
                     $scope.mostrardesplegable = true;
                     $scope.loading = false;
+                    document.getElementById("desplegable").style.display = "inline";
                 })
+        } else {
+            $scope.resultadobusqueda = [];
+            $scope.NumReg = 0;
+            $scope.loading = false;
         }
     }
 });
