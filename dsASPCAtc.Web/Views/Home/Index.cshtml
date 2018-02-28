@@ -42,14 +42,14 @@
                             <div class="dropdown-menu " id="menu-busqueda" ng-if="mostrardesplegable">
                                 <table class="">
                                     <tbody>
-                                        <tr class="" ng-repeat="resultado in resultadobusqueda | filter:cadena">
+                                        <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
                                             <td class="">
                                                 <a>
                                                     {{resultado.descripcion}}
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr class="" ng-if="loading" >
+                                        <tr class="" ng-if="loading">
                                             <td class="">
                                                 <a>
                                                     Cargando...
@@ -57,9 +57,23 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="" ng-show="(resultadobusqueda | filter:cadena).length<1">
+                                            <td class="" ng-show="resultadobusqueda.length<1">
                                                 <a>
                                                     No hay resultados que mostrar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="" ng-if="resultadobusqueda.length<NumReg">
+                                                <a>
+                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
+                                                <a>
+                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
                                                 </a>
                                             </td>
                                         </tr>

@@ -435,7 +435,6 @@ namespace EntidadesAtc
     public class CampoBusqueda
     {
         [DataMember]
-        [Display(Name = "cadena")]
         public string cadena { get; set; }
     }
     public class BusquedaArticulos
@@ -487,9 +486,20 @@ namespace EntidadesAtc
         public decimal UnidadesContenido { get; set; }
         public decimal PrecioTarifa { get; set; }
     }
+    [DataContract]
+    public class BusquedaRapida
+    {
+        [DataMember]
+        public List<ArticuloBasico> Articulos { get; set; }
+        [DataMember]
+        public int NumReg { get; set; }
+    }
+    [DataContract]
     public class ArticuloBasico
     {
+        [DataMember]
         public int IDArticulo { get; set; }
+        [DataMember]
         public string Descripcion { get; set; }
     }
 

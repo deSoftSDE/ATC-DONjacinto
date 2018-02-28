@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <Reference Include="dsCore2.DataAccess">
-      <HintPath>..\..\..\..\..\..\..\core2017\dsCore2.DataAccess.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\core2017\dsCore2.DataAccess.dll</HintPath>
     </Reference>
   </ItemGroup>
 

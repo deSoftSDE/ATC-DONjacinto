@@ -97,9 +97,10 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public List<ArticuloBasico> ArticulosLeerPorCadena(string cadena)
+        public BusquedaRapida ArticulosLeerPorCadena(string cadena)
         {
-            var res = new List<ArticuloBasico>();
+            var res = new BusquedaRapida();
+            res.Articulos = new List<ArticuloBasico>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -107,7 +108,7 @@ namespace dsASPCAtc.DataAccess
                 {
                     new SqlParameter("@cadena", cadena),
                 };
-                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerPorCadena", param);
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerTopPorCadena", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (_reader.Read())
                 {
@@ -116,7 +117,12 @@ namespace dsASPCAtc.DataAccess
                         IDArticulo = AsignaEntero("IDArticulo"),
                         Descripcion = AsignaCadena("Descripcion"),
                     };
-                    res.Add(ar);
+                    res.Articulos.Add(ar);
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    res.NumReg = AsignaEntero("NumReg");
                 }
             }
             return res;
