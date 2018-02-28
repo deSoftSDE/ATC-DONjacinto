@@ -21,70 +21,95 @@
     <!--  INICIO FORMULARIO DE BUSQUEDA -->
     <div class="row">
         <div class="col-md-12" style="background-image: url(assets/layouts/layout/img/luna-rota.jpg) ;background-size: cover; background-position: center;">
-            <h3 class="text-center font-white">Busca en Grupo ATC</h3>
+           
             <div class="row">
                 <form asp-controller="Home" asp-action="Productos" method="POST">
                     @model CampoBusqueda;
                     <div class="col-md-offset-3 col-md-6 ">
-                        <div>
-                            <div>
-                                <!---->
-                                <div class="input-group">
-                                    <span class="input-group-btn">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <li class="active">
+                                    <a href="#tab_15_1" data-toggle="tab">  <h3 class="text-center font-white">Busca en Grupo ATC</h3> </a>
+                                </li>
+                                <li>
+                                    <a href="#tab_15_2" data-toggle="tab">  <h3 class="text-center font-white">Busca por Modelo</h3> </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_15_1">
+                                    <div>
                                         <div>
-                                            <input type="text" class="form-control" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
+                                            <!---->
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <div>
+                                                        <input type="text" class="form-control" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
 
+                                                    </div>
+                                                    <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                    </button>
+                                                </span>
+
+                                            </div>
                                         </div>
-                                        <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
+                                        <div class="desplegable" style="display:none" id="desplegable" ng-hide="!mostrardesplegable">
+                                            <table class="tablaresultados">
+                                                <tbody>
+                                                    <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
+                                                        <td class="">
+                                                            <a>
+                                                                {{resultado.descripcion}}
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="" ng-if="loading">
+                                                        <td class="otrainfo">
+                                                            <a>
+                                                                <img class="img-fluid" src="~/img/cargando.gif" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="resultadobusqueda.length<1">
+                                                        <td class="otrainfo">
+                                                            <a>
+                                                                No hay resultados que mostrar
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-if="!loading">
+                                                        <td class="otrainfo" ng-if="resultadobusqueda.length<NumReg">
+                                                            <a>
+                                                                Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="otrainfo" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
+                                                            <a>
+                                                                Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_15_2">
+                                    <p> Howdy, I'm in Section 2. </p>
+                                    <p>
+                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+                                        consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+                                    </p>
+                                  
                                 </div>
                             </div>
-                            <div class="desplegable" style="display:none" id="desplegable" ng-hide="!mostrardesplegable">
-                                <table class="tablaresultados">
-                                    <tbody>
-                                        <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
-                                            <td class="">
-                                                <a>
-                                                    {{resultado.descripcion}}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="" ng-if="loading">
-                                            <td class="otrainfo">
-                                                <a>
-                                                    <img class="img-fluid" src="~/img/cargando.gif" />
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="resultadobusqueda.length<1">
-                                            <td class="otrainfo">
-                                                <a>
-                                                    No hay resultados que mostrar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr ng-if="!loading">
-                                            <td class="otrainfo" ng-if="resultadobusqueda.length<NumReg">
-                                                <a>
-                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="otrainfo" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
-                                                <a>
-                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
                         </div>
+
+
+                       
                         
                     </div>
                     <div class="col-md-offset-3 col-md-6 ">
