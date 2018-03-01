@@ -1,16 +1,22 @@
 /* here you can put your own css to customize and override the theme */
 .ico-prod{
-	font-size: 9.5rem;
+	font-size: 70px;
 	line-height: 0.5;
+}
+
+.btn-vehiculo:hover .ico-prod{
+
 }
 .ico-titulo{
   font-size: 2em !important;
   line-height: 4px;
 }
 
-a > i.ico-prod , a:hover > i.ico-prod , a p.texto-prod{
-  text-decoration: none;
-  color:initial;
+a > i.ico-prod, a:hover > i.ico-prod, a p.texto-prod {
+    text-decoration: none;
+    color: initial;
+    margin-top: -10px;
+   /*line-height: 1px;*/ 
 }
  a.texto-prod:hover {
   text-decoration: none;
