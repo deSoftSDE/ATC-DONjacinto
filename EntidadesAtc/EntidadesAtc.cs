@@ -436,6 +436,8 @@ namespace EntidadesAtc
     {
         [DataMember]
         public string cadena { get; set; }
+        [DataMember]
+        public int? numPag { get; set; }
     }
     public class BusquedaArticulos
     {
@@ -455,6 +457,7 @@ namespace EntidadesAtc
     {
         public List<Articulo> Articulos { get; set; }
         public int NumReg { get; set; }
+        public int NumPags { get; set; }
     }
     public class Articulo
     {

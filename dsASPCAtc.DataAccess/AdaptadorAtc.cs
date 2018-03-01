@@ -44,6 +44,7 @@ namespace dsASPCAtc.DataAccess
                 if (_reader.Read())
                 {
                     res.NumReg = AsignaEntero("NumReg");
+                    res.NumPags = AsignaEntero("NumPags");
                 }
                 _reader.NextResult();
                 while (_reader.Read())

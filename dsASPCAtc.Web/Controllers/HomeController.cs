@@ -43,7 +43,7 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Productos(CampoBusqueda cm)
         {
-            ViewData["Data"] = new ProductosViewModel(_configuration, cm);
+
             return View();
         }
 
