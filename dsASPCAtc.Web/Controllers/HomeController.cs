@@ -40,22 +40,17 @@ namespace dsASPCAtc.Web.Controllers
 
             return View();
         }
+        [HttpPost]
         public IActionResult Productos(CampoBusqueda cm)
         {
-            /*var cant = HttpContext.Session.GetObjectFromJson<CampoBusqueda>("Busqueda");
-            if (cant != null)
-            {
-                cant.AccionPagina = cm.AccionPagina;
-                cm = cant;
-            }
-            if (cm.AccionPagina == null)
-            {
-                cm.AccionPagina = "F";
-            }*/
-            //var vm = new ProductosViewModel(_configuration, cm);
-            //HttpContext.Session.SetObjectAsJson("Busqueda", vm.cm);
-            //ViewData["Data"] = vm;
             ViewData["Data"] = cm;
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Productos(string producto)
+        {
+            var res = new CampoBusqueda { cadena = producto };
+            ViewData["Data"] = res;
             return View();
         }
 

@@ -23,8 +23,7 @@
         <div class="col-md-12" style="background-image: url(assets/layouts/layout/img/luna-rota.jpg) ;background-size: cover; background-position: center;">
            
             <div class="row">
-                <form asp-controller="Home" asp-action="Productos" method="POST">
-                    @model CampoBusqueda;
+                <form asp-controller="Home" asp-action="Productos" method="get">
                     <div class="col-md-offset-2 col-md-8 ">
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs nav-justified ">
@@ -39,11 +38,10 @@
                                 <div class="tab-pane active" id="tab_15_1">
                                     <div>
                                         <div>
-                                            <!---->
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <div>
-                                                        <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
+                                                        <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
 
                                                     </div>
                                                     <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">

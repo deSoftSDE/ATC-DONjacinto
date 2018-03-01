@@ -38,20 +38,70 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     var obj = {
         cadena: document.getElementById("cadena").value,
     }
+    $scope.loading = true;
     Llamada.post("ArticulosBusquedaPaginada", obj)
         .then(function (respuesta) {
+            $scope.loading = false;
+            cambiarBotonesPaginacionIniciales(true);
             $scope.vm = respuesta.data;
+            if (respuesta.data.articulos.length < 1) {
+                cambiarBotonesPaginacion(true);
+
+            }
+            loopClase("listaArticulos")
         })
-    $scope.cambiarPagina = function (val) {
+    $scope.cambiarPagina = function (sender, val) {
+        cambiarBotonesPaginacion(false);
+        switch (val) {
+            case "F":
+                cambiarBotonesPaginacionIniciales(true);
+                break;
+            case "L":
+                cambiarBotonesPaginacionFinales(true);
+                break;
+        }
         $scope.vm.cm.accionPagina = val;
         Llamada.post("ArticulosBusquedaPaginada", $scope.vm.cm)
             .then(function (respuesta) {
                 if (respuesta.data.articulos.length < 1) {
-
+                    switch (val) {
+                        case "N":
+                            cambiarBotonesPaginacionFinales(true);
+                            break;
+                        case "P":
+                            cambiarBotonesPaginacionIniciales(true);
+                            break;
+                    }
                 } else {
                     $scope.vm = respuesta.data;
+                    
                 }
                 
             })
     }
+    cambiarBotonesPaginacion = function (val) {
+        console.log("Desactivando");
+        document.getElementById("primera").disabled = val;
+        document.getElementById("anterior").disabled = val;
+        document.getElementById("siguiente").disabled = val;
+        document.getElementById("ultima").disabled = val;
+    }
+    cambiarBotonesPaginacionIniciales = function (val) {
+        console.log("Desactivando");
+        document.getElementById("primera").disabled = val;
+        document.getElementById("anterior").disabled = val;
+    }
+    cambiarBotonesPaginacionFinales = function (val) {
+        console.log("Desactivando");
+        document.getElementById("siguiente").disabled = val;
+        document.getElementById("ultima").disabled = val;
+    }
+    loopClase = function (clase) {
+        var elem = document.getElementsByClassName(clase);
+        for (i = 0; i < elem.length; i++) {
+            console.log(elem[i]);
+            elem[i].setAttribute("style", "");
+        }
+        document.getElementById("loading" + clase).style.display = "none";
+    } 
 });

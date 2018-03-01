@@ -26,14 +26,17 @@
 </h1>
 <!-- END PAGE TITLE-->
 <!-- INICIO TABLA -->
->
-<div class="portlet light bordered" ng-controller="listaArticulos">
-    <input type="text" value="@cm.cadena" id="cadena" />
-    <h1><small>Mostrando {{vm.articulos.length}} artículos de {{vm.numReg}} para </small>"@cm.cadena"</h1>
-    <input type="submit" ng-model="first" value="Primera" ng-click="cambiarPagina('F')" />
-    <input type="submit" value="Anterior" ng-click="cambiarPagina('P')" />
-    <input type="submit" value="Siguiente" ng-click="cambiarPagina('N')" />
-    <input type="submit" ng-model="last" value="Última" ng-click="cambiarPagina('L')" />
+<div id="loadinglistaArticulos">
+    <img class="img-fluid" src="~/img/cargando.gif" />
+</div>
+<div class="portlet light bordered listaArticulos" style="display:none" ng-controller="listaArticulos">
+    <input style="display:none" type="text" value="@cm.cadena" id="cadena" />
+    <h1 ng-if="vm.articulos.length>0"><small>Mostrando {{vm.articulos.length}} artículos de {{vm.numReg}} para </small>"@cm.cadena"</h1>
+    <h1 ng-if="vm.articulos.length<1"><small>No hay artículos que mostrar para </small>"@cm.cadena"</h1>
+    <input type="submit" id="primera" value="Primera" ng-click="cambiarPagina(this, 'F')" />
+    <input type="submit" id="anterior" value="Anterior" ng-click="cambiarPagina(this, 'P')" />
+    <input type="submit" id="siguiente" value="Siguiente" ng-click="cambiarPagina(this, 'N')" />
+    <input type="submit" id="ultima" value="Última" ng-click="cambiarPagina(this, 'L')" />
     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_2">
         <thead>
             <tr>
