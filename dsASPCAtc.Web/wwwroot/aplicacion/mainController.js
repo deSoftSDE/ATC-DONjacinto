@@ -25,4 +25,12 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
             $scope.loading = false;
         }
     }
+    $scope.focofuera = function () {
+        $scope.mostrardesplegable = false;
+    }
+    $scope.entrafoco = function () {
+        if (NotNullNotUndefinedNotEmpty($scope.resultadobusqueda)) {
+            $scope.mostrardesplegable = true;
+        }
+    }
 });

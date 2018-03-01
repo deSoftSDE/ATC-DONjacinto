@@ -143,3 +143,9 @@ a > i.ico-prod , a:hover > i.ico-prod , a p.texto-prod{
 .dropdown>#menu-busqueda.dropdown-menu:after{
   content: none !important;
 }
+.nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:hover {
+   border: none !important;
+}
+.nav-tabs-justified > .active > a, .nav-tabs-justified > .active > a:focus, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:hover {
+        border: none !important;
+    }
