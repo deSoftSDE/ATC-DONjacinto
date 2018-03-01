@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <Reference Include="dsCore.Buscador">
-      <HintPath>..\..\..\..\..\..\..\..\core2017\dsCore.Buscador.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\core2017\dsCore.Buscador.dll</HintPath>
     </Reference>
     <Reference Include="dsCore2.DataAccess">
       <HintPath>..\..\..\..\..\..\..\..\core2017\dsCore2.DataAccess.dll</HintPath>

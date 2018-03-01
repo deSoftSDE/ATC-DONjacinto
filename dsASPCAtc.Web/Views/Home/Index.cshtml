@@ -23,8 +23,9 @@
         <div class="col-md-12" style="background-image: url(assets/layouts/layout/img/luna-rota.jpg) ;background-size: cover; background-position: center;">
            
             <div class="row">
-                <form asp-controller="Home" asp-action="Productos" method="get">
-                    <div class="col-md-offset-2 col-md-8 ">
+                <form asp-controller="Home" asp-action="Productos" method="POST">
+                    @model CampoBusqueda;
+                    <div class="col-md-offset-2 col-md-8  col-sm-12 ">
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs nav-justified ">
                                 <li class="active">
@@ -36,72 +37,114 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab_15_1">
-                                    <div>
-                                        <div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-lg-offset-0  col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"  >
+                                            <!---->
                                             <div class="input-group">
+                                                <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
                                                 <span class="input-group-btn">
-                                                    <div>
-                                                        <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
-
-                                                    </div>
                                                     <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
                                                         <i class="glyphicon glyphicon-search"></i>
                                                     </button>
-                                                </span>
-
+                                                </span>        
+                                                
                                             </div>
-                                        </div>
-                                        <div class="desplegable" style="display:none" id="desplegable" ng-hide="!mostrardesplegable">
-                                            <table class="tablaresultados">
-                                                <tbody>
-                                                    <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
-                                                        <td class="">
-                                                            <a>
-                                                                {{resultado.descripcion}}
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="otrainfo" ng-if="loading">
-                                                        <td class="">
-                                                            <a>
-                                                                <img class="img-fluid" src="~/img/cargando.gif" />
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr ng-show="resultadobusqueda.length<1" class="otrainfo">
-                                                        <td >
-                                                            <a>
-                                                                No hay resultados que mostrar
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr ng-if="!loading" class="otrainfo">
-                                                        <td  ng-if="resultadobusqueda.length<NumReg">
-                                                            <a>
-                                                                Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="otrainfo" ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
-                                                            <a>
-                                                                Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            <div class="desplegable" style="display:none" id="desplegable" ng-hide="!mostrardesplegable">
+                                                <table class="tablaresultados">
+                                                    <tbody>
+                                                        <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
+                                                            <td class="">
+                                                                <a>
+                                                                    {{resultado.descripcion}}
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="otrainfo" ng-if="loading">
+                                                            <td class="">
+                                                                <a>
+                                                                    <img class="img-fluid" src="~/img/cargando.gif" />
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr ng-show="resultadobusqueda.length<1" class="otrainfo">
+                                                            <td>
+                                                                <a>
+                                                                    No hay resultados que mostrar
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr ng-if="!loading" class="otrainfo">
+                                                            <td ng-if="resultadobusqueda.length<NumReg">
+                                                                <a>
+                                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="otrainfo">
+                                                            <td ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
+                                                                <a>
+                                                                    Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
+                                        </div>
                                     </div>
+                                        
                                 </div>
                                 <div class="tab-pane" id="tab_15_2">
-                                    <p> Howdy, I'm in Section 2. </p>
-                                    <p>
-                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                                    </p>
-                                  
+                                    <div class="row" style="background-color:rgba(255, 255, 255, 1);">
+                                        <div class="col-lg-12 text-center titulo-search ">
+                                            <h4 class="font-blue-steel"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 1);">Selecciona el tipo de vehículo</span></h4>
+                                        </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-transporte-3 ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Coche</small></p>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-transporte-4 ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Furgoneta</small></p>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-transporte-1 ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Camión</small></p>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-transporte-5 ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Autocar</small></p>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-transporte-2 ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Caravanas</small></p>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-construccion ico-prod"></i>
+                                                <p class="texto-prod"><small class="d-block">Maquinaria</small></p>
+                                            </a>
+                                        </div>
+                                        <!--ESTE ULTIMO ICONO DE OTROS NECESITA STILOS PROPIOS-->
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" href="">
+                                                <i class="flaticon-busqueda ico-prod" style="font-size:44px;"></i>
+                                                <p class="texto-prod" style="margin-top:3px;"><small class="d-block">Otros</small></p>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +181,7 @@
                     <div class="caption">
                         <i class="flaticon-flecha font-dark ico-titulo "></i>
                         <span class="caption-subject bold font-dark uppercase">Pedido Exprés</span>
-                        <span class="caption-helper"> con un sólo click</span>
+                        <span class="caption-helper">añadir al pedido en un sólo click</span>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -207,50 +250,36 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-microphone font-dark hide"></i>
-                        <span class="caption-subject bold font-dark uppercase">BUSQUEDA POR MODELO </span>
-                        <span class="caption-helper">selecciona el tipo de vehículo</span>
+                        <span class="caption-subject bold font-dark uppercase">ÚLTIMOS PEDIDOS </span>
+                        <span class="caption-helper">estado ultimos pedidos</span>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="row">
-                        <div class="col-md-4 text-center m-t">
-                            <a class="texto-prod" a asp-area="" asp-action="Productos">
-                                <i class="flaticon-transporte-3 ico-prod"></i>
-                                <p class="texto-prod"><small class="d-block">Coche</small></p>
-                            </a>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <a class="texto-prod" a asp-area="" asp-action="Productos">
-                                <i class="flaticon-transporte-4 ico-prod"></i>
-                                <p><small class="d-block">Furgoneta</small></p>
-                            </a>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <i class="flaticon-transporte-1 ico-prod"></i>
-                            <p><small class="d-block">Camión</small></p>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <i class="flaticon-transporte-5 ico-prod"></i>
-                            <p><small class="d-block">Autocar</small></p>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <i class="flaticon-transporte-2 ico-prod"></i>
-                            <p><small class="d-block">Caravanas</small></p>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <i class="flaticon-construccion ico-prod"></i>
-                            <p><small class="d-block">Maquinaria</small></p>
-                        </div>
-                        <div class="col-md-4 text-center m-t">
-                            <i class="flaticon-busqueda ico-prod" style="font-size: 7rem;"></i>
-                            <p><small class="d-block">Otros</small></p>
-                        </div>
-
-
-
-
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Nº Pedido </th>
+                                    <th> Fecha </th>
+                                    <th> Total </th>
+                                    <th> Estado </th>
+                                    <th>  </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> 2018ATC02 </td>
+                                    <td> 03-01-2018 </td>
+                                    <td> 800.00€ </td>
+                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
+                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
