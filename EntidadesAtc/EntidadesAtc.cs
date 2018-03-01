@@ -438,6 +438,16 @@ namespace EntidadesAtc
         public string cadena { get; set; }
         [DataMember]
         public int? numPag { get; set; }
+        [DataMember]
+        public string LastValor { get; set; }
+        [DataMember]
+        public int LastIndice { get; set; }
+        [DataMember]
+        public string AccionPagina { get; set; }
+        [DataMember]
+        public string FirstValor { get; set; }
+        [DataMember]
+        public int FirstIndice { get; set; }
     }
     public class BusquedaArticulos
     {
@@ -504,6 +514,66 @@ namespace EntidadesAtc
         public int IDArticulo { get; set; }
         [DataMember]
         public string Descripcion { get; set; }
+    }
+
+    [DataContract]
+    [Serializable]
+    public class BuscaArticulo
+    {
+        [DataMember]
+        public int IdArticulo { get; set; }
+
+        [DataMember]
+        public int? IdUnidadManipulacion { get; set; }
+
+        [DataMember]
+        public int? IdUnidadValoracion { get; set; }
+
+        [DataMember]
+        public int? IdMedidaUM { get; set; }
+
+        [DataMember]
+        public string Codigo { get; set; }
+
+        [DataMember]
+        public string Descripcion { get; set; }
+
+        [DataMember]
+        public string DescripcionUM { get; set; }
+
+        [DataMember]
+        public string GTINUC { get; set; }
+
+        [DataMember]
+        public string GTINUM { get; set; }
+
+        [DataMember]
+        public string ModoGestion { get; set; }
+
+        [DataMember]
+        public bool ContenidoVariable { get; set; }
+
+        [DataMember]
+        public decimal UnidadesContenido { get; set; }
+
+        [DataMember]
+        public decimal StockUM { get; set; }
+
+        [DataMember]
+        public decimal StockUV { get; set; }
+
+        [DataMember]
+        public string strStock { get; set; }
+
+        [DataMember]
+        public int? IdTipoPartida { get; set; }
+
+        [DataMember]
+        public int? IdTipoIva { get; set; }
+    }
+    public class QueryBusqueda
+    {
+
     }
 
 }
