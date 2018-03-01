@@ -14,27 +14,38 @@ namespace dsASPCAppNews.DataAccess
         {
             switch (Criterio.Entidad)
             {
-                case "Noticia":
-                    //MetodoRellenarLista = MetodoRellenoNoticia;
-                    TipoDato = typeof(Noticia);
+                case "BuscaArticulo":
+                case "VBuscaArticulo":
+                case "BuscaArticuloUM":
+                    MetodoRellenarLista = metodoRellenoBuscaArticulos;
+                    TipoDato = typeof(BuscaArticulo);
                     break;
+
 
             }
         }
 
 
 
-        /*private void MetodoRellenoNoticia(object entidad)
+        private void metodoRellenoBuscaArticulos(object entidadLista)
         {
-            var cli = entidad as Noticia;
-            if (cli == null)
-                return;
-            cli.IDNoticia = AsignaEntero("IDNoticia");
-            cli.IDAutor = AsignaEntero("IDAutor");
-            cli.Titular = AsignaCadena("Titular");
-            cli.Contenido = AsignaCadena("Contenido");
-
-        }*/
+            ((BuscaArticulo)entidadLista).IdArticulo = AsignaEntero("IdArticulo");
+            ((BuscaArticulo)entidadLista).IdUnidadManipulacion = AsignaEnteroNull("IdUnidadManipulacion");
+            ((BuscaArticulo)entidadLista).IdUnidadValoracion = AsignaEnteroNull("IdUnidadValoracion");
+            ((BuscaArticulo)entidadLista).IdMedidaUM = AsignaEnteroNull("IdUnidadVenta");
+            ((BuscaArticulo)entidadLista).Codigo = AsignaCadena("Codigo");
+            ((BuscaArticulo)entidadLista).Descripcion = AsignaCadena("Descripcion");
+            ((BuscaArticulo)entidadLista).DescripcionUM = AsignaCadena("DescripcionUM");
+            ((BuscaArticulo)entidadLista).GTINUC = AsignaCadena("GTINUC");
+            ((BuscaArticulo)entidadLista).GTINUM = AsignaCadena("GTINUM");
+            ((BuscaArticulo)entidadLista).ModoGestion = AsignaCadena("ModoGestion");
+            ((BuscaArticulo)entidadLista).ContenidoVariable = AsignaBool("ContenidoVariable");
+            ((BuscaArticulo)entidadLista).UnidadesContenido = AsignaDecimal("UnidadesContenido");
+            ((BuscaArticulo)entidadLista).IdTipoPartida = AsignaEnteroNull("IdTipoPartida");
+            ((BuscaArticulo)entidadLista).StockUM = AsignaDecimal("StockUM");
+            ((BuscaArticulo)entidadLista).StockUV = AsignaDecimal("StockUV");
+            ((BuscaArticulo)entidadLista).IdTipoIva = AsignaEnteroNull("IdTipoIva");
+        }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using dsASPCAtc.DataAccess;
+﻿using dsASPCAppNews.DataAccess;
+using dsASPCAtc.DataAccess;
+using dsCore.Buscador;
 using EntidadesAtc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,35 +12,75 @@ namespace dsASPCAtc.Web.ViewModels
 {
     public class ProductosViewModel
     {
-        public List<Articulo> Articulos;
+        public List<object> Articulos;
         public int NumReg;
         public int NumPags;
         public int NumPag;
-        public ProductosViewModel(IConfiguration configuration, CampoBusqueda ba)
+        public int TamPag = 6;
+        public EntidadesAtc.CampoBusqueda cm;
+        
+
+        public ProductosViewModel(IConfiguration configuration, EntidadesAtc.CampoBusqueda ba)
         {
-            var ad = new AdaptadorAtc(configuration);
-            var numPag = ba.numPag;
-            if (!numPag.HasValue)
+            cm = new EntidadesAtc.CampoBusqueda();
+            cm.cadena = ba.cadena;
+            var v = "";
+            var vc = "";
+            if (ba.AccionPagina == null)
             {
-                numPag = 1;
+                ba.AccionPagina = "F";
             }
-            var bs = new BusquedaArticulos
+            switch(ba.AccionPagina)
             {
-                valorFuncion = ba.cadena,
-                tipoOrden = "ASC",
-                orderBy = "Descripcion",
-                tamanoPagina = 6,
-                pagina = 1,
-                idSeccion = null,
-                idDelegacion = null,
-                idFamilia = null,
-                idGenerico = null,
+                case "P":
+                    v = ba.FirstValor;
+                    vc = ba.FirstIndice.ToString();
+                    break;
+                case "N":
+                    v = ba.LastValor;
+                    vc = ba.LastIndice.ToString();
+                    break;
+            }
+            var criterioAuxiliares = new CriterioBusqueda
+            {
+                IdISOLang = null,
+                CampoOrdenacion = "Descripcion",
+                TipoOrden = "ASC",
+                NumPagina = 1,
+                TamanoPagina = 6,
+                CamposBusqueda = null,
+                Entidad = "BuscaArticulo",
+                Paginacion = false,
+                Operacion = ba.AccionPagina,
+                Valor = v,
+                ValorClave = vc,
+                CampoClave = "IdArticulo",
+                EntidadFuncion = "BuscaArticulo",
+                ValorFuncion = "'" + ba.cadena + "'",
+                EntidadVista = "VBuscaArticulo",
+                idAlmacen = 1,
+                idDelegacion = 0
             };
-            var res = ad.LeerArticulosVenta(bs);
-            Articulos = res.Articulos;
-            NumReg = res.NumReg;
-            NumPag = (int)numPag;
-            NumPags = res.NumPags;
+            var ls = new LecturasDA(configuration);
+            var res = ls.LeerLista(criterioAuxiliares);
+            Articulos = res.ListaResultados;
+            NumReg = res.ContadorResultados;
+            NumPags = res.NumeroPaginas;
+            try
+            {
+                var c = (BuscaArticulo)Articulos[Articulos.Count - 1];
+                var d = (BuscaArticulo)Articulos[0];
+                cm.LastValor = c.Descripcion;
+                cm.LastIndice = c.IdArticulo;
+                cm.FirstValor = d.Descripcion;
+                cm.FirstIndice = d.IdArticulo;
+                cm.AccionPagina = ba.AccionPagina;
+            }
+            catch (Exception ex)
+            {
+                var a = 1;
+            } 
+            
         }
 
     }

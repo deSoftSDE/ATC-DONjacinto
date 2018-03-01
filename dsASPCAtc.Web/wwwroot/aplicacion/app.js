@@ -12,6 +12,22 @@ atc.factory('Llamada', function ($http, $q) {
                 })
             return deferred.promise;
         },
+        post: function (url, body) {
+            console.log(body);
+            var deferred = $q.defer();
+            $.ajax({
+                data: JSON.stringify(body),
+                url: api_url + url,
+                type: 'post',
+                contentType: 'application/json',
+                success: function (response) {
+                    var res = { data: response }
+                    console.log(res);
+                    deferred.resolve(res);
+                }
+            });
+            return deferred.promise;
+        }
     }
     return http;
 });
@@ -28,4 +44,7 @@ function VacioSiUndefined(val) {
     } else {
         return "";
     }
+}
+function cambiarPagina(a) {
+    document.getElementById("accionpagina").value = a;
 }
