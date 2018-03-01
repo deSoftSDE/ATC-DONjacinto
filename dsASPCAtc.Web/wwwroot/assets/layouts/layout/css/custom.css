@@ -5,7 +5,7 @@
 }
 
 .btn-vehiculo:hover .ico-prod{
-
+ color:#3475cf;
 }
 .ico-titulo{
   font-size: 2em !important;
@@ -21,6 +21,10 @@ a > i.ico-prod, a:hover > i.ico-prod, a p.texto-prod {
  a.texto-prod:hover {
   text-decoration: none;
  }
+
+.titulo-search {
+    border-bottom: 1px solid #eee;
+}
 
 /*MARGENES*/
 .m-t{
