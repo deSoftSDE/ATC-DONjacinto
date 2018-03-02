@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     @using dsASPCAtc.Web.ViewModels;
     @using EntidadesAtc;
     //var vm = (ProductosViewModel)ViewData["Data"];
@@ -29,6 +29,7 @@
 <div id="loadinglistaArticulos">
     <img class="img-fluid" src="~/img/cargando.gif" />
 </div>
+@Html.ActionLink("AnadirACarrito", "AnadirACarrito");
 <div class="portlet light bordered listaArticulos" style="display:none" ng-controller="listaArticulos">
     <input style="display:none" type="text" value="@cm.cadena" id="cadena" />
     <h1 ng-if="vm.articulos.length>0"><small>Mostrando {{vm.articulos.length}} artículos de {{vm.numReg}} para </small>"@cm.cadena"</h1>

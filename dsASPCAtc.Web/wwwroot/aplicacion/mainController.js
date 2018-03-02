@@ -1,4 +1,16 @@
 atc.controller('main', function ($scope, $http, Llamada, $timeout) {
+    mensajeError = function (error) {
+        DevExpress.ui.notify(error, "error", 2000);
+    }
+    mensajeExito = function (mensaje) {
+        DevExpress.ui.notify(mensaje, "success", 2000);
+    }
+
+    $scope.dataGridOptions = {
+        dataSource: "data/customers.json",
+        columns: ["Código", "Características", "Almacenes", "PVP", "%", "Neto", "Pedir"]
+    };
+
     $scope.tamanoanterior = 0;
     $scope.mostrardesplegable = false;
     var inputChangedPromise;
@@ -104,4 +116,7 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
         }
         document.getElementById("loading" + clase).style.display = "none";
     } 
+});
+atc.controller('DemoController', function DemoController($scope) {
+    
 });
