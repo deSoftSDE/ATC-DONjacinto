@@ -293,13 +293,16 @@
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a,
     .page-sidebar .page-sidebar-menu > li.active > a,
     .page-sidebar .page-sidebar-menu > li.active.open > a {
-      background: #d64635;
+      /*background: #d64635;*/
+      background:#2d5f8b;
       border-top-color: transparent;
       color: #ffffff; }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a:hover, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a:hover,
       .page-sidebar .page-sidebar-menu > li.active > a:hover,
       .page-sidebar .page-sidebar-menu > li.active.open > a:hover {
-        background: #d64635; }
+        /*background: #d64635;*/
+        background:#3979b2;
+      }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > i, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a > i,
       .page-sidebar .page-sidebar-menu > li.active > a > i,
       .page-sidebar .page-sidebar-menu > li.active.open > a > i {
