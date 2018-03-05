@@ -54,6 +54,11 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
 
+        public void AnadirACarrito(int id)
+        {
+            var a = 1;
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

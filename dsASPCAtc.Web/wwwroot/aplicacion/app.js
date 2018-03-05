@@ -1,4 +1,4 @@
-atc = angular.module('atcapp', [] )
+atc = angular.module('atcapp', ['dx'] )
 
 atc.factory('Llamada', function ($http, $q) {
     var api_url = "http://" + location.host + "/Data/";

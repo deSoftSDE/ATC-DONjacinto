@@ -23,8 +23,7 @@
         <div class="col-md-12" style="background-color:#2d5f8b ;background-size: cover; background-position: center;">
            
             <div class="row">
-                <form asp-controller="Home" asp-action="Productos" method="POST">
-                    @model CampoBusqueda;
+                <form asp-controller="Home" asp-action="Productos" method="get">
                     <div class="col-md-offset-2 col-md-8  col-sm-12 ">
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs nav-justified ">
@@ -41,7 +40,7 @@
                                         <div class="col-lg-12 col-lg-offset-0  col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"  >
                                             <!---->
                                             <div class="input-group">
-                                                <input type="text" class="form-control control-search " ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" asp-for="cadena">
+                                                <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
                                                         <i class="glyphicon glyphicon-search"></i>

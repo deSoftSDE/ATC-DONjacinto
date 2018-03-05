@@ -23,9 +23,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\NewFolder\" />
     <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +32,7 @@
 
   <ItemGroup>
     <Reference Include="dsCore.Buscador">
-      <HintPath>..\..\..\..\..\..\core2017\dsCore.Buscador.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\core2017\dsCore.Buscador.dll</HintPath>
     </Reference>
     <Reference Include="dsCore2.DataAccess">
       <HintPath>..\..\..\..\..\..\..\..\core2017\dsCore2.DataAccess.dll</HintPath>
