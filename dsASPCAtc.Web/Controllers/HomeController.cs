@@ -11,6 +11,8 @@ using EntidadesAtc;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using dsASPCAtc.Web.ViewModels;
+using DevExtreme.AspNet.Mvc;
+using DevExtreme.AspNet.Data;
 
 namespace dsASPCAtc.Web.Controllers
 {
@@ -29,6 +31,7 @@ namespace dsASPCAtc.Web.Controllers
             Objeto.campo1 = "A";
             Objeto.campo2 = "B";
             Objeto.campo3 = "C";
+            ViewData["Companies"] = JsonConvert.SerializeObject(SampleData.Companies);
             HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
             return View();
         }
@@ -88,6 +91,11 @@ namespace dsASPCAtc.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpGet]
+        public ActionResult GetData(DataSourceLoadOptions loadOptions)
+        {
+            return Content(JsonConvert.SerializeObject(DataSourceLoader.Load(SampleData.Menu, loadOptions)), "application/json");
         }
 
     }
