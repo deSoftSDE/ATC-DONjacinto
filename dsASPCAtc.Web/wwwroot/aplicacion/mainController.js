@@ -54,22 +54,22 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     Llamada.post("ArticulosBusquedaPaginada", obj)
         .then(function (respuesta) {
             $scope.loading = false;
-            cambiarBotonesPaginacionIniciales(true);
+            cambiarBotonesPaginacionIniciales("disabled");
             $scope.vm = respuesta.data;
             if (respuesta.data.articulos.length < 1) {
-                cambiarBotonesPaginacion(true);
+                cambiarBotonesPaginacion("disabled");
 
             }
             loopClase("listaArticulos")
         })
     $scope.cambiarPagina = function (sender, val) {
-        cambiarBotonesPaginacion(false);
+        cambiarBotonesPaginacion("");
         switch (val) {
             case "F":
-                cambiarBotonesPaginacionIniciales(true);
+                cambiarBotonesPaginacionIniciales("disabled");
                 break;
             case "L":
-                cambiarBotonesPaginacionFinales(true);
+                cambiarBotonesPaginacionFinales("disabled");
                 break;
         }
         $scope.vm.cm.accionPagina = val;
@@ -78,10 +78,10 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
                 if (respuesta.data.articulos.length < 1) {
                     switch (val) {
                         case "N":
-                            cambiarBotonesPaginacionFinales(true);
+                            cambiarBotonesPaginacionFinales("disabled");
                             break;
                         case "P":
-                            cambiarBotonesPaginacionIniciales(true);
+                            cambiarBotonesPaginacionIniciales("disabled");
                             break;
                     }
                 } else {
@@ -93,20 +93,20 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     }
     cambiarBotonesPaginacion = function (val) {
         console.log("Desactivando");
-        document.getElementById("primera").disabled = val;
-        document.getElementById("anterior").disabled = val;
-        document.getElementById("siguiente").disabled = val;
-        document.getElementById("ultima").disabled = val;
+        document.getElementById("primera").className = val;
+        document.getElementById("anterior").className = val;
+        document.getElementById("siguiente").className = val;
+        document.getElementById("ultima").className = val;
     }
     cambiarBotonesPaginacionIniciales = function (val) {
         console.log("Desactivando");
-        document.getElementById("primera").disabled = val;
-        document.getElementById("anterior").disabled = val;
+        document.getElementById("primera").className = val;
+        document.getElementById("anterior").className = val;
     }
     cambiarBotonesPaginacionFinales = function (val) {
         console.log("Desactivando");
-        document.getElementById("siguiente").disabled = val;
-        document.getElementById("ultima").disabled = val;
+        document.getElementById("siguiente").className = val;
+        document.getElementById("ultima").className = val;
     }
     loopClase = function (clase) {
         var elem = document.getElementsByClassName(clase);

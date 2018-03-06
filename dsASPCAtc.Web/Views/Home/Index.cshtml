@@ -40,7 +40,7 @@
                                         <div class="col-lg-12 col-lg-offset-0  col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"  >
                                             <!---->
                                             <div class="input-group">
-                                                <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
+                                                <input type="text" class="form-control campo-search " ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-default boton-buscar" type="submit" id="btn_buscar" tabindex="2">
                                                         <i class="glyphicon glyphicon-search"></i>
@@ -96,9 +96,9 @@
                                         
                                 </div>
                                 <div class="tab-pane" id="tab_15_2">
-                                    <div class="row" style="background-color:rgba(255, 255, 255, 1);">
+                                    <div class="row" style="background-color:rgba(255, 255, 255, 0.8);">
                                         <div class="col-lg-12 text-center titulo-search ">
-                                            <h4 class="font-blue-steel"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 1);">Selecciona el tipo de vehículo</span></h4>
+                                            <h4 class="font-dark"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.40);">Selecciona el tipo de vehículo</span></h4>
                                         </div>
                                         <div class="col-md-3 text-center m-t btn-vehiculo">
                                             <a class="texto-prod" href="">
@@ -176,71 +176,102 @@
     </div>
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-6">
-            <div class="portlet light portlet-fit ">
+            <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="flaticon-flecha font-dark ico-titulo "></i>
-                        <span class="caption-subject bold font-dark uppercase">Pedido Exprés</span>
+                        <i class="icon-bubble font-dark hide"></i>
+                        <span class="caption-subject bold font-dark uppercase">Pedido Express</span>
                         <span class="caption-helper">añadir al pedido en un sólo click</span>
                     </div>
                 </div>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="mt-widget-4">
-                                <div class="mt-img-container">
-                                    <img src="assets/pages/img/background/34.jpg">
+                            <!--begin: widget 1-1 -->
+                            <div class="mt-widget-1">
+                                <div class="mt-icon">
+                                    <a href="#">
+                                        <i class="icon-plus"></i>
+                                    </a>
                                 </div>
-                                <div class="mt-container bg-purple-opacity">
-                                    <div class="mt-head-title"> Moldura Parabrisas </div>
-                                    <div class="mt-body-icons">
-                                        <a href="#">
-                                            <i class=" fa fa-cart-arrow-down"></i>
-                                        </a>
-                                    </div>
-                                    <div class="mt-footer-button">
-                                        <button type="button" class="btn btn-circle btn-danger btn-sm">Ver Ficha</button>
-                                    </div>
+                                <div class="mt-img">
+                                    <img class="img-responsive" src="../images/activador.jpg">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mt-widget-4">
-                                <div class="mt-img-container">
-                                    <img src="assets/pages/img/background/46.jpg">
-                                </div>
-                                <div class="mt-container bg-green-opacity">
-                                    <div class="mt-head-title"> Adhesivo especial </div>
-                                    <div class="mt-body-icons">
-                                        <a href="#">
-                                            <i class=" fa fa-cart-arrow-down"></i>
-                                        </a>
-                                    </div>
-                                    <div class="mt-footer-button">
-                                        <button type="button" class="btn btn-circle blue-ebonyclay btn-sm">Ver ficha</button>
+                                <div class="mt-body">
+                                    <h3 class="mt-username">Activador en Aerosol</h3>
+                                    <p class="mt-user-title"> 150 ml para Adhesivos Estructurales.. </p>
+                                    <div class="mt-stats">
+                                        <div class="btn-group btn-group btn-group-justified">
+                                            <a href="javascript:;" class="btn ">
+                                                <!--<i class="fa fa-star"></i>-->  Más info
+                                            </a>
+                                            <a href="javascript:;" class="btn font-green">
+                                                <i class="icon-plus "></i> Añadir
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end: widget 1-1 -->
                         </div>
                         <div class="col-md-4">
-                            <div class="mt-widget-4">
-                                <div class="mt-img-container">
-                                    <img src="assets/pages/img/background/37.jpg">
+                            <!--begin: widget 1-1 -->
+                            <div class="mt-widget-1">
+                                <div class="mt-icon">
+                                    <a href="#">
+                                        <i class="icon-plus"></i>
+                                    </a>
                                 </div>
-                                <div class="mt-container bg-dark-opacity">
-                                    <div class="mt-head-title"> Almohadilla </div>
-                                    <div class="mt-body-icons">
-                                        <a href="#">
-                                            <i class=" fa fa-cart-arrow-down"></i>
-                                        </a>
+                                <div class="mt-img">
+                                    <img class="img-responsive" src="../images/reparadora.jpg">
+                                </div>
+                                <div class="mt-body">
+                                    <h3 class="mt-username">Resina</h3>
+                                    <p class="mt-user-title"> 5ml resina de reparación.. </p>
+                                    <div class="mt-stats">
+                                        <div class="btn-group btn-group btn-group-justified">
+                                            <a href="javascript:;" class="btn ">
+                                                <!--<i class="fa fa-star"></i>-->  Más info
+                                            </a>
+                                            <a href="javascript:;" class="btn font-green">
+                                                <i class="icon-plus "></i> Añadir
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end: widget 1-1 -->
+                        </div>
+                        <div class="col-md-4">
+                            <!--begin: widget 1-1 -->
+                            <div class="mt-widget-1">
+                                <div class="mt-icon">
+                                    <a href="#">
+                                        <i class="icon-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="mt-img">
+                                    <img class="img-responsive" src="../images/loctite.jpg">
+                                </div>
+                                <div class="mt-body">
+                                    <h3 class="mt-username">Pegamento Loctite</h3>
+                                    <p class="mt-user-title"> 326 para soportes ... </p>
+                                    <div class="mt-stats">
+                                        <div class="btn-group btn-group btn-group-justified">
+                                            <a href="javascript:;" class="btn ">
+                                                <!--<i class="fa fa-star"></i>-->  Más info
+                                            </a>
+                                            <a href="javascript:;" class="btn font-green">
+                                                <i class="icon-plus "></i> Añadir
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end: widget 1-1 -->
+                        </div>
 
-                                    </div>
-                                    <div class="mt-footer-button">
-                                        <button type="button" class="btn btn-circle btn-success btn-sm">Ver ficha</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -268,6 +299,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td> 2018ATC02 </td>
+                                    <td> 03-01-2018 </td>
+                                    <td> 800.00€ </td>
+                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
+                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                </tr>
                                 <tr>
                                     <td> 2018ATC02 </td>
                                     <td> 03-01-2018 </td>
