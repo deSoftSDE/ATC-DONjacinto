@@ -1,6 +1,7 @@
 ﻿@{
     @using EntidadesAtc;
     ViewData["Title"] = "Home Page";
+    var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
 }
 
 <div class="page-bar">
@@ -100,7 +101,7 @@
                                         <div class="col-lg-12 text-center titulo-search ">
                                             <h4 class="font-dark"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.40);">Selecciona el tipo de vehículo</span></h4>
                                         </div>
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                        <!--<div class="col-md-3 text-center m-t btn-vehiculo">
                                             <a class="texto-prod" href="">
                                                 <i class="flaticon-transporte-3 ico-prod"></i>
                                                 <p class="texto-prod"><small class="d-block">Coche</small></p>
@@ -124,26 +125,31 @@
                                                 <p class="texto-prod"><small class="d-block">Autocar</small></p>
                                             </a>
                                         </div>
-                                        
+
                                         <div class="col-md-3 text-center m-t btn-vehiculo">
                                             <a class="texto-prod" href="">
                                                 <i class="flaticon-transporte-2 ico-prod"></i>
                                                 <p class="texto-prod"><small class="d-block">Caravanas</small></p>
                                             </a>
-                                        </div>
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-construccion ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Maquinaria</small></p>
-                                            </a>
-                                        </div>
+                                        </div>-->
+                                        @foreach (TipoVehiculo vehiculo in vh)
+                                        {
+                                            <div class="col-md-3 text-center m-t btn-vehiculo">
+                                                <a class="texto-prod" href="/Home/Vehiculos/@vehiculo.IDTipoVehiculo">
+                                                    <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'"/>
+                                                    <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
+                                                </a>
+                                            </div>
+
+                                        }
+
                                         <!--ESTE ULTIMO ICONO DE OTROS NECESITA STILOS PROPIOS-->
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                        <!--<div class="col-md-3 text-center m-t btn-vehiculo">
                                             <a class="texto-prod" href="">
                                                 <i class="flaticon-busqueda ico-prod" style="font-size:44px;"></i>
                                                 <p class="texto-prod" style="margin-top:3px;"><small class="d-block">Otros</small></p>
                                             </a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -396,4 +402,3 @@
         </div>
     </div>
     <!-- /INICIO CONTENIDO GENERICO HOME -->
-</div>

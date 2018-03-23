@@ -33,6 +33,8 @@ namespace dsASPCAtc.Web.Controllers
             Objeto.campo3 = "C";
             ViewData["Companies"] = JsonConvert.SerializeObject(SampleData.Companies);
             HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
+            var vm = new IndexViewModel(_configuration);
+            ViewData["Vehiculos"] = vm.Vehiculos;
             return View();
         }
 
@@ -54,8 +56,25 @@ namespace dsASPCAtc.Web.Controllers
         {
             var res = new CampoBusqueda { cadena = producto };
             ViewData["Data"] = res;
+
             return View();
         }
+        [HttpGet]
+        public IActionResult Buscador()
+        {
+            var vm = new VehiculosViewModel(_configuration, null);
+            ViewData["Vehiculos"] = vm.Vehiculos;
+            return View();
+        }
+        public IActionResult Vehiculos(int id)
+        {
+            var vm = new VehiculosViewModel (_configuration, id);
+            ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["IDTipoVehiculo"] = vm.IDTipoVehiculo;
+            ViewData["Vehiculo"] = vm.VehiculoSeleccionado;
+            return View();
+        }
+
 
         public void AnadirACarrito(int id)
         {

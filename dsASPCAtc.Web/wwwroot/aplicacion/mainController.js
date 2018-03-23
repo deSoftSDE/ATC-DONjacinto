@@ -45,6 +45,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
             $scope.mostrardesplegable = true;
         }
     }
+    $scope.NotNull = function (val) {
+        return NotNullNotUndefinedNotEmpty(val);
+    }
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     var obj = {

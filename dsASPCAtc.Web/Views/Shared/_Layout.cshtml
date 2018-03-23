@@ -47,24 +47,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/date.js"></script>
 
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
-    <script type="text/javascript" src="~/aplicacion/app.js"></script>
-    <script type="text/javascript" src="~/aplicacion/mainController.js"></script>
-
-    <!--Cosas devexpress-->
-
-    <script type="text/javascript" src="~/js/dx.all.js">
-
-    </script>
-    <script type="text/javascript" src="~/js/dx.aspnet.mvc.js"></script>
-    <script type="text/javascript" src="~/js/dx.aspnet.data.js"></script>
-    <link rel="stylesheet" href="~/css/dx.common.css">
-    <link rel="stylesheet" href="~/css/dx.contrast.css">
-    <link rel="stylesheet" href="~/css/dx.light.css">
-    <script type="text/javascript" src="~/js/sitetop.js"> 
-
-    </script>
+   
 
 </head>
 <!-- END HEAD -->
@@ -295,41 +278,9 @@
                             <h3 class="uppercase">productos</h3>
                         </li>
                         <li class="nav-item  ">
-                            
-                            @(Html.DevExtreme().Accordion()
-.ID("accordion-container")
-.DataSource(d => d.Mvc().LoadAction("GetData").Key("ID"))
-.AnimationDuration(300)
-.Collapsible(false)
-.Multiple(false)
-.OnSelectionChanged("accordion_selectionChanged")
-.ItemTitleTemplate(@<text><h1><%= Name %></h1></text>)
-                                .ItemTemplate(@<text>
-                                <div class="accodion-item">
-                                    <ul id="accordionMenu<%= ID %>">
 
 
-                                        <%
-                                            HacerBucle(Elementos, ID)
-                                        %>
-                                    </ul>
-                                    <div>
-                                        <p>
-                                            <b><%= City %></b>
-                                            (<span><%= State %></span>)
-                                        </p>
-                                        <p>
-                                            <span><%= ZipCode %></span>
-                                            <span><%= Address %></span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p>Phone: <b><%= Phone %></b></p>
-                                        <p>Fax: <b><%= Fax %></b></p>
-                                        <p>Website: <a href="<%= Website %>" target="_blank"><%= Website %></a></p>
-                                    </div>
-                                </div>
-                                </text>))
+
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-basket"></i>
                                 <span class="title">Lunas</span>
@@ -394,20 +345,6 @@
 
             }
             <div id="accordion">
-
-
-                <div class="selected-data">
-                    <span class="caption">Selected Items</span>
-                    @(Html.DevExtreme().TagBox()
-                                .ID("tagbox")
-                                .DisplayExpr("Name")
-                                .ValueExpr("ID")
-                                .Value(new[] { 1 })
-                                .DataSource(d => d.Mvc().LoadAction("GetData").Key("ID"))
-                                .Disabled(true)
-                                .OnValueChanged("tagBox_valueChanged")
-                    )
-                </div>
             </div>
 
             polo
@@ -710,6 +647,27 @@
     <script type="text/javascript" src="~/js/site.js">
 
 
+
+    </script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script type="text/javascript" src="~/aplicacion/app.js"></script>
+    <script type="text/javascript" src="~/aplicacion/mainController.js"></script>
+    <script type="text/javascript" src="~/aplicacion/vehiculosController.js"></script>
+
+    <!--Cosas devexpress-->
+
+    <script type="text/javascript" src="~/js/dx.all.js">
+
+    </script>
+
+    <link rel="stylesheet" href="~/css/dx.common.css">
+    <link rel="stylesheet" href="~/css/dx.contrast.css">
+    <link rel="stylesheet" href="~/css/dx.light.css">
+    <script type="text/javascript" src="~/js/sitetop.js">
 
     </script>
 
