@@ -193,4 +193,5 @@ a.resul-search:hover{
 
 .tabla-listado-prod tr td{
     font-size:90% !important;
+    vertical-align:middle !important;
 }
