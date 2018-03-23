@@ -9,6 +9,7 @@ namespace dsASPCAtc.Web.ViewModels
     public class EsquemaViewModel
     {
         public List<Fila> Filas { get; set; }
+        public Boolean HayArticulos { get; set; }
         public EsquemaViewModel(Carroceria car)
         {
             Filas = new List<Fila>
@@ -25,6 +26,10 @@ namespace dsASPCAtc.Web.ViewModels
             };
             foreach(Vidrio vid in car.Vidrios)
             {
+                if (vid.CantidadArticulos > 0)
+                {
+                    HayArticulos = true;
+                }
                 Filas[vid.PosVer].Celdas[vid.PosHor].Vidrio = vid;
                 Filas[vid.PosVer].Celdas[vid.PosHor].ExtensionVer = vid.SpanVer;
                 Filas[vid.PosVer].Celdas[vid.PosHor].ExtensionHor = vid.SpanHor;

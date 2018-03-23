@@ -652,6 +652,8 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@IDTipoVehiculo", pr.idTipoVehiculo),
                     new SqlParameter("@IDSeccion", pr.idSeccion),
                     new SqlParameter("@IDFamilia", pr.idFamilia),
+                    new SqlParameter("@idVidrio", pr.idVidrio),
+                    new SqlParameter("@idModeloCarroceria", pr.idModeloCarroceria),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ObtenerdescripcionesPorIDs", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -672,6 +674,18 @@ namespace dsASPCAtc.DataAccess
                 {
                     pr.idFamilia = AsignaEntero("IDFamilia");
                     pr.descripcionFamilia = AsignaCadena("DescripcionFamilia");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.descripcionCarroceria = AsignaCadena("Descripcion");
+                    pr.idCarroceria = AsignaEntero("IDCarroceria");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idTipoVidrio = AsignaEntero("IDTipoVidrio");
+                    pr.descripcionTipoVidrio = AsignaCadena("Descripcion");
                 }
                 
             }

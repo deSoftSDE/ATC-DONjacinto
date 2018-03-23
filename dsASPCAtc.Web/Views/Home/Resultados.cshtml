@@ -1,0 +1,201 @@
+﻿@{ 
+    var descripciones = (Parametros)ViewData["Descripciones"];
+    var descripcionesjs = ViewData["DescripcionesJS"];
+}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a asp-action="Index">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+
+        @if (descripciones.idTipoVehiculo.HasValue)
+    {
+        <li>
+            <a>@descripciones.descripcionTipoVehiculo</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+        @if (descripciones.idSeccion.HasValue)
+    {
+        <li>
+            <a>@descripciones.descripcionSeccion</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+
+        @if (descripciones.idFamilia.HasValue)
+    {
+        <li>
+            <a>@descripciones.descripcionFamilia</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+        @if (descripciones.idCarroceria.HasValue)
+    {
+        <li>
+            <a>@descripciones.descripcionCarroceria</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+        @if (descripciones.ano.HasValue)
+    {
+        <li>
+            <a>@descripciones.ano</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+        @if (descripciones.idTipoVidrio.HasValue)
+    {
+        <li>
+            <a>@descripciones.descripcionTipoVidrio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+}
+        <li>
+            <a asp-action="Home">Resultados de búsqueda</a>
+            <i class="fa fa-circle"></i>
+        </li>
+    </ul>
+</div>
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">
+    Resultados de la búsqueda
+    <strong></strong>
+</h1>
+<!-- END PAGE TITLE-->
+<!-- INICIO TABLA -->
+<div id="loadinglistaArticulos">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 ">
+            <img class="img-responsive center-block" src="~/img/spinner.gif" style="width:50%;" />
+        </div>
+    </div>
+
+</div>
+@* @Html.ActionLink("AnadirACarrito", "AnadirACarrito");*@
+
+
+
+<div class="portlet light bordered listaArticulos" style="display:none" ng-controller="busquedaArticulos">
+    <input style="display:none" type="text" value="" id="cadena" />
+    <input style="display:none" type="text" value="@descripcionesjs" id="parametros" />
+    <h1 ng-if="vm.articulos.length<1"><small>No hay artículos que mostrar para </small>""</h1>
+
+    <div class="dataTables_wrapper">
+        <div class="row">
+            <div class="col-md-6">
+                <p ng-if="vm.articulos.length>0">Mostrando <strong> {{vm.articulos.length}}</strong> de <strong> {{vm.numReg}}</strong> artículos.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="dataTables_wrapper">
+                    <div class="dataTables_paginate" style="float:right">
+                        <ul class="pagination">
+                            <li id="primera" ng-click="cambiarPagina(this, 'F')">
+                                <a><i class="fa fa-step-backward "></i> Primera</a>
+                            </li>
+                            <li id="anterior" ng-click="cambiarPagina(this, 'P')">
+                                <a><i class="fa fa-caret-left "></i> anterior</a>
+                            </li>
+                            <li id="siguiente" ng-click="cambiarPagina(this, 'N')">
+                                <a> siguiente <i class="fa fa-caret-right "></i></a>
+                            </li>
+                            <li id="ultima" ng-click="cambiarPagina(this, 'L')">
+                                <a>Última <i class="fa fa-step-forward "></i> </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod" id="sample_2">
+            <thead>
+                <tr>
+                    <th class="">
+
+                    </th>
+                    <th> Código </th>
+                    <th> Características </th>
+                    <th> Almacenes </th>
+                    <th class="text-center">PVP</th>
+                    <th class="text-center">%</th>
+                    <th class="text-center">Neto</th>
+                    <th class="text-center">Incl. pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd gradeX" ng-repeat="ar in vm.articulos">
+                    <td class="text-center">
+                        <img src="~/img/nodisponible.png" class="img-responsive center-block" style="width:80%;" />
+                    </td>
+                    <td>{{ar.codigo}}</td>
+                    <td>
+                        <a class="font-dark" href=""> {{ar.descripcion}} </a>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li style="padding-bottom: 5px;">
+                                Madrid  <span class="label label-sm label-success"> Disponible </span>
+                            </li>
+                            <li>
+                                Tomelloso  <span class="label label-sm label-default"> Agotado </span>
+                            </li>
+                        </ul>
+
+                    </td>
+                    <td class="text-right">0.00€</td>
+                    <td class="text-right">0%</td>
+                    <td class="text-right">0.00€</td>
+                    <td class="text-center">
+                        <a href="javascript:;" class="btn btn-icon-only default">
+                            <i class="fa fa-cart-plus"></i>
+                        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <p ng-if="vm.articulos.length>0">Mostrando <strong> {{vm.articulos.length}}</strong> de <strong> {{vm.numReg}}</strong> artículos.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="dataTables_wrapper">
+                    <div class="dataTables_paginate" style="float:right">
+                        <ul class="pagination">
+                            <li id="primera_b" ng-click="cambiarPagina(this, 'F')">
+                                <a><i class="fa fa-step-backward "></i> Primera</a>
+                            </li>
+                            <li id="anterior_b" ng-click="cambiarPagina(this, 'P')">
+                                <a><i class="fa fa-caret-left "></i> anterior</a>
+                            </li>
+                            <li id="siguiente_b" ng-click="cambiarPagina(this, 'N')">
+                                <a> siguiente <i class="fa fa-caret-right "></i></a>
+                            </li>
+                            <li id="ultima_b" ng-click="cambiarPagina(this, 'L')">
+                                <a>Última <i class="fa fa-step-forward "></i> </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- FIN TABLA  parabrisas-->
+<!-- TABLA  Gomas-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <h1>COMPLEMENTOS</h1>
+        </div>
+    </div>
+</div>
+

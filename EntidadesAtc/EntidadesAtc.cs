@@ -728,12 +728,20 @@ namespace EntidadesAtc
     }
     public class Parametros
     {
-        public int? idTipoVehiculo;
-        public int? idSeccion;
-        public int? idFamilia;
-        public string descripcionTipoVehiculo;
-        public string descripcionSeccion;
-        public string descripcionFamilia;
+        public int? idModeloCarroceria;
+        public int? ano;
+
+        public int? idTipoVehiculo { get; set; }
+        public int? idSeccion { get; set; }
+        public int? idFamilia { get; set; }
+        public string descripcionTipoVehiculo { get; set; }
+        public string descripcionSeccion { get; set; }
+        public string descripcionFamilia { get; set; }
+        public int? idVidrio { get; set; }
+        public string descripcionTipoVidrio { get; set; }
+        public string descripcionCarroceria { get; set; }
+        public int? idCarroceria { get; set; }
+        public int? idTipoVidrio { get; set; }
     }
     [DataContract]
     public class TipoVehiculo

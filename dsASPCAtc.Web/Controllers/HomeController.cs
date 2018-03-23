@@ -61,6 +61,31 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio)
+        {
+            var ad = new AdaptadorAtc(_configuration);
+            var pr = new Parametros
+            {
+                idFamilia = modelo,
+                idVidrio = vidrio,
+                idModeloCarroceria = carroceria
+            };
+            var desc = ad.ObtenerdescripcionesPorIDs(pr);
+            if (periodo.HasValue)
+            {
+                if (periodo > 0)
+                {
+                    desc.ano = periodo;
+                }
+                
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var jsinfo = js.Serialize(desc);
+            ViewData["DescripcionesJS"] = jsinfo;
+            ViewData["Descripciones"] = desc;
+            return View();
+        }
+        [HttpGet]
         public IActionResult Buscador(int? vehiculo, int? modelo, int? marca)
         {
             var Parametros = new Parametros
@@ -114,6 +139,7 @@ namespace dsASPCAtc.Web.Controllers
             
             return View();
         }
+
 
         public IActionResult Error()
         {

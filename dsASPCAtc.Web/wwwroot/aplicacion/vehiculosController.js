@@ -17,6 +17,9 @@
                 $scope.selectbox.option("dataSource", $scope.marcas.marcas);
                 //alert("Ok, data source colocado");
                 console.log($scope.selectbox);
+                if ($scope.marcas.marcas.length < 1) {
+                    $scope.finalizarBusquedaTipoVehiculo();
+                }
             })
     }
     buscarModelos = function () {
@@ -29,6 +32,9 @@
                 }
                 $scope.selectboxmodelos.option("dataSource", $scope.modelos);
                 console.log($scope.modelos)
+                //if ($scope.modelos.length < 1) {
+                //    $scope.finalizarBusquedaTipoVehiculo();
+                //}
             })
     }
     buscarCarrocerias = function () {
@@ -48,7 +54,9 @@
                     $scope.currentmodelo.carrocerias[i].url = Llamada.getRuta($scope.currentmodelo.carrocerias[i].imagen);
                 }
                 $scope.objetoBusqueda.infoModelo = $scope.currentmodelo;
-
+                if ($scope.currentmodelo.carrocerias.length < 1) {
+                    $scope.finalizarBusqueda();
+                }
             })
     }
     buscarAnos = function () {
@@ -58,8 +66,18 @@
                 for (i = 0; i < $scope.anos.length; i++) {
                     $scope.anos[i].ano = $scope.anos[i].valor;
                 }
-                $scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' })
-                $scope.selectboxanos.option("dataSource", $scope.anos);
+                //$scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
+                //$scope.selectboxanos.option("dataSource", $scope.anos);
+                if ($scope.anos.length < 1) {
+                    $scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
+                    //$scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
+                    $scope.selectboxanos.option("dataSource", $scope.anos);
+                    $scope.finalizarBusqueda();
+                    
+                } else {
+                    $scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
+                    $scope.selectboxanos.option("dataSource", $scope.anos);
+                }
             })
     }
     mostrarCarroceria = function () {
@@ -72,9 +90,15 @@
                         if (NotNullNotUndefinedNotEmpty($scope.tabla[i].celdas[h].vidrio)) {
                             $scope.tabla[i].celdas[h].vidrio.url = Llamada.getRuta($scope.tabla[i].celdas[h].vidrio.imagen);
                         }
-                        
+
                     }
                 }
+                if (respuesta.data.hayArticulos === true) {
+                    
+                } else {
+                    $scope.finalizarBusqueda();
+                }
+                
             })
     }
     $scope.objetoBusqueda = {
@@ -97,6 +121,9 @@
             valor: 'Todos los años',
             ano: 0,
             cantidadArticulos: 'muchos '
+        },
+        vidrio: {
+            idVidrio: 0
         },
         tabs: [
             false,
@@ -126,7 +153,7 @@
         $scope.objetoBusqueda.tabs[4] = true;
         $scope.objetoBusqueda.tabs[5] = true;
         $scope.objetoBusqueda.tabs[6] = true;
-        anadirRuta("vehiculo", a);
+        //anadirRuta("vehiculo", a);
         cambiarPagina(2);
     }
     $scope.seleccionarMarca = function (mc) {
@@ -136,6 +163,10 @@
     $scope.seleccionarModelo = function (mc) {
         console.log(mc);
         setModelo(mc);
+    }
+    $scope.seleccionarVidrio = function(vd) {
+        $scope.objetoBusqueda.vidrio = vd;
+        $scope.finalizaBusca();
     }
     $scope.seleccionarCarroceria = function (car) {
         $scope.objetoBusqueda.carroceria = JSON.parse("" + JSON.stringify(car));
@@ -177,7 +208,7 @@
             $scope.activePill = val;
             lanzarCambioPagina()
         } else {
-            alert("No puedo cambiar...")
+            //alert("No puedo cambiar...")
         }
         
     }
@@ -333,6 +364,50 @@
         } else {
             return "";
         }
+    }
+    $scope.botonFinalizar = function () {
+        if ($scope.objetoBusqueda.tabs[4] === false) {
+            return "";
+        } else {
+            return "disabled";
+        }
+    }
+    $scope.finalizarBusqueda = function () {
+        
+        var busquedaactual = $scope.objetoBusqueda.NombreTipoVehiculo + " > " + $scope.objetoBusqueda.marca.descripcionSeccion + " > " + $scope.objetoBusqueda.modelo.descripcionFamilia;
+        //if (val === true) {
+        //    busquedaactual = busquedaactual + " > " + $scope.objetoBusqueda.ano.valor;
+        //}
+        result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en " + busquedaactual + "?");
+        result.then(function (val) {
+            if (val) {
+                //alert("OK, pues me salgo de aquí");
+                $scope.finalizaBusca();
+            } else {
+                var c = +($scope.activePill) + +1;
+                $scope.objetoBusqueda.tabs[c] = false;
+                cambiarPagina(c);
+            }
+        });
+    }
+    $scope.finalizaBusca = function () {
+        if (isNaN($scope.objetoBusqueda.ano.valor)) {
+            $scope.objetoBusqueda.ano.valor = 0;
+        }
+        var parametros = "?modelo=" + $scope.objetoBusqueda.modelo.idFamilia + "&periodo=" + $scope.objetoBusqueda.ano.valor + "&carroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&vidrio=" + $scope.objetoBusqueda.vidrio.idVidrio;
+        verResultados(parametros);
+        //alert("Saliendo...");
+    }
+    $scope.finalizarBusquedaTipoVehiculo = function () {
+        result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en todos los vehículos?");
+        result.then(function (val) {
+            if (val) {
+                $scope.objetoBusqueda.NombreTipoVehiculo = "Todos los vehículos";
+                $scope.objetoBusqueda.idTipoVehiculo = 0;
+                cambiarPagina($scope.activePill);
+                //alert("OK, pues me salgo de aquí");
+            }
+        });
     }
 
 
