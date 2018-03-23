@@ -726,6 +726,15 @@ namespace EntidadesAtc
         [DataMember]
         public int CantidadArticulos { get; set; }
     }
+    public class Parametros
+    {
+        public int? idTipoVehiculo;
+        public int? idSeccion;
+        public int? idFamilia;
+        public string descripcionTipoVehiculo;
+        public string descripcionSeccion;
+        public string descripcionFamilia;
+    }
     [DataContract]
     public class TipoVehiculo
     {

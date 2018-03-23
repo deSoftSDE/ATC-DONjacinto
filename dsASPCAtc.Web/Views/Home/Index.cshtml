@@ -134,12 +134,12 @@
                                         </div>-->
                                         @foreach (TipoVehiculo vehiculo in vh)
                                         {
-                                            <div class="col-md-3 text-center m-t btn-vehiculo">
-                                                <a class="texto-prod" href="/Home/Vehiculos/@vehiculo.IDTipoVehiculo">
-                                                    <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'"/>
-                                                    <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
-                                                </a>
-                                            </div>
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" asp-controller="Home" asp-action="Buscador" asp-route-vehiculo="@vehiculo.IDTipoVehiculo">
+                                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'" />
+                                                <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
+                                            </a>
+                                        </div>
 
                                         }
 

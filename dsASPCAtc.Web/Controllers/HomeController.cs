@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using dsASPCAtc.Web.ViewModels;
 using DevExtreme.AspNet.Mvc;
 using DevExtreme.AspNet.Data;
+using DevExpress.Compatibility.System.Web;
 
 namespace dsASPCAtc.Web.Controllers
 {
@@ -60,15 +61,22 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Buscador()
+        public IActionResult Buscador(int? vehiculo, int? modelo, int? marca)
         {
-            var vm = new VehiculosViewModel(_configuration, null);
+            var Parametros = new Parametros
+            {
+                idTipoVehiculo = vehiculo,
+                idSeccion = marca,
+                idFamilia = modelo
+            };
+            var vm = new VehiculosViewModel(_configuration, null, Parametros);
             ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["Parametros"] = vm.ParametrosJavascript;
             return View();
         }
         public IActionResult Vehiculos(int id)
         {
-            var vm = new VehiculosViewModel (_configuration, id);
+            var vm = new VehiculosViewModel (_configuration, id, null);
             ViewData["Vehiculos"] = vm.Vehiculos;
             ViewData["IDTipoVehiculo"] = vm.IDTipoVehiculo;
             ViewData["Vehiculo"] = vm.VehiculoSeleccionado;

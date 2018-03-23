@@ -28,57 +28,99 @@ namespace dsASPCAtc.Web.ViewModels
                 Filas[vid.PosVer].Celdas[vid.PosHor].Vidrio = vid;
                 Filas[vid.PosVer].Celdas[vid.PosHor].ExtensionVer = vid.SpanVer;
                 Filas[vid.PosVer].Celdas[vid.PosHor].ExtensionHor = vid.SpanHor;
-                if (vid.SpanVer > 1)
-                {
-                    var Eliminado = false;
-                    var celda = vid.PosHor;
-                    var fila = vid.PosVer + 1;
-                    var cantidad = vid.SpanVer - 1;
-                    var eliminadas = 0;
-                    while (!Eliminado)
-                    {
-                        if (Filas[fila].Celdas[celda].Eliminada)
-                        {
-                            fila++;
-                        }
-                        else
-                        {
-                            Filas[fila].Celdas[celda].Eliminada = true;
-                            eliminadas++;
-                            if (eliminadas == cantidad)
-                            {
-                                Eliminado = true;
-                            }
 
+
+                var vr = vid.SpanVer-1;
+                //var hr = vid.SpanHor - 1;
+
+                while (vr > -1)
+                {
+                    //no hacer esto si es 0
+                    
+                    
+
+                    if (vr > 0)
+                    {
+                        //eliminar de la vertical
+
+                        var celda = vid.PosHor;
+                        var fila = vid.PosVer + vr;
+                        Filas[fila].Celdas[celda].Eliminada = true;
+
+                    }
+                    //eliminar de la horizontal
+                    var hr = vid.SpanHor - 1;
+                    while (hr > -1)
+                    {
+                        if (hr > 0)
+                        {
+                            var celda = vid.PosHor + hr;
+                            var fila = vid.PosVer + vr;
+                            Filas[fila].Celdas[celda].Eliminada = true;
                         }
-                    };
+                        
+                        hr--;
+                    }
+                    vr--;
+
                 }
 
-                if (vid.SpanHor > 1)
-                {
-                    var Eliminado = false;
-                    var celda = vid.PosHor +1;
-                    var fila = vid.PosVer;
-                    var cantidad = vid.SpanHor - 1;
-                    var eliminadas = 0;
-                    while (!Eliminado)
-                    {
-                        if (Filas[fila].Celdas[celda].Eliminada)
-                        {
-                            celda++;
-                        }
-                        else
-                        {
-                            Filas[fila].Celdas[celda].Eliminada = true;
-                            eliminadas++;
-                            if (eliminadas == cantidad)
-                            {
-                                Eliminado = true;
-                            }
 
-                        }
-                    };
-                }
+
+
+
+
+                //if (vid.SpanVer > 1)
+                //{
+                //    var Eliminado = false;
+                //    var celda = vid.PosHor;
+                //    var fila = vid.PosVer + 1;
+                //    var cantidad = vid.SpanVer - 1;
+                //    var eliminadas = 0;
+                //    while (!Eliminado)
+                //    {
+                //        if (Filas[fila].Celdas[celda].Eliminada)
+                //        {
+                //            fila++;
+                //        }
+                //        else
+                //        {
+                //            Filas[fila].Celdas[celda].Eliminada = true;
+                //            eliminadas++;
+                //            if (eliminadas == cantidad)
+                //            {
+                //                Eliminado = true;
+                //            }
+
+                //        }
+                //    };
+                //}
+
+                //if (vid.SpanHor > 1)
+                //{
+                //    var Eliminado = false;
+                //    var celda = vid.PosHor +1;
+                //    var fila = vid.PosVer;
+                //    var cantidad = vid.SpanHor - 1;
+                //    var eliminadas = 0;
+                //    while (!Eliminado)
+                //    {
+                //        if (Filas[fila].Celdas[celda].Eliminada)
+                //        {
+                //            celda++;
+                //        }
+                //        else
+                //        {
+                //            Filas[fila].Celdas[celda].Eliminada = true;
+                //            eliminadas++;
+                //            if (eliminadas == cantidad)
+                //            {
+                //                Eliminado = true;
+                //            }
+
+                //        }
+                //    };
+                //}
 
             }
             foreach(Fila fila in Filas)

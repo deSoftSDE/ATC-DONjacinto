@@ -2,6 +2,7 @@
     @using EntidadesAtc;
     ViewData["Title"] = "Home Page";
     var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
+    var pr = (string)ViewData["Parametros"];
 }
 <div class="page-bar">
     <ul class="page-breadcrumb">
@@ -23,6 +24,7 @@
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
 <div class="row" ng-controller="vehiculos" id="contenedorBuscador" style="display:none;">
+    <input type="text" value="@pr" id="parametros" style="display:none;" />
     <div class="col-md-12">
         <div class="portlet light bordered" id="form_wizard_1">
             <div class="portlet-title">
@@ -49,7 +51,7 @@
                 {{objetoBusqueda.NombreTipoVehiculo}}
                 <i class="fa fa-circle"></i>
             </li>
-            <li>
+            <li ng-if="!objetoBusqueda.tabs[3]">
                 <span>{{objetoBusqueda.marca.descripcionSeccion}}</span>
                 <i class="fa fa-circle"></i>
             </li>
@@ -306,7 +308,7 @@
                         <tr ng-repeat="fila in tabla">
                             <td class="text-center " ng-repeat="celda in fila.celdas" colspan="{{celda.extensionHor}}" rowspan="{{celda.extensionVer}}">
                                 <div class="{{classTieneArticulos(celda)}}">
-                                    <img ng-if="NotNull(celda.vidrio)" title="{{celda.vidrio.descripcion}}" ng-src="{{celda.vidrio.url}}" class="img-responsive text-center gris" style="margin:0 auto;" />
+                                    <img ng-if="NotNull(celda.vidrio)" title="{{celda.vidrio.descripcion}}" ng-src="{{celda.vidrio.url}}" class="img-responsive text-center {{claseestaGris(celda)}}" style="margin:0 auto;" />
 
                                 </div>
                                 @*<div ng-if="NotNull(celda.vidrio)">

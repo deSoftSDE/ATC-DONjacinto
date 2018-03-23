@@ -1,5 +1,5 @@
 ﻿atc.controller('vehiculos', function ($scope, $http, Llamada, $timeout) {
-    document.getElementById("contenedorBuscador").style.display = "inline";
+    
     buscarMarcas = function () {
         Llamada.get("MarcasLeer?IDTipoVehiculo=" + $scope.objetoBusqueda.idTipoVehiculo)
             .then(function (respuesta) {
@@ -108,6 +108,8 @@
             true
         ]
     }
+    
+    document.getElementById("contenedorBuscador").style.display = "inline";
     $scope.selectedTipoVehiculo = function (e) {
         if (e == $scope.objetoBusqueda.idTipoVehiculo) {
             return "seleccionado";
@@ -120,6 +122,11 @@
         $scope.objetoBusqueda.idTipoVehiculo = a;
         $scope.objetoBusqueda.NombreTipoVehiculo = nombre;
         $scope.objetoBusqueda.tabs[2] = false;
+        $scope.objetoBusqueda.tabs[3] = true;
+        $scope.objetoBusqueda.tabs[4] = true;
+        $scope.objetoBusqueda.tabs[5] = true;
+        $scope.objetoBusqueda.tabs[6] = true;
+        anadirRuta("vehiculo", a);
         cambiarPagina(2);
     }
     $scope.seleccionarMarca = function (mc) {
@@ -214,7 +221,7 @@
                     } else {
                         return "";
                     }
-                    
+
                 } else {
 
                     return "";
@@ -226,6 +233,28 @@
             return "";
         }
     }
+    $scope.claseestaGris = function (celda) {
+        if (NotNullNotUndefinedNotEmpty(celda)) {
+            if (NotNullNotUndefinedNotEmpty(celda.vidrio)) {
+                if (NotNullNotUndefinedNotEmpty(celda.vidrio.cantidadArticulos)) {
+                    if (celda.vidrio.cantidadArticulos > 0) {
+                        return "nogris";
+                    } else {
+                        return "gris";
+                    }
+
+                } else {
+
+                    return "gris";
+                }
+            } else {
+                return "gris";
+            }
+        } else {
+            return "gris";
+        }
+    }
+
     $scope.selectBoxAnos = {
         dataSource: [],
         displayExpr: "valor",
@@ -355,6 +384,53 @@
                 mostrarCarroceria();
                 break;
         }
+    }
+    anadirRuta = function (propiedad, valor) {
+        window.history.replaceState(null, null, window.location.pathname);
+    }
+
+
+    try {
+        var pr = document.getElementById("parametros").value;
+        console.log(pr);
+        console.log(JSON.parse(pr));
+        var parametros = JSON.parse(pr);
+        if (NotNullNotUndefinedNotEmpty(parametros.idTipoVehiculo)) {
+            if (parametros.idTipoVehiculo > 0) {
+                $scope.objetoBusqueda.idTipoVehiculo = parametros.idTipoVehiculo;
+                $scope.objetoBusqueda.NombreTipoVehiculo = parametros.descripcionTipoVehiculo;
+                $scope.objetoBusqueda.tabs[2] = false;
+                cambiarPagina(2);
+            }
+        }
+        if (NotNullNotUndefinedNotEmpty(parametros.idSeccion)) {
+            if (parametros.idSeccion > 0) {
+                $scope.objetoBusqueda.marca.idSeccion = parametros.idSeccion;
+                $scope.objetoBusqueda.marca.descripcionSeccion = parametros.descripcionSeccion;
+                $scope.objetoBusqueda.tabs[2] = false;
+                $scope.objetoBusqueda.tabs[3] = false;
+                $scope.objetoBusqueda.tabs[4] = true;
+                $scope.objetoBusqueda.tabs[5] = true;
+                $scope.objetoBusqueda.tabs[6] = true;
+                cambiarPagina(3);
+            }
+        }
+        if (NotNullNotUndefinedNotEmpty(parametros.idFamilia)) {
+            if (parametros.idFamilia > 0) {
+                $scope.objetoBusqueda.modelo.idFamilia = parametros.idFamilia;
+                $scope.objetoBusqueda.modelo.descripcionFamilia = parametros.descripcionFamilia;
+                $scope.objetoBusqueda.tabs[2] = false;
+                $scope.objetoBusqueda.tabs[3] = false;
+                $scope.objetoBusqueda.tabs[4] = false;
+                $scope.objetoBusqueda.tabs[5] = true;
+                $scope.objetoBusqueda.tabs[6] = true;
+                console.log($scope.objetoBusqueda);
+                cambiarPagina(4);
+            }
+        }
+    }
+    catch (Ex) {
+        console.log(Ex);
     }
 
 });

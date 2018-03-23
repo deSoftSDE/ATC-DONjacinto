@@ -642,6 +642,41 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public Parametros ObtenerdescripcionesPorIDs(Parametros pr)
+        {
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDTipoVehiculo", pr.idTipoVehiculo),
+                    new SqlParameter("@IDSeccion", pr.idSeccion),
+                    new SqlParameter("@IDFamilia", pr.idFamilia),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ObtenerdescripcionesPorIDs", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    pr.idTipoVehiculo = AsignaEntero("IDTipoVehiculo");
+                    pr.descripcionTipoVehiculo = AsignaCadena("Descripcion");
+                    
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idSeccion = AsignaEntero("iDSeccion");
+                    pr.descripcionSeccion = AsignaCadena("DescripcionSeccion");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idFamilia = AsignaEntero("IDFamilia");
+                    pr.descripcionFamilia = AsignaCadena("DescripcionFamilia");
+                }
+                
+            }
+            return pr;
+        }
     }
     
 }

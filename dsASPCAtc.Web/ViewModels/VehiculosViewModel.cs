@@ -1,4 +1,5 @@
-﻿using dsASPCAtc.DataAccess;
+﻿using DevExpress.Compatibility.System.Web;
+using dsASPCAtc.DataAccess;
 using EntidadesAtc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -14,7 +15,9 @@ namespace dsASPCAtc.Web.ViewModels
         private string streaming;
         public TipoVehiculo VehiculoSeleccionado;
         public int? IDTipoVehiculo;
-        public VehiculosViewModel(IConfiguration configuration, int? id)
+        public Parametros Parametros;
+        public string ParametrosJavascript;
+        public VehiculosViewModel(IConfiguration configuration, int? id, Parametros pr)
         {
             var ad = new AdaptadorAtc(configuration);
             Vehiculos = ad.TiposVehiculoLeer(id);
@@ -28,6 +31,14 @@ namespace dsASPCAtc.Web.ViewModels
                 }
             };
             IDTipoVehiculo = id;
+            if (pr != null)
+            {
+                var res = ad.ObtenerdescripcionesPorIDs(pr);
+                Parametros = res;
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                ParametrosJavascript = js.Serialize(res);
+            }
+            
         }
     }
 }
