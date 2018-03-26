@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DevExpress.AspNetCore;
-using DevExpress.AspNetCore.Bootstrap;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,12 +23,7 @@ namespace dsASPCAtc.Web
         {
 
             //services.AddMvc();
-            services.AddDevExpressControls();
-            services.AddDevExpressControls(options => {
-                options.Bootstrap(bootstrap => {
-                    bootstrap.Mode = BootstrapMode.Bootstrap3;
-                });
-            });
+            
             // Add MVC services to the services container.
             services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
@@ -50,7 +43,6 @@ namespace dsASPCAtc.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseDevExpressControls();
             app.UseStaticFiles();
             app.UseSession();
             app.UseMvc(routes =>
