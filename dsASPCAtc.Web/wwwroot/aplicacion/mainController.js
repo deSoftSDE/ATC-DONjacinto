@@ -23,6 +23,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
     $scope.imagenArticulo = function (idArticulo) {
         return Llamada.rutaStreamingArticulo() + idArticulo;
     }
+    $scope.verResultados = function () {
+        verResultados($scope.cadena);
+    }
     buscarArticulos = function () {
         $scope.loading = true;
         if ($scope.cadena.length > 0) {
@@ -40,9 +43,12 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
             $scope.loading = false;
         }
     }
-    $scope.focofuera = function () {
+    fnocultar = function () {
         $scope.mostrardesplegable = false;
     }
+    $scope.focofuera = function () {
+        $timeout(fnocultar2, 1000);
+    };
     $scope.entrafoco = function () {
         if (NotNullNotUndefinedNotEmpty($scope.resultadobusqueda)) {
             $scope.mostrardesplegable = true;

@@ -14,14 +14,14 @@
         @if (descripciones.idTipoVehiculo.HasValue)
         {
             <li>
-                <a>@descripciones.descripcionTipoVehiculo</a>
+                <a asp-action="Buscador" asp-route-vehiculo="@descripciones.idTipoVehiculo">@descripciones.descripcionTipoVehiculo</a>
                 <i class="fa fa-circle"></i>
             </li>
         }
         @if (descripciones.idSeccion.HasValue)
         {
             <li>
-                <a>@descripciones.descripcionSeccion</a>
+                <a asp-action="Buscador" asp-route-marca="@descripciones.idSeccion">@descripciones.descripcionSeccion</a>
                 <i class="fa fa-circle"></i>
             </li>
         }
@@ -136,16 +136,32 @@
                         </td>
                         <td>@ar.Codigo</td>
                         <td>
-                            <a class="font-dark" href=""> @ar.Descripcion </a>
+                            <a class="font-dark" asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> @ar.Descripcion </a>
                         </td>
                         <td>
                             <ul class="list-unstyled">
+                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+                                    {
                                 <li style="padding-bottom: 5px;">
-                                    Madrid  <span class="label label-sm label-success"> Disponible </span>
+                                    @ud.NombreAlmacen
+
+                                    @if (ud.StockFinalUV >= 1)
+                                    {
+                                <span class="label label-sm label-success">
+                                    Disponible
+                                </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-sm label-default">
+                                            Agotado
+                                        </span>
+
+                                    }
+
                                 </li>
-                                <li>
-                                    Tomelloso  <span class="label label-sm label-default"> Agotado </span>
-                                </li>
+
+                                }
                             </ul>
 
                         </td>
@@ -227,16 +243,32 @@
                     </td>
                     <td>@ar.Codigo</td>
                     <td>
-                        <a class="font-dark" href=""> @ar.Descripcion </a>
+                        <a class="font-dark" asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> @ar.Descripcion </a>
                     </td>
                     <td>
                         <ul class="list-unstyled">
-                            <li style="padding-bottom: 5px;">
-                                Madrid  <span class="label label-sm label-success"> Disponible </span>
-                            </li>
-                            <li>
-                                Tomelloso  <span class="label label-sm label-default"> Agotado </span>
-                            </li>
+                            @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+                                    {
+                                                        <li style="padding-bottom: 5px;">
+                                                            @ud.NombreAlmacen
+
+                                                            @if (ud.StockFinalUV >= 1)
+                                    {
+                                                        <span class="label label-sm label-success">
+                                                            Disponible
+                                                        </span>
+                                }
+                                else
+                                {
+                                                        <span class="label label-sm label-default">
+                                                            Agotado
+                                                        </span>
+
+                                }
+
+                                                        </li>
+
+                                }
                         </ul>
 
                     </td>

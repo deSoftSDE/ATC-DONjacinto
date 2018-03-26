@@ -3,7 +3,12 @@
     ViewData["Title"] = "Home Page";
     var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
 }
-
+<script type="text/javascript">
+    function verResultados(parameters) {
+        var url = '@Url.Action("Productos", "Home")';
+        window.location.href = url + "?producto=" + parameters;
+    }
+</script>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -55,7 +60,7 @@
                                                     <tbody>
                                                         <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
                                                             <td class="">
-                                                                <a class="resul-search">
+                                                                <a class="resul-search" href="/Home/Articulo/{{resultado.idArticulo}}">
                                                                     {{resultado.descripcion}}
                                                                 </a>
                                                             </td>
@@ -76,14 +81,14 @@
                                                         </tr>
                                                         <tr ng-if="!loading" class="otrainfo">
                                                             <td ng-if="resultadobusqueda.length<NumReg">
-                                                                <a >
+                                                                <a ng-click="verResultados()">
                                                                     Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos, pulsa aqui para ver más.
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         <tr class="otrainfo">
                                                             <td ng-if="resultadobusqueda.length==NumReg&&resultadobusqueda.length>0">
-                                                                <a>
+                                                                <a  ng-click="verResultados()">
                                                                     Mostrando {{resultadobusqueda.length}} de {{NumReg}} articulos.
                                                                 </a>
                                                             </td>
@@ -112,7 +117,13 @@
                                     </div>
 
 }
-                                        
+                                        <div class="col-md-3 text-center m-t btn-vehiculo">
+                                            <a class="texto-prod" asp-controller="Home" asp-action="Buscador" asp-route-vehiculo="0">
+                                                <img class="img-fluid" src="~/img/nodisponible.png" style="width:50px" />
+                                                <p class="texto-prod"><small class="d-block">Todos los vehículos</small></p>
+                                            </a>
+                                        </div>
+
 
                                         <!--ESTE ULTIMO ICONO DE OTROS NECESITA STILOS PROPIOS-->
                                         <!--<div class="col-md-3 text-center m-t btn-vehiculo">

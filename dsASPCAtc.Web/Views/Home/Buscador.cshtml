@@ -321,13 +321,13 @@
                         </uib-tab-heading>
                         <div class="tab-pane" id="tab4">
 
-                            <h3 class="block">Seleccione Vidrio</h3>
-                            <div class="row">
-                                <table>
-                                    <tr ng-repeat="fila in tabla">
-                                        <td class="text-center " ng-repeat="celda in fila.celdas" colspan="{{celda.extensionHor}}" rowspan="{{celda.extensionVer}}">
-                                            <div class="{{classTieneArticulos(celda)}}">
-                                                <img ng-click="seleccionarVidrio(celda.vidrio)" ng-if="NotNull(celda.vidrio)" title="{{celda.vidrio.descripcion}}" ng-src="{{celda.vidrio.url}}" class="img-responsive text-center {{claseestaGris(celda)}}" style="margin:0 auto;" />
+                <h3 class="block">Seleccione Vidrio</h3>
+                <div class="row">
+                    <table style="margin: 0 auto;">
+                        <tr ng-repeat="fila in tabla">
+                            <td class="text-center " ng-repeat="celda in fila.celdas" colspan="{{celda.extensionHor}}" rowspan="{{celda.extensionVer}}">
+                                <div class="{{classTieneArticulos(celda)}}">
+                                    <img ng-click="seleccionarVidrio(celda.vidrio)" ng-if="NotNull(celda.vidrio)" title="{{celda.vidrio.descripcion}}" ng-src="{{celda.vidrio.url}}" class="img-responsive text-center {{claseestaGris(celda)}}" style="margin:0 auto;" />
 
                                             </div>
                                             @*<div ng-if="NotNull(celda.vidrio)">

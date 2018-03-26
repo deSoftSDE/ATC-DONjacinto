@@ -56,7 +56,7 @@ namespace dsASPCAtc.Web.ViewModels
                 ValorClave = vc,
                 CampoClave = "IdArticulo",
                 EntidadFuncion = "BuscaArticulo",
-                ValorFuncion = "'" + ba.cadena + "'",
+                ValorFuncion = "'" + ba.cadena.Replace(" ", "%") + "'",
                 EntidadVista = "VBuscaArticulo",
                 idAlmacen = 1,
                 idDelegacion = 0
