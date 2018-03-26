@@ -691,6 +691,244 @@ namespace dsASPCAtc.DataAccess
             }
             return pr;
         }
+
+        public ArticulosYCategorias ArticulosLeerBusqueda(Parametros pr)
+        {
+            var res = new ArticulosYCategorias();
+            res.Articulos = new List<BuscaArticulo>();
+            res.Accesorios = new List<Categoria>();
+            var accesorios = new List<BuscaArticulo>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDTipoVehiculo", pr.idTipoVehiculo),
+                    new SqlParameter("@IDSeccion", pr.idSeccion),
+                    new SqlParameter("@IDFamilia", pr.idFamilia),
+                    new SqlParameter("@idVidrio", pr.idVidrio),
+                    new SqlParameter("@idModeloCarroceria", pr.idModeloCarroceria),
+                    new SqlParameter("@ano", pr.ano),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerBusqueda", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    pr.idTipoVehiculo = AsignaEntero("IDTipoVehiculo");
+                    pr.descripcionTipoVehiculo = AsignaCadena("Descripcion");
+
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idSeccion = AsignaEntero("iDSeccion");
+                    pr.descripcionSeccion = AsignaCadena("DescripcionSeccion");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idFamilia = AsignaEntero("IDFamilia");
+                    pr.descripcionFamilia = AsignaCadena("DescripcionFamilia");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.descripcionCarroceria = AsignaCadena("Descripcion");
+                    pr.idCarroceria = AsignaEntero("IDCarroceria");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    pr.idTipoVidrio = AsignaEntero("IDTipoVidrio");
+                    pr.descripcionTipoVidrio = AsignaCadena("Descripcion");
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ar = new BuscaArticulo
+                    {
+                        IdArticulo = AsignaEntero("IdArticulo"),
+                        Codigo = AsignaCadena("Codigo"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdFamilia = AsignaEnteroNull("IdFamilia"),
+                        IdSeccion = AsignaEnteroNull("IdSeccion"),
+                        IdGenerico = AsignaEnteroNull("IdGenerico"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        DescripcionCorta = AsignaCadena("DescripcionCorta"),
+                        DescripcionDetallada = AsignaCadena("DescripcionDetallada"),
+                        IdTipoVidrio = AsignaEntero("IdTipoVidrio"),
+                        DescripcionTipoVidrio = AsignaCadena("DescripcionTipoVidrio"),
+                        DescripcionWeb1 = AsignaCadena("DescripcionWeb1"),
+                        DescripcionWeb2 = AsignaCadena("DescripcionWeb2"),
+                        AnoInicial = AsignaEntero("AnoInicial"),
+                        AnoFinal = AsignaEntero("AnoFinal"),
+                        IdCategoria = AsignaEntero("IDCategoria"),
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria")
+                    };
+                    res.Articulos.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var cat = new Categoria
+                    {
+                        IDCategoria = AsignaEntero("IDCategoria"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdArticuloCategoria = AsignaEntero("IDArticuloCategoria"),
+                        Articulos = new List<BuscaArticulo>(),
+                    };
+                    res.Accesorios.Add(cat);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ar = new BuscaArticulo
+                    {
+                        IdArticulo = AsignaEntero("IdArticulo"),
+                        Codigo = AsignaCadena("Codigo"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdFamilia = AsignaEnteroNull("IdFamilia"),
+                        IdSeccion = AsignaEnteroNull("IdSeccion"),
+                        IdGenerico = AsignaEnteroNull("IdGenerico"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        DescripcionCorta = AsignaCadena("DescripcionCorta"),
+                        DescripcionDetallada = AsignaCadena("DescripcionDetallada"),
+                        IdTipoVidrio = AsignaEntero("IdTipoVidrio"),
+                        DescripcionTipoVidrio = AsignaCadena("DescripcionTipoVidrio"),
+                        DescripcionWeb1 = AsignaCadena("DescripcionWeb1"),
+                        DescripcionWeb2 = AsignaCadena("DescripcionWeb2"),
+                        AnoInicial = AsignaEntero("AnoInicial"),
+                        AnoFinal = AsignaEntero("AnoFinal"),
+                        IdCategoria = AsignaEntero("IDCategoria"),
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria")
+                    };
+                    accesorios.Add(ar);
+                }
+            }
+            foreach (BuscaArticulo articulo in accesorios)
+            {
+                foreach (Categoria ct in res.Accesorios)
+                {
+                    if (ct.IDCategoria == articulo.IdCategoria)
+                    {
+                        ct.Articulos.Add(articulo);
+                    }
+                }
+            }
+            res.Parametros = pr;
+            res.Accesorios.RemoveAll(c => c.Articulos.Count < 1);
+            return res;
+        }
+
+        public Byte[] ImagenesLeerPorIDArticulo(int IDArticulo)
+        {
+            Byte[] res = new List<Byte>().ToArray();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDArticulo", IDArticulo),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ImagenesLeerPorIDArticulo", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res = AsignaArrayByte("Imagen");
+                }
+            }
+            return res;
+        }
+
+        public BuscaArticulo ArticulosLeerPorID(int IDArticulo)
+        {
+            var res = new BuscaArticulo();
+            var Accesorios = new List<BuscaArticulo>();
+            res.Carrocerias = new List<ArticuloCarroceria>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDArticulo", IDArticulo),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerPorID", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.IdArticulo = AsignaEntero("IdArticulo");
+                    res.Codigo = AsignaCadena("Codigo");
+                    res.Descripcion = AsignaCadena("Descripcion");
+                    res.IdFamilia = AsignaEnteroNull("IdFamilia");
+                    res.IdSeccion = AsignaEnteroNull("IdSeccion");
+                    res.IdGenerico = AsignaEnteroNull("IdGenerico");
+                    res.DescripcionFamilia = AsignaCadena("DescripcionFamilia");
+                    res.DescripcionSeccion = AsignaCadena("DescripcionSeccion");
+                    res.DescripcionCorta = AsignaCadena("DescripcionCorta");
+                    res.DescripcionDetallada = AsignaCadena("DescripcionDetallada");
+                    res.IdTipoVidrio = AsignaEntero("IdTipoVidrio");
+                    res.DescripcionTipoVidrio = AsignaCadena("DescripcionTipoVidrio");
+                    res.DescripcionWeb1 = AsignaCadena("DescripcionWeb1");
+                    res.DescripcionWeb2 = AsignaCadena("DescripcionWeb2");
+                    res.AnoInicial = AsignaEntero("AnoInicial");
+                    res.AnoFinal = AsignaEntero("AnoFinal");
+                    res.IdCategoria = AsignaEntero("IDCategoria");
+                    res.DescripcionCategoria = AsignaCadena("DescripcionCategoria");
+                }
+                res.Accesorios = new List<Categoria>();
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var cat = new Categoria
+                    {
+                        IDCategoria = AsignaEntero("IDCategoria"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdArticuloCategoria = AsignaEntero("IDArticuloCategoria"),
+                        Articulos = new List<BuscaArticulo>(),
+                    };
+                    res.Accesorios.Add(cat);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ar = new BuscaArticulo();
+                    ar.IdArticulo = AsignaEntero("IdArticuloRel");
+                    ar.Descripcion = AsignaCadena("DescripcionArticuloRel");
+                    ar.IdCategoria = AsignaEntero("IdCategoria");
+                    ar.IdArticuloCategoria = AsignaEntero("IDArticuloCategoria");
+                    Accesorios.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var carr = new ArticuloCarroceria
+                    {
+                        IDModeloCarroceria = AsignaEntero("IDModeloCarroceria"),
+                        DescripcionCarroceria = AsignaCadena("DescripcionCarroceria"),
+                        Anos = AsignaCadena("Anos"),
+                        DescripcionArticuloModelo = AsignaCadena("DescripcionArticuloModelo"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        IDArticuloModelo = AsignaEntero("IDArticuloModelo"),
+                        IDFamilia = AsignaEntero("IDFamilia"),
+                    };
+                    res.Carrocerias.Add(carr);
+                }
+            }
+            foreach (Categoria cat in res.Accesorios)
+            {
+                foreach (BuscaArticulo ar in Accesorios)
+                {
+                    if (ar.IdCategoria == cat.IDCategoria)
+                    {
+                        cat.Articulos.Add(ar);
+                    }
+                }
+            }
+            return res;
+        }
     }
     
 }

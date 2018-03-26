@@ -89,7 +89,7 @@
             <tbody>
                 <tr class="odd gradeX" ng-repeat="ar in vm.articulos">
                     <td class="text-center">
-                        <img src="~/img/nodisponible.png" class="img-responsive center-block" style="width:80%;" />
+                        <img ng-src="{{imagenArticulo(ar.idArticulo)}}" onerror="this.src='../img/nodisponible.png'" class="img-responsive center-block" style="width:80%;" />
                     </td>
                     <td>{{ar.codigo}}</td>
                     <td >

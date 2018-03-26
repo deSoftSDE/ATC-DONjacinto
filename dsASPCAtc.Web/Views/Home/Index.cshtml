@@ -102,54 +102,55 @@
                                             <h4 class="font-dark"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.40);">Selecciona el tipo de vehículo</span></h4>
                                         </div>
                                         <!--<div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-transporte-3 ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Coche</small></p>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-transporte-4 ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Furgoneta</small></p>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-transporte-1 ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Camión</small></p>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-transporte-5 ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Autocar</small></p>
-                                            </a>
-                                        </div>
+        <a class="texto-prod" href="">
+            <i class="flaticon-transporte-3 ico-prod"></i>
+            <p class="texto-prod"><small class="d-block">Coche</small></p>
+        </a>
+    </div>
+    <div class="col-md-3 text-center m-t btn-vehiculo">
+        <a class="texto-prod" href="">
+            <i class="flaticon-transporte-4 ico-prod"></i>
+            <p class="texto-prod"><small class="d-block">Furgoneta</small></p>
+        </a>
+    </div>
+    <div class="col-md-3 text-center m-t btn-vehiculo">
+        <a class="texto-prod" href="">
+            <i class="flaticon-transporte-1 ico-prod"></i>
+            <p class="texto-prod"><small class="d-block">Camión</small></p>
+        </a>
+    </div>
+    <div class="col-md-3 text-center m-t btn-vehiculo">
+        <a class="texto-prod" href="">
+            <i class="flaticon-transporte-5 ico-prod"></i>
+            <p class="texto-prod"><small class="d-block">Autocar</small></p>
+        </a>
+    </div>
 
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-transporte-2 ico-prod"></i>
-                                                <p class="texto-prod"><small class="d-block">Caravanas</small></p>
-                                            </a>
-                                        </div>-->
+    <div class="col-md-3 text-center m-t btn-vehiculo">
+        <a class="texto-prod" href="">
+            <i class="flaticon-transporte-2 ico-prod"></i>
+            <p class="texto-prod"><small class="d-block">Caravanas</small></p>
+        </a>
+    </div>-->
                                         @foreach (TipoVehiculo vehiculo in vh)
-                                        {
-                                        <div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" asp-controller="Home" asp-action="Buscador" asp-route-vehiculo="@vehiculo.IDTipoVehiculo">
-                                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'" />
-                                                <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
-                                            </a>
-                                        </div>
+    {
+                                    <div class="col-md-3 text-center m-t btn-vehiculo">
+                                        <a class="texto-prod" asp-controller="Home" asp-action="Buscador" asp-route-vehiculo="@vehiculo.IDTipoVehiculo">
+                                            <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'" />
+                                            <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
+                                        </a>
+                                    </div>
 
-                                        }
+}
+                                        
 
                                         <!--ESTE ULTIMO ICONO DE OTROS NECESITA STILOS PROPIOS-->
                                         <!--<div class="col-md-3 text-center m-t btn-vehiculo">
-                                            <a class="texto-prod" href="">
-                                                <i class="flaticon-busqueda ico-prod" style="font-size:44px;"></i>
-                                                <p class="texto-prod" style="margin-top:3px;"><small class="d-block">Otros</small></p>
-                                            </a>
-                                        </div>-->
+        <a class="texto-prod" href="">
+            <i class="flaticon-busqueda ico-prod" style="font-size:44px;"></i>
+            <p class="texto-prod" style="margin-top:3px;"><small class="d-block">Otros</small></p>
+        </a>
+    </div>-->
                                     </div>
                                 </div>
                             </div>

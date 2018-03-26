@@ -63,26 +63,28 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio)
         {
-            var ad = new AdaptadorAtc(_configuration);
+            //var ad = new AdaptadorAtc(_configuration);
             var pr = new Parametros
             {
                 idFamilia = modelo,
                 idVidrio = vidrio,
                 idModeloCarroceria = carroceria
             };
-            var desc = ad.ObtenerdescripcionesPorIDs(pr);
             if (periodo.HasValue)
             {
                 if (periodo > 0)
                 {
-                    desc.ano = periodo;
+                    pr.ano = periodo;
                 }
-                
+
             }
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            var jsinfo = js.Serialize(desc);
-            ViewData["DescripcionesJS"] = jsinfo;
-            ViewData["Descripciones"] = desc;
+            var vm = new ResultadosViewModel(_configuration, pr);
+            //var desc = vm.desc
+            
+           
+            //ViewData["DescripcionesJS"] = vm.jsinfo;
+            //ViewData["Descripciones"] = vm.desc;
+            ViewData["Datos"] = vm;
             return View();
         }
         [HttpGet]
@@ -101,14 +103,20 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult Vehiculos(int id)
         {
-            var vm = new VehiculosViewModel (_configuration, id, null);
+            var vm = new VehiculosViewModel(_configuration, id, null);
             ViewData["Vehiculos"] = vm.Vehiculos;
             ViewData["IDTipoVehiculo"] = vm.IDTipoVehiculo;
             ViewData["Vehiculo"] = vm.VehiculoSeleccionado;
             return View();
         }
 
-
+        public IActionResult Articulo(int id)
+        {
+            var vm = new ArticuloViewModel(_configuration, id);
+            ViewData["Articulo"] = vm;
+            return View();
+        }
+        
         public void AnadirACarrito(int id)
         {
             var a = 1;
@@ -145,6 +153,7 @@ namespace dsASPCAtc.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [HttpGet]
         public ActionResult GetData(DataSourceLoadOptions loadOptions)
         {

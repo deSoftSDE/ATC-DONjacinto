@@ -1,4 +1,5 @@
-﻿using EntidadesAtc;
+﻿using dsASPCAtc.DataAccess;
+using EntidadesAtc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -94,36 +95,47 @@ namespace dsASPCAtc.Web.Controllers
                 return result;
             }
         }
-        /*[HttpGet]
-        public async Task<IActionResult> GetImagenPorIDArticulo(string idArticulo)
+        [HttpGet]
+        public IActionResult GetImagenPorIDArticulo(int idArticulo)
         {
+            IActionResult result;
             try
             {
-                if (filename == null)
-                    return Content("Archivo no encontrado");
-                var downloadpath = _configuration.GetSection("StreamFiles")["downloads"];
-                var path = Path.Combine(
-                               downloadpath, filename);
-
-                var memory = new MemoryStream();
-                using (var stream = new FileStream(path, FileMode.Open))
+                var ad = new AdaptadorAtc(_configuration);
+                var a = ad.ImagenesLeerPorIDArticulo(idArticulo);
+                var memory = new MemoryStream(a);
+                
+                if (a.Length < 1)
                 {
-                    await stream.CopyToAsync(memory);
+                    var ex = new Exception("Imagen no encontrada");
+                    result = new ObjectResult(ex)
+                    {
+                        StatusCode = (int)HttpStatusCode.Conflict
+                    };
+                    Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+                    return result;
+                } else
+                {
+                    //memory.Position = 0;
+                    result = new ObjectResult(memory)
+                    {
+                        StatusCode = (int)HttpStatusCode.OK
+                    };
                 }
-                memory.Position = 0;
 
-                return File(memory, "image/png", Path.GetFileName(path));
+                
+                return result;
             }
             catch (Exception ex)
             {
-                var result = new ObjectResult(ex)
+                result = new ObjectResult(ex)
                 {
                     StatusCode = (int)HttpStatusCode.Conflict
                 };
                 Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
                 return result;
             }
-        }*/
+        }
         [HttpGet]
         public async Task<IActionResult> Get(string filename)
         {

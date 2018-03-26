@@ -16,6 +16,9 @@ atc.factory('Llamada', function ($http, $q) {
         getRuta: function (imagen) {
             return api_stream + "GetImagen?filename=" + imagen;
         },
+        rutaStreamingArticulo: function () {
+            return api_stream + "GetImagenPorIDArticulo?idarticulo=";
+        },
         post: function (url, body) {
             console.log(body);
             var deferred = $q.defer();

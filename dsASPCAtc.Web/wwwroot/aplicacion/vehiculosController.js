@@ -153,16 +153,18 @@
         $scope.objetoBusqueda.tabs[4] = true;
         $scope.objetoBusqueda.tabs[5] = true;
         $scope.objetoBusqueda.tabs[6] = true;
-        //anadirRuta("vehiculo", a);
+        changeUrl("vehiculo", a);
         cambiarPagina(2);
     }
     $scope.seleccionarMarca = function (mc) {
         console.log(mc);
         setMarca(mc);
+        changeUrl("marca", mc.idSeccion);
     }
     $scope.seleccionarModelo = function (mc) {
         console.log(mc);
         setModelo(mc);
+        changeUrl("modelo", mc.idFamilia);
     }
     $scope.seleccionarVidrio = function(vd) {
         $scope.objetoBusqueda.vidrio = vd;
@@ -460,9 +462,43 @@
                 break;
         }
     }
-    anadirRuta = function (propiedad, valor) {
-        window.history.replaceState(null, null, window.location.pathname);
+    var objQueryString = {};
+    getParameterByName = function(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
+    changeUrl = function(key, value) {
+        //Get query string value
+        var searchUrl = location.search;
+        if (searchUrl.indexOf("?") == "-1") {
+            var urlValue = '?' + key + '=' + value;
+            history.pushState({ state: 1, rand: Math.random() }, '', urlValue);
+        }
+        else {
+            //Check for key in query string, if not present
+            if (searchUrl.indexOf(key) == "-1") {
+                var urlValue = searchUrl + '&' + key + '=' + value;
+            }
+            else {	//If key present in query string
+                oldValue = getParameterByName(key);
+                if (searchUrl.indexOf("?" + key + "=") != "-1") {
+                    urlValue = searchUrl.replace('?' + key + '=' + oldValue, '?' + key + '=' + value);
+                }
+                else {
+                    urlValue = searchUrl.replace('&' + key + '=' + oldValue, '&' + key + '=' + value);
+                }
+            }
+            history.pushState({ state: 1, rand: Math.random() }, '', urlValue);
+            //history.pushState function is used to add history state.
+            //It takes three parameters: a state object, a title (which is currently ignored), and (optionally) a URL.
+        }
+        objQueryString.key = value;
+        //sendAjaxReq(objQueryString);
+    }
+
+
 
 
     try {

@@ -20,6 +20,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
         }
         inputChangedPromise = $timeout(buscarArticulos, 1000);
     }
+    $scope.imagenArticulo = function (idArticulo) {
+        return Llamada.rutaStreamingArticulo() + idArticulo;
+    }
     buscarArticulos = function () {
         $scope.loading = true;
         if ($scope.cadena.length > 0) {
