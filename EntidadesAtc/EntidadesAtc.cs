@@ -202,6 +202,9 @@ namespace EntidadesAtc
         public string ModoContenido { get; set; }
         public decimal UnidadesContenido { get; set; }
         public decimal PrecioTarifa { get; set; }
+        public int idAcumuladoUdMan { get; set; }
+        public decimal StockFinalUV { get; set; }
+        public string NombreAlmacen { get; set; }
     }
     [DataContract]
     public class BusquedaRapida
@@ -309,6 +312,7 @@ namespace EntidadesAtc
         [DataMember]
         public string DescripcionCategoria { get; set; }
         public List<ArticuloCarroceria> Carrocerias { get; set; }
+        public List<UnidadManipulacion> UnidadesManipulacion { get; set; }
 
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }

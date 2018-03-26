@@ -698,6 +698,7 @@ namespace dsASPCAtc.DataAccess
             res.Articulos = new List<BuscaArticulo>();
             res.Accesorios = new List<Categoria>();
             var accesorios = new List<BuscaArticulo>();
+            var udman = new List<UnidadManipulacion>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -764,9 +765,24 @@ namespace dsASPCAtc.DataAccess
                         AnoInicial = AsignaEntero("AnoInicial"),
                         AnoFinal = AsignaEntero("AnoFinal"),
                         IdCategoria = AsignaEntero("IDCategoria"),
-                        DescripcionCategoria = AsignaCadena("DescripcionCategoria")
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria"),
+                        UnidadesManipulacion = new List<UnidadManipulacion>(),
                     };
                     res.Articulos.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+
+                    };
+                    udman.Add(um);
                 }
                 _reader.NextResult();
                 while (_reader.Read())
@@ -802,9 +818,24 @@ namespace dsASPCAtc.DataAccess
                         AnoInicial = AsignaEntero("AnoInicial"),
                         AnoFinal = AsignaEntero("AnoFinal"),
                         IdCategoria = AsignaEntero("IDCategoria"),
-                        DescripcionCategoria = AsignaCadena("DescripcionCategoria")
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria"),
+                        UnidadesManipulacion = new List<UnidadManipulacion>(),
                     };
                     accesorios.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+
+                    };
+                    udman.Add(um);
                 }
             }
             foreach (BuscaArticulo articulo in accesorios)
@@ -814,6 +845,23 @@ namespace dsASPCAtc.DataAccess
                     if (ct.IDCategoria == articulo.IdCategoria)
                     {
                         ct.Articulos.Add(articulo);
+                    }
+                }
+                foreach (UnidadManipulacion ud in udman)
+                {
+                    if (ud.idArticulo == articulo.IdArticulo)
+                    {
+                        articulo.UnidadesManipulacion.Add(ud);
+                    }
+                }
+            }
+            foreach (BuscaArticulo articulo in res.Articulos)
+            {
+                foreach (UnidadManipulacion ud in udman)
+                {
+                    if (ud.idArticulo == articulo.IdArticulo)
+                    {
+                        articulo.UnidadesManipulacion.Add(ud);
                     }
                 }
             }
@@ -847,6 +895,8 @@ namespace dsASPCAtc.DataAccess
             var res = new BuscaArticulo();
             var Accesorios = new List<BuscaArticulo>();
             res.Carrocerias = new List<ArticuloCarroceria>();
+            res.UnidadesManipulacion = new List<UnidadManipulacion>();
+            var uds = new List<UnidadManipulacion>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -893,11 +943,14 @@ namespace dsASPCAtc.DataAccess
                 _reader.NextResult();
                 while (_reader.Read())
                 {
-                    var ar = new BuscaArticulo();
-                    ar.IdArticulo = AsignaEntero("IdArticuloRel");
-                    ar.Descripcion = AsignaCadena("DescripcionArticuloRel");
-                    ar.IdCategoria = AsignaEntero("IdCategoria");
-                    ar.IdArticuloCategoria = AsignaEntero("IDArticuloCategoria");
+                    var ar = new BuscaArticulo
+                    {
+                        IdArticulo = AsignaEntero("IdArticuloRel"),
+                        Descripcion = AsignaCadena("DescripcionArticuloRel"),
+                        IdCategoria = AsignaEntero("IdCategoria"),
+                        IdArticuloCategoria = AsignaEntero("IDArticuloCategoria"),
+                        UnidadesManipulacion = new List<UnidadManipulacion>()
+                    };
                     Accesorios.Add(ar);
                 }
                 _reader.NextResult();
@@ -916,17 +969,55 @@ namespace dsASPCAtc.DataAccess
                     };
                     res.Carrocerias.Add(carr);
                 }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+
+                    };
+                    res.UnidadesManipulacion.Add(um);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                        var um = new UnidadManipulacion
+                        {
+                            idArticulo = AsignaEntero("IDArticulo"),
+                            idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                            idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                            StockFinalUV = AsignaDecimal("StockFinalUV"),
+                            NombreAlmacen = AsignaCadena("NombreAlmacen"),
+
+                        };
+                        uds.Add(um);
+                }
             }
-            foreach (Categoria cat in res.Accesorios)
+            foreach (BuscaArticulo ar in Accesorios)
             {
-                foreach (BuscaArticulo ar in Accesorios)
+                
+                foreach (Categoria cat in res.Accesorios)
                 {
                     if (ar.IdCategoria == cat.IDCategoria)
                     {
                         cat.Articulos.Add(ar);
                     }
                 }
+                foreach (UnidadManipulacion ud in uds)
+                {
+                    if (ud.idArticulo == ar.IdArticulo)
+                    {
+                        ar.UnidadesManipulacion.Add(ud);
+                    }
+                }
             }
+            res.Accesorios.RemoveAll(c => c.Articulos.Count < 1);
+            
             return res;
         }
     }

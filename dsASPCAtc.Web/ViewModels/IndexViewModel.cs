@@ -16,7 +16,7 @@ namespace dsASPCAtc.Web.ViewModels
         {
             var ad = new AdaptadorAtc(configuration);
             Vehiculos = ad.TiposVehiculoLeer(null);
-            streaming = configuration.GetSection("StreamFiles")["rutaStreaming"];
+            streaming = configuration.GetSection("StreamFiles")["rutaStreaming"]; 
             foreach (TipoVehiculo vh in Vehiculos)
             {
                 vh.url = streaming + vh.Imagen;

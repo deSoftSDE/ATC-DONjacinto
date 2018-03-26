@@ -173,7 +173,7 @@
     $scope.seleccionarCarroceria = function (car) {
         $scope.objetoBusqueda.carroceria = JSON.parse("" + JSON.stringify(car));
         $scope.objetoBusqueda.tabs[5] = false;
-        $scope.objetoBusqueda.tabs[6] = true;
+        $scope.objetoBusqueda.tabs[6] = false;
         cambiarPagina(5);
     }
     $scope.seleccionarAno = function (ano) {

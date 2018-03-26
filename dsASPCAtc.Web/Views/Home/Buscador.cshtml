@@ -311,7 +311,7 @@
 
                 <h3 class="block">Seleccione Vidrio</h3>
                 <div class="row">
-                    <table>
+                    <table style="margin: 0 auto;">
                         <tr ng-repeat="fila in tabla">
                             <td class="text-center " ng-repeat="celda in fila.celdas" colspan="{{celda.extensionHor}}" rowspan="{{celda.extensionVer}}">
                                 <div class="{{classTieneArticulos(celda)}}">
@@ -349,5 +349,5 @@
             </div>
         </div>
     </div>
-    <input type="text" value="" id="tipovehi" />
+    <input type="text" value="" id="tipovehi" style="display:none" />
 </div>
