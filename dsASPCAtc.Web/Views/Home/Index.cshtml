@@ -2,6 +2,8 @@
     @using EntidadesAtc;
     ViewData["Title"] = "Home Page";
     var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
+    var unclick = (List<BuscaArticulo>)ViewData["UnClick"];
+    var novedades = (List<BuscaArticulo>)ViewData["Novedades"];
 }
 <script type="text/javascript">
     function verResultados(parameters) {
@@ -173,6 +175,8 @@
                 </div>
                 <div class="portlet-body">
                     <div class="row">
+                        @foreach (BuscaArticulo ar in unclick)
+                        {
                         <div class="col-md-4">
                             <!--begin: widget 1-1 -->
                             <div class="mt-widget-1">
@@ -182,14 +186,14 @@
                                     </a>
                                 </div>
                                 <div class="mt-img">
-                                    <img class="img-responsive" src="../images/activador.jpg">
+                                    <img class="img-responsive" ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'">
                                 </div>
                                 <div class="mt-body">
-                                    <h3 class="mt-username">Activador en Aerosol</h3>
-                                    <p class="mt-user-title"> 150 ml para Adhesivos Estructurales.. </p>
+                                    <h3 class="mt-username">@ar.Descripcion</h3>
+                                    <p class="mt-user-title"> @ar.DescripcionCorta </p>
                                     <div class="mt-stats">
                                         <div class="btn-group btn-group btn-group-justified">
-                                            <a href="javascript:;" class="btn ">
+                                            <a  asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
                                                 <!--<i class="fa fa-star"></i>-->  Más info
                                             </a>
                                             <a href="javascript:;" class="btn font-green">
@@ -201,62 +205,9 @@
                             </div>
                             <!--end: widget 1-1 -->
                         </div>
-                        <div class="col-md-4">
-                            <!--begin: widget 1-1 -->
-                            <div class="mt-widget-1">
-                                <div class="mt-icon">
-                                    <a href="#">
-                                        <i class="icon-plus"></i>
-                                    </a>
-                                </div>
-                                <div class="mt-img">
-                                    <img class="img-responsive" src="../images/reparadora.jpg">
-                                </div>
-                                <div class="mt-body">
-                                    <h3 class="mt-username">Resina</h3>
-                                    <p class="mt-user-title"> 5ml resina de reparación.. </p>
-                                    <div class="mt-stats">
-                                        <div class="btn-group btn-group btn-group-justified">
-                                            <a href="javascript:;" class="btn ">
-                                                <!--<i class="fa fa-star"></i>-->  Más info
-                                            </a>
-                                            <a href="javascript:;" class="btn font-green">
-                                                <i class="icon-plus "></i> Añadir
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end: widget 1-1 -->
-                        </div>
-                        <div class="col-md-4">
-                            <!--begin: widget 1-1 -->
-                            <div class="mt-widget-1">
-                                <div class="mt-icon">
-                                    <a href="#">
-                                        <i class="icon-plus"></i>
-                                    </a>
-                                </div>
-                                <div class="mt-img">
-                                    <img class="img-responsive" src="../images/loctite.jpg">
-                                </div>
-                                <div class="mt-body">
-                                    <h3 class="mt-username">Pegamento Loctite</h3>
-                                    <p class="mt-user-title"> 326 para soportes ... </p>
-                                    <div class="mt-stats">
-                                        <div class="btn-group btn-group btn-group-justified">
-                                            <a href="javascript:;" class="btn ">
-                                                <!--<i class="fa fa-star"></i>-->  Más info
-                                            </a>
-                                            <a href="javascript:;" class="btn font-green">
-                                                <i class="icon-plus "></i> Añadir
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end: widget 1-1 -->
-                        </div>
+
+                        }
+                        
 
 
                     </div>
@@ -323,54 +274,32 @@
                     <div class="col-md-12">
                         <div class="carousel carousel-showmanymoveone slide" id="carousel123">
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
+
+                                @foreach (BuscaArticulo ar in novedades)
+    {
+        if (ar.active == true)
+        {
+                            <div class="item active">
+                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                                    <a asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive"></a>
+                                    <small>@ar.Descripcion</small>
                                 </div>
-                                <div class="item">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/parabrisas.jpg" class="img-responsive"></a>
-                                        <small>Parabrisas Alfa Romeo</small>
-                                    </div>
+                            </div>
+
+}
+else
+{
+                            <div class="item">
+                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                                    <a asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive"></a>
+                                    <small>@ar.Descripcion</small>
                                 </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                        <a href="#"><img src="assets/layouts/layout/img/moldura.jpg" class="img-responsive"></a>
-                                        <small>Moldura BMW</small>
-                                    </div>
-                                </div>
+                            </div>
+
+}
+
+
+}
                             </div>
                             <a class="left carousel-control" href="#carousel123" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
                             <a class="right carousel-control" href="#carousel123" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>

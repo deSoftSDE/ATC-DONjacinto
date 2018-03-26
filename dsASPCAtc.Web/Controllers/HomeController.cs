@@ -36,6 +36,8 @@ namespace dsASPCAtc.Web.Controllers
             HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
             var vm = new IndexViewModel(_configuration);
             ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["UnClick"] = vm.UnClick;
+            ViewData["Novedades"] = vm.Novedades;
             return View();
         }
 

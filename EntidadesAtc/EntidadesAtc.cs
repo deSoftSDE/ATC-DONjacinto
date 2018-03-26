@@ -313,6 +313,7 @@ namespace EntidadesAtc
         public string DescripcionCategoria { get; set; }
         public List<ArticuloCarroceria> Carrocerias { get; set; }
         public List<UnidadManipulacion> UnidadesManipulacion { get; set; }
+        public Boolean active { get; set; }
 
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }
@@ -342,7 +343,11 @@ namespace EntidadesAtc
         [DataMember]
         public string DescripcionSeccion { get; set; }
     }
-
+    public class UnClickYNovedades
+    {
+        public List<BuscaArticulo> UnClick { get; set; }
+        public List<BuscaArticulo> Novedades { get; set; }
+    }
     [DataContract]
     public class TipoVidrio
     {
