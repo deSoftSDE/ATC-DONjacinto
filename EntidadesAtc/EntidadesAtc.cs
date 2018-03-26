@@ -12,48 +12,7 @@ using System.Data;
 
 namespace EntidadesAtc
 {
-    [DataContract]
-    public class Noticia
-    {
-        [DataMember]
-        public int IDNoticia { get; set; }
-        [DataMember]
-        public int IDAutor { get; set; }
-        [DataMember]
-        public string Titular { get; set; }
-        [DataMember]
-        public List<string> Contenido { get; set; }
-        [DataMember]
-        public string NombreCategoria { get; set; }
-        [DataMember]
-        public string NombreSeccion { get; set; }
-        [DataMember]
-        public string NombreSubseccion { get; set; }
-        [DataMember]
-        public string Subtitular { get; set; }
-        [DataMember]
-        public List<Imagen> Imagenes { get; set; }
-        [DataMember]
-        public List<Banner> Banners { get; set; }
-        [DataMember]
-        public DateTime FechaPubli { get; set; }
-        [DataMember]
-        public int Visitas { get; set; }
-        [DataMember]
-        public string Autor { get; set; }
-        [DataMember]
-        public List<Puntuacion> Puntuaciones { get; set; }
-        [DataMember]
-        public List<Etiqueta> Etiquetas { get; set; }
-        [DataMember]
-        public List<Noticia> Relacionadas { get; set; }
-        [DataMember]
-        public List<Comentario> Comentarios { get; set; }
-        [DataMember]
-        public PropiedadesPublicidad PropiedadesPublicidad { get; set; }
-        [DataMember]
-        public string ImagenAutor { get; set; }
-    }
+    
     public class Company
     {
         public int ID { get; set; }
@@ -84,296 +43,15 @@ namespace EntidadesAtc
     public class Categoria
     {
         [DataMember]
-        public string NombreCategoria { get; set; }
-        [DataMember]
         public int IDCategoria { get; set; }
-        [DataMember]
-        public string ClaseCSS { get; set; }
-        [DataMember]
-        public int TipoCategoria { get; set; }
-        [DataMember]
-        public List<Seccion> Secciones { get; set; }
-        [DataMember]
-        public List<Noticia> Noticias { get; set; }
-        [DataMember]
-        public List<Banner> Banners { get; set; }
-    }
-    [DataContract]
-    public class Seccion
-    {
-        [DataMember]
-        public string NombreSeccion { get; set; }
-        [DataMember]
-        public int IDSeccion { get; set; }
-        [DataMember]
-        public int IDCategoria { get; set; }
-        [DataMember]
-        public List<Subseccion> Subsecciones { get; set; }
-    }
-    [DataContract]
-    public class Subseccion
-    {
-        [DataMember]
-        public string NombreSubseccion { get; set; }
-        [DataMember]
-        public int IDSubseccion { get; set; }
-        [DataMember]
-        public int IDSeccion { get; set; }
-    }
-    [DataContract]
-    public class Servicio
-    {
-        [DataMember]
-        public int IDServicio { get; set; }
-        [DataMember]
-        public string Contenido { get; set; }
-        [DataMember]
-        public string Icono { get; set; }
-        [DataMember]
-        public string Titulo { get; set; }
-        [DataMember]
-        public int Visible { get; set; }
-        [DataMember]
-        public int Orden { get; set; }
-        [DataMember]
-        public List<Imagen> Imagenes { get; set; }
-    }
-    [DataContract]
-    public class Carga
-    {
-        [DataMember]
-        public List<Categoria> Categorias { get; set; }
-        [DataMember]
-        public List<Servicio> Servicios { get; set; }
-        [DataMember]
-        public List<Pagina> Paginas { get; set; }
-        [DataMember]
-        public List<Cosa> Cosas { get; set; }
-        [DataMember]
-        public List<Banner> Banners { get; set; }
-        [DataMember]
-        public List<Noticia> Cabecera { get; set; }
-        [DataMember]
-        public List<ElementoPortada> Portada { get; set; }
-        [DataMember]
-        public List<Noticia> Noticias { get; set; }
-    }
-    [DataContract]
-    public class Pagina
-    {
-        [DataMember]
-        public int IDPagina { get; set; }
-        [DataMember]
-        public string Titulo { get; set; }
-        [DataMember]
-        public string Contenido { get; set; }
-    }
-    [DataContract]
-    public class Cosa
-    {
-        [DataMember]
-        public int IDCosa { get; set; }
-        [DataMember]
-        public string NombreCosa { get; set; }
-        [DataMember]
-        public string Banner { get; set; }
-        [DataMember]
-        public string DescripcionCosa { get; set; }
-    }
-    [DataContract]
-    public class Banner
-    {
-        [DataMember]
-        public int IDBanner { get; set; }
-        [DataMember]
-        public string URLBanner { get; set; }
-        [DataMember]
-        public string URLBannerAlt { get; set; }
-        [DataMember]
-        public string Enlace { get; set; }
-        [DataMember]
-        public int Relevancia { get; set; }
-        [DataMember]
-        public int IDCategoria { get; set; }
-    }
-    [DataContract]
-    public class Imagen
-    {
-        [DataMember]
-        public int IDImagen { get; set; }
-        [DataMember]
-        public string URLImagen { get; set; }
         [DataMember]
         public string Descripcion { get; set; }
         [DataMember]
-        public int Principal { get; set; }
+        public string Codigo { get; set; }
         [DataMember]
-        public int Servidor { get; set; }
+        public List<BuscaArticulo> Articulos { get; set; }
         [DataMember]
-        public int IDNoticia { get; set; }
-        public int IDServicio { get; set; }
-    }
-    [DataContract]
-    public class Puntuacion
-    {
-        [DataMember]
-        public int IDPuntuacion { get; set; }
-        [DataMember]
-        public int IDNotiPuntu { get; set; }
-        [DataMember]
-        public int Cantidad { get; set; }
-        [DataMember]
-        public string Nombre { get; set; }
-        [DataMember]
-        public string Imagen { get; set; }
-    }
-    [DataContract]
-    public class Etiqueta
-    {
-        [DataMember]
-        public int IDEtiqueta { get; set; }
-        [DataMember]
-        public string NombreEtiqueta { get; set; }
-    }
-    [DataContract]
-    public class Comentario
-    {
-        [DataMember]
-        public int IDComentario { get; set; }
-        [DataMember]
-        public DateTime Creacion { get; set; }
-        [DataMember]
-        public int IDNoticia { get; set; }
-        [DataMember]
-        public int IDIDComentario { get; set; }
-        [DataMember]
-        public int IDUsuario { get; set; }
-        [DataMember]
-        public string Contenido { get; set; }
-        [DataMember]
-        public Usuario Usuario { get; set; }
-        [DataMember]
-        public int Eliminado { get; set; }
-    }
-    [DataContract]
-    public class Usuario
-    {
-        [DataMember]
-        public int IDUsuario { get; set; }
-        [DataMember]
-        public string NombreUsuario { get; set; }
-        [DataMember]
-        public string CuentaUsuario { get; set; }
-        [DataMember]
-        public string Email { get; set; }
-        [DataMember]
-        public string Imagen { get; set; }
-        [DataMember]
-        public byte[] TS { get; set; }
-        //public List<Valoracion> Valoraciones { get; set; }
-        //public TwitterTokens TokensTwitter { get; set; }
-        [DataMember]
-        public string Ocupacion { get; set; }
-        [DataMember]
-        public string Ubicacion { get; set; }
-        [DataMember]
-        public string Industria { get; set; }
-    }
-    [DataContract]
-    public class PropiedadesPublicidad
-    {
-        [DataMember]
-        public int ParrafosDif { get; set; }
-        [DataMember]
-        public int LongMinima { get; set; }
-        [DataMember]
-        public int CantidadBanners { get; set; }
-    }
-    [DataContract]
-    public class ElementoPortada
-    {
-        [DataMember]
-        public int ID { get; set; }
-        [DataMember]
-        public string tipo { get; set; }
-        [DataMember]
-        public string Nombre { get; set; }
-    }
-    [DataContract]
-    public class Competicion
-    {
-        [DataMember]
-        public int IDCompeticion { get; set; }
-        [DataMember]
-        public string NombreCompeticion { get; set; }
-        [DataMember]
-        public string Imagen { get; set; }
-        [DataMember]
-        public List<CategoriaCompeticion> Categorias { get; set; }
-    }
-    [DataContract]
-    public class CategoriaCompeticion
-    {
-        [DataMember]
-        public int IDCategoriaCompeticion { get; set; }
-        [DataMember]
-        public string NombreCategoria { get; set; }
-        [DataMember]
-        public int IdCompeticion { get; set; }
-        [DataMember]
-        public List<Jornada> Jornadas { get; set; }
-        [DataMember]
-        public List<Equipo> Equipos { get; set; }
-    }
-    [DataContract]
-    public class Equipo
-    {
-        [DataMember]
-        public int IDEquipo { get; set; }
-        [DataMember]
-        public string NombreEquipo { get; set; }
-        [DataMember]
-        public string Imagen { get; set; }
-        [DataMember]
-        public int Puntuacion { get; set; }
-        [DataMember]
-        public int IDCategoriaCompeticionEquipo { get; set; }
-    }
-    [DataContract]
-    public class Jornada
-    {
-        [DataMember]
-        public int IDJornada { get; set; }
-        [DataMember]
-        public string NombreJornada { get; set; }
-        [DataMember]
-        public DateTime? FechaDesde { get; set; }
-        [DataMember]
-        public DateTime? FechaHasta { get; set; }
-        [DataMember]
-        public List<Encuentro> Encuentros { get; set; }
-    }
-    [DataContract]
-    public class Encuentro
-    {
-        [DataMember]
-        public int IDEncuentro { get; set; }
-        [DataMember]
-        public int IdEquipo1 { get; set; }
-        [DataMember]
-        public string NombreEquipo1 { get; set; }
-        [DataMember]
-        public string ImagenEquipo1 { get; set; }
-        [DataMember]
-        public string Resultado { get; set; }
-        [DataMember]
-        public int IdEquipo2 { get; set; }
-        [DataMember]
-        public string NombreEquipo2 { get; set; }
-        [DataMember]
-        public string ImagenEquipo2 { get; set; }
-        [DataMember]
-        public int IdJornada { get; set; }
+        public int IdArticuloCategoria { get; set; }
     }
     public class FormModel
     {
@@ -596,10 +274,315 @@ namespace EntidadesAtc
 
         [DataMember]
         public int? IdTipoIva { get; set; }
+        [DataMember]
+        public int? IdFamilia { get; set; }
+        [DataMember]
+        public int? IdSeccion { get; set; }
+        [DataMember]
+        public int? IdTipoVidrio { get; set; }
+        [DataMember]
+        public int? IdGenerico { get; set; }
+        [DataMember]
+        public string DescripcionFamilia { get; set; }
+        [DataMember]
+        public string DescripcionSeccion { get; set; }
+        [DataMember]
+        public string DescripcionCorta { get; set; }
+        [DataMember]
+        public string DescripcionTipoVidrio { get; set; }
+        [DataMember]
+        public string DescripcionDetallada { get; set; }
+        [DataMember]
+        public string DescripcionWeb1 { get; set; }
+        [DataMember]
+        public string DescripcionWeb2 { get; set; }
+        [DataMember]
+        public int AnoInicial { get; set; }
+        [DataMember]
+        public int AnoFinal { get; set; }
+        [DataMember]
+        public List<Categoria> Accesorios { get; set; }
+        [DataMember]
+        public int? IdCategoria { get; set; }
+        [DataMember]
+        public int IdArticuloCategoria { get; set; }
+        [DataMember]
+        public string DescripcionCategoria { get; set; }
+        public List<ArticuloCarroceria> Carrocerias { get; set; }
+
+        //[DataMember]
+        //public List<ModificarAccesorio> accesorioseliminar { get; set; }
     }
     public class QueryBusqueda
     {
 
+    }
+
+    [DataContract]
+    public class ArticuloCarroceria
+    {
+        [DataMember]
+        public int IDModeloCarroceria { get; set; }
+        [DataMember]
+        public string DescripcionCarroceria { get; set; }
+        [DataMember]
+        public string Anos { get; set; }
+        [DataMember]
+        public string DescripcionArticuloModelo { get; set; }
+        [DataMember]
+        public int IDArticuloModelo { get; set; }
+        [DataMember]
+        public int IDFamilia { get; set; }
+        [DataMember]
+        public string DescripcionFamilia { get; set; }
+        [DataMember]
+        public string DescripcionSeccion { get; set; }
+    }
+
+    [DataContract]
+    public class TipoVidrio
+    {
+        [DataMember]
+        public int IDTipoVidrio { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+    }
+    [DataContract]
+    public class Carroceria
+    {
+        [DataMember]
+        public int IDCarroceria { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public List<Vidrio> Vidrios { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+        [DataMember]
+        public int IDModeloCarroceria { get; set; }
+        [DataMember]
+        public int CantidadArticulos { get; set; }
+    }
+    [DataContract]
+    public class Ano
+    {
+        [DataMember]
+        public int Valor { get; set; }
+        [DataMember]
+        public int CantidadArticulos { get; set; }
+    }
+    [DataContract]
+    public class ResultadoIM
+    {
+        [DataMember]
+        public int Identidad { get; set; }
+        [DataMember]
+        public byte[] TS { get; set; }
+        [DataMember]
+        public string Resultado { get; set; }
+    }
+    [DataContract]
+    public class CadenasBusqueda
+    {
+        [DataMember]
+        public string Vista { get; set; }
+        [DataMember]
+        public string EntidadFuncion { get; set; }
+        [DataMember]
+        public string CampoClave { get; set; }
+        [DataMember]
+        public string Entidad { get; set; }
+        [DataMember]
+        public string CampoOrdenacion { get; set; }
+    }
+    [DataContract]
+    public class BusquedaPaginada
+    {
+        [DataMember]
+        public string tipo { get; set; }
+        [DataMember]
+        public string cadena { get; set; }
+        [DataMember]
+        public int? numPag { get; set; }
+        [DataMember]
+        public string LastValor { get; set; }
+        [DataMember]
+        public int LastIndice { get; set; }
+        [DataMember]
+        public string AccionPagina { get; set; }
+        [DataMember]
+        public string FirstValor { get; set; }
+        [DataMember]
+        public int FirstIndice { get; set; }
+        [DataMember]
+        public int? idSeccion { get; set; }
+    }
+    [DataContract]
+    public class Vidrio
+    {
+        [DataMember]
+        public int IDVidrio { get; set; }
+        [DataMember]
+        public int IDTipoVidrio { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+        [DataMember]
+        public int PosVer { get; set; }
+        [DataMember]
+        public int PosHor { get; set; }
+        [DataMember]
+        public int SpanVer { get; set; }
+        [DataMember]
+        public int SpanHor { get; set; }
+        [DataMember]
+        public string DescripcionTipoVidrio { get; set; }
+        [DataMember]
+        public int Modificador { get; set; }
+        [DataMember]
+        public int CantidadArticulos { get; set; }
+    }
+    public class Parametros
+    {
+        public int? idModeloCarroceria;
+        public int? ano;
+
+        public int? idTipoVehiculo { get; set; }
+        public int? idSeccion { get; set; }
+        public int? idFamilia { get; set; }
+        public string descripcionTipoVehiculo { get; set; }
+        public string descripcionSeccion { get; set; }
+        public string descripcionFamilia { get; set; }
+        public int? idVidrio { get; set; }
+        public string descripcionTipoVidrio { get; set; }
+        public string descripcionCarroceria { get; set; }
+        public int? idCarroceria { get; set; }
+        public int? idTipoVidrio { get; set; }
+    }
+    [DataContract]
+    public class TipoVehiculo
+    {
+        [DataMember]
+        public int IDTipoVehiculo { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public string url { get; set; }
+        [DataMember]
+        public List<string> InicialesMarcas { get; set; }
+        //public int IdFamilia { get; set; }
+    }
+    /*public class MarcaModelo
+    {
+        public int IDMarcaModelo { get; set; }
+        public int IDFamilia { get; set; }
+        public string Descripcion { get; set; }
+        public string Imagen { get; set; }
+    }*/
+    [DataContract]
+    public class Marca
+    {
+        [DataMember]
+        public int IDSeccion { get; set; }
+        [DataMember]
+        public string DescripcionSeccion { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+        [DataMember]
+        public string CodigoSeccion { get; set; }
+        public string Inicial { get; set; }
+    }
+    [DataContract]
+    public class Modelo
+    {
+        [DataMember]
+        public int IDFamilia { get; set; }
+        [DataMember]
+        public string DescripcionFamilia { get; set; }
+        [DataMember]
+        public string Imagen { get; set; }
+        [DataMember]
+        public string CodigoFamilia { get; set; }
+        [DataMember]
+        public int? IdSeccion { get; set; }
+        [DataMember]
+        public string descripcionSeccion { get; set; }
+        [DataMember]
+        public int idTipoVehiculo { get; set; }
+        [DataMember]
+        public string descripcionTipoVehiculo { get; set; }
+        [DataMember]
+        public List<Carroceria> Carrocerias { get; set; }
+        [DataMember]
+        public List<Carroceria> CarroceriasEliminadas { get; set; }
+        [DataMember]
+        public string Inicial { get; set; }
+        [DataMember]
+        public List<ImagenFamilia> Imagenes { get; set; }
+    }
+    [DataContract]
+    public class MensajeRespuesta
+    {
+        [DataMember]
+        public bool Existente { get; set; }
+        [DataMember]
+        public string Contenido { get; set; }
+        [DataMember]
+        public string Archivo { get; set; }
+        [DataMember]
+        public long Tamano { get; set; }
+    }
+    [DataContract]
+    public class BuscadorMarcas
+    {
+        [DataMember]
+        public List<Marca> Marcas { get; set; }
+        [DataMember]
+        public List<Inicial> Iniciales { get; set; }
+        public List<Modelo> Modelos { get; set; }
+    }
+    [DataContract]
+    public class Inicial
+    {
+        [DataMember]
+        public string Valor { get; set; }
+        [DataMember]
+        public List<Marca> Marcas { get; set; }
+        public List<Modelo> Modelos { get; set; }
+    }
+    [DataContract]
+    public class Tamano
+    {
+        [DataMember]
+        public int Width { get; set; }
+        [DataMember]
+        public int Height { get; set; }
+        [DataMember]
+        public int Res { get; set; }
+    }
+
+    [DataContract]
+    public class ImagenFamilia
+    {
+        [DataMember]
+        public int IDImagenFamilia { get; set; }
+        [DataMember]
+        public string Valor { get; set; }
+        [DataMember]
+        public int IDFamilia { get; set; }
+        public string holi { get; set; }
+    }
+
+    public class ArticulosYCategorias
+    {
+        public List<BuscaArticulo> Articulos { get; set; }
+        public List<Categoria> Accesorios { get; set; }
+        public Parametros Parametros { get; set; }
     }
 
 }

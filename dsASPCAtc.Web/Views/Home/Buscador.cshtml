@@ -1,0 +1,353 @@
+﻿@{
+    @using EntidadesAtc;
+    ViewData["Title"] = "Home Page";
+    var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
+    var pr = (string)ViewData["Parametros"];
+}
+<script type="text/javascript">
+    function verResultados(parameters) {
+        var url = '@Url.Action("Resultados", "Home")';
+        window.location.href = url + parameters;
+        //alert(url + parameters)
+    }
+</script>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="index.html">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Buscar Producto</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">
+    Buscar Producto
+    <small>Rellene los campos para ver la ficha de Producto</small>
+</h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+<div class="row" ng-controller="vehiculos" id="contenedorBuscador" style="display:none;">
+    <input type="text" value="@pr" id="parametros" style="display:none;" />
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="flaticon-vehiculo ico-prod font-red" style="font-size: 6rem; line-height: 0;"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Buscador de Producto de Vidrio -
+                        <span class="step-title"> Paso {{activePill}} de {{numPags}} </span>
+                    </span>
+
+                    <div id="bar" class="progress progress-striped">
+                        <div class="progress-bar" role="progressbar" style="width: {{progreso()}} ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{progreso()}}</div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="page-bar" style="position: initial;">
+        <ul class="page-breadcrumb">
+            <li>
+                {{objetoBusqueda.NombreTipoVehiculo}}
+                <i class="fa fa-circle"></i>
+            </li>
+            <li ng-if="!objetoBusqueda.tabs[3]">
+                <span>{{objetoBusqueda.marca.descripcionSeccion}}</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li ng-if="!objetoBusqueda.tabs[4]">
+                <span>{{objetoBusqueda.modelo.descripcionFamilia}}</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li  ng-if="!objetoBusqueda.tabs[5]">
+                <span>{{objetoBusqueda.carroceria.descripcion}}</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li  ng-if="!objetoBusqueda.tabs[6]">
+                <span>{{objetoBusqueda.ano.valor}}</span>
+            </li>
+        </ul>
+
+    </div>
+    <uib-tabset active="activePill" type="pills" class="form-wizard">
+        <uib-tab index="1" disable="objetoBusqueda.tabs[1]">
+            <uib-tab-heading>
+                <span class="step">
+                    <span class="number"> 1 </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Tipo de Vehículo
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <div class="tab-pane active">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="m-grid m-grid-responsive-sm m-grid-demo m-grid-full-height">
+                            <div class="m-grid-row">
+                                @foreach (TipoVehiculo vehiculo in vh)
+                                {
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(@vehiculo.IDTipoVehiculo)}}">
+                                        {{selectedTipoVehiculo(@vehiculo.IDTipoVehiculo)}}
+                                        <a ng-click="seleccionarVehiculo(@vehiculo.IDTipoVehiculo, '@vehiculo.Descripcion')">
+                                            <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+
+                                            <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
+                                        </a>
+                                    </div>
+                                }
+                                <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(0)}}">
+                                    {{selectedTipoVehiculo(0)}}
+                                    <a ng-click="seleccionarVehiculo(0,'Todos los vehículos')">
+                                        <img class="img-fluid" src="~/img/spinner.gif" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+
+                                        <p class="texto-prod"><small class="d-block">Todos los Vehículos</small></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab tabindex="2" disable="objetoBusqueda.tabs[2]">
+            <uib-tab-heading >
+                <span class="step" ng-click="lanzarCambioPagina(2)">
+                    <span class="number">2</span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Marca
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <h3 class="block">Marca de su vehículo</h3>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Marca
+                </label>
+                <div class="col-md-4">
+                    <div dx-select-box="selectBox" dx-item-alias="product" class="mb-1">
+
+                        <div data-options="dxTemplate: { name: 'item' }">
+                            <div class="custom-item">
+                                <div class="row">
+                                    <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
+                                    <div class="col-md-3">
+                                        <div class="product-name">
+                                            {{product.descripcionSeccion}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <span class="help-block"> Seleccione la Marca de Su Vehículo</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="tabbable  tabbable-line">
+                        <uib-tabset active="tabMarca">
+                            <uib-tab tabindex="1" heading="Ver Todas">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="panel panel-default col-md-3" ng-repeat="inicial in inicialesMarcas">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{inicial.valor}}" href="#collapse{{inicial.valor}}" aria-expanded="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> {{inicial.valor}} </font></font></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapse{{inicial.valor}}" class="panel-collapse collapse" aria-expanded="false" style="">
+                                                    <div class="panel-body">
+                                                        <ul class="list-unstyled">
+                                                            <li ng-repeat="marca in inicial.marcas"  ng-click="seleccionarMarca(marca)">
+                                                                <img style="width:10px" ng-src="{{marca.url}}" />{{marca.descripcionSeccion}}
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab ng-repeat="inicial in inicialesMarcas" tabindex="{{$index+1}}" heading="{{inicial.valor}}">
+                                <div class="row">
+                                    <div class="col-md-3" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img style="width:50px" ng-src="{{marca.url}}" />
+                                            </div>
+                                            <div class="col-12">
+                                                {{marca.descripcionSeccion}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="3" disable="objetoBusqueda.tabs[3]">
+            <uib-tab-heading>
+                <span class="step" ng-click="lanzarCambioPagina(3)">
+                    <span class="number"> 3 </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Modelo
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <div class="tab-pane" id="tab2">
+                <h3 class="block">Modelo de su vehículo</h3>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        Modelo
+                    </label>
+                    <div class="col-md-4">
+                        <div dx-select-box="selectBoxModelos" dx-item-alias="product" class="mb-1">
+
+                            <div data-options="dxTemplate: { name: 'field' }">
+
+                                <div dx-text-box="settingsbox"></div>
+                            </div>
+
+                            <div data-options="dxTemplate: { name: 'item' }">
+                                <div class="custom-item">
+                                    <div class="row">
+                                        <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
+                                        <div class="col-md-3">
+                                            <div class="product-name">
+                                                {{product.descripcionFamilia}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block"> Seleccione el modelo de su Vehículo</span>
+                    </div>
+                </div>
+                
+            </div>
+        </uib-tab>
+        <uib-tab index="4" disable="objetoBusqueda.tabs[4]">
+            <uib-tab-heading>
+                <span class="step">
+                    <span class="number"> 4 </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Carrocería
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <h3 class="block">Seleccione Carrocería</h3>
+            <div class="row">
+                <div class="col-md-3 text-center" ng-repeat="carroceria in objetoBusqueda.infoModelo.carrocerias" ng-click="seleccionarCarroceria(carroceria)">
+
+                    <img ng-src="{{carroceria.url}}" style="width:30px;" />
+                    <h3>{{carroceria.descripcion}}</h3><h4>{{carroceria.cantidadArticulos}} articulo/s</h4>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="5" disable="objetoBusqueda.tabs[5]">
+            <uib-tab-heading>
+                <span class="step">
+                    <span class="number"> 5 </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Año
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <div class="tab-pane" id="tab3">
+                <h3 class="block">Seleccione Año</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <div dx-select-box="selectBoxAnos" dx-item-alias="product" class="mb-1">
+                            <div data-options="dxTemplate: { name: 'item' }">
+                                <div class="custom-item">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3">
+                                            <div class="product-name">
+                                                <h3>{{product.valor}}</h3>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab tabindex="6"  disable="objetoBusqueda.tabs[6]">
+            <uib-tab-heading>
+                <span class="step">
+                    <span class="number"> 6 </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i>Seleccione Vidrio
+                    </span>
+                </span>
+            </uib-tab-heading>
+            <div class="tab-pane" id="tab4">
+
+                <h3 class="block">Seleccione Vidrio</h3>
+                <div class="row">
+                    <table>
+                        <tr ng-repeat="fila in tabla">
+                            <td class="text-center " ng-repeat="celda in fila.celdas" colspan="{{celda.extensionHor}}" rowspan="{{celda.extensionVer}}">
+                                <div class="{{classTieneArticulos(celda)}}">
+                                    <img ng-click="seleccionarVidrio(celda.vidrio)" ng-if="NotNull(celda.vidrio)" title="{{celda.vidrio.descripcion}}" ng-src="{{celda.vidrio.url}}" class="img-responsive text-center {{claseestaGris(celda)}}" style="margin:0 auto;" />
+
+                                </div>
+                                @*<div ng-if="NotNull(celda.vidrio)">
+
+                                    <h3>{{celda.vidrio.descripcion}}</h3>
+                                    <h4>{{celda.vidrio.cantidadArticulos}} artículos</h4>
+                                </div>*@
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <a href="javascript:;" class="btn default button-previous {{botonAnterior()}}" ng-click="pestanaAnterior()">
+                    <i class="fa fa-angle-left"></i> Atrás
+                </a>
+                <a href="javascript:;" class="btn btn-outline green button-next {{botonSiguiente()}}" ng-click="pestanaSiguiente()">
+                    Continuar
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <a href="javascript:;" class="btn green button-submit {{botonFinalizar()}}" ng-click="finalizaBusca()"> Finalizar
+                    <i class="fa fa-eye"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <input type="text" value="" id="tipovehi" />
+</div>

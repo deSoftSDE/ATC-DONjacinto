@@ -20,6 +20,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
         }
         inputChangedPromise = $timeout(buscarArticulos, 1000);
     }
+    $scope.imagenArticulo = function (idArticulo) {
+        return Llamada.rutaStreamingArticulo() + idArticulo;
+    }
     buscarArticulos = function () {
         $scope.loading = true;
         if ($scope.cadena.length > 0) {
@@ -44,6 +47,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
         if (NotNullNotUndefinedNotEmpty($scope.resultadobusqueda)) {
             $scope.mostrardesplegable = true;
         }
+    }
+    $scope.NotNull = function (val) {
+        return NotNullNotUndefinedNotEmpty(val);
     }
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
@@ -86,9 +92,9 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
                     }
                 } else {
                     $scope.vm = respuesta.data;
-                    
+
                 }
-                
+
             })
     }
     cambiarBotonesPaginacion = function (val) {
@@ -97,16 +103,24 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
         document.getElementById("anterior").className = val;
         document.getElementById("siguiente").className = val;
         document.getElementById("ultima").className = val;
+        document.getElementById("primera_b").className = val;
+        document.getElementById("anterior_b").className = val;
+        document.getElementById("siguiente_b").className = val;
+        document.getElementById("ultima_b").className = val;
     }
     cambiarBotonesPaginacionIniciales = function (val) {
         console.log("Desactivando");
         document.getElementById("primera").className = val;
         document.getElementById("anterior").className = val;
+        document.getElementById("primera_b").className = val;
+        document.getElementById("anterior_b").className = val;
     }
     cambiarBotonesPaginacionFinales = function (val) {
         console.log("Desactivando");
         document.getElementById("siguiente").className = val;
         document.getElementById("ultima").className = val;
+        document.getElementById("siguiente_b").className = val;
+        document.getElementById("ultima_b").className = val;
     }
     loopClase = function (clase) {
         var elem = document.getElementsByClassName(clase);
@@ -115,8 +129,8 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
             elem[i].setAttribute("style", "");
         }
         document.getElementById("loading" + clase).style.display = "none";
-    } 
+    }
 });
 atc.controller('DemoController', function DemoController($scope) {
-    
+
 });

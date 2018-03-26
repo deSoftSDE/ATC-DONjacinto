@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using dsASPCAtc.Web.ViewModels;
 using DevExtreme.AspNet.Mvc;
 using DevExtreme.AspNet.Data;
+using DevExpress.Compatibility.System.Web;
 
 namespace dsASPCAtc.Web.Controllers
 {
@@ -33,6 +34,8 @@ namespace dsASPCAtc.Web.Controllers
             Objeto.campo3 = "C";
             ViewData["Companies"] = JsonConvert.SerializeObject(SampleData.Companies);
             HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
+            var vm = new IndexViewModel(_configuration);
+            ViewData["Vehiculos"] = vm.Vehiculos;
             return View();
         }
 
@@ -54,9 +57,66 @@ namespace dsASPCAtc.Web.Controllers
         {
             var res = new CampoBusqueda { cadena = producto };
             ViewData["Data"] = res;
+
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio)
+        {
+            //var ad = new AdaptadorAtc(_configuration);
+            var pr = new Parametros
+            {
+                idFamilia = modelo,
+                idVidrio = vidrio,
+                idModeloCarroceria = carroceria
+            };
+            if (periodo.HasValue)
+            {
+                if (periodo > 0)
+                {
+                    pr.ano = periodo;
+                }
+
+            }
+            var vm = new ResultadosViewModel(_configuration, pr);
+            //var desc = vm.desc
+            
+           
+            //ViewData["DescripcionesJS"] = vm.jsinfo;
+            //ViewData["Descripciones"] = vm.desc;
+            ViewData["Datos"] = vm;
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Buscador(int? vehiculo, int? modelo, int? marca)
+        {
+            var Parametros = new Parametros
+            {
+                idTipoVehiculo = vehiculo,
+                idSeccion = marca,
+                idFamilia = modelo
+            };
+            var vm = new VehiculosViewModel(_configuration, null, Parametros);
+            ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["Parametros"] = vm.ParametrosJavascript;
+            return View();
+        }
+        public IActionResult Vehiculos(int id)
+        {
+            var vm = new VehiculosViewModel(_configuration, id, null);
+            ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["IDTipoVehiculo"] = vm.IDTipoVehiculo;
+            ViewData["Vehiculo"] = vm.VehiculoSeleccionado;
             return View();
         }
 
+        public IActionResult Articulo(int id)
+        {
+            var vm = new ArticuloViewModel(_configuration, id);
+            ViewData["Articulo"] = vm;
+            return View();
+        }
+        
         public void AnadirACarrito(int id)
         {
             var a = 1;
@@ -88,10 +148,12 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
 
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [HttpGet]
         public ActionResult GetData(DataSourceLoadOptions loadOptions)
         {

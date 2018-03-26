@@ -1,7 +1,8 @@
-atc = angular.module('atcapp', ['dx'] )
+atc = angular.module('atcapp', ['dx', 'ngSanitize',  'ui.bootstrap'] )
 
 atc.factory('Llamada', function ($http, $q) {
     var api_url = "http://" + location.host + "/Data/";
+    var api_stream = "http://" + location.host + "/StreamFiles/";
     var http = {
         get: function (url) {
             var deferred = $q.defer();
@@ -11,6 +12,12 @@ atc.factory('Llamada', function ($http, $q) {
                     deferred.resolve(respuesta);
                 })
             return deferred.promise;
+        },
+        getRuta: function (imagen) {
+            return api_stream + "GetImagen?filename=" + imagen;
+        },
+        rutaStreamingArticulo: function () {
+            return api_stream + "GetImagenPorIDArticulo?idarticulo=";
         },
         post: function (url, body) {
             console.log(body);
