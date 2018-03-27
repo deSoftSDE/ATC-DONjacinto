@@ -4,6 +4,7 @@
     var vh = (List<TipoVehiculo>)ViewData["Vehiculos"];
     var unclick = (List<BuscaArticulo>)ViewData["UnClick"];
     var novedades = (List<BuscaArticulo>)ViewData["Novedades"];
+    var test = ViewData["Test"];
 }
 <script type="text/javascript">
     function verResultados(parameters) {
@@ -40,6 +41,9 @@
                                 </li>
                                 <li>
                                     <a href="#tab_15_2" data-toggle="tab">  <h3 class="text-center font-white">Busca por Modelo</h3> </a>
+                                </li>
+                                <li ng-click="verCarrito()">
+                                    holiii
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -197,7 +201,7 @@
                                             <a  asp-controller="Home" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
                                                 <!--<i class="fa fa-star"></i>-->  Más info
                                             </a>
-                                            <a href="javascript:;" class="btn font-green">
+                                            <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn font-green">
                                                 <i class="icon-plus "></i> Añadir al pedido
                                             </a>
                                         </div>

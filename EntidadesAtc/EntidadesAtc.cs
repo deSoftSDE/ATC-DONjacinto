@@ -322,6 +322,30 @@ namespace EntidadesAtc
     {
 
     }
+    [DataContract]
+    public class Carrito
+    {
+        [DataMember]
+        public List<ArticuloCarrito> Articulos { get; set; }
+        [DataMember]
+        public int? IDUsuario { get; set; }
+        [DataMember]
+        public decimal Precio { get; set; }
+    }
+    [DataContract]
+    public class ArticuloCarrito
+    {
+        [DataMember]
+        public int IDArticulo { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public int Cantidad { get; set; }
+        [DataMember]
+        public decimal Precio { get; set; }
+        [DataMember]
+        public decimal PrecioUd { get; set; }
+    }
 
     [DataContract]
     public class ArticuloCarroceria

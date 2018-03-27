@@ -1,4 +1,4 @@
-atc.controller('main', function ($scope, $http, Llamada, $timeout) {
+atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     mensajeError = function (error) {
         DevExpress.ui.notify(error, "error", 2000);
     }
@@ -56,6 +56,19 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout) {
     }
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);
+    }
+    $scope.anadirCarrito = function (idArticulo, cantidad) {
+        Carrito.anadirArticulo(idArticulo, cantidad)
+            .then(function (respuesta) {
+
+                console.log(respuesta.data);
+            })
+    }
+    $scope.verCarrito = function () {
+        Carrito.verCarrito()
+            .then(function (respuesta) {
+                console.log(respuesta.data);
+            })
     }
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {

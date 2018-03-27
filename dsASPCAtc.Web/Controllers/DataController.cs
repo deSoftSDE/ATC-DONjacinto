@@ -186,7 +186,7 @@ namespace dsASPCAtc.Web.Controllers
             }
             return result;
         }
-        
+
         [HttpPost]
         public IActionResult ArticulosBusquedaPaginada([FromBody] CampoBusqueda cadena)
         {

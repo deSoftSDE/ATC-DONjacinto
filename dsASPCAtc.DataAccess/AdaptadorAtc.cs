@@ -1086,6 +1086,67 @@ namespace dsASPCAtc.DataAccess
             
             return res;
         }
+        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDArticulo", IDArticulo),
+                    new SqlParameter("@IDUsuario", IDUsuario),
+                    new SqlParameter("@Cantidad", Cantidad),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosAnadirArticulo", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                res = RellenarCarrito(IDUsuario);
+            }
+            return res;
+        }
+        public Carrito CarritosUsuariosLeerPorIDUsuario(int IDUsuario)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDUsuario", IDUsuario),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosLeerPorIDUsuario", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                res = RellenarCarrito(IDUsuario);
+            }
+            return res;
+        }
+
+        private Carrito RellenarCarrito(int IDUsuario)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            res.IDUsuario = IDUsuario;
+            if (_reader.Read())
+            {
+                res.Precio = AsignaDecimal("Precio");
+            }
+            _reader.NextResult();
+            while (_reader.Read())
+            {
+                var ar = new ArticuloCarrito
+                {
+                    IDArticulo = AsignaEntero("IDArticulo"),
+                    Descripcion = AsignaCadena("Descripcion"),
+                    Cantidad = AsignaEntero("Cantidad"),
+                    PrecioUd = AsignaDecimal("PrecioUd"),
+                    Precio = AsignaDecimal("Precio"),
+                };
+                res.Articulos.Add(ar);
+            }
+            return res;
+        }
     }
     
 }
