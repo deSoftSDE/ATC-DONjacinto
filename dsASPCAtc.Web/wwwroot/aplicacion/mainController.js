@@ -82,6 +82,11 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 $scope.carrito = respuesta.data;
             })
     }
+    Carrito.verCarrito()
+        .then(function (respuesta) {
+            console.log(respuesta.data);
+            $scope.carrito = respuesta.data;
+        })
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     var obj = {
