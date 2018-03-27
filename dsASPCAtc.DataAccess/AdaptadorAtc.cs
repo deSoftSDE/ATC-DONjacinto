@@ -1165,6 +1165,96 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public UsuarioWeb UsuariosLogin(string email, string password)
+        {
+            var res = new UsuarioWeb();
+            res.Cliente = new Cliente();
+            res.Domicilios = new List<Domicilio>();
+            res.Promociones = new List<Promocion>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@nombre", email),
+                    new SqlParameter("@password", password)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ValidarUsuario", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.IdUsuarioWeb = AsignaEntero("IdUsuarioWeb");
+                    res.UltimaConexion = AsignaFechaNull("UltimaConexion");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    res.Cliente.IDCliente = AsignaEntero("IDCliente");
+                    res.Cliente.IdDelegacion = AsignaEntero("IdDelegacion");
+                    res.Cliente.Clientee = AsignaCadena("Cliente");
+                    res.Cliente.NombreComercial = AsignaCadena("NombreComercial");
+                    res.Cliente.IdTarifaPrecios = AsignaEntero("IdTarifaPrecios");
+                    res.Cliente.IdRegimenIva = AsignaEntero("IdRegimenIva");
+                    res.Cliente.Cif = AsignaCadena("Cif");
+                    res.Cliente.RazonSocial = AsignaCadena("RazonSocial");
+                    res.Cliente.Nombre = AsignaCadena("Nombre");
+                    res.Cliente.Apellido1 = AsignaCadena("Apellido1");
+                    res.Cliente.Apellido2 = AsignaCadena("Apellido2");
+                    res.Cliente.AplicarIva = AsignaEntero("AplicarIva");
+                    res.Cliente.AplicarRE = AsignaEntero("AplicarRE");
+                    res.Cliente.PoCompensacion = AsignaDecimal("PoCompensacion");
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var dom = new Domicilio
+                    {
+                        IDDomicilioCliente = AsignaEntero("IDDomicilioCliente"),
+                        IdCliente = AsignaEntero("IdCliente"),
+                        IdDomicilioRelacion = AsignaEntero("IDDomicilioRelacion"),
+                        IdRelacion = AsignaEntero("IdRelacion"),
+                        IdTipoIva = AsignaEntero("IdTipoIva"),
+                        Direccion = AsignaCadena("Direccion"),
+                        Numero = AsignaCadena("Numero"),
+                        PisoPuerta = AsignaCadena("PisoPuerta"),
+                        IdLocalidad = AsignaEntero("IdLocalidad"),
+                        NombreMunicipio = AsignaCadena("NombreMunicipio"),
+                        CodPostal = AsignaEntero("CodPostal"),
+                        IdProvincia = AsignaEntero("IdProvincia"),
+                        NombreProvincia = AsignaCadena("NombreProvincia"),
+                        IdPais = AsignaEntero("IdPais"),
+                        NombreDomicilio = AsignaCadena("NombreDomicilio"),
+                        TipoDomicilio = AsignaCadena("TipoDomicilio"),
+                        Venta = AsignaEntero("Venta"),
+                        Entrega = AsignaEntero("Entrega"),
+                        Cobro = AsignaEntero("Cobro"),
+                        IdTipoDomicilio = AsignaEntero("IdTipoDomicilio"),
+                        NombrePais = AsignaCadena("NombrePais"),
+                        ApdoPostal = AsignaCadena("ApdoPostal"),
+                    };
+                    res.Domicilios.Add(dom);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var pm = new Promocion
+                    {
+                        IDPromocion = AsignaEntero("IDPromocion"),
+                        Nombre = AsignaCadena("Nombre"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        Imagen = AsignaCadena("Imagen"),
+                        RowGuid = AsignaGuidNull("RowGuid"),
+                    };
+                    res.Promociones.Add(pm);
+                }
+            }
+            return res;
+        }
     }
     
 }

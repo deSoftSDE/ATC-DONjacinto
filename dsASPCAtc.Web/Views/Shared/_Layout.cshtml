@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var c = (UsuarioWeb)ViewData["Usuario"];
+}
+<!DOCTYPE html>
 <html lang="es" ng-app="atcapp">
 <head>
     <meta charset="utf-8" />
@@ -59,7 +62,7 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <a asp-area="" asp-controller="AreaCliente" asp-action="Index">
                         <img src="~/assets/layouts/layout/img/logo-atc-150.png" alt="logo" class="logo-default" />
                     </a>
                     <div class="menu-toggler sidebar-toggler">
@@ -159,7 +162,7 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="~/assets/layouts/layout/img/avatar3_small.jpg" />
-                                <span class="username username-hide-on-mobile"> Usuario Ejemplo </span>
+                                <span class="username username-hide-on-mobile"> @c.Cliente.Nombre </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -213,11 +216,11 @@
 
                         <li class="sidebar-search-wrapper">
                             <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-                            <p class="text-center font-white">Bienvenido <strong>Usuario Ejemplo</strong></p>
+                            <p class="text-center font-white">Bienvenido <strong>@c.Cliente.Nombre</strong></p>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
                         <li class="nav-item start active open">
-                            <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link nav-toggle">
+                            <a asp-area="" asp-controller="AreaCliente" asp-action="Index" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Inicio</span>
                                 <span class="selected"></span>
@@ -419,30 +422,7 @@
                                             <div class="media-heading-sub"> DECRIPCION </div>
                                         </div>
                                     </li>
-                                    <li class="media">
-                                        <!--  <img class="media-object" src="../assets/layouts/layout/img/avatar1.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">OPCION</h4>
-                                            <div class="media-heading-sub"> DECRIPCION </div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <div class="media-status">
-                                            <span class="badge badge-danger">3</span>
-                                        </div>
-                                        <!-- <img class="media-object" src="../assets/layouts/layout/img/avatar4.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">OPCION</h4>
-                                            <div class="media-heading-sub"> DECRIPCION </div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <!--  <img class="media-object" src="../assets/layouts/layout/img/avatar2.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">OPCION</h4>
-                                            <div class="media-heading-sub"> DECRIPCION </div>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                                 <h3 class="list-heading">TITULO 2</h3>
                                 <ul class="media-list list-items">

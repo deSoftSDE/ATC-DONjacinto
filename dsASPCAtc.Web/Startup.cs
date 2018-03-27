@@ -41,7 +41,7 @@ namespace dsASPCAtc.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/AreaCliente/Error");
             }
             app.UseStaticFiles();
             app.UseSession();
@@ -49,7 +49,7 @@ namespace dsASPCAtc.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Inicio}/{action=Index}/{id?}");
             });
         }
     }

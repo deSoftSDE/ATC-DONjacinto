@@ -25,6 +25,11 @@ namespace EntidadesAtc
         public string Fax { get; set; }
         public string Website { get; set; }
     }
+    public class Login
+    {
+        public string email { get; set; }
+        public string password { get; set; }
+    }
     public class ElementoMenu
     {
         public int IDElementoMenu { get; set; }
@@ -321,6 +326,64 @@ namespace EntidadesAtc
     public class QueryBusqueda
     {
 
+    }
+    public class UsuarioWeb
+    {
+        public int IdUsuarioWeb { get; set; }
+        public DateTime? UltimaConexion { get; set; }
+        public Cliente Cliente { get; set; }
+        public List<Domicilio> Domicilios { get; set; }
+        public List<Promocion> Promociones { get; set; }
+    }
+    public class Domicilio
+    {
+        public int IDDomicilioCliente { get; set; }
+        public int IdCliente { get; set; }
+        public int IdDomicilioRelacion { get; set; }
+        public int IdRelacion { get; set; }
+        public int IdTipoIva { get; set; }
+        public string Direccion { get; set; }
+        public string Numero { get; set; }
+        public string PisoPuerta { get; set; }
+        public int IdLocalidad { get; set; }
+        public string NombreMunicipio { get; set; }
+        public int CodPostal { get; set; }
+        public int IdProvincia { get; set; }
+        public string NombreProvincia { get; set; }
+        public int IdPais { get; set; }
+        public string NombreDomicilio { get; set; }
+        public string TipoDomicilio { get; set; }
+        public int Venta { get; set; }
+        public int Entrega { get; set; }
+        public int Cobro { get; set; }
+        public int IdTipoDomicilio { get; set; }
+        public string NombrePais { get; set; }
+        public string ApdoPostal { get; set; }
+    }
+    public class Promocion
+    {
+        public int IDPromocion { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string Imagen { get; set; }
+        public Guid? RowGuid { get; set; }
+    }
+    public class Cliente
+    {
+        public int IDCliente { get; set; }
+        public int IdDelegacion { get; set; }
+        public string Clientee { get; set; }
+        public string NombreComercial { get; set; }
+        public int IdTarifaPrecios { get; set; }
+        public int IdRegimenIva { get; set; }
+        public string Cif { get; set; }
+        public string RazonSocial { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public int AplicarIva { get; set; }
+        public int AplicarRE { get; set; }
+        public decimal PoCompensacion { get; set; }
     }
     [DataContract]
     public class Carrito
