@@ -217,6 +217,8 @@
 
     $scope.selectBox = {
         dataSource: [],
+        placeholder:"Escribe aquí el nombre de la marca ",
+        //dropDownButtonTemplate:"dropDownButton",
         displayExpr: "descripcionSeccion",
         valueExpr: "idSeccion",
         searchEnabled: true,

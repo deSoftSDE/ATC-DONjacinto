@@ -101,3 +101,12 @@ tr.otrainfo td a {
 .mt-3{
     margin-top:3rem;
 }
+
+span.btn-enlace{
+    cursor:pointer;
+    padding:5px 0;
+}
+a.btn-accordion{
+    display:inline-block;
+    width:100%;
+}
