@@ -1105,6 +1105,24 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public Carrito CarritosUsuariosEliminarArticulo(int IDUsuario, int IDArticulo)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDArticulo", IDArticulo),
+                    new SqlParameter("@IDUsuario", IDUsuario),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosEliminarArticulo", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                res = RellenarCarrito(IDUsuario);
+            }
+            return res;
+        }
         public Carrito CarritosUsuariosLeerPorIDUsuario(int IDUsuario)
         {
             var res = new Carrito();

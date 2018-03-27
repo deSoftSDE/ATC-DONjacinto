@@ -62,12 +62,24 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             .then(function (respuesta) {
 
                 console.log(respuesta.data);
+                $("body").addClass("page-quick-sidebar-open");
+                $scope.carrito = respuesta.data;
+            })
+    }
+    $scope.eliminarArticulo = function (idArticulo) {
+        Carrito.eliminarArticulo(idArticulo)
+            .then(function (respuesta) {
+
+                console.log(respuesta.data);
+                $("body").addClass("page-quick-sidebar-open");
+                $scope.carrito = respuesta.data;
             })
     }
     $scope.verCarrito = function () {
         Carrito.verCarrito()
             .then(function (respuesta) {
                 console.log(respuesta.data);
+                $scope.carrito = respuesta.data;
             })
     }
 });

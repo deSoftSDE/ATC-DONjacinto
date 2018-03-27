@@ -45,7 +45,16 @@ atc.factory('Carrito', function ($http, $q) {
     var http = {
         anadirArticulo: function (idArticulo, Cantidad) {
             var deferred = $q.defer();
-            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad" + Cantidad)
+            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad=" + Cantidad)
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    deferred.resolve(respuesta);
+                })
+            return deferred.promise;
+        },
+        eliminarArticulo: function (idArticulo) {
+            var deferred = $q.defer();
+            $http.get(api_carrito + "EliminarArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario)
                 .then(function (respuesta) {
                     console.log(respuesta);
                     deferred.resolve(respuesta);
