@@ -113,6 +113,33 @@ a.btn-accordion{
 .img-marca {
     display: block;
     margin: 0 auto;
-    max-width: 50px;
     margin-bottom: 10px;
+    height: 70px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+    .img-marca:hover {
+        filter: grayscale(0%);
+        -webkit-filter: grayscale(0%);
+    }
+div.btn-proceso {
+    margin-left: 0px;
+}
+    div.btn-proceso div {
+        display:inline-block;
+    }
+a.btn.disabled, fieldset[disabled] a.btn {
+    cursor: not-allowed !important;
+}
+.selct-carro {
+    border: 1px solid #337ab7;
+    min-height: 180px;
+    border-radius: 5px !important;
+    background-color:#fcfcfc;
+    transition: ease-in 0.5s;
+}
+.selct-carro:hover{
+    background-color:#eef1f5;
+    transition:ease-in 0.5s;
+    cursor:pointer;
 }

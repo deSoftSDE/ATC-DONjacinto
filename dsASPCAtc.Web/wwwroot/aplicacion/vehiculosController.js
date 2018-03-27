@@ -217,7 +217,7 @@
 
     $scope.selectBox = {
         dataSource: [],
-        placeholder:"Escribe aquí el nombre de la marca ",
+        placeholder:"Escriba aquí el nombre de la marca ",
         //dropDownButtonTemplate:"dropDownButton",
         displayExpr: "descripcionSeccion",
         valueExpr: "idSeccion",
@@ -292,6 +292,7 @@
 
     $scope.selectBoxAnos = {
         dataSource: [],
+        placeholder: "Escriba aquí el año del vehículo ",
         displayExpr: "valor",
         valueExpr: "valor",
         searchEnabled: true,
@@ -320,6 +321,7 @@
 
     $scope.selectBoxModelos = {
         dataSource: [],
+        placeholder: "Escriba aquí el modelo del vehículo ",
         displayExpr: "descripcionFamilia",
         valueExpr: "idFamilia",
         searchEnabled: true,
