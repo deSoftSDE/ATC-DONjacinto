@@ -3,6 +3,7 @@ atc = angular.module('atcapp', ['dx', 'ngSanitize',  'ui.bootstrap'] )
 atc.factory('Llamada', function ($http, $q) {
     var api_url = "http://" + location.host + "/Data/";
     var api_stream = "http://" + location.host + "/StreamFiles/";
+    var api_carrito = "http://" + location.host + "/Carrito/";
     var http = {
         get: function (url) {
             var deferred = $q.defer();
@@ -33,6 +34,31 @@ atc.factory('Llamada', function ($http, $q) {
                     deferred.resolve(res);
                 }
             });
+            return deferred.promise;
+        }
+    }
+    return http;
+});
+atc.factory('Carrito', function ($http, $q) {
+    var api_carrito = "http://" + location.host + "/Carrito/";
+    var idUsuario = 1;
+    var http = {
+        anadirArticulo: function (idArticulo, Cantidad) {
+            var deferred = $q.defer();
+            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad" + Cantidad)
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    deferred.resolve(respuesta);
+                })
+            return deferred.promise;
+        },
+        verCarrito: function () {
+            var deferred = $q.defer();
+            $http.get(api_carrito + "LeerCarrito?IDUsuario=" + idUsuario)
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    deferred.resolve(respuesta);
+                })
             return deferred.promise;
         }
     }

@@ -313,6 +313,7 @@ namespace EntidadesAtc
         public string DescripcionCategoria { get; set; }
         public List<ArticuloCarroceria> Carrocerias { get; set; }
         public List<UnidadManipulacion> UnidadesManipulacion { get; set; }
+        public Boolean active { get; set; }
 
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }
@@ -320,6 +321,30 @@ namespace EntidadesAtc
     public class QueryBusqueda
     {
 
+    }
+    [DataContract]
+    public class Carrito
+    {
+        [DataMember]
+        public List<ArticuloCarrito> Articulos { get; set; }
+        [DataMember]
+        public int? IDUsuario { get; set; }
+        [DataMember]
+        public decimal Precio { get; set; }
+    }
+    [DataContract]
+    public class ArticuloCarrito
+    {
+        [DataMember]
+        public int IDArticulo { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
+        public int Cantidad { get; set; }
+        [DataMember]
+        public decimal Precio { get; set; }
+        [DataMember]
+        public decimal PrecioUd { get; set; }
     }
 
     [DataContract]
@@ -342,7 +367,11 @@ namespace EntidadesAtc
         [DataMember]
         public string DescripcionSeccion { get; set; }
     }
-
+    public class UnClickYNovedades
+    {
+        public List<BuscaArticulo> UnClick { get; set; }
+        public List<BuscaArticulo> Novedades { get; set; }
+    }
     [DataContract]
     public class TipoVidrio
     {

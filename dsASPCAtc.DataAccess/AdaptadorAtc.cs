@@ -889,6 +889,72 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public UnClickYNovedades ArticulosLeerUnClick()
+        {
+            var res = new UnClickYNovedades();
+            res.UnClick = new List<BuscaArticulo>();
+            res.Novedades = new List<BuscaArticulo>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerUnClick", null);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var ar = new BuscaArticulo
+                    {
+                        IdArticulo = AsignaEntero("IdArticulo"),
+                        Codigo = AsignaCadena("Codigo"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdFamilia = AsignaEnteroNull("IdFamilia"),
+                        IdSeccion = AsignaEnteroNull("IdSeccion"),
+                        IdGenerico = AsignaEnteroNull("IdGenerico"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        DescripcionCorta = AsignaCadena("DescripcionCorta"),
+                        DescripcionDetallada = AsignaCadena("DescripcionDetallada"),
+                        IdTipoVidrio = AsignaEntero("IdTipoVidrio"),
+                        DescripcionTipoVidrio = AsignaCadena("DescripcionTipoVidrio"),
+                        DescripcionWeb1 = AsignaCadena("DescripcionWeb1"),
+                        DescripcionWeb2 = AsignaCadena("DescripcionWeb2"),
+                        AnoInicial = AsignaEntero("AnoInicial"),
+                        AnoFinal = AsignaEntero("AnoFinal"),
+                        IdCategoria = AsignaEntero("IDCategoria"),
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria"),
+                        UnidadesManipulacion = new List<UnidadManipulacion>(),
+                    };
+                    res.UnClick.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ar = new BuscaArticulo
+                    {
+                        IdArticulo = AsignaEntero("IdArticulo"),
+                        Codigo = AsignaCadena("Codigo"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdFamilia = AsignaEnteroNull("IdFamilia"),
+                        IdSeccion = AsignaEnteroNull("IdSeccion"),
+                        IdGenerico = AsignaEnteroNull("IdGenerico"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        DescripcionCorta = AsignaCadena("DescripcionCorta"),
+                        DescripcionDetallada = AsignaCadena("DescripcionDetallada"),
+                        IdTipoVidrio = AsignaEntero("IdTipoVidrio"),
+                        DescripcionTipoVidrio = AsignaCadena("DescripcionTipoVidrio"),
+                        DescripcionWeb1 = AsignaCadena("DescripcionWeb1"),
+                        DescripcionWeb2 = AsignaCadena("DescripcionWeb2"),
+                        AnoInicial = AsignaEntero("AnoInicial"),
+                        AnoFinal = AsignaEntero("AnoFinal"),
+                        IdCategoria = AsignaEntero("IDCategoria"),
+                        DescripcionCategoria = AsignaCadena("DescripcionCategoria"),
+                        UnidadesManipulacion = new List<UnidadManipulacion>(),
+                    };
+                    res.Novedades.Add(ar);
+                }
+            }
+            return res;
+        }
 
         public BuscaArticulo ArticulosLeerPorID(int IDArticulo)
         {
@@ -1018,6 +1084,67 @@ namespace dsASPCAtc.DataAccess
             }
             res.Accesorios.RemoveAll(c => c.Articulos.Count < 1);
             
+            return res;
+        }
+        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDArticulo", IDArticulo),
+                    new SqlParameter("@IDUsuario", IDUsuario),
+                    new SqlParameter("@Cantidad", Cantidad),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosAnadirArticulo", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                res = RellenarCarrito(IDUsuario);
+            }
+            return res;
+        }
+        public Carrito CarritosUsuariosLeerPorIDUsuario(int IDUsuario)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDUsuario", IDUsuario),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosLeerPorIDUsuario", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                res = RellenarCarrito(IDUsuario);
+            }
+            return res;
+        }
+
+        private Carrito RellenarCarrito(int IDUsuario)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            res.IDUsuario = IDUsuario;
+            if (_reader.Read())
+            {
+                res.Precio = AsignaDecimal("Precio");
+            }
+            _reader.NextResult();
+            while (_reader.Read())
+            {
+                var ar = new ArticuloCarrito
+                {
+                    IDArticulo = AsignaEntero("IDArticulo"),
+                    Descripcion = AsignaCadena("Descripcion"),
+                    Cantidad = AsignaEntero("Cantidad"),
+                    PrecioUd = AsignaDecimal("PrecioUd"),
+                    Precio = AsignaDecimal("Precio"),
+                };
+                res.Articulos.Add(ar);
+            }
             return res;
         }
     }

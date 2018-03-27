@@ -27,7 +27,7 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult Index()
         {
-            HttpContext.Session.SetString("Test", "Ben Rules!");
+            //HttpContext.Session.SetString("Test", "Ben Rules!");
             var Objeto = new FormModel();
             Objeto.campo1 = "A";
             Objeto.campo2 = "B";
@@ -36,6 +36,9 @@ namespace dsASPCAtc.Web.Controllers
             HttpContext.Session.SetObjectAsJson("Objeto", Objeto);
             var vm = new IndexViewModel(_configuration);
             ViewData["Vehiculos"] = vm.Vehiculos;
+            ViewData["UnClick"] = vm.UnClick;
+            ViewData["Novedades"] = vm.Novedades;
+            ViewData["Test"] = HttpContext.Session.GetString("Test");
             return View();
         }
 
