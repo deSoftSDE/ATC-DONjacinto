@@ -110,3 +110,9 @@ a.btn-accordion{
     display:inline-block;
     width:100%;
 }
+.img-marca {
+    display: block;
+    margin: 0 auto;
+    max-width: 50px;
+    margin-bottom: 10px;
+}
