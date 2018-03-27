@@ -1,0 +1,18 @@
+﻿<ul class="media-list list-items">
+    <li class="media" ng-repeat="articulo in carrito.articulos">
+        <div class="media-status">
+            <span class="badge badge-success">
+                <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1)" />
+                {{articulo.cantidad}}
+                <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1)" />
+                <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo)" />
+            </span>
+        </div>
+        <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->
+        <div class="media-body">
+            <h4 class="media-heading">{{articulo.descripcion}}</h4>
+            <div class="media-heading-sub"> DECRIPCION </div>
+        </div>
+    </li>
+
+</ul>
