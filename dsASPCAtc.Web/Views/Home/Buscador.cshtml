@@ -94,27 +94,31 @@
                             </span>
                         </uib-tab-heading>
                         <div class="tab-pane active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="block">Seleccione un tipo de Vehículo</h3>
+                                </div>
+                            </div>
                             <div class="row margin-top-20">
                                 <div class="col-md-12">
                                     <div class="m-grid m-grid-responsive-sm m-grid-demo m-grid-full-height">
                                         <div class="m-grid-row">
                                             @foreach (TipoVehiculo vehiculo in vh)
-                                    {
-                                        <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(@vehiculo.IDTipoVehiculo)}}">
-                                           
-                                            <a ng-click="seleccionarVehiculo(@vehiculo.IDTipoVehiculo, '@vehiculo.Descripcion')">
-                                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+                    {
+                        <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(@vehiculo.IDTipoVehiculo)}}">
 
-                                                <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
-                                            </a>
-                                        </div>
-                            }
+                            <a ng-click="seleccionarVehiculo(@vehiculo.IDTipoVehiculo, '@vehiculo.Descripcion')">
+                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+
+                                <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
+                            </a>
+                        </div>
+}
                                             <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(0)}}">
-                                                {{selectedTipoVehiculo(0)}}
                                                 <a ng-click="seleccionarVehiculo(0,'Todos los vehículos')">
-                                                    <img class="img-fluid" src="~/img/spinner.gif" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+                                                    <img class="img-fluid" src="~/img/todos.png" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
 
-                                                    <p class="texto-prod"><small class="d-block">Todos los Vehículos</small></p>
+                                                    <p class="texto-prod"><small class="d-block">Todos los Tipos</small></p>
                                                 </a>
                                             </div>
                                         </div>
@@ -133,30 +137,30 @@
                                 </span>
                             </span>
                         </uib-tab-heading>
-                        <h3 class="block">Marca de su vehículo</h3>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">
-                                Marca
-                            </label>
-                            <div class="col-md-4">
-                                <div dx-select-box="selectBox" dx-item-alias="product" class="mb-1">
-
-                                    <div data-options="dxTemplate: { name: 'item' }">
-                                        <div class="custom-item">
-                                            <div class="row">
-                                                <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
-                                                <div class="col-md-3">
-                                                    <div class="product-name">
-                                                        {{product.descripcionSeccion}}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="block">Marca del vehículo</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="form-group">
+                                        <div dx-select-box="selectBox" dx-item-alias="product" class="mb-1">
+                                            <div data-options="dxTemplate: { name: 'item' }">
+                                                <div class="custom-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
+                                                        <div class="col-md-3">
+                                                            <div class="product-name">
+                                                                {{product.descripcionSeccion}}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                    </div>
+                                        @*<span class="help-block"> Seleccione la Marca de Su Vehículo</span>*@
                                 </div>
-                                <span class="help-block"> Seleccione la Marca de Su Vehículo</span>
                             </div>
                         </div>
                         <div class="row">
@@ -165,41 +169,51 @@
                                     <uib-tabset active="tabMarca">
                                         <uib-tab tabindex="1" heading="Ver Todas">
                                             <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="panel panel-default col-md-3" ng-repeat="inicial in inicialesMarcas">
-                                                            <div class="panel-heading">
-                                                                <h4 class="panel-title">
-                                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{inicial.valor}}" href="#collapse{{inicial.valor}}" aria-expanded="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> {{inicial.valor}} </font></font></a>
-                                                                </h4>
-                                                            </div>
-                                                            <div id="collapse{{inicial.valor}}" class="panel-collapse collapse" aria-expanded="false" style="">
-                                                                <div class="panel-body">
-                                                                    <ul class="list-unstyled">
-                                                                        <li ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)">
-                                                                            <img style="width:10px" ng-src="{{marca.url}}" />{{marca.descripcionSeccion}}
-                                                                        </li>
-
-                                                                    </ul>
+                                                <div class="col-12 todo-padding-b-0">
+                                                    <div class="row" style="margin: 0 20px;"  > 
+                                                            <div class="panel panel-default col-md-2" style="padding:0" ng-repeat="inicial in inicialesMarcas">
+                                                                <div class="panel-heading">
+                                                                    <h4 class="panel-title">
+                                                                        <a class="accordion-toggle btn-accordion" data-toggle="collapse" data-parent="#{{inicial.valor}}" href="#collapse{{inicial.valor}}" aria-expanded="false">
+                                                                            <font style="vertical-align: inherit;">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    {{inicial.valor}}
+                                                                                </font>
+                                                                            </font>
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapse{{inicial.valor}}" class="panel-collapse collapse" aria-expanded="false" style="">
+                                                                    <div class="panel-body">
+                                                                        <ul class="list-unstyled text-center">
+                                                                            <li ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)" class="btn-enlace " style="padding:5px 0px;">
+                                                                                @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{marca.descripcionSeccion}}</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                     </div>
+
                                                 </div>
+                                               
                                             </div>
                                         </uib-tab>
                                         <uib-tab ng-repeat="inicial in inicialesMarcas" tabindex="{{$index+1}}" heading="{{inicial.valor}}">
                                             <div class="row">
-                                                <div class="col-md-3" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)">
+                                                <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-12">
-                                                            <img style="width:50px" ng-src="{{marca.url}}" />
-                                                        </div>
-                                                        <div class="col-12">
-                                                            {{marca.descripcionSeccion}}
+                                                        <div class="col-md-3" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <img style="width:50px" ng-src="{{marca.url}}" />
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    {{marca.descripcionSeccion}}
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </uib-tab>

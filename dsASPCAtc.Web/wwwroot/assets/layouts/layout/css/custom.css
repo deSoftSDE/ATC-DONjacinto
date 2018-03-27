@@ -195,6 +195,10 @@ a.resul-search:hover{
     font-size:90% !important;
     vertical-align:middle !important;
 }
-div.seleccionado{
-    background-color:red !important;
+div.seleccionado {
+    background-color: #e0e0e0 !important;
 }
+    div.seleccionado a img {
+        filter: hue-rotate(90deg);
+        
+    }
