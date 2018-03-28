@@ -379,12 +379,29 @@
         }
     }
     $scope.finalizarBusqueda = function () {
-        
         var busquedaactual = $scope.objetoBusqueda.NombreTipoVehiculo + " > " + $scope.objetoBusqueda.marca.descripcionSeccion + " > " + $scope.objetoBusqueda.modelo.descripcionFamilia;
         //if (val === true) {
         //    busquedaactual = busquedaactual + " > " + $scope.objetoBusqueda.ano.valor;
         //}
-        result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en " + busquedaactual + "?");
+       // result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en " + busquedaactual + "?");
+        result = DevExpress.ui.dialog.custom(
+            {
+                message: 'No hay productos que coincidan con los parámetros introducidos ¿te mostramos los resultados de' + busquedaactual + '?',
+                buttons: [{
+                    text: 'Si, muestrame todos los resultados',
+                    onClick: function () {
+                        return true;
+                    }
+                },
+                {
+                    text: 'No',
+                    onClick: function () {
+                        return false;
+                    }
+                }
+                ]
+
+            }).show();
         result.then(function (val) {
             if (val) {
                 //alert("OK, pues me salgo de aquí");
@@ -405,7 +422,23 @@
         //alert("Saliendo...");
     }
     $scope.finalizarBusquedaTipoVehiculo = function () {
-        result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en todos los vehículos?");
+        //result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en todos los vehículos?");
+        result = DevExpress.ui.dialog.custom({
+            message: 'No hay productos asociados a este tipo de vehículo. ¿Deseas buscar en  todos los tipos de vehículo?',
+            buttons: [{
+                text: 'Si',
+                onClick: function () {
+                    return true;
+                }
+            },
+                //{
+                //    text: 'No',
+                //    onClick: function () {
+                //        return false;
+                //    }
+                //}
+            ]
+        }).show();
         result.then(function (val) {
             if (val) {
                 $scope.objetoBusqueda.NombreTipoVehiculo = "Todos los vehículos";
@@ -511,7 +544,7 @@
         console.log(JSON.parse(pr));
         var parametros = JSON.parse(pr);
         if (NotNullNotUndefinedNotEmpty(parametros.idTipoVehiculo)) {
-            if (parametros.idTipoVehiculo > 0) {
+            if (!isNaN(parametros.idTipoVehiculo)) {
                 $scope.objetoBusqueda.idTipoVehiculo = parametros.idTipoVehiculo;
                 $scope.objetoBusqueda.NombreTipoVehiculo = parametros.descripcionTipoVehiculo;
                 $scope.objetoBusqueda.tabs[2] = false;

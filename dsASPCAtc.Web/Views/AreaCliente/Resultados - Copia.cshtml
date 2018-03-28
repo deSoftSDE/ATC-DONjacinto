@@ -1,0 +1,340 @@
+﻿@{
+    @using dsASPCAtc.Web.ViewModels;
+    var dt = (ResultadosViewModel)ViewData["Datos"];
+    var descripciones = dt.desc;
+    var descripcionesjs = dt.jsinfo;
+}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a asp-action="Index">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+
+        @if (descripciones.idTipoVehiculo.HasValue)
+        {
+            <li>
+                <a asp-action="Buscador" asp-route-vehiculo="@descripciones.idTipoVehiculo">@descripciones.descripcionTipoVehiculo</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+        @if (descripciones.idSeccion.HasValue)
+        {
+            <li>
+                <a asp-action="Buscador" asp-route-marca="@descripciones.idSeccion">@descripciones.descripcionSeccion</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+
+        @if (descripciones.idFamilia.HasValue)
+        {
+            <li>
+                <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia">@descripciones.descripcionFamilia</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+        @if (descripciones.idCarroceria.HasValue)
+        {
+            <li>
+                <a  asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria">@descripciones.descripcionCarroceria</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+        @if (descripciones.ano.HasValue)
+        {
+            <li>
+                <a  asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria" asp-route-periodo="@descripciones.ano">@descripciones.ano</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+        @if (descripciones.idTipoVidrio.HasValue)
+        {
+            <li>
+                <a asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria" asp-route-periodo="@descripciones.ano" asp-route-vidrio="@descripciones.idVidrio" >@descripciones.descripcionTipoVidrio</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        }
+        <li>
+            <a >Resultados de búsqueda</a>
+            <i class="fa fa-circle"></i>
+        </li>
+    </ul>
+</div>
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">
+    Resultados de la búsqueda
+    <strong></strong>
+</h1>
+<!-- END PAGE TITLE-->
+
+<div class="portlet light bordered listaArticulos">
+    <input style="display:none" type="text" value="" id="cadena" />
+    <input style="display:none" type="text" value="@descripcionesjs" id="parametros" />
+
+    <div class="row" >
+        <div class="col-md-12">
+            <h1>VIDRIOS</h1>
+            @foreach (BuscaArticulo ar in dt.Articulos)
+    {
+        <div class="row margin-bottom-10 row-prod">
+            <div class="col-md-3 text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../img/altdisponible.png'" class="img-responsive center-block img-list-pro" />
+                    </div>
+                    <div class="col-md-12">
+                        <span>COD. <strong>@ar.Codigo</strong></span>
+                    </div>
+                    <div class="col-md-12">
+                        <a class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
+                            <i class="fa fa-list-alt"></i> Detalles del  producto
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
+            </div>
+            <div class="col-md-4">
+                <div class="row ">
+                    <div class="col-md-12">
+                        @if (ar.UnidadesManipulacion.Count < 1)
+    {
+                    <small ><strong><i class="fa fa-industry"></i> Bajo pedido</strong></small> }
+else
+{
+                    <small  ><strong><i class="fa fa-industry"></i> Disponible</strong></small>
+}
+                        <ul class="list-unstyled list-inline">
+
+                            @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+        {
+                    <li class="list-inline-item" style="padding-bottom: 5px;">
+
+
+                        @if (ud.StockFinalUV >= 1)
+    {
+                    <span class=" dispon">
+                        <i class="fa fa-check"></i>
+                    </span>
+}
+else
+{
+                    <span class="no-dispon">
+                        <i class="fa fa-remove"></i>
+                    </span>
+} <small>@ud.NombreAlmacen</small>
+                    </li>
+}
+                        </ul>
+
+                        @*<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#@ar.IdArticulo">Almacenes</button>
+        <div id="@ar.IdArticulo" class="collapse">
+
+        </div>*@
+                    </div>
+
+                </div>
+                <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
+                    <div class="col-md-6">
+                        <div><small>PVP</small></div>
+                        <small>
+                            <strong>
+                                000,00€
+                            </strong>
+                        </small> 
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div><small>Neto</small></div>
+                        <small>
+                            <strong>
+                               000,00€
+                            </strong>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-2 text-center">
+                <div class="row">
+                    <div class="col-md-12" style="padding-top:-9px">
+                        <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
+                            <i class="fa fa-cart-plus fa-lg"></i>
+                            <div> Añadir</div>
+                        </a>
+                    </div>
+                    <div class="col-md-12">
+                        <span><small>Descuento</small></span>
+                        <div>
+                            <strong class="font-green"> 00,0%</strong>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+}
+        </div>
+
+    </div>
+  
+
+    @*<div class="dataTables_wrapper">
+        
+        <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod table-fixed" id="sample_2">
+            <thead>
+                <tr>
+                    <th class="col-md-2">
+
+                    </th>
+                    <th class="col-md-1"> Código </th>
+                    <th class="col-md-3"> Características </th>
+                    <th class="col-md-2"> Almacenes </th>
+                    <th class="col-md-1 text-center">PVP</th>
+                    <th class="col-md-1 text-center">%</th>
+                    <th class=" col-md-1 text-center">Neto</th>
+                    <th class="col-md-1 text-center">Incl. pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(BuscaArticulo ar in dt.Articulos)
+                {
+                    <tr class="odd gradeX">
+                        <td class="text-center">
+                            <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../img/nodisponible.png'" class="img-responsive center-block" style="width:80%;" />
+                        </td>
+                        <td>@ar.Codigo</td>
+                        <td>
+                            <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> @ar.Descripcion </a>
+                        </td>
+                        <td>
+                            <ul class="list-unstyled">
+                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+                                    {
+                                <li style="padding-bottom: 5px;">
+                                    @ud.NombreAlmacen
+
+                                    @if (ud.StockFinalUV >= 1)
+                                    {
+                                <span class="label label-sm label-success">
+                                    Disponible
+                                </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-sm label-default">
+                                            Agotado
+                                        </span>
+
+                                    }
+
+                                </li>
+
+                                }
+                            </ul>
+
+                        </td>
+                        <td class="text-right">0.00€</td>
+                        <td class="text-right">0%</td>
+                        <td class="text-right">0.00€</td>
+                        <td class="text-center">
+                            <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn btn-icon-only default">
+                                <i class="fa fa-cart-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</div>*@
+<!-- FIN TABLA  parabrisas-->
+<!-- TABLA  Gomas-->
+
+@foreach (Categoria ct in dt.Accesorios)
+{
+    <div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <h1>@ct.Descripcion</h1>
+            <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod" id="sample_2">
+                <thead>
+                    <tr>
+                        <th class="">
+
+                        </th>
+                        <th> Código </th>
+                        <th> Características </th>
+                        <th> Almacenes </th>
+                        <th class="text-center">PVP</th>
+                        <th class="text-center">%</th>
+                        <th class="text-center">Neto</th>
+                        <th class="text-center">Incl. pedido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (BuscaArticulo ar in ct.Articulos)
+            {
+                <tr class="odd gradeX">
+                    <td class="text-center">
+                        <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../img/nodisponible.png'" class="img-responsive center-block" style="width:80%;" />
+                    </td>
+                    <td>@ar.Codigo</td>
+                    <td>
+                        <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> @ar.Descripcion </a>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+                                    {
+                                                        <li style="padding-bottom: 5px;">
+                                                            @ud.NombreAlmacen
+
+                                                            @if (ud.StockFinalUV >= 1)
+                                    {
+                                                        <span class="label label-sm label-success">
+                                                            Disponible
+                                                        </span>
+                                }
+                                else
+                                {
+                                                        <span class="label label-sm label-default">
+                                                            Agotado
+                                                        </span>
+
+                                }
+
+                                                        </li>
+
+                                }
+                        </ul>
+
+                    </td>
+                    <td class="text-right">0.00€</td>
+                    <td class="text-right">0%</td>
+                    <td class="text-right">0.00€</td>
+                    <td class="text-center">
+                        <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn btn-icon-only default">
+                            <i class="fa fa-cart-plus"></i>
+                        </a>
+                    </td>
+                </tr>
+    }
+
+
+                </tbody>
+            </table>
+         </div>
+        </div>
+    </div>
+
+}
+
