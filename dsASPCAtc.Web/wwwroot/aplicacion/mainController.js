@@ -170,3 +170,10 @@ atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
 atc.controller('DemoController', function DemoController($scope) {
 
 });
+atc.controller('productos', function ($scope, $http, Llamada, $timeout, Carrito) {
+    $scope.tabCat = 0;
+    $scope.cambiarTabCategorias = function (val) {
+        alert(val)
+        $scope.tabCat = val;
+    }
+});

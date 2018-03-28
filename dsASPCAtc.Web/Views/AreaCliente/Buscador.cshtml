@@ -204,13 +204,15 @@
                                                 <div class="col-md-12">
                                                     <div class="row" style="margin:0 20px;">
                                                         <div class="col-md-3" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <img class="img-responsive img-marca" ng-src="{{marca.url}}" onerror="this.src='../../images/escudo.png'"/>
-                                                                </div>
-                                                                <div class="col-12 text-center">
-                                                                    {{marca.descripcionSeccion}}
-                                                                </div>
+                                                            <div class="row margin-bottom-10">
+                                                                <a href="javascript:;">
+                                                                    <div class="col-12">
+                                                                        <img class="img-responsive img-marca" ng-src="{{marca.url}}" onerror="this.src='../../images/escudo.png'" />
+                                                                    </div>
+                                                                    <div class="col-12 text-center">
+                                                                        {{marca.descripcionSeccion}}
+                                                                    </div>
+                                                                </a> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -233,19 +235,16 @@
                             </span>
                         </uib-tab-heading>
                         <div class="tab-pane" id="tab2">
-                            <h3 class="block">Modelo de su vehículo</h3>
+                            <h3 class="block">Modelo del vehículo</h3>
                             <div class="form-group">
                                 <label class="control-label col-md-3">
-                                    Modelo
+                                    
                                 </label>
                                 <div class="col-md-4">
-                                    <div dx-select-box="selectBoxModelos" dx-item-alias="product" class="mb-1">
-
+                                    <div dx-select-box="selectBoxModelos" dx-item-alias="product" class="margin-bottom-10">
                                         <div data-options="dxTemplate: { name: 'field' }">
-
                                             <div dx-text-box="settingsbox"></div>
                                         </div>
-
                                         <div data-options="dxTemplate: { name: 'item' }">
                                             <div class="custom-item">
                                                 <div class="row">
@@ -261,7 +260,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="help-block"> Seleccione el modelo de su Vehículo</span>
+                                    <span class="help-block margin-bottom-20"> Selecciona un modelo de la marca  {{objetoBusqueda.marca.descripcionSeccion}}  </span>
                                 </div>
                             </div>
 
@@ -277,12 +276,15 @@
                                 </span>
                             </span>
                         </uib-tab-heading>
-                        <h3 class="block">Seleccione Carrocería</h3>
+                        <h3 class="block margin-bottom-20">Seleccione una  Carrocería disponible para  {{objetoBusqueda.modelo.descripcionFamilia}}</h3>
                         <div class="row">
                             <div class="col-md-3 text-center" ng-repeat="carroceria in objetoBusqueda.infoModelo.carrocerias" ng-click="seleccionarCarroceria(carroceria)">
-
-                                <img ng-src="{{carroceria.url}}" style="width:30px;" />
-                                <h3>{{carroceria.descripcion}}</h3><h4>{{carroceria.cantidadArticulos}} articulo/s</h4>
+                                <div class="selct-carro padding-tb-15">
+                                    <img class="img-responsive" ng-src="{{carroceria.url}}" style="display:block; margin:0 auto;" onerror="this.src='../img/nodisponible.png'"/>
+                                    <h5>{{carroceria.descripcion}}</h5>
+                                    <small>{{carroceria.cantidadArticulos}} articulo/s</small>
+                                </div>
+                                
                             </div>
                         </div>
                     </uib-tab>
@@ -297,18 +299,21 @@
                             </span>
                         </uib-tab-heading>
                         <div class="tab-pane" id="tab3">
-                            <h3 class="block">Seleccione Año</h3>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <h3 class="block">Seleccione el Año</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
                                     <div dx-select-box="selectBoxAnos" dx-item-alias="product" class="mb-1">
                                         <div data-options="dxTemplate: { name: 'item' }">
                                             <div class="custom-item">
                                                 <div class="row">
-                                                    <div class="col-md-3"></div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-8">
                                                         <div class="product-name">
-                                                            <h3>{{product.valor}}</h3>
-
+                                                            <h4>{{product.valor}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -364,18 +369,27 @@
 
             <div class="form-actions">
                 <div class="row mt-3">
-                    <div class="col-md-offset-3 col-md-9">
-                        <a href="javascript:;" class="btn default button-previous {{botonAnterior()}}" ng-click="pestanaAnterior()">
-                            <i class="fa fa-angle-left"></i> Atrás
-                        </a>
-                        <a href="javascript:;" class="btn btn-outline green button-next {{botonSiguiente()}}" ng-click="pestanaSiguiente()">
-                            Continuar
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a href="javascript:;" class="btn green button-submit {{botonFinalizar()}}" ng-click="finalizaBusca()">
-                            Finalizar
-                            <i class="fa fa-eye"></i>
-                        </a>
+                    <div class="col-md-offset-3 col-md-6">
+                        <div class="btn-proceso">
+                            <div>
+                                <a href="javascript:;" class="btn default button-previous {{botonAnterior()}}" ng-click="pestanaAnterior()">
+                                    <i class="fa fa-angle-left"></i> Atrás
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="btn  green button-next {{botonSiguiente()}}" ng-click="pestanaSiguiente()">
+                                    Continuar
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="btn green button-submit {{botonFinalizar()}}" ng-click="finalizaBusca()">
+                                    <i class="fa fa-eye"></i> Ver resultado de búsqueda
+                                    
+                                </a>
+                            </div>
+                        </div>
+                      
                     </div>
                 </div>
             </div>
