@@ -1,5 +1,35 @@
 ﻿@{
     Layout = "_LayoutCorporativa";
+    @using EntidadesAtc;
+    var c = (ResultadoRegistro)ViewData["Resultado"];
+}
+
+@if (c.Resultado != null)
+{
+    <div>Resultado del Registro: @c.Resultado</div>
+    <div> Que significa: @c.Cadena </div>
+    <div>El resultado del mail es: @c.CadenaMail</div>
+    <div>A continuación, te dejo divs que se mostrarán según el resultado:</div>
+    switch (c.Resultado)
+    {
+        case -3:
+            <div> El teléfono introducido no es válido </div>
+            break;
+        case -2:
+            <div>La contraseña introducida no es válida</div>
+            break;
+        case -1:
+            <div>El usuario ya existe</div>
+            break;
+        case 0:
+            <div> Se ha enviado la solicitud. Un administrador la revisará y recibirás noticias nuestras con la máxima brevedad posible. </div>
+            break;
+        case 1:
+            <div> Se ha procesado la solicitud. Revisa tu email para confirmar tu cuenta. </div>
+            break;
+
+    }
+
 }
 
 <section class="home-slider owl-carousel">
@@ -30,7 +60,7 @@
                                     <input type="text" class="form-control" name="password" id="appointment_email">
                                 </div>
                                 <div class="form-group">
-                                        <input type="submit" value="Enviar" class="btn btn-primary">
+                                    <input type="submit" value="Enviar" class="btn btn-primary">
 
                                 </div>
                             </form>

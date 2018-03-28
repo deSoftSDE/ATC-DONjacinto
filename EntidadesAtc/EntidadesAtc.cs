@@ -9,6 +9,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using dsCore.Comun;
+using MimeKit;
 
 namespace EntidadesAtc
 {
@@ -334,6 +336,60 @@ namespace EntidadesAtc
         public Cliente Cliente { get; set; }
         public List<Domicilio> Domicilios { get; set; }
         public List<Promocion> Promociones { get; set; }
+    }
+    public class UsuarioError
+    {
+        public string nombre { get; set; }
+        public string motivo { get; set; }
+    }
+    public class ResultadoInvitaciones
+    {
+        public List<string> Enviadas { get; set; }
+        public List<UsuarioError> UsuariosError { get; set; }
+    }
+    public class ResultadoRegistro
+    {
+        public int? Resultado { get; set; }
+        public string Cadena { get; set; }
+        public PropiedadesSitio Propiedades { get; set; }
+        public UsuarioDatosEmail Usuario { get; set; }
+        public string CadenaMail { get; set; }
+    }
+    public class ResultadoAsignacion
+    {
+        public UsuarioDatosEmail Usuario { get; set; }
+        public int Resultado { get; set; }
+        public PropiedadesSitio Propiedades { get; set; }
+        public string Cadena { get; set; }
+    }
+    public class ResultadoRecuperacionContrasena
+    {
+        public int Resultado { get; set; }
+        public PropiedadesSitio Propiedades { get; set; }
+        public string Cadena { get; set; }
+    }
+    public class SolicitudRegistro
+    {
+        public string nombre { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
+        public string telefono { get; set; }
+        public string informacion { get; set; }
+        public string cif { get; set; }
+        public string empresa { get; set; }
+        public string empresawildcards { get; set; }
+
+    }
+    public class UsuarioDatosEmail
+    {
+        public int IdUsuarioWeb { get; set; }
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Guid GuidValidacion { get; set; }
+        public string NombreCompleto { get; set; }
+        public string EmaildsWin { get; set; }
+        public Guid? GuidRecuperacion { get; set; }
     }
     public class Domicilio
     {
@@ -679,6 +735,133 @@ namespace EntidadesAtc
         public List<BuscaArticulo> Articulos { get; set; }
         public List<Categoria> Accesorios { get; set; }
         public Parametros Parametros { get; set; }
+    }
+
+
+    public class dsMail
+    {
+        public static string EnviarEmail(MailEnvio mail_envio)
+        {
+            string res = "";
+            //construye el mensaje
+            MimeMessage message = BuildMessage(mail_envio);
+            //realiza el envio
+            res = SendBySMTP(message, mail_envio.Cuenta);
+            return res;
+            //return "holi";
+        }
+        private static MimeMessage BuildMessage(MailEnvio mail_envio)
+        {
+            Cuenta cuenta = mail_envio.Cuenta;
+            Mail mail = mail_envio.Mail;
+
+            //asigna remitente / destinatario
+            MimeMessage message = new MimeMessage();
+
+            message.From.Add(new MailboxAddress(cuenta.NombreCuenta, cuenta.Usuario));
+
+            string[] rcpts = mail.Destinatario.Split(';');
+            if (rcpts.Length == 0)
+                message.To.Add(new MailboxAddress(mail.Destinatario));
+            else
+            {
+                foreach (string recipient in rcpts)
+                    message.To.Add(new MailboxAddress(recipient));
+            }
+
+            if (!string.IsNullOrWhiteSpace(mail.CC))
+            {
+                string[] rcptsc = mail.CC.Split(';');
+                if (rcptsc.Length == 0)
+                    message.Cc.Add(new MailboxAddress(mail.CC));
+                else
+                {
+                    foreach (string recipient in rcptsc)
+                        message.Cc.Add(new MailboxAddress(recipient));
+                }
+                //message.Cc.Add(new MailboxAddress(mail.CC));
+            }
+
+            if (!string.IsNullOrWhiteSpace(mail.CCO))
+            {
+                string[] rcptsco = mail.CCO.Split(';');
+                if (rcptsco.Length == 0)
+                    message.Bcc.Add(new MailboxAddress(mail.CCO));
+                else
+                {
+                    foreach (string recipient in rcptsco)
+                        message.Bcc.Add(new MailboxAddress(recipient));
+                }
+                //message.Bcc.Add(new MailboxAddress(mail.CCO));
+            }
+            message.Subject = mail.Asunto;
+
+            //construye el mensaje
+            var builder = new BodyBuilder();
+            builder.HtmlBody = mail.Texto;
+            //if (html != "") builder.HtmlBody = html;
+            //else builder.TextBody = mail.Texto;
+            if (mail.ListaAdjuntos != null && mail.ListaAdjuntos.Count > 0)
+            {
+                foreach (AdjuntoMail adjunto in mail.ListaAdjuntos.OrderBy(o => o.Orden))
+                    builder.Attachments.Add(adjunto.Archivo); // @"C:\Users\Joey\Documents\party.ics"); 
+            }
+
+            //string banner = System.IO.File.ReadAllText(@"C:\Temp\Firmagenerica.html");
+            if (mail.Firmar && !string.IsNullOrWhiteSpace(cuenta.Firma))
+                builder.HtmlBody += cuenta.Firma;
+            //var image = builder.LinkedResources.Add(@"C:\Temp\Firmagenerica.html");
+            //image.ContentId = MimeUtils.GenerateMessageId();
+
+            message.Body = builder.ToMessageBody();
+
+            return message;
+        }
+        private static string SendBySMTP(MimeMessage message, Cuenta cuenta)
+        {
+            string res = "error";
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                client.Connect(cuenta.ServCorreoSal, (int)cuenta.PuertoCorreoSal, false);
+
+                // Note: since we don't have an OAuth2 token, disable
+                // the XOAUTH2 authentication mechanism.
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+
+                // Note: only needed if the SMTP server requires authentication
+                client.Authenticate(cuenta.Usuario, cuenta.Clave);
+                client.Send(message);
+                client.Disconnect(true);
+
+                res = "ok";
+            }
+
+            return res;
+        }
+        static string billede1 = string.Empty;
+        static string billede2 = string.Empty;
+    }
+    public class PropiedadesSitio
+    {
+        public string NombreCuenta { get; set; }
+        public string Usuario { get; set; }
+        public string Clave { get; set; }
+        public string ServCorreoSal { get; set; }
+        public int PuertoCorreoSal { get; set; }
+        public string CorreoRegistro { get; set; }
+        public string URLSitio { get; set; }
+        public string CorreoVerificacion { get; set; }
+        public string CorreoInvitacion { get; set; }
+        public string CorreoConfirmacion { get; set; }
+        public string RutaValidacion { get; set; }
+        public string NombreSitio { get; set; }
+        public string RutaLogo { get; set; }
+        public string CorreoRecuperacion { get; set; }
+        public string RutaRecuperacion { get; set; }
     }
 
 }

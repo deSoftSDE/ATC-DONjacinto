@@ -33,7 +33,6 @@ namespace dsASPCAtc.Web.Controllers
             {
                 ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             }
-                
             //HttpContext.Session.SetString("Test", "Ben Rules!");
 
             var vm = new IndexViewModel(_configuration);
@@ -211,9 +210,17 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
 
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetObjectAsJson("Login", null);
+            return RedirectToAction(_defaultPage, _defaultController);
         }
 
         [HttpGet]
@@ -232,7 +239,6 @@ namespace dsASPCAtc.Web.Controllers
             {
                 return false;
             }
-            
             //return true;
         }
 

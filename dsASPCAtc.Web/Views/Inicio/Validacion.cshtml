@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_LayoutCorporativa";
+    @using EntidadesAtc;
+    var c = (ResultadoIM)ViewData["Resultado"];
+}
+
+Validación completada con el @c.Identidad y resultado:
+@c.Resultado
+
+
+@switch (c.Identidad)
+{
+    case 1:
+        <div>El usuario ha sido validado correctamente. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a></div>
+        break;
+    default:
+        <div>La validación no ha sido correcta.</div>
+        break;
+
+}
