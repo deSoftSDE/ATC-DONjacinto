@@ -183,7 +183,7 @@ namespace dsASPCAtc.DataAccess
                 res.Clave = AsignaCadena("Clave");
                 res.ServCorreoSal = AsignaCadena("ServCorreoSal");
                 res.PuertoCorreoSal = AsignaEntero("PuertoCorreoSal");
-                res.CorreoRegistro = AsignaCadena("CorreoRegistro"); //Correo cuando un usuario se registra (Aun no lo estoy usando)
+                res.CorreoRegistro = AsignaCadena("CorreoRegistro"); //Correo cuando un usuario se registra pero no está en nuestra BD
                 res.CorreoVerificacion = AsignaCadena("CorreoVerificacion"); //Correo cuando un usuario se registra y soy capaz de validar su identidad
                 res.CorreoInvitacion = AsignaCadena("CorreoInvitacion"); //Correo cuando decido invitar a un usuario.
                 res.CorreoConfirmacion = AsignaCadena("CorreoConfirmacion"); //Correo cuando el administrador valida la identidad de un usuario

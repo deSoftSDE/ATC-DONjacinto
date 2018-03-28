@@ -271,7 +271,8 @@
         <uib-tabset active="tabCat">
             @foreach (Categoria ct in dt.Accesorios)
         {
-            <uib-tab tabindex="@ct.IDCategoria">
+            <uib-tab index="@ct.IDCategoria">
+                @ct.IDCategoria
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet light bordered">
