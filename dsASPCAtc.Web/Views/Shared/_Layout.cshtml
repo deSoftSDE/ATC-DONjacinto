@@ -175,7 +175,7 @@
                                 <li class="divider"> </li>
 
                                 <li>
-                                    <a href="page_user_login_1.html">
+                                    <a asp-controller="AreaCliente" asp-action="Logout">
                                         <i class="icon-key"></i> Cerrar Sesion
                                     </a>
                                 </li>
@@ -549,7 +549,7 @@
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2018 &copy; Grupo ATC
+                2018 &copy; Grupo ATC<input type="text" id="idusuarioweb" value="@c.IdUsuarioWeb" style="display:none;"/>
 
             </div>
             <div class="scroll-to-top">
