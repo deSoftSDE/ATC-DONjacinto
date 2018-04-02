@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_LayoutCorporativa";
+    @using EntidadesAtc;
+    var c = (ResultadoValidacionGuidRecuperacion)ViewData["Resultado"];
+}
+
+Validación completada con el @c.Resultado y resultado:
+@c.Resultado
+@switch (c.Resultado)
+{
+    case 1:
+
+        <div>Hola, @c.Usuario.NombreCompleto</div>
+        <div>Para cambiar tu contraseña rellena este formulario:</div>
+
+        <form asp-controller="Inicio" asp-action="Recuperar" method="post">
+            <input type="hidden" name="id" value="@c.Usuario.IdUsuarioWeb" />
+            <input type="hidden" name="nombre" value="@c.Usuario.NombreCompleto" />
+            <input type="hidden" name="username" value="@c.Usuario.Nombre" />
+            <input type="password" name="password" />
+            <input type="password" name="repeatpassword" />
+            <input type="submit" />
+        </form>
+        break;
+    case 2:
+
+        <div>Tu contraseña ha sido cambiada con éxito. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a> utilizando tus nuevos credenciales:</div>
+        <div> Usuario: @c.Usuario.Nombre </div>
+        <div>Contraseña: @c.Usuario.Password</div>
+        break;
+}

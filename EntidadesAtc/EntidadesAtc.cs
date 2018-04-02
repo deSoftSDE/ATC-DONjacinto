@@ -337,6 +337,14 @@ namespace EntidadesAtc
         public List<Domicilio> Domicilios { get; set; }
         public List<Promocion> Promociones { get; set; }
     }
+    public class RecuperacionPassword
+    {
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string password { get; set; }
+        public string repeatpassword { get; set; }
+        public string username { get; set; }
+    }
     public class UsuarioError
     {
         public string nombre { get; set; }
@@ -379,6 +387,15 @@ namespace EntidadesAtc
         public string empresa { get; set; }
         public string empresawildcards { get; set; }
 
+    }
+    public class SolicitudRecuperacion
+    {
+        public string email { get; set; }
+    }
+    public class ResultadoValidacionGuidRecuperacion
+    {
+        public int Resultado { get; set; }
+        public UsuarioDatosEmail Usuario { get; set; }
     }
     public class UsuarioDatosEmail
     {

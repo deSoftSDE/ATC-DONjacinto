@@ -247,12 +247,8 @@ namespace dsASPCAtc.DataAccess
                 {
                     us = RellenarUsuarioEmail();
                 }
-                _reader.NextResult();
-                if (_reader.Read())
-                {
-                    res.Propiedades = RellenarPropiedadesSitio();
-                }
             }
+            res.Propiedades = PropiedadesSitioLeer();
             if (us.IdUsuarioWeb > 0)
             {
                 var mailEnvio = RellenarEmail(res.Propiedades.CorreoRecuperacion, us, res.Propiedades);
@@ -271,6 +267,56 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@guid", id),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ClientesValidarUsuarioWebPorGuid", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Identidad = AsignaEntero("Resultado");
+                    res.Resultado = AsignaCadena("ResultadoCadena");
+                }
+            }
+            return res;
+        }
+        public ResultadoValidacionGuidRecuperacion ClientesValidarRecuperacionPassword(Guid guid)
+        {
+            var res = new ResultadoValidacionGuidRecuperacion();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@guid", guid),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ClientesValidarRecuperacionPassword", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Resultado = AsignaEntero("Resultado");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    res.Usuario = new UsuarioDatosEmail
+                    {
+                        IdUsuarioWeb = AsignaEntero("IDUsuarioWeb"),
+                        Nombre = AsignaCadena("Nombre"),
+                        NombreCompleto = AsignaCadena("Cliente"),
+                    };
+                }
+            }
+            return res;
+        }
+        public ResultadoIM ClientesCambiarContrasena(int idUsuarioWeb, string newPassword)
+        {
+            var res = new ResultadoIM();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idUsuarioWeb", idUsuarioWeb),
+                    new SqlParameter("@newPassword", newPassword),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ClientesCambiarContrasena", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 if (_reader.Read())
                 {
