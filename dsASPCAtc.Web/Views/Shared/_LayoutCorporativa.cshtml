@@ -213,20 +213,23 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form >
+                <form asp-controller="Inicio" asp-action="Recuperacion" method="post">
+                    <div class="modal-body">
+
                         <div class="form-group">
-                            <input type="email" class="form-control" id="" aria-describedby="" placeholder="dirección de email">
+                            <input type="email" name="email" class="form-control" id="" aria-describedby="" placeholder="dirección de email">
                             <small id="emailHelp" class="form-text text-muted">Para recuperar su contraseña deberá incluir su dirección de email</small>
 
                         </div>
 
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <!--<button type="button" class="btn btn-primary">Enviar</button>-->
+                        <input type="submit" class="btn btn-primary" value="Enviar" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
