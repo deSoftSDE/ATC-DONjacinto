@@ -176,4 +176,30 @@ atc.controller('productos', function ($scope, $http, Llamada, $timeout, Carrito)
         //alert(val)
         $scope.tabCat = val;
     }
+    $scope.esActivo = function (val) {
+        if (val == $scope.tabCat) {
+            return "seleccionado";
+        } else {
+            return "";
+        }
+    }
+});
+atc.controller('productosvidrio', function ($scope, $http, Llamada, $timeout, Carrito) {
+    $scope.tabVidrio = idtipovid;
+    $scope.cambiarTabVidrio = function (val) {
+        //alert(val)
+        //alert("Holiii");
+        $scope.tabVidrio = val;
+    }
+    $scope.esActivo = function (val) {
+        if (val == $scope.tabVidrio) {
+            return "seleccionado";
+        } else {
+            return "";
+        }
+    }
+});
+
+atc.controller('resultadosBusqueda', function ($scope, $http, Llamada, $timeout, Carrito) {
+    document.getElementById("contenedorResultados").style.display = "inline";
 });
