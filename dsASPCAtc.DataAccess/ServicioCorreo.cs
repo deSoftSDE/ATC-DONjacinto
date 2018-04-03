@@ -133,7 +133,7 @@ namespace dsASPCAtc.DataAccess
             if (res.Usuario.IdUsuarioWeb > 0)
             {
                 var email = RellenarEmail(res.Propiedades.CorreoConfirmacion, res.Usuario, res.Propiedades);
-                res.Cadena = EnviarCorreo(res.Usuario.EmaildsWin, "Confirmación", email, res.Propiedades);
+                res.Cadena = EnviarCorreo(res.Usuario.Email, "Confirmación", email, res.Propiedades);
             }
             return res;
         }
