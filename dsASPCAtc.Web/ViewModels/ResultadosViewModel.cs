@@ -19,6 +19,8 @@ namespace dsASPCAtc.Web.ViewModels
 
         public List<Categoria> Accesorios;
 
+        public List<TipoVidrio> TiposVidrio;
+
         public ResultadosViewModel(IConfiguration _configuration, Parametros parametros)
         {
             var ad = new AdaptadorAtc(_configuration);
@@ -26,6 +28,7 @@ namespace dsASPCAtc.Web.ViewModels
             desc = res.Parametros;
             Articulos = res.Articulos;
             Accesorios = res.Accesorios;
+            TiposVidrio = res.TiposVidrio;
             JavaScriptSerializer js = new JavaScriptSerializer();
             jsinfo = js.Serialize(desc);
 

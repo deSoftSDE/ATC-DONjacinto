@@ -697,6 +697,7 @@ namespace dsASPCAtc.DataAccess
             var res = new ArticulosYCategorias();
             res.Articulos = new List<BuscaArticulo>();
             res.Accesorios = new List<Categoria>();
+            res.TiposVidrio = new List<TipoVidrio>();
             var accesorios = new List<BuscaArticulo>();
             var udman = new List<UnidadManipulacion>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
@@ -821,6 +822,10 @@ namespace dsASPCAtc.DataAccess
                         DescripcionCategoria = AsignaCadena("DescripcionCategoria"),
                         UnidadesManipulacion = new List<UnidadManipulacion>(),
                     };
+                    if (!ar.IdTipoVidrio.HasValue)
+                    {
+                        ar.IdTipoVidrio = 0;
+                    }
                     accesorios.Add(ar);
                 }
                 _reader.NextResult();
@@ -837,7 +842,27 @@ namespace dsASPCAtc.DataAccess
                     };
                     udman.Add(um);
                 }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var vid = new TipoVidrio
+                    {
+                        IDTipoVidrio = AsignaEntero("IDTipoVidrio"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        Imagen = AsignaCadena("Imagen"),
+                        Articulos = new List<BuscaArticulo>()
+                    };
+                    res.TiposVidrio.Add(vid);
+                }
             }
+            var vidriogenerico = new TipoVidrio
+            {
+                IDTipoVidrio = 0,
+                Descripcion = "Otros",
+                Imagen = "",
+                Articulos = new List<BuscaArticulo>()
+            };
+            res.TiposVidrio.Add(vidriogenerico);
             foreach (BuscaArticulo articulo in accesorios)
             {
                 foreach (Categoria ct in res.Accesorios)
@@ -864,9 +889,17 @@ namespace dsASPCAtc.DataAccess
                         articulo.UnidadesManipulacion.Add(ud);
                     }
                 }
+                foreach (TipoVidrio tiv in res.TiposVidrio)
+                {
+                    if (tiv.IDTipoVidrio == articulo.IdTipoVidrio)
+                    {
+                        tiv.Articulos.Add(articulo);
+                    }
+                }
             }
             res.Parametros = pr;
             res.Accesorios.RemoveAll(c => c.Articulos.Count < 1);
+            res.TiposVidrio.RemoveAll(d => d.Articulos.Count < 1);
             return res;
         }
 

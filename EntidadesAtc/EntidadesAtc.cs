@@ -517,6 +517,7 @@ namespace EntidadesAtc
         public string Descripcion { get; set; }
         [DataMember]
         public string Imagen { get; set; }
+        public List<BuscaArticulo> Articulos { get; set; }
     }
     [DataContract]
     public class Carroceria
@@ -752,6 +753,7 @@ namespace EntidadesAtc
         public List<BuscaArticulo> Articulos { get; set; }
         public List<Categoria> Accesorios { get; set; }
         public Parametros Parametros { get; set; }
+        public List<TipoVidrio> TiposVidrio { get; set; }
     }
 
 
