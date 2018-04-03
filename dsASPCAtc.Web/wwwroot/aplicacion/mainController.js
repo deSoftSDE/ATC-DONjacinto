@@ -171,7 +171,7 @@ atc.controller('DemoController', function DemoController($scope) {
 
 });
 atc.controller('productos', function ($scope, $http, Llamada, $timeout, Carrito) {
-    $scope.tabCat = 0;
+    $scope.tabCat = idcat;
     $scope.cambiarTabCategorias = function (val) {
         //alert(val)
         $scope.tabCat = val;

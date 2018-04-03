@@ -152,53 +152,54 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form asp-controller="Inicio" asp-action="Index" method="post">
+                <form asp-controller="Inicio" asp-action="Index" method="post">
+                    <div class="modal-body">
                         <div class="form-group">
-                            <label for="appointment_name" class="text-black">NIF/CIF</label>
-                            <input type="text" class="form-control" name="cif" id="appointment_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="appointment_nombre" class="text-black">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="appointment_email" class="text-black">Empresa</label>
-                            <input type="text" class="form-control" name="empresa" id="appointment_email">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="text-black">Contraseña</label>
-                                    <input type="password" class="form-control" name="password">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="text-black">Teléfono</label>
-                                    <input type="text" class="form-control" name="telefono">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="appointment_message" class="text-black">email</label>
-                            <input type="text" name="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="appointment_information" class="text-black">Información</label>
-                            <input type="text" name="informacion" class="form-control">
-                        </div>
-                        @*<div class="form-group">
-                            <input type="submit" value="Enviar" class="btn btn-primary">
-                        </div>*@
-                    </form>
+            <label for="" class="text-black">NIF/CIF</label>
+            <input type="text" class="form-control" name="cif">
+        </div>
+        <div class="form-group">
+            <label for="" class="text-black">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="" class="text-black">Empresa</label>
+            <input type="text" class="form-control" name="empresa">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="text-black">Contraseña</label>
+                    <input type="password" class="form-control" name="password">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="text-black">Teléfono</label>
+                    <input type="text" class="form-control" name="telefono">
                 </div>
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label for="appointment_message" class="text-black">email</label>
+            <input type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="appointment_information" class="text-black">Información</label>
+            <input type="text" name="informacion" class="form-control">
+        </div>
+        @*<div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary">
+            </div>*@
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <input type="submit" value="Enviar" class="btn btn-primary">
+
+    </div>
+</form>
             </div>
         </div>
     </div>

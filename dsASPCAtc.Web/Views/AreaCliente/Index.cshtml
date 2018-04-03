@@ -182,31 +182,39 @@
                     <div class="row">
                         @foreach (BuscaArticulo ar in unclick)
                         {
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <!--begin: widget 1-1 -->
                             <div class="mt-widget-1">
-                                <div class="mt-icon">
+                                @*<div class="mt-icon">
                                     <a href="#">
                                         <i class="icon-plus"></i>
                                     </a>
-                                </div>
-                                <div class="mt-img">
-                                    <img class="img-responsive" ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'">
-                                </div>
-                                <div class="mt-body">
-                                    <h3 class="mt-username">@ar.Descripcion</h3>
-                                    <p class="mt-user-title"> @ar.DescripcionCorta </p>
-                                    <div class="mt-stats">
-                                        <div class="btn-group btn-group btn-group-justified">
-                                            <a  asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
-                                                <!--<i class="fa fa-star"></i>-->  Más info
-                                            </a>
-                                            <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn font-green">
-                                                <i class="icon-plus "></i> Añadir al pedido
-                                            </a>
+                                </div>*@
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mt-img">
+                                            <img class="img-responsive" ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="mt-body">
+                                            <h3 class="mt-username">@ar.Descripcion</h3>
+                                            <p class="mt-user-title"> @ar.DescripcionCorta </p>
+                                            <div class="mt-stats">
+                                                <div class="btn-group btn-group btn-group-justified">
+                                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
+                                                        <!--<i class="fa fa-star"></i>-->  Más info
+                                                    </a>
+                                                    <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn font-green">
+                                                        <i class="icon-plus "></i> Añadir al pedido
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                               
+                               
                             </div>
                             <!--end: widget 1-1 -->
                         </div>

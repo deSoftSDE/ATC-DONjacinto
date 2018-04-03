@@ -190,3 +190,15 @@ span.dispo i{
 .btn-pedir>div{
     margin-top:13px !important;
 }
+
+div#accesorios > ul.nav-tabs > li.active > a, div#accesorios > ul.nav-tabs > li.active > a:focus, div#accesorios > ul.nav-tabs > li.active > a:hover {
+    border: transparent;
+    border-bottom: transparent;
+}
+
+div#accesorios > ul.nav-tabs > li > a:hover {
+    border-color: transparent;
+    background-color:transparent;
+    cursor:default;
+
+}
