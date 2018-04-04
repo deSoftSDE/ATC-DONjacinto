@@ -318,13 +318,63 @@ namespace EntidadesAtc
         public int IdArticuloCategoria { get; set; }
         [DataMember]
         public string DescripcionCategoria { get; set; }
+        [DataMember]
         public List<ArticuloCarroceria> Carrocerias { get; set; }
+        [DataMember]
         public List<UnidadManipulacion> UnidadesManipulacion { get; set; }
+        [DataMember]
         public Boolean active { get; set; }
-
+        [DataMember]
+        public ArticuloEurocode Eurocode { get; set; }
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }
     }
+    public class CaracteristicasArticulo
+    {
+        public string Valor;
+        public string Caracter;
+        public CaracteristicasArticulo(string val, string caract)
+        {
+            Valor = val;
+            Caracter = caract;
+
+        }
+    }
+    public class ArticuloEurocode
+    {
+        public string Color { get; set; }
+        public string Carroceria { get; set; }
+        public List<CaracteristicasArticulo> Modificaciones { get; set; }
+        public List<CaracteristicasArticulo> Caracteristicas { get; set; }
+        public string CaracterCarroceria { get; set; }
+        public int PosicionCaracterCarroceria { get; set; }
+        public string CaracterColor { get; set; }
+        public int[] PosicionCaracterColor { get; set; }
+        public string BandaSuperior { get; set; }
+        public string CaracterBandaSuperior { get; set; }
+        public string PosicionVidrio { get; set; }
+        public string CaracterPosicionVidrio { get; set; }
+        public string TipoAccesorio { get; set; }
+        public string CaracterTipoAccesorio { get; set; }
+        public string TipoVidrio { get; set; }
+        public string CaracterTipoVidrio { get; set; }
+    }
+    public class CaracteristicaEurocode
+    {
+        public string Valor { get; set; }
+        public string Propiedad { get; set; }
+        public string Tipo { get; set; }
+        public CaracteristicaEurocode(string val)
+        {
+            Valor = val;
+        }
+        public CaracteristicaEurocode(string val, string prop, string tipo)
+        {
+            Valor = val;
+            Propiedad = prop;
+            Tipo = tipo;
+        }
+    };
     public class QueryBusqueda
     {
 

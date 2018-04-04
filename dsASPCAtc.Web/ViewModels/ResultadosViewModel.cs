@@ -31,6 +31,19 @@ namespace dsASPCAtc.Web.ViewModels
             TiposVidrio = res.TiposVidrio;
             JavaScriptSerializer js = new JavaScriptSerializer();
             jsinfo = js.Serialize(desc);
+            foreach (BuscaArticulo ar in Articulos)
+            {
+                var le = new LectorEurocode(ar.Codigo);
+                ar.Eurocode = le.Leer();
+            }
+            foreach (Categoria cat in Accesorios)
+            {
+                foreach (BuscaArticulo ar in cat.Articulos)
+                {
+                    var le = new LectorEurocode(ar.Codigo);
+                    ar.Eurocode = le.Leer();
+                }
+            }
 
         }
     }

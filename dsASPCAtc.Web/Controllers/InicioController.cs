@@ -1,4 +1,5 @@
 ﻿using dsASPCAtc.DataAccess;
+using dsASPCAtc.Web.ViewModels;
 using EntidadesAtc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +38,22 @@ namespace dsASPCAtc.Web.Controllers
         {
             ViewData["Resultado"] = new ResultadoRegistro();
             ViewData["Recuperacion"] = new ResultadoRecuperacionContrasena();
+            var lc = new LectorEurocode("6548RGSH5FD");
+            var c = lc.Leer();
+            var ld = new LectorEurocode("2722ACL1B");
+            var d = ld.Leer();
+            //LUNETA
+            var le = new LectorEurocode("6548BGPEAOW1J");
+            var e = le.Leer();
+            //ACCESORIO
+            var lf = new LectorEurocode("2715ASMH");
+            var f = lf.Leer();
+            var lg = new LectorEurocode("2711AGNGN");
+            var g = lg.Leer();
+            var lh = new LectorEurocode("3739AGNBLV1P");
+            var h = lh.Leer();
+            var li = new LectorEurocode("3587RGNM5FDKW");
+            var i = li.Leer();
             return View();
         }
 

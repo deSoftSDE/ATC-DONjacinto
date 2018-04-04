@@ -1048,6 +1048,7 @@ namespace dsASPCAtc.DataAccess
                         Descripcion = AsignaCadena("DescripcionArticuloRel"),
                         IdCategoria = AsignaEntero("IdCategoria"),
                         IdArticuloCategoria = AsignaEntero("IDArticuloCategoria"),
+                        Codigo = AsignaCadena("Codigo"),
                         UnidadesManipulacion = new List<UnidadManipulacion>()
                     };
                     Accesorios.Add(ar);

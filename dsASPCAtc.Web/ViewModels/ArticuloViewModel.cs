@@ -16,6 +16,16 @@ namespace dsASPCAtc.Web.ViewModels
             var ad = new AdaptadorAtc(configuration);
             var res = ad.ArticulosLeerPorID(id);
             articulo = res;
+            var le = new LectorEurocode(articulo.Codigo);
+            articulo.Eurocode = le.Leer();
+            foreach (Categoria ct in articulo.Accesorios)
+            {
+                foreach (BuscaArticulo ar in ct.Articulos)
+                {
+                    var lo = new LectorEurocode(ar.Codigo);
+                    ar.Eurocode = lo.Leer();
+                }
+            }
         }
     }
 }
