@@ -13,19 +13,33 @@ namespace dsASPCAtc.Web.ViewModels
         public BuscaArticulo articulo;
         public ArticuloViewModel(IConfiguration configuration, int id)
         {
-            var ad = new AdaptadorAtc(configuration);
-            var res = ad.ArticulosLeerPorID(id);
-            articulo = res;
-            var le = new LectorEurocode(articulo.Codigo);
-            articulo.Eurocode = le.Leer();
-            foreach (Categoria ct in articulo.Accesorios)
+            if (id > 0)
             {
-                foreach (BuscaArticulo ar in ct.Articulos)
+                var ad = new AdaptadorAtc(configuration);
+                var res = ad.ArticulosLeerPorID(id);
+                articulo = res;
+                var le = new LectorEurocode(articulo.Codigo);
+                articulo.Eurocode = le.Leer();
+                foreach (Categoria ct in articulo.Accesorios)
                 {
-                    var lo = new LectorEurocode(ar.Codigo);
-                    ar.Eurocode = lo.Leer();
+                    foreach (BuscaArticulo ar in ct.Articulos)
+                    {
+                        var lo = new LectorEurocode(ar.Codigo);
+                        ar.Eurocode = lo.Leer();
+                    }
                 }
+            } else
+            {
+                articulo = new BuscaArticulo();
+                articulo.Accesorios = new List<Categoria>
+                {
+                    new Categoria
+                    {
+                        Articulos = new List<BuscaArticulo>(),
+                    }
+                };
             }
+            
         }
     }
 }
