@@ -28,6 +28,23 @@ namespace dsASPCAtc.Web.ViewModels
                         ar.Eurocode = lo.Leer();
                     }
                 }
+                try
+                {
+                    var streaming = configuration.GetSection("StreamFiles")["rutaStreaming"];
+                    articulo.Modelo.url = streaming + articulo.Modelo.Imagen;
+                    if (articulo.Modelo != null)
+                    {
+                        foreach (ImagenFamilia ifa in articulo.Modelo.Imagenes)
+                        {
+                            ifa.url = streaming + ifa.Valor;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                
             } else
             {
                 articulo = new BuscaArticulo();

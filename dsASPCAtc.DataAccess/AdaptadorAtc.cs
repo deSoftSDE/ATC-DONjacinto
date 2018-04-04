@@ -1056,6 +1056,7 @@ namespace dsASPCAtc.DataAccess
         public BuscaArticulo ArticulosLeerPorID(int IDArticulo)
         {
             var res = new BuscaArticulo();
+            res.Modelo = new Modelo();
             var Accesorios = new List<BuscaArticulo>();
             res.Carrocerias = new List<ArticuloCarroceria>();
             res.UnidadesManipulacion = new List<UnidadManipulacion>();
@@ -1160,6 +1161,30 @@ namespace dsASPCAtc.DataAccess
 
                         };
                         uds.Add(um);
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+                    res.Modelo.IDFamilia = AsignaEntero("IDFamilia");
+                    res.Modelo.Imagen = AsignaCadena("Imagen");
+                    res.Modelo.IdSeccion = AsignaEntero("IDSeccion");
+                    res.Modelo.CodigoFamilia = AsignaCadena("CodigoFamilia");
+                    res.Modelo.descripcionSeccion = AsignaCadena("DescripcionSeccion");
+                    res.Modelo.DescripcionFamilia = AsignaCadena("DescripcionFamilia");
+                    res.Modelo.descripcionTipoVehiculo = AsignaCadena("DescripcionTipoVehiculo");
+                    res.Modelo.idTipoVehiculo = AsignaEntero("IdTipoVehiculo");
+                    res.Modelo.Imagenes = new List<ImagenFamilia>();
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var im = new ImagenFamilia
+                    {
+                        IDImagenFamilia = AsignaEntero("IDImagenFamilia"),
+                        IDFamilia = AsignaEntero("IDFamilia"),
+                        Valor = AsignaCadena("Valor"),
+                    };
+                    res.Modelo.Imagenes.Add(im);
                 }
             }
             foreach (BuscaArticulo ar in Accesorios)

@@ -328,6 +328,8 @@ namespace EntidadesAtc
         public Boolean active { get; set; }
         [DataMember]
         public ArticuloEurocode Eurocode { get; set; }
+        [DataMember]
+        public Modelo Modelo { get; set; }
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }
     }
@@ -749,6 +751,7 @@ namespace EntidadesAtc
         public string Inicial { get; set; }
         [DataMember]
         public List<ImagenFamilia> Imagenes { get; set; }
+        public string url { get; set; }
     }
     [DataContract]
     public class MensajeRespuesta
@@ -801,6 +804,7 @@ namespace EntidadesAtc
         [DataMember]
         public int IDFamilia { get; set; }
         public string holi { get; set; }
+        public string url { get; set; }
     }
 
     public class ArticulosYCategorias

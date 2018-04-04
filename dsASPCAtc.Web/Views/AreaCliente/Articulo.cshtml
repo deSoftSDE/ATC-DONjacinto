@@ -83,57 +83,59 @@
                                 @dt.articulo.DescripcionDetallada
                             </p>
                             @if (dt.articulo.Eurocode != null)
+                            {
+                                <div>
+                                    @if (dt.articulo.Eurocode.TipoVidrio != null)
                                     {
-                                    <div>
-                                        @if (dt.articulo.Eurocode.TipoVidrio != null)
-                                        {
-                                            <div>Tipo de Vidrio: @dt.articulo.Eurocode.TipoVidrio</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.TipoAccesorio != null)
-                                        {
-                                            <div>Tipo de Accesorio: @dt.articulo.Eurocode.TipoAccesorio</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.BandaSuperior != null)
-                                        {
-                                            <div>Banda Superior: @dt.articulo.Eurocode.BandaSuperior</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.Carroceria != null) {
-                                            <div>Carrocería: @dt.articulo.Eurocode.Carroceria</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.Color != null) {
-                                            <div>Color: @dt.articulo.Eurocode.Color</div>
-                                        }
-                                        
-                                        
-                                        @if(dt.articulo.Eurocode.Modificaciones != null && dt.articulo.Eurocode.Modificaciones.Count > 0)
-                                        {
-                                            <div>Modificaciones</div>
-                                            <ul>
-                                                @foreach(CaracteristicasArticulo cr in dt.articulo.Eurocode.Modificaciones)
-                                                {
-                                                                                <li>@cr.Valor</li>
+                                        <div>Tipo de Vidrio: @dt.articulo.Eurocode.TipoVidrio</div>
+                                    }
+                                    @if (dt.articulo.Eurocode.TipoAccesorio != null)
+                                    {
+                                        <div>Tipo de Accesorio: @dt.articulo.Eurocode.TipoAccesorio</div>
+                                    }
+                                    @if (dt.articulo.Eurocode.BandaSuperior != null)
+                                    {
+                                        <div>Banda Superior: @dt.articulo.Eurocode.BandaSuperior</div>
+                                    }
+                                    @if (dt.articulo.Eurocode.Carroceria != null)
+                                    {
+                                        <div>Carrocería: @dt.articulo.Eurocode.Carroceria</div>
+                                    }
+                                    @if (dt.articulo.Eurocode.Color != null)
+                                    {
+                                        <div>Color: @dt.articulo.Eurocode.Color</div>
+                                    }
 
-                                                }
-                                            </ul>
-                                            
 
-                                        }
-                                        
-                                        @if (dt.articulo.Eurocode.Caracteristicas != null && dt.articulo.Eurocode.Caracteristicas.Count > 0)
-                                        {
-                                            <div>Caracteristicas</div>
-                                            <ul>
-                                            @foreach(CaracteristicasArticulo cr in dt.articulo.Eurocode.Caracteristicas)
+                                    @if (dt.articulo.Eurocode.Modificaciones != null && dt.articulo.Eurocode.Modificaciones.Count > 0)
+                                    {
+                                        <div>Modificaciones</div>
+                                        <ul>
+                                            @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Modificaciones)
                                             {
-                                                                            <li>@cr.Valor</li>
+                                                <li>@cr.Valor</li>
 
                                             }
-                                            </ul>
+                                        </ul>
 
-                                        }
-                                        
-                                    </div>
+
                                     }
+
+                                    @if (dt.articulo.Eurocode.Caracteristicas != null && dt.articulo.Eurocode.Caracteristicas.Count > 0)
+                                    {
+                                        <div>Caracteristicas</div>
+                                        <ul>
+                                            @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Caracteristicas)
+                                            {
+                                                <li>@cr.Valor</li>
+
+                                            }
+                                        </ul>
+
+                                    }
+
+                                </div>
+                            }
                         </div>
                         <div class="col-12">
                             <ul class="list-unstyled">
@@ -172,6 +174,21 @@
             </div>
         </div>
     </div>
+    @if (dt.articulo.Modelo != null)
+    {
+        <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible.png'" />
+        if (dt.articulo.Modelo.Imagenes != null)
+        {
+
+            @foreach (ImagenFamilia ifam in dt.articulo.Modelo.Imagenes)
+            {
+                <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" />
+            }
+        }
+
+
+    }
+
     <div class="dataTables_wrapper">
         <div class="row">
 

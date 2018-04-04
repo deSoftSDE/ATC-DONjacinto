@@ -307,13 +307,13 @@
             if (NotNullNotUndefinedNotEmpty(e.component._options.selectedItem)) {
                 console.log(e);
                 console.log(e.component._options)
-                console.log(e.component._options.selectedItem)
+                console.log(e.component._options.selectedItem);
                 $scope.lastAno = JSON.parse("" + JSON.stringify(e.component._options.selectedItem));
                 $scope.seleccionarAno($scope.lastAno);
             } else {
                 console.log(e);
                 console.log("Está vacío!!");
-                oldValue = e.previousValue
+                oldValue = e.previousValue;
             }
 
         }

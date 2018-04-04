@@ -14,8 +14,8 @@ namespace dsASPCAtc.Web.Controllers
     [Produces("application/json")]
     public class CarritoViejoController : Controller
     {
-        private IConfiguration _configuration;
-        private Carrito _carrito;
+        //private IConfiguration _configuration;
+        //private Carrito _carrito;
 
         //public CarritoViejoController(IConfiguration configuration)
         //{
