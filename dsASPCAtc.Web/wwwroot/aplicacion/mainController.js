@@ -18,13 +18,33 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         if (inputChangedPromise) {
             $timeout.cancel(inputChangedPromise);
         }
-        inputChangedPromise = $timeout(buscarArticulos, 1000);
+        //inputChangedPromise = $timeout(buscarArticulos, 1000);
+        inputChangedPromise = $timeout(buscarMarcaModelos, 1000);
     }
     $scope.imagenArticulo = function (idArticulo) {
         return Llamada.rutaStreamingArticulo() + idArticulo;
     }
     $scope.verResultados = function () {
         verResultados($scope.cadena);
+    }
+    buscarMarcaModelos = function() {
+        $scope.loading = true;
+        if ($scope.cadena.length > 3) {
+            Llamada.get("MarcasYModelosLeerPorCadena?cadena=" + $scope.cadena)
+                .then(function (respuesta) {
+                    $scope.resultadobusqueda = respuesta.data.articulos;
+                    $scope.resultadomarcas = respuesta.data.marcas;
+                    $scope.NumReg = 0;
+                    $scope.mostrardesplegable = true;
+                    $scope.loading = false;
+                    document.getElementById("desplegable").style.display = "inline";
+                })
+        } else {
+            $scope.resultadobusqueda = [];
+            $scope.resultadomarcas = [];
+            $scope.NumReg = 0;
+            $scope.loading = false;
+        }
     }
     buscarArticulos = function () {
         $scope.loading = true;
@@ -43,7 +63,7 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             $scope.loading = false;
         }
     }
-    fnocultar = function () {
+    fnocultar2 = function () {
         $scope.mostrardesplegable = false;
     }
     $scope.focofuera = function () {
@@ -53,6 +73,12 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         if (NotNullNotUndefinedNotEmpty($scope.resultadobusqueda)) {
             $scope.mostrardesplegable = true;
         }
+    }
+    $scope.buscarConCadena = function() { 
+        if ($scope.cadena.length > 3) { 
+            window.location.href = "/AreaCliente/Resultados?euro=" + $scope.cadena;
+        }
+        
     }
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);

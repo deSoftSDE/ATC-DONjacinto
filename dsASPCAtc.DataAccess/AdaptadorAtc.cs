@@ -239,6 +239,69 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public BusquedaRapida MarcasYModelosLeerPorCadena(string cadena)
+        {
+            var res = new BusquedaRapida();
+            res.Articulos = new List<ArticuloBasico>();
+            res.Marcas = new List<Marca>();
+            var Modelos = new List<Modelo>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@cadena", cadena),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.MarcasYModelosLeerPorCadena", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var mc = new Marca
+                    {
+                        IDSeccion = AsignaEntero("IDSeccion"),
+                        DescripcionSeccion = AsignaCadena("DescripcionSeccion"),
+                        Imagen = AsignaCadena("Imagen"),
+                        CodigoSeccion = AsignaCadena("CodigoSeccion"),
+                        Inicial = AsignaCadena("Inicial"),
+                        Modelos = new List<Modelo>()
+                    };
+                    res.Marcas.Add(mc);
+                };
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var mc = new Modelo
+                    {
+                        IDFamilia = AsignaEntero("IDFamilia"),
+                        DescripcionFamilia = AsignaCadena("DescripcionFamilia"),
+                        Imagen = AsignaCadena("Imagen"),
+                        IdSeccion = AsignaEntero("IDSeccion"),
+                    };
+                    Modelos.Add(mc);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ar = new ArticuloBasico
+                    {
+                        IDArticulo = AsignaEntero("IDArticulo"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                    };
+                    res.Articulos.Add(ar);
+                }
+            }
+            foreach (Marca mc in res.Marcas)
+            {
+                foreach (Modelo model in Modelos)
+                {
+                    if (model.IdSeccion == mc.IDSeccion)
+                    {
+                        mc.Modelos.Add(model);
+                    }
+                }
+            }
+            return res;
+        }
         public List<Modelo> ModelosLeer (int? IDTipoVehiculo, int IDSeccion)
         {
             var res = new List<Modelo>();
@@ -711,6 +774,7 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@idVidrio", pr.idVidrio),
                     new SqlParameter("@idModeloCarroceria", pr.idModeloCarroceria),
                     new SqlParameter("@ano", pr.ano),
+                    new SqlParameter("@eurocode", pr.eurocode),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerBusqueda", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);

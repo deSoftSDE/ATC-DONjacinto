@@ -122,7 +122,7 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio)
+        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio, string euro, int? marca)
         {
             if (!ComprobarLogin())
             {
@@ -137,7 +137,9 @@ namespace dsASPCAtc.Web.Controllers
             {
                 idFamilia = modelo,
                 idVidrio = vidrio,
-                idModeloCarroceria = carroceria
+                idModeloCarroceria = carroceria,
+                eurocode = euro,
+                idSeccion = marca
             };
             if (periodo.HasValue)
             {

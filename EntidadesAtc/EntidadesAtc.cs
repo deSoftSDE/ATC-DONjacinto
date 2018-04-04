@@ -219,6 +219,8 @@ namespace EntidadesAtc
         [DataMember]
         public List<ArticuloBasico> Articulos { get; set; }
         [DataMember]
+        public List<Marca> Marcas { get; set; }
+        [DataMember]
         public int NumReg { get; set; }
     }
     [DataContract]
@@ -681,6 +683,7 @@ namespace EntidadesAtc
         public string descripcionCarroceria { get; set; }
         public int? idCarroceria { get; set; }
         public int? idTipoVidrio { get; set; }
+        public string eurocode { get; set; }
     }
     [DataContract]
     public class TipoVehiculo
@@ -716,6 +719,8 @@ namespace EntidadesAtc
         [DataMember]
         public string CodigoSeccion { get; set; }
         public string Inicial { get; set; }
+        [DataMember]
+        public List<Modelo> Modelos { get; set; }
     }
     [DataContract]
     public class Modelo
