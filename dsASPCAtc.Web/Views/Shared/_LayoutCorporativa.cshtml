@@ -35,12 +35,10 @@
 
                     <div class="col-12 col-md-7 col-lg-6 col-xl-6 offset-lg-2 ofsset-xl-2 ">
                         <div class="container">
-                            <div class="row justify-content-end">
-                                <div class="col-6 text-center d-flex align-items-stretch ">
-                                    <a href="#" class="cta-btn  " data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-lock"></i> ÁREA CLIENTES</a>
-                                </div>
-                                <div class="col-6 text-center d-flex align-items-stretch   ">
-                                    <a href="#" class="cta-btn align-middle" data-toggle="modal" data-target="#modalAppointment"><i class="fa fa-user"></i> SOLICITAR REGISTRO</a>
+                            <div class="row">
+                                <div class="col-12 col-lg-8 offset-lg-4 text-right d-flex align-items-stretch  pull-right  ">
+                                    <a href="#" class="cta-btn mr-1 text-center " data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-lock"></i> ÁREA CLIENTES</a>
+                                    <a href="#" class="cta-btn align-middle text-center" data-toggle="modal" data-target="#modalAppointment"><i class="fa fa-user"></i> SOLICITAR REGISTRO</a>
                                 </div>
                             </div>
                         </div>
@@ -52,12 +50,12 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" asp-controller="Inicio" asp-action="Index">
-                    <div class="row">
-                        <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center">
-                            <img src="~/img/logosolo.png" alt="" class="mr-3">
+                    <div class="row" >
+                        <div class="col-12 col-md-12 col-lg-2 col-xl-2 text-center">
+                            <img src="~/img/logosolo.png" alt="" class="mr-3 img-fluid">
                         </div>
-                        <div class="col-12 col-md-12 col-lg-8 col-xl-8">
-                            Auto-Cristales <span>TOMELLOSO</span>
+                        <div class="col-12 col-md-12 col-lg-10 col-xl-10 text-left" style="display: flex;align-items: center;justify-content: center;">
+                            <div style="font-size:1rem !important">Auto-Cristales <span>TOMELLOSO</span></div>
                         </div>
                     </div>
 
@@ -115,21 +113,25 @@
                 <div class="col-md-3 mb-5">
                     <h3>Empresa</h3>
                     <ul class="footer-link list-unstyled">
-                        <li><a href="#">Calidad</a></li>
+                        <li><a asp-controller="Inicio" asp-action="Historia">Historia</a></li>
+                        <li><a asp-controller="Inicio" asp-action="Formacion">Formación</a></li>
                         <li><a href="#">Instalaciones</a></li>
                     </ul>
-                    <h3>Productos</h3>
+                    <h3><a asp-controller="Inicio" asp-action="Calidad" style="color:#fff">Calidad</a></h3>
+                    <h3><a asp-controller="Inicio" asp-action="Productos" style="color:#fff">Productos</a></h3>
                     <ul class="footer-link list-unstyled">
-                        <li><a href="#">Lunas</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                        <!-- <li><a href="#">Events &amp; Conferences</a></li> -->
+                        
                     </ul>
 
                 </div>
                 <div class="col-md-3 mb-5">
+                    <h3><a asp-controller="Inicio" asp-action="Contacto" style="color:#fff">Contacto</a></h3>
                     <h3>Área de Clientes</h3>
                     <ul class="footer-link list-unstyled">
                         <li><a href="javascript;" data-toggle="modal" data-target="#exampleModal1">Login</a></li>
+                        <li><a href="javascript;"  data-toggle="modal" data-target="#exampleModal">
+    Recuperar Contraseña
+</a></li>
                         <!-- <li><a href="#">Accesorios</a></li> -->
                         <!-- <li><a href="#">Events &amp; Conferences</a></li> -->
                     </ul>
