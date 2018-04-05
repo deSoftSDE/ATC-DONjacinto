@@ -1288,7 +1288,7 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public UsuarioWeb UsuariosLogin(string email, string password)
+        public UsuarioWeb UsuariosLogin(string email, string password, string ipaddress)
         {
             var res = new UsuarioWeb();
             res.Cliente = new Cliente();
@@ -1300,7 +1300,8 @@ namespace dsASPCAtc.DataAccess
                 SqlParameter[] param = new SqlParameter[]
                 {
                     new SqlParameter("@nombre", email),
-                    new SqlParameter("@password", password)
+                    new SqlParameter("@password", password),
+                    new SqlParameter("@ipaddress", ipaddress)
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ValidarUsuario", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1308,6 +1309,7 @@ namespace dsASPCAtc.DataAccess
                 {
                     res.IdUsuarioWeb = AsignaEntero("IdUsuarioWeb");
                     res.UltimaConexion = AsignaFechaNull("UltimaConexion");
+                    res.UltimaIP = AsignaCadena("UltimaIP");
                 }
                 _reader.NextResult();
                 if (_reader.Read())

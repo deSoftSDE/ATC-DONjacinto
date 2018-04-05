@@ -87,6 +87,8 @@ namespace dsASPCAtc.Web.Controllers
         public IActionResult Contacto([FromForm] FormularioContacto form)
         {
             ViewData["Mensaje"] = "Formulario enviado con éxito";
+            var ad = new ServicioCorreo(_configuration);
+            var st = ad.CorreoContactoEnviar(form);
             return View();
         }
 

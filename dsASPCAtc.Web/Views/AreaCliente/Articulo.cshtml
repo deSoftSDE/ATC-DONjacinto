@@ -37,7 +37,7 @@
             </li>
         }
         <li>
-            <a asp-action="AreaCliente">@dt.articulo.Descripcion</a>
+            <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@dt.articulo.IdArticulo">@dt.articulo.Descripcion</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
@@ -80,8 +80,13 @@
                             </p>
                             <small>@dt.articulo.Codigo</small>
                             <p>
-                                @dt.articulo.DescripcionDetallada
+                                @dt.articulo.DescripcionWeb1
                             </p>
+                            <p>
+                                @dt.articulo.DescripcionWeb2
+                            </p>
+
+                            
                             @if (dt.articulo.Eurocode != null)
                             {
                                 <div>

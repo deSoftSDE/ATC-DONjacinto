@@ -55,6 +55,13 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public string CorreoContactoEnviar(FormularioContacto form)
+        {
+            var pp = PropiedadesSitioLeer();
+            var email = RellenarEmailContacto(pp.CorreoContacto, form, pp);
+            var res = EnviarCorreo(pp.dirEmailContacto, "Contacto", email, pp);
+            return res;
+        }
         public ResultadoRegistro ClientesProcesarRegistro(SolicitudRegistro sol)
         {
             var res = new ResultadoRegistro();
@@ -193,6 +200,8 @@ namespace dsASPCAtc.DataAccess
                 res.RutaRecuperacion = AsignaCadena("RutaRecuperacion");
                 res.NombreSitio = AsignaCadena("NombreSitio");
                 res.RutaLogo = AsignaCadena("RutaLogo");
+                res.CorreoContacto = AsignaCadena("CorreoContacto");
+                res.dirEmailContacto = AsignaCadena("dirEmailContacto");
             }
             return res;
         }
@@ -220,6 +229,16 @@ namespace dsASPCAtc.DataAccess
             newmail = newmail.Replace("#%urlSitio%#", pr.URLSitio);
             newmail = newmail.Replace("#%rutaValidacion%#", pr.RutaValidacion);
             newmail = newmail.Replace("#%rutaRecuperacion%#", pr.RutaRecuperacion);
+            newmail = newmail.Replace("#%nombreSitio%#", pr.NombreSitio);
+            newmail = newmail.Replace("#%rutaLogo%#", pr.RutaLogo);
+            return newmail;
+        }
+        private string RellenarEmailContacto(string email, FormularioContacto us, PropiedadesSitio pr)
+        {
+            var newmail = email.Replace("#%apellidos%#", us.lname);
+            newmail = newmail.Replace("#%nombre%#", us.nombre);
+            newmail = newmail.Replace("#%email%#", us.email);
+            newmail = newmail.Replace("#%mensaje%#", us.message);
             newmail = newmail.Replace("#%nombreSitio%#", pr.NombreSitio);
             newmail = newmail.Replace("#%rutaLogo%#", pr.RutaLogo);
             return newmail;

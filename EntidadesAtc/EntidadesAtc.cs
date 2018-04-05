@@ -390,6 +390,7 @@ namespace EntidadesAtc
         public Cliente Cliente { get; set; }
         public List<Domicilio> Domicilios { get; set; }
         public List<Promocion> Promociones { get; set; }
+        public string UltimaIP { get; set; }
     }
     public class RecuperacionPassword
     {
@@ -940,6 +941,8 @@ namespace EntidadesAtc
         public string RutaLogo { get; set; }
         public string CorreoRecuperacion { get; set; }
         public string RutaRecuperacion { get; set; }
+        public string CorreoContacto { get; set; }
+        public string dirEmailContacto { get; set; }
     }
     public class FormularioContacto
     {
