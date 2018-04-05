@@ -14,7 +14,7 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="index.html">Inicio</a>
+            <a asp-controller="AreaCliente" asp-action="Index">Inicio</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
@@ -264,6 +264,24 @@
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row" style="margin:0 20px;">
+                                    <div class="col-md-3" ng-repeat="modelo in modelos" ng-click="seleccionarModelo(modelo)">
+                                        <div class="row margin-bottom-10">
+                                            <a href="javascript:;">
+                                                <div class="col-12">
+                                                    <img class="img-responsive img-marca" ng-src="{{modelo.url}}" onerror="this.src='../../images/escudo.png'" />
+                                                </div>
+                                                <div class="col-12 text-center">
+                                                    {{modelo.descripcionFamilia}}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </uib-tab>
                     @*carrocería*@

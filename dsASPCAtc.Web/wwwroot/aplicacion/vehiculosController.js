@@ -55,7 +55,7 @@
                 }
                 $scope.objetoBusqueda.infoModelo = $scope.currentmodelo;
                 if ($scope.currentmodelo.carrocerias.length < 1) {
-                    $scope.finalizarBusqueda();
+                    $scope.finalizaBusca();
                 }
             })
     }

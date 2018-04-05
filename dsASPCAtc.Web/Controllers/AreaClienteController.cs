@@ -17,12 +17,15 @@ namespace dsASPCAtc.Web.Controllers
     public class AreaClienteController : Controller
     {
         private IConfiguration _configuration;
+        private IHttpContextAccessor _accessor;
         private string _defaultPage = "Index";
         private string _defaultController ="Inicio";
-        public AreaClienteController(IConfiguration configuration)
+        public AreaClienteController(IConfiguration configuration, IHttpContextAccessor accessor)
         {
             _configuration = configuration;
-            
+            _accessor = accessor;
+
+
         }
         public IActionResult Index()
         {
@@ -47,7 +50,8 @@ namespace dsASPCAtc.Web.Controllers
         {
             //HttpContext.Session.SetString("Test", "Ben Rules!");
             var ad = new AdaptadorAtc(_configuration);
-            var us = ad.UsuariosLogin(login.email, login.password);
+            var ipaddress = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var us = ad.UsuariosLogin(login.email, login.password, ipaddress);
             if (us.IdUsuarioWeb > 0)
             {
                 HttpContext.Session.SetObjectAsJson("Login", us);
