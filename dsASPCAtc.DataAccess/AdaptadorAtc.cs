@@ -763,6 +763,7 @@ namespace dsASPCAtc.DataAccess
             res.TiposVidrio = new List<TipoVidrio>();
             var accesorios = new List<BuscaArticulo>();
             var udman = new List<UnidadManipulacion>();
+            var acstock = new List<AcumuladoStock>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -838,7 +839,7 @@ namespace dsASPCAtc.DataAccess
                 _reader.NextResult();
                 while (_reader.Read())
                 {
-                    var um = new UnidadManipulacion
+                    var um = new AcumuladoStock
                     {
                         idArticulo = AsignaEntero("IDArticulo"),
                         idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
@@ -847,7 +848,7 @@ namespace dsASPCAtc.DataAccess
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
 
                     };
-                    udman.Add(um);
+                    acstock.Add(um);
                 }
                 _reader.NextResult();
                 while (_reader.Read())
@@ -895,7 +896,7 @@ namespace dsASPCAtc.DataAccess
                 _reader.NextResult();
                 while (_reader.Read())
                 {
-                    var um = new UnidadManipulacion
+                    var um = new AcumuladoStock
                     {
                         idArticulo = AsignaEntero("IDArticulo"),
                         idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
@@ -904,7 +905,7 @@ namespace dsASPCAtc.DataAccess
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
 
                     };
-                    udman.Add(um);
+                    acstock.Add(um);
                 }
                 _reader.NextResult();
                 while (_reader.Read())
@@ -918,6 +919,35 @@ namespace dsASPCAtc.DataAccess
                     };
                     res.TiposVidrio.Add(vid);
                 }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        AcumuladosStock = new List<AcumuladoStock>(),
+
+                    };
+                    udman.Add(um);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        AcumuladosStock = new List<AcumuladoStock>(),
+                    };
+                    udman.Add(um);
+                }
             }
             var vidriogenerico = new TipoVidrio
             {
@@ -927,6 +957,17 @@ namespace dsASPCAtc.DataAccess
                 Articulos = new List<BuscaArticulo>()
             };
             res.TiposVidrio.Add(vidriogenerico);
+            foreach (AcumuladoStock ac in acstock)
+            {
+                foreach (UnidadManipulacion ud in udman)
+                {
+                    if (ud.idUnidadManipulacion == ac.idUnidadManipulacion)
+                    {
+                        ud.AcumuladosStock.Add(ac);
+                    }
+                }
+            }
+            
             foreach (BuscaArticulo articulo in accesorios)
             {
                 foreach (Categoria ct in res.Accesorios)
@@ -1060,6 +1101,8 @@ namespace dsASPCAtc.DataAccess
             var Accesorios = new List<BuscaArticulo>();
             res.Carrocerias = new List<ArticuloCarroceria>();
             res.UnidadesManipulacion = new List<UnidadManipulacion>();
+            var AcumuladosStockArticulo = new List<AcumuladoStock>();
+            var AcumuladosStockRel = new List<AcumuladoStock>();
             var uds = new List<UnidadManipulacion>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
@@ -1137,7 +1180,7 @@ namespace dsASPCAtc.DataAccess
                 _reader.NextResult();
                 while (_reader.Read())
                 {
-                    var um = new UnidadManipulacion
+                    var um = new AcumuladoStock
                     {
                         idArticulo = AsignaEntero("IDArticulo"),
                         idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
@@ -1146,12 +1189,12 @@ namespace dsASPCAtc.DataAccess
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
 
                     };
-                    res.UnidadesManipulacion.Add(um);
+                    AcumuladosStockArticulo.Add(um);
                 }
                 _reader.NextResult();
                 while (_reader.Read())
                 {
-                        var um = new UnidadManipulacion
+                        var um = new AcumuladoStock
                         {
                             idArticulo = AsignaEntero("IDArticulo"),
                             idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
@@ -1160,7 +1203,7 @@ namespace dsASPCAtc.DataAccess
                             NombreAlmacen = AsignaCadena("NombreAlmacen"),
 
                         };
-                        uds.Add(um);
+                        AcumuladosStockRel.Add(um);
                 }
                 _reader.NextResult();
                 if (_reader.Read())
@@ -1186,17 +1229,57 @@ namespace dsASPCAtc.DataAccess
                     };
                     res.Modelo.Imagenes.Add(im);
                 }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        AcumuladosStock = new List<AcumuladoStock>(),
+                    };
+                    res.UnidadesManipulacion.Add(um);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        AcumuladosStock = new List<AcumuladoStock>(),
+                    };
+                    uds.Add(um);
+                }
+            }
+            foreach (AcumuladoStock ast in AcumuladosStockArticulo)
+            {
+                foreach (UnidadManipulacion ud in res.UnidadesManipulacion)
+                {
+                    if (ud.idUnidadManipulacion == ast.idUnidadManipulacion)
+                    {
+                        ud.AcumuladosStock.Add(ast);
+                    }
+                }
+            }
+            foreach (AcumuladoStock ast in AcumuladosStockRel)
+            {
+                foreach (UnidadManipulacion ud in uds)
+                {
+                    if (ud.idUnidadManipulacion == ast.idUnidadManipulacion)
+                    {
+                        ud.AcumuladosStock.Add(ast);
+                    }
+                }
             }
             foreach (BuscaArticulo ar in Accesorios)
             {
-                
-                foreach (Categoria cat in res.Accesorios)
-                {
-                    if (ar.IdCategoria == cat.IDCategoria)
-                    {
-                        cat.Articulos.Add(ar);
-                    }
-                }
                 foreach (UnidadManipulacion ud in uds)
                 {
                     if (ud.idArticulo == ar.IdArticulo)
@@ -1204,12 +1287,20 @@ namespace dsASPCAtc.DataAccess
                         ar.UnidadesManipulacion.Add(ud);
                     }
                 }
+                foreach (Categoria cat in res.Accesorios)
+                {
+                    if (ar.IdCategoria == cat.IDCategoria)
+                    {
+                        cat.Articulos.Add(ar);
+                    }
+                }
+                
             }
             res.Accesorios.RemoveAll(c => c.Articulos.Count < 1);
             
             return res;
         }
-        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad)
+        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion)
         {
             var res = new Carrito();
             res.Articulos = new List<ArticuloCarrito>();
@@ -1221,6 +1312,7 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@IDArticulo", IDArticulo),
                     new SqlParameter("@IDUsuario", IDUsuario),
                     new SqlParameter("@Cantidad", Cantidad),
+                    new SqlParameter("@IDUnidadManipulacion", IDUnidadManipulacion),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosAnadirArticulo", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1283,6 +1375,7 @@ namespace dsASPCAtc.DataAccess
                     Cantidad = AsignaEntero("Cantidad"),
                     PrecioUd = AsignaDecimal("PrecioUd"),
                     Precio = AsignaDecimal("Precio"),
+                    IDUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
                 };
                 res.Articulos.Add(ar);
             }

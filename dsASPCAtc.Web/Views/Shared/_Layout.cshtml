@@ -418,10 +418,10 @@
                                     <li class="media" ng-repeat="articulo in carrito.articulos">
                                         <div class="media-status">
                                             <span class="badge badge-success">
-                                                <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1)" />
+                                                <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />
                                                 {{articulo.cantidad}}
-                                                <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1)" />
-                                                <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo)" />
+                                                <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" />
+                                                <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo,  articulo.idUnidadManipulacion)" />
                                             </span>
                                         </div>
                                         <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->

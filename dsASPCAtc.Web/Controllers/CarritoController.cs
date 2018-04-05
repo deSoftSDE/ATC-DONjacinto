@@ -22,13 +22,13 @@ namespace dsASPCAtc.Web.Controllers
             _configuration = configuration;
         }
         [HttpGet]
-        public IActionResult AnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad)
+        public IActionResult AnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion)
         {
             ObjectResult result;
             try
             {
                 var ad = new AdaptadorAtc(_configuration);
-                _carrito = ad.CarritosUsuariosAnadirArticulo(IDUsuario, IDArticulo, Cantidad);
+                _carrito = ad.CarritosUsuariosAnadirArticulo(IDUsuario, IDArticulo, Cantidad, IDUnidadManipulacion);
                 result = new ObjectResult(_carrito)
                 {
                     StatusCode = (int)HttpStatusCode.OK

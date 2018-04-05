@@ -77,7 +77,7 @@ namespace EntidadesAtc
         public decimal PoDtoCom { get; set; }
         public decimal PoDtoPP { get; set; }
         public decimal ImportePortes { get; set; }
-        public int IdTipoIvaPortes { get; set; }
+        public int? IdTipoIvaPortes { get; set; }
         public decimal TotalBaseImponible { get; set; }
         public decimal TotalCuotaIva { get; set; }
         public decimal TotalCuotaRE { get; set; }
@@ -198,6 +198,23 @@ namespace EntidadesAtc
         public List<UnidadManipulacion> UnidadesManipulacion { get; set; }
     }
     public class UnidadManipulacion
+    {
+        public int idUnidadManipulacion { get; set; }
+        public int idArticulo { get; set; }
+
+        public string GTIN { get; set; } //AUN NO SE SI ES CADENA O NO
+        public string DescripcionUM { get; set; }
+        public string CodUdVenta { get; set; }
+        public string DescUdVenta { get; set; }
+        public string ModoContenido { get; set; }
+        public decimal UnidadesContenido { get; set; }
+        public decimal PrecioTarifa { get; set; }
+        public int idAcumuladoUdMan { get; set; }
+        public decimal StockFinalUV { get; set; }
+        public string NombreAlmacen { get; set; }
+        public List<AcumuladoStock> AcumuladosStock { get; set; }
+    }
+    public class AcumuladoStock
     {
         public int idUnidadManipulacion { get; set; }
         public int idArticulo { get; set; }
@@ -536,6 +553,8 @@ namespace EntidadesAtc
         public decimal Precio { get; set; }
         [DataMember]
         public decimal PrecioUd { get; set; }
+        [DataMember]
+        public int IDUnidadManipulacion { get; set; }
     }
 
     [DataContract]

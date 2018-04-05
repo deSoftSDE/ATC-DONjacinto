@@ -43,9 +43,9 @@ atc.factory('Carrito', function ($http, $q) {
     var api_carrito = "http://" + location.host + "/Carrito/";
     var idUsuario = document.getElementById("idusuarioweb").value;
     var http = {
-        anadirArticulo: function (idArticulo, Cantidad) {
+        anadirArticulo: function (idArticulo, Cantidad, idUnidadManipulacion) {
             var deferred = $q.defer();
-            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad=" + Cantidad)
+            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad=" + Cantidad + "&IDUnidadManipulacion=" + idUnidadManipulacion)
                 .then(function (respuesta) {
                     console.log(respuesta);
                     deferred.resolve(respuesta);

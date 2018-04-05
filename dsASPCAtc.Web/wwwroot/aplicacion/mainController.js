@@ -83,8 +83,8 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);
     }
-    $scope.anadirCarrito = function (idArticulo, cantidad) {
-        Carrito.anadirArticulo(idArticulo, cantidad)
+    $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion) {
+        Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion)
             .then(function (respuesta) {
 
                 console.log(respuesta.data);

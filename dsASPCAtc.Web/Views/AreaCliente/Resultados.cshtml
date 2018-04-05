@@ -9,6 +9,12 @@
     <script type="text/javascript">
         idcat = @dt.Accesorios[0].IDCategoria;
     </script>
+} else
+{
+    <script type="text/javascript">
+        idcat = 0;
+    </script>
+
 }
 @if (dt.TiposVidrio.Count > 0)
 {
@@ -174,24 +180,32 @@
                                     }
 
                                 </div>
-                                <div class="col-md-4">
+                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion) { 
+                                <span class="unidadmanipulacion">
+                                    <div class="col-md-4">
                                     <div class="row ">
+                                        
                                         <div class="col-md-12">
-                                            @if (ar.UnidadesManipulacion.Count < 1)
-                                        {
-                                            <small><strong><i class="fa fa-industry"></i> Bajo pedido </strong></small> }
-                                    else
-                                    {
-                                        <small><strong><i class="fa fa-industry"></i> Disponible</strong></small>
-                                }
+                                            @if (ud.AcumuladosStock.Count < 1)
+                                                    {
+                                                            <small><strong><i class="fa fa-industry"></i> Bajo pedido </strong></small>
+
+
+                                                    } else
+                                                    {
+                                                            <small><strong><i class="fa fa-industry"></i> Disponible</strong></small>
+
+                                                    }
                                             <ul class="list-unstyled list-inline">
 
-                                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
-                                            {
-                                                <li class="list-inline-item" style="padding-bottom: 5px;">
+
+                                                    
+                                                    @foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                                                    {
+                                                        <li class="list-inline-item" style="padding-bottom: 5px;">
 
 
-                                                    @if (ud.StockFinalUV >= 1)
+                                                    @if (ast.StockFinalUV >= 1)
                                                 {
                                                     <span class=" dispon">
                                                         <i class="fa fa-check"></i>
@@ -202,9 +216,12 @@
                                                 <span class="no-dispon">
                                                     <i class="fa fa-remove"></i>
                                                 </span>
-                                        } <small>@ud.NombreAlmacen</small>
+                                        } <small>@ast.NombreAlmacen</small>
                                     </li>
-                            }
+
+                                                    }
+                                                
+                                    
                                             </ul>
 
                                             @*<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#@ar.IdArticulo">Almacenes</button>
@@ -212,6 +229,7 @@
 
                                             </div>*@
                                         </div>
+                                        
 
                                     </div>
                                     <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
@@ -242,9 +260,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-md-2 text-center">
+                                    <div class=" col-md-2 text-center">
                                     <div class="row">
-                                        @if (ar.UnidadesManipulacion.Count < 1)
+                                        @if (ud.AcumuladosStock.Count < 1)
                                     {
                                         <div class="col-md-12" style="padding-top:-9px">
                                             <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
@@ -254,16 +272,19 @@
                                         </div> }
                                 else
                                 {
-                                    <div class="col-md-12" style="padding-top:-9px">
-                                        <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
-                                            <i class="fa fa-cart-plus fa-lg"></i>
-                                            <div> Añadir</div>
-                                        </a>
-                                    </div>
+                                        <div class="col-md-12" style="padding-top:-9px">
+                                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo, 0, @ud.idUnidadManipulacion)">
+                                                <i class="fa fa-cart-plus fa-lg"></i>
+                                                <div> Añadir</div>
+                                            </a>
+                                        </div>
+                                    
                             }
                                     </div>
 
                                 </div>
+                                </span>
+                                }
                             </div>
                     }
                         </div>
@@ -378,26 +399,34 @@
                                     </div>
                                     }
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="row">
+                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion) { 
+                                <span class="unidadmanipulacion">
+                                    <div class="col-md-4">
+                                    <div class="row ">
+                                        
                                         <div class="col-md-12">
-                                            @if (ar.UnidadesManipulacion.Count < 1)
-                                        {
-                                            <small><strong><i class="fa fa-industry"></i> Bajo pedido </strong></small>
-                                    }
-                                    else
-                                    {
-                                        <small><strong><i class="fa fa-industry"></i> Disponible</strong></small>
-                                }
+                                            @if (ud.AcumuladosStock.Count < 1)
+                                                    {
+                                                            <small><strong><i class="fa fa-industry"></i> Bajo pedido </strong></small>
+
+
+                                                    } else
+                                                    {
+                                                            <small><strong><i class="fa fa-industry"></i> Disponible</strong></small>
+
+                                                    }
                                             <ul class="list-unstyled list-inline">
-                                                @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
-                                            {
-                                                <li class="list-inline-item">
 
 
-                                                    @if (ud.StockFinalUV >= 1)
+                                                    
+                                                    @foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                                                    {
+                                                        <li class="list-inline-item" style="padding-bottom: 5px;">
+
+
+                                                    @if (ast.StockFinalUV >= 1)
                                                 {
-                                                    <span class="dispon">
+                                                    <span class=" dispon">
                                                         <i class="fa fa-check"></i>
                                                     </span>
                                             }
@@ -406,21 +435,21 @@
                                                 <span class="no-dispon">
                                                     <i class="fa fa-remove"></i>
                                                 </span>
+                                        } <small>@ast.NombreAlmacen</small>
+                                    </li>
 
-                                        }
-                                                    <small> @ud.NombreAlmacen</small>
-
-                                                </li>
-
-                                        }
+                                                    }
+                                                
+                                    
                                             </ul>
 
+                                            @*<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#@ar.IdArticulo">Almacenes</button>
+                                            <div id="@ar.IdArticulo" class="collapse">
 
+                                            </div>*@
                                         </div>
+                                        
 
-                                        <div>
-
-                                        </div>
                                     </div>
                                     <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
                                         <div class="col-md-4">
@@ -450,9 +479,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-md-2 text-center">
+                                    <div class=" col-md-2 text-center">
                                     <div class="row">
-                                        @if (ar.UnidadesManipulacion.Count < 1)
+                                        @if (ud.AcumuladosStock.Count < 1)
                                     {
                                         <div class="col-md-12" style="padding-top:-9px">
                                             <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
@@ -462,16 +491,19 @@
                                         </div> }
                                 else
                                 {
-                                    <div class="col-md-12" style="padding-top:-9px">
-                                        <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
-                                            <i class="fa fa-cart-plus fa-lg"></i>
-                                            <div> Añadir</div>
-                                        </a>
-                                    </div>
+                                        <div class="col-md-12" style="padding-top:-9px">
+                                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo, 0, @ud.idUnidadManipulacion)">
+                                                <i class="fa fa-cart-plus fa-lg"></i>
+                                                <div> Añadir</div>
+                                            </a>
+                                        </div>
+                                    
                             }
                                     </div>
 
                                 </div>
+                                </span>
+                                }
                             </div>
 
                     }
