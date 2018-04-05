@@ -32,9 +32,9 @@
                 }
                 $scope.selectboxmodelos.option("dataSource", $scope.modelos);
                 console.log($scope.modelos)
-                //if ($scope.modelos.length < 1) {
-                //    $scope.finalizarBusquedaTipoVehiculo();
-                //}
+                if ($scope.modelos.length < 1) {
+                    $scope.finalizaBusca();
+                }
             })
     }
     buscarCarrocerias = function () {
@@ -307,13 +307,13 @@
             if (NotNullNotUndefinedNotEmpty(e.component._options.selectedItem)) {
                 console.log(e);
                 console.log(e.component._options)
-                console.log(e.component._options.selectedItem)
+                console.log(e.component._options.selectedItem);
                 $scope.lastAno = JSON.parse("" + JSON.stringify(e.component._options.selectedItem));
                 $scope.seleccionarAno($scope.lastAno);
             } else {
                 console.log(e);
                 console.log("Está vacío!!");
-                oldValue = e.previousValue
+                oldValue = e.previousValue;
             }
 
         }
@@ -386,7 +386,7 @@
        // result = DevExpress.ui.dialog.confirm("No hay resultados que coincidan con los parámetros introducidos hasta ahora. ¿Deseas buscar en " + busquedaactual + "?");
         result = DevExpress.ui.dialog.custom(
             {
-                message: 'No hay productos que coincidan con los parámetros introducidos ¿te mostramos los resultados de' + busquedaactual + '?',
+                message: 'No hay productos que coincidan con los parámetros introducidos ¿te mostramos los resultados de ' + busquedaactual + '?',
                 buttons: [{
                     text: 'Si, muestrame todos los resultados',
                     onClick: function () {
@@ -417,8 +417,15 @@
         if (isNaN($scope.objetoBusqueda.ano.valor)) {
             $scope.objetoBusqueda.ano.valor = 0;
         }
-        var parametros = "?modelo=" + $scope.objetoBusqueda.modelo.idFamilia + "&periodo=" + $scope.objetoBusqueda.ano.valor + "&carroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&vidrio=" + $scope.objetoBusqueda.vidrio.idVidrio;
-        verResultados(parametros);
+        if ($scope.objetoBusqueda.modelo.idFamilia < 1) {
+            var parametros = "?marca=" + $scope.objetoBusqueda.marca.idSeccion;
+            verResultados(parametros);
+        } else {
+            //alert("Resultados normales")
+            var parametros = "?modelo=" + $scope.objetoBusqueda.modelo.idFamilia + "&periodo=" + $scope.objetoBusqueda.ano.valor + "&carroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&vidrio=" + $scope.objetoBusqueda.vidrio.idVidrio;
+            verResultados(parametros);
+        }
+        
         //alert("Saliendo...");
     }
     $scope.finalizarBusquedaTipoVehiculo = function () {
@@ -575,6 +582,10 @@
                 console.log($scope.objetoBusqueda);
                 cambiarPagina(4);
             }
+        }
+        if (!NotNullNotUndefinedNotEmpty($scope.objetoBusqueda.NombreTipoVehiculo)) {
+            $scope.objetoBusqueda.idTipoVehiculo = 0;
+            $scope.objetoBusqueda.NombreTipoVehiculo = 'Todos los vehículos';
         }
     }
     catch (Ex) {

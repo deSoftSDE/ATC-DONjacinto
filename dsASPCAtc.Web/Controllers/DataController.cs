@@ -93,6 +93,30 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
+        public IActionResult MarcasYModelosLeerPorCadena(string cadena)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.MarcasYModelosLeerPorCadena(cadena);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
         public IActionResult ModelosLeer(int? IDTipoVehiculo, int IDSeccion)
         {
             ObjectResult result;
