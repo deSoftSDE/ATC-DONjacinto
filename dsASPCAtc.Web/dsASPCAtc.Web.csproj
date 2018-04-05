@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Content Remove="Views\AreaCliente\Contact - Copia.cshtml" />
+    <Content Remove="Views\Inicio\Calidad - Copia.cshtml" />
+    <Content Remove="Views\Inicio\formacion - Copia.cshtml" />
     <Content Remove="wwwroot\aplicacion\uibootsrap.js" />
     <Content Remove="wwwroot\index.html" />
   </ItemGroup>

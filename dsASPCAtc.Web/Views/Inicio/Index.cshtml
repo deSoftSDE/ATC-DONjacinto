@@ -32,50 +32,66 @@
 
 }
 
+<div class="form-login d-none d-xl-block">
+    <div class="col-md-12 col-xs-12">
+        <div class="card">
+            <div class="card-block p-2">
+                <h4 class="text-center"> <i class="fas fa-lock"></i> Acceso Área Cliente</h4>
+                <hr />
+                <form asp-controller="AreaCliente" asp-action="Index" method="post">
+                    <div class="form-group">
+                        <label for="appointment_name" class="text-black">Usuario</label>
+                        <input type="text" class="form-control" name="email" id="appointment_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_email" class="text-black">Contraseña</label>
+                        <input type="text" class="form-control" name="password" id="appointment_email">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
+                                    <small class="text-black">Recuperar Contraseña</small>
+                                </a>
+                            </div>
+                            <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="home-slider owl-carousel">
+
     <div class="slider-item" style="background-image: url('img/fondo_w1b.jpg');">
 
         <div class="container">
             <div class="row slider-text align-items-center">
-                <div class="col-md-7 col-sm-12 element-animate">
+                <div class="col-lg-7 col-md-7 col-sm-12 col-12 element-animate">
                     <div class="row">
-                        <div class="col-6">
-                            <img class="d-block" src="img/logo-blanco.png" alt="">
+                        <div class="col-12 ">
+                            <h2 class="text-white" style="font-size:50px;">Auto-Cristales TOMELLOSO</h2>
                         </div>
                     </div>
-                    <h1>Lunas y Parabrisas para Vehículos</h1>
-                    <p>Distribución de todo tipo de cristales, lunas y parabrisas de automoción y todos los accesorios para su instalación.</p>
-                </div>
-                <div class="col-md-5 col-xs-12">
-                    <div class="card">
-                        <div class="card-block p-2">
-                            <h4>Acceso Área Cliente</h4>
-                            <form asp-controller="AreaCliente" asp-action="Index" method="post">
-                                <div class="form-group">
-                                    <label for="appointment_name" class="text-black">Usuario</label>
-                                    <input type="text" class="form-control" name="email" id="appointment_name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="appointment_email" class="text-black">Contraseña</label>
-                                    <input type="text" class="form-control" name="password" id="appointment_email">
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-6">
-                                             <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
-                                                 <small class="text-black">Recuperar Contraseña</small>  
-                                            </a>
-                                        </div>
-                                        <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
-                                    </div>
-                                    
-                                   
-                                   
-                                </div>
-                            </form>
+                    <h2 class="text-center text-sm-center text-md-left text-lg-left text-white">Lunas y Parabrisas para Vehículos</h2>
+                    <p class="d-none d-xl-block">Distribución de todo tipo de cristales, lunas y parabrisas de automoción y todos los accesorios para su instalación.</p>
+                    <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                            Acceso Área Clientes
+                        </button>
+                        <div>
+                            <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal" style="color:#fff;">
+                                <small class="">Recuperar Contraseña</small>
+                            </a>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-5 col-xs-12"></div>
+
             </div>
         </div>
     </div>
@@ -83,39 +99,49 @@
         <div class="container">
             <div class="row slider-text align-items-center">
                 <div class="col-md-7 col-sm-12 element-animate">
-                    <h1>DON JACINTO</h1>
-                    <h3 class="">Grupo ATC</h3>
+                    <h1>Grupo ATC</h1>
+                    
                     <p>Somos uno de los mayores almacenes de distribución de Europa de lunas y accesorios para automóviles, vehículos industriales y nueva incorporación de parabrisas para autobuses. </p>
-                </div>
-                <div class="col-md-5 col-xs-12">
-                    <div class="card">
-                        <div class="card-block p-2">
-                            <h4>Acceso Área Cliente</h4>
-                            <form asp-controller="AreaCliente" asp-action="Index" method="post">
-                                <div class="form-group">
-                                    <label  class="text-black">Usuario</label>
-                                    <input type="text" class="form-control" name="email" id="appointment_name">
-                                </div>
-                                <div class="form-group">
-                                    <label  class="text-black">Contraseña</label>
-                                    <input type="text" class="form-control" name="password" id="appointment_email">
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
-                                                <small class="text-black">Recuperar Contraseña</small>
-                                            </a>
-                                        </div>
-                                        <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
-                                    </div>
-
-
-
-                                </div>
-                            </form>
+                    <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left ">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                           Acceso Área Clientes
+                        </button>
+                        <div class="text-center text-sm-center text-md-left text-lg-left">
+                            <a href="#javascript," type="" class="text-white" data-toggle="modal" data-target="#exampleModal">
+                                <small class="">Recuperar Contraseña</small>
+                            </a>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    @*<div class="card">
+                            <div class="card-block p-2">
+                                <h4>Acceso Área Cliente</h4>
+                                <form asp-controller="AreaCliente" asp-action="Index" method="post">
+                                    <div class="form-group">
+                                        <label class="text-black">Usuario</label>
+                                        <input type="text" class="form-control" name="email" id="appointment_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-black">Contraseña</label>
+                                        <input type="text" class="form-control" name="password" id="appointment_email">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
+                                                    <small class="text-black">Recuperar Contraseña</small>
+                                                </a>
+                                            </div>
+                                            <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
+                                        </div>
+
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -130,7 +156,7 @@
             <div class="col-inner p-xl-5 p-lg-5 p-md-4 p-sm-4 p-4">
                 <span class="icon flaticon-personas"></span>
                 <h2><strong>PRODUCTOS</strong></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                <p>Los productos que distribuimos abarcan la totalidad del parque móvil europeo, no sólo de automoviles , sino del vehículo industrial, maquinaría de obra publica y agrícola.</p>
             </div>
             <a href="#" class="btn-more">más información</a>
         </div>
@@ -138,7 +164,7 @@
             <div class="col-inner p-xl-5 p-lg-5 p-md-4 p-sm-4 p-4">
                 <span class="icon flaticon-transporte"></span>
                 <h2><strong>CALIDAD</strong></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                <p>Nuestros productos distribuidos provienen de los mejores fabricantes de vidrio del mundo, que cuentan con las especificaciones técnicas como ISO / TS 16949:2009 , ECE R43 – 001853, DOT 563, así como normas ANSI, CCC, SAIB, etc.. Tambien contamos con el sello de calidad Ford Q1.  </p>
             </div>
             <a href="#" class="btn-more">más información</a>
         </div>
@@ -146,19 +172,19 @@
             <div class="col-inner p-xl-5 p-lg-5 p-md-4 p-sm-4 p-4">
                 <span class="icon flaticon-fabrica"></span>
                 <h2><strong>INSTALACIONES</strong></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                <p>Nuestro almacén central dispone de 10.000 metros, con un stock permanente 250.000 piezas, alcanzando la cifra de 14.000 referencias. Tambien disponemos de almacenes en Madrid, Valencia y Murcia. </p>
             </div>
             <a href="#" class="btn-more">más información</a>
         </div>
     </div>
 </section>
 <!-- END section -->
-<section class="section stretch-section">
+<section class="section stretch-section py-5">
     <div class="container">
         <div class="row justify-content-center mb-5 element-animate">
-            <div class="col-md-8 text-center mb-5">
+            <div class="col-md-8 text-center ">
                 <h2 class="text-uppercase heading border-bottom mb-4">Porqué Elegirnos</h2>
-                <p class="mb-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                @*<p class="mb-0 lead">Nuestro material proviene de los mejores y más grandes fabricantes de vidrio del mundo, contando con la misma calidad del vidrio OEM, así como cumpliendo todas las normas de homologación de venta para el mercado Global.</p>*@
             </div>
         </div>
         <div class="row align-items-center">
@@ -173,7 +199,7 @@
                             <span class="icon flaticon-personas"></span>
                             <div class="media-body">
                                 <h3 class="mt-0 text-black">Área de Cliente</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Dónde hacer pedidos, consultar albaranes, consumos..<br />¡¡Agilice tramites y consultas!! Solicite su clave.</p>
                             </div>
                         </div>
                     </div>
@@ -181,8 +207,8 @@
                         <div class="media d-block media-feature text-center">
                             <span class="icon flaticon-transporte"></span>
                             <div class="media-body">
-                                <h3 class="mt-0 text-black">Servivio Especilizado</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <h3 class="mt-0 text-black">Servicio Especilizado</h3>
+                                <p>Con más de 30 años de experiencia en el sector, podemos asesorar a nuestros clientes en cualquier consulta.</p>
                             </div>
                         </div>
                     </div>
@@ -192,8 +218,8 @@
                         <div class="media d-block media-feature text-center">
                             <span class="icon flaticon-fabrica"></span>
                             <div class="media-body">
-                                <h3 class="mt-0 text-black">Almacenes</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <h3 class="mt-0 text-black">Distribución</h3>
+                                <p>Disponemos de 15 rutas de servicio directo con nuestro propio transporte, así como acuerdos con las empresas logísticas especializadas.</p>
                             </div>
                         </div>
                     </div>
@@ -202,7 +228,7 @@
                             <span class="icon flaticon-transporte-1"></span>
                             <div class="media-body">
                                 <h3 class="mt-0 text-black">Productos</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Nuestro material proviene de los mejores y más grandes fabricantes de vidrio del mundo, contando con la misma calidad del vidrio OEM.</p>
                             </div>
                         </div>
                     </div>
@@ -212,7 +238,7 @@
     </div>
 </section>
 <!-- END section -->
-<section class="section custom-tabs bg-light">
+@*<section class="section custom-tabs bg-light">
     <div class="container">
         <div class="row">
             <div class="col-md-4 border-right element-animate">
@@ -246,7 +272,7 @@
                         <h2 class="text-primary">Almacenes</h2>
                         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
                         <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
-                        <!-- <p><a href="#" class="btn btn-primary">Learn More</a></p> -->
+                       
                     </div>
                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                         <span class="icon flaticon-transporte-1"></span>
@@ -259,7 +285,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 <!-- END section -->
 <!-- <section class="section bg-light">
   <div class="container">
@@ -391,12 +417,12 @@
   </div>
 </section> -->
 <!-- END section -->
-<section class="cover_1" style="background-image: url(img/luna-rota.jpg);">
+<section class="cover_1" style="background-image: url(img/fondo2.jpg);">
     <div class="container">
         <div class="row text-center justify-content-center">
             <div class="col-md-10">
-                <h2 class="heading element-animate">ENTREGAS GARANTIZADAS</h2>
-                <p class="sub-heading element-animate mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                <h2 class="heading element-animate text-black">ENTREGAS GARANTIZADAS</h2>
+                <p class="sub-heading element-animate mb-5 text-black">Nuestro material siempre viaja perfectamente protegido en cajas de cartón y envuelto en bolsas de plástico para asegurar una entrega perfecta.</p>
                 <p class="element-animate"><a href="#" class="btn btn-primary btn-lg">Contacte con nosotros</a></p>
             </div>
         </div>
@@ -406,23 +432,24 @@
 <section class="section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5 element-animate">
-            <div class="col-md-8 text-center mb-5">
+            <div class="col-md-8 text-center">
                 <h2 class="text-uppercase heading border-bottom mb-4"><i class="fas fa-users"></i> NUEVA ÁREA DE CLIENTES </h2>
-                <p class="mb-0 lead">Desde Grupo ATC Don Jacinto, queremos facilitar a nuestros clientes el trabajo, facilitando el acceso a realizar pedidos, consultas de pedidos, disponibilidad de artículos.... </p>
-            </div>
+                <p class="mb-0 lead">Desde Auto-Cristales TOMELLOSO, queremos facilitar a nuestros clientes el trabajo, facilitando el acceso a realizar y consultar pedidos, ver la disponibilidad de artículos.... </p>
+                <img class="d-block mx-auto img-fluid" src="~/img/pantallazo-aplic.png" />
+            
+           </div>
         </div>
-        <div class="row element-animate">
+        @*<div class="row element-animate">
             <div class="major-caousel js-carousel-2 owl-carousel">
                 <div>
                     <div class="media d-block media-custom text-left">
                         <img src="img/266973-600-400.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!-- <span class="meta-post">December 2, 2017</span> -->
+                          
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Consulta de Facturas</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 8</a> -->
+                               
                             </p>
                         </div>
                     </div>
@@ -431,12 +458,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/comprar-online.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!--  <span class="meta-post">December 2, 2017</span> -->
+                          
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Pedidos Online</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 2</a> -->
+                               
                             </p>
                         </div>
                     </div>
@@ -445,12 +471,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/ofertas_descuentos_promociones.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!-- <span class="meta-post">December 2, 2017</span> -->
+                           
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Ofertas y descuentos</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 5</a> -->
+                                
                             </p>
                         </div>
                     </div>
@@ -459,12 +484,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/CAP_Valencia_Permiso_C_camion.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!--  <span class="meta-post">December 2, 2017</span> -->
+                            
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Envios</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 7</a> -->
+                              
                             </p>
                         </div>
                     </div>
@@ -473,12 +497,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/Finanzas_tradicionales_vs_Fintech_Quin_gana_el_partido.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!-- <span class="meta-post">December 2, 2017</span> -->
+                          
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Estado del pedido</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!--  <a href="#" class="float-left">Read more</a>
-                                 <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 1</a> -->
+                              
                             </p>
                         </div>
                     </div>
@@ -487,12 +510,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/devoluciones_compradores.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!-- <span class="meta-post">December 2, 2017</span> -->
+                          
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Devoluciones</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!--  <a href="#" class="float-left">Read more</a>
-                                 <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 4</a> -->
+                               
                             </p>
                         </div>
                     </div>
@@ -501,12 +523,11 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/24x7.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!--  <span class="meta-post">December 2, 2017</span> -->
+                           
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">24x7x365</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 12</a> -->
+                               
                             </p>
                         </div>
                     </div>
@@ -515,24 +536,23 @@
                     <div class="media d-block media-custom text-left">
                         <img src="img/mensajes.jpg" alt="Image Placeholder" class="img-fluid">
                         <div class="media-body">
-                            <!--  <span class="meta-post">December 2, 2017</span> -->
+                           
                             <h3 class="mt-0 text-black"><a href="#" class="text-black">Solicite registro</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <p class="clearfix">
-                                <!-- <a href="#" class="float-left">Read more</a>
-                                <a href="#" class="float-right meta-chat"><span class="ion-chatbubble"></span> 14</a> -->
+                               
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END slider -->
-        </div>
+           
+        </div>*@
     </div>
 </section>
 <!-- END section -->
 <a href="#" class="cta-link element-animate" data-animate-effect="fadeIn" data-toggle="modal" data-target="#modalAppointment">
-    <span class="sub-heading">Si eres cliente de Grupo ATC Don Jacinto, puedes solicitar el registro en nuestra área de clientes aquí.</span>
-    <span class="heading">¿Ha solicitado ya el acceso a nuestra área de cliente?</span>
+    <span class="sub-heading">Si eres cliente de Grupo ATC Don Jacinto, puedes solicitar el registro desde aquí.</span>
+    <span class="heading">¿Ha solicitado ya el acceso a nuestra Área de Cliente?</span>
 </a>
 <!-- END cta-link -->

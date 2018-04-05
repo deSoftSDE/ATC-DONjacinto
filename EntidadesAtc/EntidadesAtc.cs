@@ -882,5 +882,12 @@ namespace EntidadesAtc
         public string CorreoRecuperacion { get; set; }
         public string RutaRecuperacion { get; set; }
     }
+    public class FormularioContacto
+    {
+        public string nombre { get; set; }
+        public string lname { get; set; }
+        public string email { get; set; }
+        public string message { get; set; }
+    }
 
 }

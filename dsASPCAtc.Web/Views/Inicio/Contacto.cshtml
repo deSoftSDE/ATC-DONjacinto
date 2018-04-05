@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_LayoutCorporativa";
+    var c = ViewData["Mensaje"];
+}
+
+<section class="home-slider inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('../img/contacto.jpg');">
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-8 col-sm-12 element-animate">
+                    <h1>Contacto</h1>
+                    @*<h2>Calidad</h2>*@
+                    <p class="">¿En qué podemos ayurle?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- END slider -->
+<div>@c</div>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5 element-animate fadeInUp element-animated">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="fname">Nombre</label>
+                            <input type="text" class="form-control form-control-lg" name="nombre" id="fname">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="lname">Apellidos</label>
+                            <input type="text"  name="lname" class="form-control form-control-lg" id="lname">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea name="message" id="message" class="form-control form-control-lg" cols="30" rows="8"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="submit" value="Enviar Mensaje" class="btn btn-primary btn-lg btn-block">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 element-animate fadeInUp element-animated">
+                Pol. Ind. La Serna - Calle C - C2 13710 Argamasilla de Alba (Ciudad Real) - España
+
+                <h5 class="text-uppercase mb-3">Pol. Ind. La Serna - Calle C</h5>
+                <p class="mb-5">C2 13710 Argamasilla de Alba <br> Suite 721 <br> New York NY 10016</p>
+
+                <h5 class="text-uppercase mb-3">Email Us At</h5>
+                <p class="mb-5"><a href="mailto:info@yourdomain.com">info@yourdomain.com</a> <br> <a href="mailto:customer@yourdomain.com">customer@yourdomain.com</a></p>
+
+                <h5 class="text-uppercase mb-3">Call Us</h5>
+                <p class="mb-5">Phone: (+1) 435 3533 <br> Mobile: (+1) 435 3533 <br> Fax: (+1) 435 3534</p>
+
+
+            </div>
+        </div>
+    </div>
+</section>

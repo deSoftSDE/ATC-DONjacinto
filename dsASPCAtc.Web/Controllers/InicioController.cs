@@ -40,6 +40,40 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
 
+        public IActionResult Calidad()
+        {
+            
+            return View();
+        }
+        public IActionResult Historia()
+        {
+
+            return View();
+        }
+        public IActionResult Formacion()
+        {
+
+            return View();
+        }
+
+        public IActionResult Productos()
+        {
+
+            return View();
+        }
+        public IActionResult Contacto()
+        {
+            ViewData["Mensaje"] = "";
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contacto([FromForm] FormularioContacto form)
+        {
+            ViewData["Mensaje"] = "Formulario enviado con éxito";
+            return View();
+        }
+
+
         public IActionResult Validacion(Guid id)
         {
             var ad = new ServicioCorreo(_configuration);
