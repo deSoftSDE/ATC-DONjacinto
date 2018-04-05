@@ -944,5 +944,12 @@ namespace EntidadesAtc
         public string CorreoContacto { get; set; }
         public string dirEmailContacto { get; set; }
     }
+    public class FormularioContacto
+    {
+        public string nombre { get; set; }
+        public string lname { get; set; }
+        public string email { get; set; }
+        public string message { get; set; }
+    }
 
 }

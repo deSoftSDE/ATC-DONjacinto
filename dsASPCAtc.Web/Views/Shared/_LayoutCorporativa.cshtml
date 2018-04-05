@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-    <title>GRUPO ATC - Don Jacinto</title>
+    <title>AUTO CRISTALES TOMELLOSO | GRUPO ATC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 700" rel="stylesheet">
@@ -25,56 +25,81 @@
         <div class="top-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-5">
+                    <div class="col-4 col-md-5 col-lg-4 col-xl-4  d-none d-sm-block ">
                         <ul class="social list-unstyled">
                             <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
                             <li><a href="#"><span class="fab fa-twitter"></span></a></li>
                             <li><a href="#"><span class="fab fa-instagram"></span></a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-7 text-right">
-                        <p class="mb-0">
-                            <!--  <a href="#" class="cta-btn" data-toggle="modal" data-target="#modalAppointment"><i class="fas fa-sign-in-alt"></i> AREA DE CLIENTES</a> -->
-                            <a href="#" class="cta-btn" data-toggle="modal" data-target="#modalAppointment"><i class="fa fa-user"></i> SOLICITAR REGISTRO</a>
-                        </p>
+
+                    <div class="col-12 col-md-7 col-lg-6 col-xl-6 offset-lg-2 ofsset-xl-2 ">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-6 text-center d-flex align-items-stretch ">
+                                    <a href="#" class="cta-btn  " data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-lock"></i> ÁREA CLIENTES</a>
+                                </div>
+                                <div class="col-6 text-center d-flex align-items-stretch   ">
+                                    <a href="#" class="cta-btn align-middle" data-toggle="modal" data-target="#modalAppointment"><i class="fa fa-user"></i> SOLICITAR REGISTRO</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Inicio" asp-action="Index"><img src="~/img/logosolo.png" alt=""> DON JACINTO<!-- <span>+</span> -->  </a>
+                <a class="navbar-brand" asp-controller="Inicio" asp-action="Index">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                            <img src="~/img/logosolo.png" alt="" class="mr-3">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+                            Auto-Cristales <span>TOMELLOSO</span>
+                        </div>
+                    </div>
+
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarsExample05">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-controller="Inicio" asp-action="Index">Inicio</a>
+                            <a class="nav-link" asp-controller="Inicio" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresa</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="#">Calidad</a>
+                                <a class="dropdown-item" asp-controller="Inicio" asp-action="Historia">Historia</a>
+                                <a class="dropdown-item" asp-controller="Inicio" asp-action="Formacion">Formación</a>
                                 <a class="dropdown-item" href="#">Instalaciones</a>
                                 <!-- <a class="dropdown-item" href="services.html">Services</a> -->
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown05">
-                                <a class="dropdown-item" href="#">Lunas</a>
-                                <a class="dropdown-item" href="#">Accesorios</a>
-                            </div>
-                        </li>
-                        <!--  <li class="nav-item">
-                           <a class="nav-link" href="news.html">News</a>
-                         </li>
-                         <li class="nav-item">
-                           <a class="nav-link" href="about.html">About</a>
-                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
+                            <a class="nav-link" asp-controller="Inicio" asp-action="Calidad">Calidad</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Inicio" asp-action="Productos">Productos</a>
+                        </li>
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                                    <a class="dropdown-item" href="#">Lunas</a>
+                                    <a class="dropdown-item" href="#">Accesorios</a>
+                                </div>
+                            </li>*@
+                        <!--  <li class="nav-item">
+                          <a class="nav-link" href="news.html">News</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="about.html">About</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Inicio" asp-action="Contacto">Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -93,22 +118,35 @@
                         <li><a href="#">Calidad</a></li>
                         <li><a href="#">Instalaciones</a></li>
                     </ul>
-
-                </div>
-                <div class="col-md-3 mb-5">
                     <h3>Productos</h3>
                     <ul class="footer-link list-unstyled">
                         <li><a href="#">Lunas</a></li>
                         <li><a href="#">Accesorios</a></li>
                         <!-- <li><a href="#">Events &amp; Conferences</a></li> -->
                     </ul>
+
                 </div>
                 <div class="col-md-3 mb-5">
                     <h3>Área de Clientes</h3>
                     <ul class="footer-link list-unstyled">
-                        <li><a href="#">Login</a></li>
+                        <li><a href="javascript;" data-toggle="modal" data-target="#exampleModal1">Login</a></li>
                         <!-- <li><a href="#">Accesorios</a></li> -->
                         <!-- <li><a href="#">Events &amp; Conferences</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-5">
+                    <h3 class="text-uppercase mb-3 h6 text-white"> Email</h3>
+                    <ul class="footer-link list-unstyled">
+                        <li>
+                            <a href="mailto:info@yourdomain.com">info@donjacinto.es</a>
+                        </li>
+                    </ul>
+
+
+                    <h3 class="text-uppercase mb-3 h6 text-white"> Teléfonos </h3>
+                    <ul class="footer-link list-unstyled">
+                        <li>926 50 60 70</li>
+                        <li>926 53 81 85</li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-5">
@@ -118,12 +156,7 @@
                         13710 Argamasilla de Alba
                         (Ciudad Real) - España
                     </p>
-                    <h4 class="text-uppercase mb-3 h6 text-white"> Email</h4>
-                    <p class="mb-5"><a href="mailto:info@yourdomain.com">info@donjacinto.es</a></p>
 
-                    <h4 class="text-uppercase mb-3 h6 text-white"> Teléfonos</h4>
-                    <p>926 50 60 70</p>
-                    <p>926 53 81 85</p>
                 </div>
             </div>
             <div class="row pt-md-3 element-animate">
@@ -155,51 +188,51 @@
                 <form asp-controller="Inicio" asp-action="Index" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-            <label for="" class="text-black">NIF/CIF</label>
-            <input type="text" class="form-control" name="cif">
-        </div>
-        <div class="form-group">
-            <label for="" class="text-black">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre">
-        </div>
-        <div class="form-group">
-            <label for="" class="text-black">Empresa</label>
-            <input type="text" class="form-control" name="empresa">
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="text-black">Contraseña</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="text-black">Teléfono</label>
-                    <input type="text" class="form-control" name="telefono">
-                </div>
-            </div>
-        </div>
+                            <label for="" class="text-black">NIF/CIF</label>
+                            <input type="text" class="form-control" name="cif">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="text-black">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="text-black">Empresa</label>
+                            <input type="text" class="form-control" name="empresa">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="text-black">Contraseña</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="text-black">Teléfono</label>
+                                    <input type="text" class="form-control" name="telefono">
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <label for="appointment_message" class="text-black">email</label>
-            <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="appointment_information" class="text-black">Información</label>
-            <input type="text" name="informacion" class="form-control">
-        </div>
-        @*<div class="form-group">
-                <input type="submit" value="Enviar" class="btn btn-primary">
-            </div>*@
+                        <div class="form-group">
+                            <label for="appointment_message" class="text-black">email</label>
+                            <input type="text" name="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment_information" class="text-black">Información</label>
+                            <input type="text" name="informacion" class="form-control">
+                        </div>
+                        @*<div class="form-group">
+                                <input type="submit" value="Enviar" class="btn btn-primary">
+                            </div>*@
 
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <input type="submit" value="Enviar" class="btn btn-primary">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" value="Enviar" class="btn btn-primary">
 
-    </div>
-</form>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -258,6 +291,48 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Acceso Clientes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="AreaCliente" asp-action="Index" method="post">
+                        <div class="form-group">
+                            <label for="appointment_name" class="text-black">Usuario</label>
+                            <input type="text" class="form-control" name="email" id="appointment_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment_email" class="text-black">Contraseña</label>
+                            <input type="text" class="form-control" name="password" id="appointment_email">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    @*<a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
+                                            <small class="text-black">Recuperar Contraseña</small>
+                                        </a>*@
+                                </div>
+                                <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
