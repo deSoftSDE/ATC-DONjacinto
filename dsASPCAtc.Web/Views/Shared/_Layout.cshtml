@@ -32,7 +32,7 @@
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link rel="stylesheet" href="~/assets/global/plugins/font/flaticon.css">
     <link href="~/assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
-    <link href="~/assets/layouts/layout/css/themes/blue.CSS" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/assets/layouts/layout/css/themes/autocristales.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="~/assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
@@ -80,6 +80,15 @@
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                        <li class="nav-item">
+                            <a class="nav-link link-conect">Última Conexión @c.UltimaConexion</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-conect">desde IP @c.UltimaIP</a>
+
+                        </li>
                         <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
@@ -159,17 +168,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown dropdown-user">
-                            <a href="javascript:;" >
-                                Última Conexión:
-                                <span class="username username-hide-on-mobile"> @c.UltimaConexion </span>
-                            <span class="username username-hide-on-mobile"> @c.UltimaIP </span>
-                            </a>
-                            
-                        </li>
+
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="~/assets/layouts/layout/img/avatar3_small.jpg" />
+                                <img alt="" class="img-circle" src="~/img/usuario-esta.png" />
+                                @*<span class="glyphicon glyphicon-user" style="font-size:17px;"> </span>*@
                                 <span class="username username-hide-on-mobile"> @c.Cliente.Nombre </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -194,7 +197,7 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-quick-sidebar-toggler">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <i class="icon-logout"></i>
+                                <i class="icon-basket"></i>
                             </a>
                         </li>
                         <!-- END QUICK SIDEBAR TOGGLER -->
@@ -362,7 +365,7 @@
             <!-- END CONTENT -->
             <!-- BEGIN QUICK SIDEBAR -->
             <a href="javascript:;" class="page-quick-sidebar-toggler">
-                <i class="icon-login"></i>
+                <i class="icon-close"></i> Cerrar
             </a>
             <!--  INICIO SIDEBAR OCULTA -->
             <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
@@ -370,45 +373,17 @@
                     <ul class="nav nav-tabs">
                         <li class="active">
                             <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab">
-                                TAB1
-                                <span class="badge badge-danger">2</span>
+                                CARRITO
+                                @*<span class="badge badge-danger">2</span>*@
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
-                                TAB2
-                                <span class="badge badge-success">7</span>
+                                PEDIDOS PENDIENTES
+                                @*<span class="badge badge-success">7</span>*@
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                MÁS
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li>
-                                    <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                        <i class="icon-bell"></i> opcion1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                        <i class="icon-info"></i> opcion2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                        <i class="icon-speech"></i> opcion3
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                        <i class="icon-settings"></i> opcion3
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">

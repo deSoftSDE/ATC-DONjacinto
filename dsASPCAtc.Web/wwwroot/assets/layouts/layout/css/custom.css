@@ -202,3 +202,11 @@ div.seleccionado {
         filter: hue-rotate(90deg);
         
     }
+a.link-conect{
+    color:#fff;
+}
+a.link-conect:hover {
+    color: #fff;
+    cursor:default;
+    background-color:transparent !important;
+}
