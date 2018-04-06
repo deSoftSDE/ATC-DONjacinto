@@ -61,6 +61,15 @@ atc.factory('Carrito', function ($http, $q) {
                 })
             return deferred.promise;
         },
+        eliminarCarrito: function () {
+            var deferred = $q.defer();
+            $http.get(api_carrito + "EliminarCarrito?&IDUsuario=" + idUsuario)
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    deferred.resolve(respuesta);
+                })
+            return deferred.promise;
+        },
         verCarrito: function () {
             var deferred = $q.defer();
             $http.get(api_carrito + "LeerCarrito?IDUsuario=" + idUsuario)

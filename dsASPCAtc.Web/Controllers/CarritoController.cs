@@ -46,6 +46,30 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
+        public IActionResult EliminarCarrito(int IDUsuario)
+        {
+            ObjectResult result;
+            try
+            {
+                var ad = new AdaptadorAtc(_configuration);
+                _carrito = ad.CarritoVaciar(IDUsuario);
+                result = new ObjectResult(_carrito)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
         public IActionResult EliminarArticulo(int IDUsuario, int IDArticulo)
         {
             ObjectResult result;

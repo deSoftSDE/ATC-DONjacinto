@@ -1032,6 +1032,7 @@ namespace dsASPCAtc.DataAccess
             var res = new UnClickYNovedades();
             res.UnClick = new List<BuscaArticulo>();
             res.Novedades = new List<BuscaArticulo>();
+            var unidadesManipulacion = new List<UnidadManipulacion>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -1089,6 +1090,40 @@ namespace dsASPCAtc.DataAccess
                         UnidadesManipulacion = new List<UnidadManipulacion>(),
                     };
                     res.Novedades.Add(ar);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var um = new UnidadManipulacion
+                    {
+                        idArticulo = AsignaEntero("IDArticulo"),
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
+                        StockFinalUV = AsignaDecimal("StockFinalUV"),
+                        NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        AcumuladosStock = new List<AcumuladoStock>(),
+                    };
+                    unidadesManipulacion.Add(um);
+                }
+                foreach (BuscaArticulo ar in res.Novedades)
+                {
+                    foreach (UnidadManipulacion ud in unidadesManipulacion)
+                    {
+                        if (ud.idArticulo == ar.IdArticulo)
+                        {
+                            ar.UnidadesManipulacion.Add(ud);
+                        }
+                    }
+                }
+                foreach (BuscaArticulo ar in res.UnClick)
+                {
+                    foreach (UnidadManipulacion ud in unidadesManipulacion)
+                    {
+                        if (ud.idArticulo == ar.IdArticulo)
+                        {
+                            ar.UnidadesManipulacion.Add(ud);
+                        }
+                    }
                 }
             }
             return res;
@@ -1473,6 +1508,94 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public Carrito CarritoVaciar(int idUsuarioWeb)
+        {
+            var res = new Carrito();
+            res.Articulos = new List<ArticuloCarrito>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDUsuarioWeb", idUsuarioWeb)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritoVaciar", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            return res;
+        }
+        public Carrito PedidosCrear(int IDUsuarioWeb, int IdDomiEnt)
+        {
+            var pw = new PedidoWeb();
+            pw.Fecha = DateTime.Now;
+            pw.IdDomiEnt = IdDomiEnt;
+            pw.LineasPedido = new List<LineaPedidoVentas>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDUsuarioWeb", IDUsuarioWeb)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.PedidosCrear", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    pw.IdDelegacion = AsignaEntero("IdDelegacion");
+                    pw.IdCliente = AsignaEntero("IDCliente");
+
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var lp = new LineaPedidoVentas
+                    {
+                        IdUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        CantidadXUM = 0,
+                        CantidadUM = AsignaEntero("Cantidad"),
+                        CantidadUV = AsignaEntero("Cantidad"),
+                        TipoTrans = "Insercion",
+                        IdArticulo = AsignaEntero("IDArticulo")
+                    };
+                    pw.LineasPedido.Add(lp);
+                }
+
+            }
+            var pedido = dsCore.Comun.Ayudas.SerializarACadenaXML(pw);
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@pedido", pedido)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.PedidosProcesar", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    pw.IdDelegacion = AsignaEntero("IdDelegacion");
+                    pw.IdCliente = AsignaEntero("IDCliente");
+
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var lp = new LineaPedidoVentas
+                    {
+                        IdUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        CantidadXUM = 0,
+                        CantidadUM = AsignaEntero("Cantidad"),
+                        CantidadUV = AsignaEntero("Cantidad"),
+                        TipoTrans = "Insercion",
+                        IdArticulo = AsignaEntero("IDArticulo")
+                    };
+                    pw.LineasPedido.Add(lp);
+                }
+
+            }
+            var res = CarritoVaciar(IDUsuarioWeb);
+            return res;
+        }
     }
     
+
 }

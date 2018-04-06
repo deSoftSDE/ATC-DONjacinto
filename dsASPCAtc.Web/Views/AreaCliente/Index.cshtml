@@ -282,9 +282,14 @@
                                                     <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
                                                         <!--<i class="fa fa-star"></i>-->  Más info
                                                     </a>
-                                                    <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo)" class="btn font-green">
+                                                    @foreach(UnidadManipulacion ua in ar.UnidadesManipulacion)
+                                                    {
+                                                        <a href="javascript:;" ng-click="anadirCarrito(@ar.IdArticulo,0,@ua.idUnidadManipulacion)" class="btn font-green">
                                                         <i class="icon-plus "></i> Añadir al pedido
                                                     </a>
+
+                                                    }
+                                                    
                                                 </div>
                                             </div>
                                         </div>

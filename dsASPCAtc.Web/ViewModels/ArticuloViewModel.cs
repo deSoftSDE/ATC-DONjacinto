@@ -38,6 +38,10 @@ namespace dsASPCAtc.Web.ViewModels
                         {
                             ifa.url = streaming + ifa.Valor;
                         }
+                        if (articulo.Modelo.Imagenes.Count > 0)
+                        {
+                            articulo.Modelo.Imagenes[0].active = true;
+                        }
                     }
                 }
                 catch (Exception ex)
