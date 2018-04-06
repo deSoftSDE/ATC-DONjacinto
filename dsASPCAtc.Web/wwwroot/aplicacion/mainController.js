@@ -142,6 +142,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 $scope.carrito = respuesta.data;
             })
     }
+    $scope.verPaginaCarrito = function() { 
+            window.location.href = "/AreaCliente/Pedido";
+        }
     Carrito.verCarrito()
         .then(function (respuesta) {
             console.log(respuesta.data);

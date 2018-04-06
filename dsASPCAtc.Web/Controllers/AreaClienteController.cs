@@ -114,12 +114,13 @@ namespace dsASPCAtc.Web.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("AreaCliente", "ErrorPedido");
+                var c = new MensajeError();
+                c.Contenido = ex.Message;
+                return RedirectToAction("ErrorPedido", "AreaCliente", c);
             }
             
         }
-        [HttpPost]
-        public IActionResult ErrorPedido()
+        public IActionResult ErrorPedido(MensajeError ex)
         {
             if (!ComprobarLogin())
             {
@@ -129,6 +130,7 @@ namespace dsASPCAtc.Web.Controllers
             {
                 ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             }
+            ViewData["Contenido"] = ex.Contenido;
             return View();
 
         }

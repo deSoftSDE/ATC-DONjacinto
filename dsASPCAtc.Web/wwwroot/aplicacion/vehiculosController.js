@@ -62,7 +62,9 @@
     buscarAnos = function () {
         Llamada.get("AnosLeerPor?idmodelocarroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&idfamilia=" + $scope.objetoBusqueda.modelo.idFamilia)
             .then(function (respuesta) {
-                $scope.anos = respuesta.data;
+                $scope.anos = respuesta.data.anos;
+                $scope.intervalos = respuesta.data.intervalos;
+                console.log($scope.anos)
                 for (i = 0; i < $scope.anos.length; i++) {
                     $scope.anos[i].ano = $scope.anos[i].valor;
                 }

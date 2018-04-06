@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Linq;
 
 namespace dsASPCAtc.DataAccess
 {
@@ -383,9 +384,11 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public List<Ano> AnosLeerPor(int idmodelocarroceria, int idfamilia)
+        public ListadoAnos AnosLeerPor(int idmodelocarroceria, int idfamilia)
         {
-            var res = new List<Ano>();
+            var res = new ListadoAnos();
+            res.Anos = new List<Ano>();
+            res.Intervalos = new List<IntervaloAnos>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -403,11 +406,31 @@ namespace dsASPCAtc.DataAccess
                         Valor = AsignaEntero("Ano"),
                         CantidadArticulos = AsignaEntero("CantidadArticulos"),
                     };
-                    res.Add(an);
+                    res.Anos.Add(an);
                 }
+                var listado = splitList<Ano>(res.Anos, 10);
+                var c = listado.ToList<List<Ano>>();
+                foreach (List<Ano> l in c)
+                {
+                    
+                    l.OrderByDescending(p => p.Valor);
+                    var listad = new IntervaloAnos();
+                    listad.Anos = l;
+                    listad.titulo = listad.Anos[0].Valor.ToString() + " - " + listad.Anos[listad.Anos.Count - 1].Valor.ToString();
+                    listad.titulojunto = listad.Anos[0].Valor.ToString() + listad.Anos[listad.Anos.Count - 1].Valor.ToString();
+                    res.Intervalos.Add(listad);
+                }
+                var i = 1;
 
             }
             return res;
+        }
+        public static IEnumerable<List<T>> splitList<T>(List<T> locations, int nSize = 30)
+        {
+            for (int i = 0; i < locations.Count; i += nSize)
+            {
+                yield return locations.GetRange(i, Math.Min(nSize, locations.Count - i));
+            }
         }
         public Carroceria CarroceriasLeerEsquema(int idmodelocarroceria, int ano)
         {
@@ -1526,6 +1549,7 @@ namespace dsASPCAtc.DataAccess
         }
         public Carrito PedidosCrear(int IDUsuarioWeb, int IdDomiEnt)
         {
+            //throw new Exception("Holi");
             var pw = new PedidoWeb();
             pw.Fecha = DateTime.Now;
             pw.IdDomiEnt = IdDomiEnt;
