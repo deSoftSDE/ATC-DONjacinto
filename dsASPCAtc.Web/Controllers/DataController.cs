@@ -234,5 +234,29 @@ namespace dsASPCAtc.Web.Controllers
             }
             return result;
         }
+        [HttpGet]
+        public IActionResult PedidosCrear(int idUsuarioWeb, int idDomiEnt)
+        {
+            var ad = new AdaptadorAtc(_configuration);
+            ObjectResult result;
+            try
+            {
+                ad.PedidosCrear(idUsuarioWeb, idDomiEnt);
+                result = new ObjectResult(1)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        
     }
 }

@@ -83,14 +83,48 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);
     }
-    $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion) {
+    $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion, noabrir) {
         Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion)
             .then(function (respuesta) {
 
                 console.log(respuesta.data);
-                $("body").addClass("page-quick-sidebar-open");
+                if (noabrir !== true) {
+                    $("body").addClass("page-quick-sidebar-open");
+                }
+                
                 $scope.carrito = respuesta.data;
             })
+    }
+    $scope.eliminarCarrito = function () {
+
+        result = DevExpress.ui.dialog.custom(
+            {
+                message: '¿Estás seguro de que deseas vaciar tu carrito?',
+                buttons: [{
+                    text: 'Si',
+                    onClick: function () {
+                        return true;
+                    }
+                },
+                {
+                    text: 'No',
+                    onClick: function () {
+                        return false;
+                    }
+                }
+                ]
+
+            }).show();
+        result.then(function (val) {
+            Carrito.eliminarCarrito()
+                .then(function (respuesta) {
+                    $scope.carrito = respuesta.data;
+                })
+        });
+
+
+
+        
     }
     $scope.eliminarArticulo = function (idArticulo) {
         Carrito.eliminarArticulo(idArticulo)

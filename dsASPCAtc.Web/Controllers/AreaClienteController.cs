@@ -96,6 +96,43 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult Procesar([FromForm] ProcesoPedido pr)
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                ad.PedidosCrear(pr.usuario, pr.domicilio);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("AreaCliente", "ErrorPedido");
+            }
+            
+        }
+        [HttpPost]
+        public IActionResult ErrorPedido()
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            return View();
+
+        }
+        [HttpPost]
         public IActionResult Productos(CampoBusqueda cm)
         {
             if (!ComprobarLogin())

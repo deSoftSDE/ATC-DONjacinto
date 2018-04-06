@@ -480,6 +480,11 @@ namespace EntidadesAtc
         public string EmaildsWin { get; set; }
         public Guid? GuidRecuperacion { get; set; }
     }
+    public class ProcesoPedido
+    {
+        public int usuario { get; set; }
+        public int domicilio { get; set; }
+    }
     public class Domicilio
     {
         public int IDDomicilioCliente { get; set; }
@@ -824,7 +829,10 @@ namespace EntidadesAtc
         [DataMember]
         public int IDFamilia { get; set; }
         public string holi { get; set; }
+        [DataMember]
         public string url { get; set; }
+        [DataMember]
+        public bool active { get; set; }
     }
 
     public class ArticulosYCategorias
