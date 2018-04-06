@@ -408,6 +408,7 @@ namespace EntidadesAtc
         public List<Domicilio> Domicilios { get; set; }
         public List<Promocion> Promociones { get; set; }
         public string UltimaIP { get; set; }
+        public InfoMenuWeb InfoMenuWeb { get; set; }
     }
     public class RecuperacionPassword
     {
@@ -711,6 +712,7 @@ namespace EntidadesAtc
         public int? idCarroceria { get; set; }
         public int? idTipoVidrio { get; set; }
         public string eurocode { get; set; }
+        public int? idCategoria { get; set; }
     }
     [DataContract]
     public class TipoVehiculo
@@ -801,6 +803,11 @@ namespace EntidadesAtc
     {
         public List<Ano> Anos { get; set; }
         public List<IntervaloAnos> Intervalos { get; set; }
+    }
+    public class InfoMenuWeb
+    {
+        public List<TipoVehiculo> Vehiculos { get; set; }
+        public List<Categoria> Categorias { get; set; }
     }
     public class IntervaloAnos
     {

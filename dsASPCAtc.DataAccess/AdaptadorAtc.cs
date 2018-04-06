@@ -193,6 +193,44 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public InfoMenuWeb InfoMenuWebLeer()
+        {
+            var res = new InfoMenuWeb();
+            res.Vehiculos = new List<TipoVehiculo>();
+            res.Categorias = new List<Categoria>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.InfoMenusWebLeer", null);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var vh = new TipoVehiculo
+                    {
+                        IDTipoVehiculo = AsignaEntero("IDTipoVehiculo"),
+                        Imagen = AsignaCadena("Imagen"),
+                        Descripcion = AsignaCadena("Descripcion")
+                    };
+                    
+                    res.Vehiculos.Add(vh);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var cat = new Categoria
+                    {
+                        IDCategoria = AsignaEntero("IDCategoria"),
+                        Descripcion = AsignaCadena("Descripcion"),
+                        IdArticuloCategoria = AsignaEntero("IDArticuloCategoria"),
+                        Articulos = new List<BuscaArticulo>(),
+                    };
+                    res.Categorias.Add(cat);
+                }
+            }
+            
+            return res;
+        }
         public BuscadorMarcas MarcasLeer(int? IDTipoVehiculo)
         {
             var res = new BuscadorMarcas();
@@ -799,6 +837,7 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@idModeloCarroceria", pr.idModeloCarroceria),
                     new SqlParameter("@ano", pr.ano),
                     new SqlParameter("@eurocode", pr.eurocode),
+                    new SqlParameter("@idcategoria", pr.idCategoria),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerBusqueda", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);

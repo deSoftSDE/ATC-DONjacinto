@@ -54,7 +54,9 @@ namespace dsASPCAtc.Web.Controllers
             var us = ad.UsuariosLogin(login.email, login.password, ipaddress);
             if (us.IdUsuarioWeb > 0)
             {
+                us.InfoMenuWeb = ad.InfoMenuWebLeer();
                 HttpContext.Session.SetObjectAsJson("Login", us);
+                
                 var vm = new IndexViewModel(_configuration);
                 ViewData["Vehiculos"] = vm.Vehiculos;
                 ViewData["UnClick"] = vm.UnClick;
@@ -165,7 +167,7 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio, string euro, int? marca)
+        public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio, string euro, int? marca, int? categoria)
         {
             if (!ComprobarLogin())
             {
@@ -182,7 +184,8 @@ namespace dsASPCAtc.Web.Controllers
                 idVidrio = vidrio,
                 idModeloCarroceria = carroceria,
                 eurocode = euro,
-                idSeccion = marca
+                idSeccion = marca,
+                idCategoria = categoria,
             };
             if (periodo.HasValue)
             {
