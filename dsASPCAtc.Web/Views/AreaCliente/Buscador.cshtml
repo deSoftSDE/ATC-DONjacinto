@@ -344,6 +344,36 @@
 
 
                             </div>
+                            <div class="row">
+                                <div class="col-12 todo-padding-b-0">
+                                    <div class="row" style="margin: 0 20px;">
+                                        <div class="panel panel-default col-md-2" style="padding:0" ng-repeat="intervalo in intervalos">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle btn-accordion" data-toggle="collapse" data-parent="#intervalo{{intervalo.titulojunto}}" href="#collapseintervalo{{intervalo.titulojunto}}" aria-expanded="false">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                {{intervalo.titulo}}
+                                                            </font>
+                                                        </font>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseintervalo{{intervalo.titulojunto}}" class="panel-collapse collapse" aria-expanded="false" style="">
+                                                <div class="panel-body">
+                                                    <ul class="list-unstyled text-center">
+                                                        <li ng-repeat="ano in intervalo.anos" ng-click="seleccionarAno(ano)" class="btn-enlace " style="padding:5px 0px;">
+                                                            @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{ano.valor}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </uib-tab>
                     @*seleccione vidrio*@

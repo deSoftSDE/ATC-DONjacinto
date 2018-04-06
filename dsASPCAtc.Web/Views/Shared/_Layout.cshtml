@@ -365,13 +365,13 @@
                 <i class="icon-login"></i>
             </a>
             <!--  INICIO SIDEBAR OCULTA -->
-            <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+            <div class="page-quick-sidebar-wrapper" data-close-on-body-click="true">
                 <div class="page-quick-sidebar">
                     <ul class="nav nav-tabs">
                         <li class="active">
                             <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab">
-                                TAB1
-                                <span class="badge badge-danger">2</span>
+                                CARRITO
+                                <span class="badge badge-danger">{{carrito.articulos.length}}</span>
                             </a>
                         </li>
                         <li>
@@ -388,7 +388,7 @@
                             <ul class="dropdown-menu pull-right">
                                 <li>
                                     <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                        <i class="icon-bell"></i> opcion1
+                                        <i class="icon-bell"></i> 
                                     </a>
                                 </li>
                                 <li>
@@ -412,51 +412,28 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
-                            <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
-                                <h3 class="list-heading">ARTÍCULOS EN EL CARRITO</h3>
-                                <ul class="media-list list-items">
-                                    <li class="media" ng-repeat="articulo in carrito.articulos">
-                                        <div class="media-status">
-                                            <span class="badge badge-success">
-                                                <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />
-                                                {{articulo.cantidad}}
-                                                <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" />
-                                                <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo,  articulo.idUnidadManipulacion)" />
-                                            </span>
-                                        </div>
-                                        <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">{{articulo.descripcion}}</h4>
-                                            <div class="media-heading-sub"> DECRIPCION </div>
-                                        </div>
-                                    </li>
-                                    
-                                </ul>
-                                <h3 class="list-heading">TITULO 2</h3>
-                                <ul class="media-list list-items">
-                                    <li class="media">
-                                        <div class="media-status">
-                                            <span class="badge badge-warning">2</span>
-                                        </div>
-                                        <!-- <img class="media-object" src="../assets/layouts/layout/img/avatar6.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Opcion</h4>
-                                            <div class="media-heading-sub"> descripcion </div>
-                                            <div class="media-heading-small"> descripcion2 </div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <div class="media-status">
-                                            <span class="label label-sm label-success">Etiqueta</span>
-                                        </div>
-                                        <!--  <img class="media-object" src="../assets/layouts/layout/img/avatar7.jpg" alt="..."> -->
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Opcion</h4>
-                                            <div class="media-heading-sub"> descripcion </div>
-                                            <div class="media-heading-small"> descripcion2 </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <h3 class="list-heading">ARTÍCULOS EN EL CARRITO</h3>
+                            <ul class="media-list list-items">
+                                <li class="media" ng-repeat="articulo in carrito.articulos">
+                                    <div class="media-status">
+                                        <span class="badge badge-success">
+                                            <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />
+                                            {{articulo.cantidad}}
+                                            <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" />
+                                            <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo,  articulo.idUnidadManipulacion)" />
+                                        </span>
+                                    </div>
+                                    <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{articulo.descripcion}}</h4>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <div class="inner-content">
+                                <button class="btn btn-success" type="submit" ng-click="verPaginaCarrito()">
+                                    <i class="icon-settings"></i> Procesar Pedido
+                                </button>
                             </div>
                         </div>
                         <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">

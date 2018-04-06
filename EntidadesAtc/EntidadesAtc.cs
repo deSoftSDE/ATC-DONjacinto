@@ -791,6 +791,24 @@ namespace EntidadesAtc
         public long Tamano { get; set; }
     }
     [DataContract]
+    public class MensajeError
+    {
+
+        [DataMember]
+        public string Contenido { get; set; }
+    }
+    public class ListadoAnos
+    {
+        public List<Ano> Anos { get; set; }
+        public List<IntervaloAnos> Intervalos { get; set; }
+    }
+    public class IntervaloAnos
+    {
+        public List<Ano> Anos { get; set; }
+        public string titulo { get; set; }
+        public string titulojunto { get; set; }
+    }
+    [DataContract]
     public class BuscadorMarcas
     {
         [DataMember]
