@@ -4,10 +4,12 @@
     ***********/
 /* Header search bar, toggler button & top menu */
 .page-header.navbar {
-  background-color: #2D5F8B;
-  /* Top notification menu/bar */
-  /* Header seaech box */
-  /* Toggler button for sidebar expand/collapse and responsive sidebar menu */ }
+    /*background-color: #2D5F8B;*/ /*original*/
+    background-color: #234056;
+    /* Top notification menu/bar */
+    /* Header seaech box */
+    /* Toggler button for sidebar expand/collapse and responsive sidebar menu */
+}
   .page-header.navbar .top-menu .navbar-nav {
     /* Extended Dropdowns */
     /* Notification */
@@ -17,7 +19,7 @@
     /* Language */
     /* Dark version */ }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle > i {
-      color: #6BA1D1; }
+      color: #fff; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle .badge.badge-default {
       background-color: #d64635;
       color: #ffffff; }
@@ -61,7 +63,7 @@
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-tasks .dropdown-menu .dropdown-menu-list .progress {
       background-color: #dfe2e9; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > .username {
-      color: #b6d0e7; }
+      color: #fff; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > i {
       color: #b6d0e7; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-menu {
@@ -248,10 +250,11 @@
 /* Page sidebar */
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover,
 .page-sidebar {
-  background-color: #4276A4;
-  /* Default sidebar */
-  /* light sidebar */
-  /* Sidebar search */ }
+    background-color: #172A38;
+    /* Default sidebar */
+    /* light sidebar */
+    /* Sidebar search */
+}
   .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu,
   .page-sidebar .page-sidebar-menu {
     /* 1st level links */
@@ -334,9 +337,9 @@
     .page-sidebar .page-sidebar-menu li.active > a > .arrow:before,
     .page-sidebar .page-sidebar-menu li.active > a > .arrow.open:before {
       color: #ffffff; }
-    .page-sidebar-closed .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu:hover .sub-menu, .page-sidebar-closed
-    .page-sidebar .page-sidebar-menu:hover .sub-menu {
-      background-color: #4276A4; }
+.page-sidebar-closed .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu:hover .sub-menu, .page-sidebar-closed .page-sidebar .page-sidebar-menu:hover .sub-menu {
+    background-color: #172A38;
+}
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a,
     .page-sidebar .page-sidebar-menu .sub-menu > li > a {
       color: #C9DFF5; }
@@ -608,7 +611,8 @@
     Boby
     ****/
 body {
-  background-color: #4276A4; }
+    background-color: #172A38;
+}
 
 /****
  CSS3 Spinner Bar
