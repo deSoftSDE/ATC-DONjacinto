@@ -1034,6 +1034,7 @@ ul.timeline {
 
     ul.timeline > li .timeline-image {
         position: static;
+        display:block;
         width: 150px;
         height: 150px;
         margin-bottom: 0px;
