@@ -213,6 +213,94 @@ namespace EntidadesAtc
         public decimal StockFinalUV { get; set; }
         public string NombreAlmacen { get; set; }
         public List<AcumuladoStock> AcumuladosStock { get; set; }
+        public PrecioTarifaUM PrecioTarifaUM { get; set; }
+    }
+    public class ListadoFacturas
+    {
+        public int Registros { get; set; }
+        public List<Factura> Facturas { get; set; }
+    }
+    public class FacturacionMensual
+    {
+        public int Anio { get; set; }
+        public string Mes { get; set; }
+        public decimal? TotalMes { get; set; }
+        public string arg { get; set; }
+        public decimal val { get; set; }
+    }
+    public class Factura
+    {
+        public int IdFactura { get; set; }
+        public DateTime FechaDocumento { get; set; }
+        public string Documento { get; set; }
+        public decimal TotalBaseImponible { get; set; }
+        public decimal TotalCuotaIva { get; set; }
+        public decimal TotalCuotaRE { get; set; }
+        public decimal ImporteLiquido { get; set; }
+    }
+    public class DebitosPendientes
+    {
+        public int Registros { get; set; }
+        public List<DebitoPendiente> Contenido { get; set; }
+    }
+    public class EfectosCurso
+    {
+        public int Registros { get; set; }
+        public List<EfectoCurso> Contenido { get; set; }
+    }
+    public class ExtractosMovimiento
+    {
+        public int Registros { get; set; }
+        public List<ExtractoMovimiento> Contenido { get; set; }
+    }
+    public class ExtractoMovimiento
+    {
+        public int Tipo { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal ImporteCargo { get; set; }
+        public decimal ImporteAbono { get; set; }
+        public string Comentario { get; set; }
+        public string IdOrigen { get; set; }
+    }
+    public class EfectoCurso
+    {
+        public decimal Importe { get; set; }
+        public int IdEfectoCobro { get; set; }
+        public string DescripcionTipoEfecto { get; set; }
+        public string NumeroDocumento { get; set; }
+        public string DocumentoOrigen { get; set; }
+        public string Estado { get; set; }
+        public DateTime FechaRecepcion { get; set; }
+        public DateTime FechaVto { get; set; }
+        public DateTime FechaCobro { get; set; }
+        public string NombreCartera { get; set; }
+        public string ColorEstado { get; set; }
+    }
+    public class DebitoPendiente
+    {
+        public int IdDebito { get; set; }
+        public string NumeroDocumentoOrigen { get; set; }
+        public DateTime FechaDocumento { get; set; }
+        public DateTime FechaVtoPrevista { get; set; }
+        public DateTime FechaDebitoVencido { get; set; }
+        public decimal ImporteRiesgo { get; set; }
+        public decimal ImportePendiente { get; set; }
+        public decimal ImporteCobrado { get; set; }
+        public string Estado { get; set; }
+        public string Origen { get; set; }
+        public string ColorEstado { get; set; }
+    }
+    public class SituacionCliente
+    {
+        public int idCliente { get; set; }
+        public decimal ImporteDebitos { get; set; }
+        public decimal ImportePendiente { get; set; }
+        public decimal ImporteRiesgo { get; set; }
+        public int MaxDias { get; set; }
+        public int Documentos { get; set; }
+        public int HayImpagos { get; set; }
+        public int DebitosVencidos { get; set; }
+        public int Media { get; set; }
     }
     public class AcumuladoStock
     {
@@ -399,6 +487,12 @@ namespace EntidadesAtc
     public class QueryBusqueda
     {
 
+    }
+    public class PrecioTarifaUM
+    {
+        public string DescripcionUM { get; set; }
+        public int idUnidadManipulacion { get; set; }
+        public decimal PrecioTarifa { get; set; }
     }
     public class UsuarioWeb
     {

@@ -154,6 +154,9 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+
+        
+
         public List<TipoVehiculo> TiposVehiculoLeer(int? IDTipoVehiculo)
         {
             var res = new List<TipoVehiculo>();
@@ -193,6 +196,174 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+
+        public EfectosCurso FinanzasEfectosCursoLeer(int iddeudor, int bloque, int pagina)
+        {
+            var res = new EfectosCurso();
+            res.Contenido = new List<EfectoCurso>();
+
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@iddeudor", iddeudor),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@pagina", pagina),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FinanzasEfectosCursoLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Registros = AsignaEntero("Registros");
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var c = new EfectoCurso
+                    {
+                        IdEfectoCobro = AsignaEntero("IdEfectoCobro"),
+                        DescripcionTipoEfecto = AsignaCadena("DescripcionTipoEfecto"),
+                        FechaRecepcion = AsignaFecha("FechaRecepcion"),
+                        FechaVto = AsignaFecha("FechaVto"),
+                        FechaCobro = AsignaFecha("FechaCobro"),
+                        Importe = AsignaDecimal("Importe"),
+                        NumeroDocumento = AsignaCadena("NumeroDocumento"),
+                        DocumentoOrigen = AsignaCadena("DocumentoOrigen"),
+                        Estado = AsignaCadena("Estado"),
+                        NombreCartera = AsignaCadena("NombreCartera"),
+                    };
+                    switch (c.Estado)
+                    {
+                        case "D":
+                            c.Estado = "Pendiente";
+                            c.ColorEstado = "red";
+                            break;
+                        case "P":
+                            c.Estado = "Pagado";
+                            c.ColorEstado = "green";
+                            break;
+                        case "R":
+                            c.Estado = "Riesgo";
+                            c.ColorEstado = "blue";
+                            break;
+                    }
+                    res.Contenido.Add(c);
+                };
+            }
+            return res;
+        }
+
+
+        public DebitosPendientes FinanzasDebitosPendientesLeer(int idcliente, int bloque, int pagina)
+        {
+            var res = new DebitosPendientes();
+            res.Contenido = new List<DebitoPendiente>();
+
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idcliente", idcliente),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@pagina", pagina),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FinanzasDebitosPendientesLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Registros = AsignaEntero("Registros");
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var c = new DebitoPendiente
+                    {
+                        IdDebito = AsignaEntero("IDDebito"),
+                        NumeroDocumentoOrigen = AsignaCadena("NumeroDocumentoOrigen"),
+                        FechaDocumento = AsignaFecha("FechaDocumento"),
+                        FechaVtoPrevista = AsignaFecha("FechaVtoPrevista"),
+                        FechaDebitoVencido = AsignaFecha("FechaDebitoVencido"),
+                        ImporteRiesgo = AsignaDecimal("ImporteRiesgo"),
+                        ImportePendiente = AsignaDecimal("ImportePendiente"),
+                        ImporteCobrado = AsignaDecimal("ImporteCobrado"),
+                        Estado = AsignaCadena("Estado"),
+                        Origen = AsignaCadena("Origen"),
+                    };
+                    switch (c.Origen)
+                    {
+                        case "A":
+                            c.Origen = "Albarán";
+                            break;
+                        case "F":
+                            c.Origen = "Factura";
+                            break;
+                        case "M":
+                            c.Origen = "Manual";
+                            break;
+                    }
+                    switch (c.Estado)
+                    {
+                        case "D":
+                            c.Estado = "Pendiente";
+                            c.ColorEstado = "red";
+                            break;
+                        case "P":
+                            c.Estado = "Pagado";
+                            c.ColorEstado = "green";
+                            break;
+                        case "R":
+                            c.Estado = "Riesgo";
+                            c.ColorEstado = "blue";
+                            break;
+                    }
+                    res.Contenido.Add(c);
+                };
+            }
+            return res;
+        }
+
+        public ExtractosMovimiento FinanzasExtractosLeer(int iddeudor, int bloque, int pagina)
+        {
+            var res = new ExtractosMovimiento();
+            res.Contenido = new List<ExtractoMovimiento>();
+
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@iddeudor", iddeudor),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@pagina", pagina),
+                     new SqlParameter("@iddelegacion", 1),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FinanzasExtractosLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Registros = AsignaEntero("Registros");
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var c = new ExtractoMovimiento
+                    {
+                        Tipo = AsignaEntero("Tipo"),
+                        Fecha = AsignaFecha("Fecha"),
+                        ImporteCargo = AsignaDecimal("ImporteCargo"),
+                        ImporteAbono = AsignaDecimal("ImporteAbono"),
+                        Comentario = AsignaCadena("Comentario"),
+                        IdOrigen = AsignaCadena("IdOrigen"),
+                    };
+                    
+                    res.Contenido.Add(c);
+                };
+            }
+            return res;
+        }
+
         public InfoMenuWeb InfoMenuWebLeer()
         {
             var res = new InfoMenuWeb();
@@ -1201,6 +1372,7 @@ namespace dsASPCAtc.DataAccess
             var AcumuladosStockArticulo = new List<AcumuladoStock>();
             var AcumuladosStockRel = new List<AcumuladoStock>();
             var uds = new List<UnidadManipulacion>();
+            var preciosTarifaUM = new List<PrecioTarifaUM>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -1353,6 +1525,28 @@ namespace dsASPCAtc.DataAccess
                         AcumuladosStock = new List<AcumuladoStock>(),
                     };
                     uds.Add(um);
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var ptu = new PrecioTarifaUM
+                    {
+                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                        DescripcionUM = AsignaCadena("DescripcionUM"),
+                        PrecioTarifa = AsignaDecimal("PrecioTarifa"),
+                    };
+                    preciosTarifaUM.Add(ptu);
+                }
+            }
+            foreach (UnidadManipulacion ud in res.UnidadesManipulacion)
+            {
+                foreach (PrecioTarifaUM ptu in preciosTarifaUM)
+                {
+                    if (ptu.idUnidadManipulacion == ud.idUnidadManipulacion)
+                    {
+                        ud.PrecioTarifa = ptu.PrecioTarifa;
+                        ud.DescripcionUM = ptu.DescripcionUM;
+                    }
                 }
             }
             foreach (AcumuladoStock ast in AcumuladosStockArticulo)
@@ -1656,6 +1850,113 @@ namespace dsASPCAtc.DataAccess
 
             }
             var res = CarritoVaciar(IDUsuarioWeb);
+            return res;
+        }
+        public ListadoFacturas FacturasLeer(int idCliente, int pagina, int bloque, string nFactura, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            var res = new ListadoFacturas();
+            res.Facturas = new List<Factura>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente),
+                    new SqlParameter("@pagina", pagina),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@nFactura", nFactura),
+                    new SqlParameter("@fechaDesde", fechaDesde),
+                    new SqlParameter("@fechaHasta", fechaHasta)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FacturasLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Registros = AsignaEntero("Registros");
+
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var fct = new Factura
+                    {
+                        IdFactura = AsignaEntero("IdFactura"),
+                        FechaDocumento = AsignaFecha("FechaDocumento"),
+                        Documento = AsignaCadena("Documento"),
+                        TotalBaseImponible = AsignaDecimal("TotalBaseImponible"),
+                        TotalCuotaIva = AsignaDecimal("TotalCuotaIva"),
+                        TotalCuotaRE = AsignaDecimal("TotalCuotaRE"),
+                        ImporteLiquido = AsignaDecimal("ImporteLiquido"),
+                    };
+                    res.Facturas.Add(fct);
+                }
+
+            }
+            return res;
+        }
+        public SituacionCliente SituacionClienteLeer(int idCliente)
+        {
+            var res = new SituacionCliente();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Finanzas.LeerSituacionCliente", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.idCliente = AsignaEntero("idCliente");
+                    res.ImporteDebitos = AsignaDecimal("ImporteDebitos");
+                    res.ImportePendiente = AsignaDecimal("ImportePendiente");
+                    res.ImporteRiesgo = AsignaDecimal("ImporteRiesgo");
+                    res.MaxDias = AsignaEntero("MaxDias");
+                    res.Documentos = AsignaEntero("Documentos");
+                    res.HayImpagos = AsignaEntero("HayImpagos");
+                    res.DebitosVencidos = AsignaEntero("DebitosVencidos");
+                    res.Media = AsignaEntero("Media");
+                }
+            }
+            return res;
+        }
+        public List<FacturacionMensual> FacturasMensualesLeer(int idCliente)
+        {
+            var res = new List<FacturacionMensual>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FacturasMensualesLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                var existe = true;
+                while (existe)
+                {
+                    existe = false;
+                    if (_reader.Read())
+                    {
+                        existe = true;
+                        var fm = new FacturacionMensual
+                        {
+                            Anio = AsignaEntero("Anio"),
+                            Mes = AsignaCadena("Mes"),
+                            TotalMes = AsignaDecimalNull("TotalMes"),
+                            arg = AsignaCadena("Mes") + " " + AsignaCadena("Anio"),
+                            val = AsignaDecimal("TotalMes"),
+                        };
+                        res.Add(fm);
+                        existe = true;
+                    }
+                    _reader.NextResult();
+                }
+                
+                _reader.NextResult();
+
+            }
             return res;
         }
     }

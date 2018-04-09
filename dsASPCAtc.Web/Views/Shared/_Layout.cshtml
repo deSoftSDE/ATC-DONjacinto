@@ -257,7 +257,7 @@
                             <h3 class="uppercase">FACTURAS</h3>
                         </li>
                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a asp-controller="AreaCliente" asp-action="Facturas" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">VER FACTURAS</span>
 
@@ -267,21 +267,21 @@
                             <h3 class="uppercase">finanzas</h3>
                         </li>
                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="1">
                                 <i class="icon-layers"></i>
                                 <span class="title">PENDIENTES DE COBRO</span>
 
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggle"  asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="2">
                                 <i class="icon-layers"></i>
                                 <span class="title">EXTRACTOS MOVIMIENTOS</span>
 
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a  asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="3" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">EFECTOS EN CURSO</span>
 
@@ -308,12 +308,13 @@
                                         <span class="title">Todos los vehículos</span>
                                     </a>
                                 </li>
-                                @foreach (TipoVehiculo tv in c.InfoMenuWeb.Vehiculos) {
+                                @foreach (TipoVehiculo tv in c.InfoMenuWeb.Vehiculos)
+                                {
                                     <li class="nav-item  ">
-                                    <a  asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="@tv.IDTipoVehiculo" class="nav-link ">
-                                        <i class="icon-home"></i>
-                                        <span class="title">@tv.Descripcion</span>
-                                    </a>
+                                        <a asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="@tv.IDTipoVehiculo" class="nav-link ">
+                                            <i class="icon-home"></i>
+                                            <span class="title">@tv.Descripcion</span>
+                                        </a>
                                     </li>
                                 }
                             </ul>
@@ -325,15 +326,16 @@
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                @foreach (Categoria ct in c.InfoMenuWeb.Categorias) {
+                                @foreach (Categoria ct in c.InfoMenuWeb.Categorias)
+                                {
                                     <li class="nav-item  ">
-                                    <a  asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
-                                        <i class="icon-clock"></i>
-                                        <span class="title">@ct.Descripcion</span>
-                                    </a>
+                                        <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
+                                            <i class="icon-clock"></i>
+                                            <span class="title">@ct.Descripcion</span>
+                                        </a>
                                     </li>
                                 }
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -353,14 +355,14 @@
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
-            
+
             @{
 
             }
             <div id="accordion">
             </div>
 
-           
+
             <!-- END CONTENT -->
             <!-- BEGIN QUICK SIDEBAR -->
             <a href="javascript:;" class="page-quick-sidebar-toggler">
@@ -382,7 +384,7 @@
                                 @*<span class="badge badge-success">7</span>*@
                             </a>
                         </li>
-                        
+
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
@@ -508,7 +510,8 @@
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2018 &copy; Grupo ATC<input type="text" id="idusuarioweb" value="@c.IdUsuarioWeb" style="display:none;"/>
+                2018 &copy; Grupo ATC<input type="text" id="idusuarioweb" value="@c.IdUsuarioWeb" style="display:none;" />
+                <input type="text" id="idCliente" value="@c.Cliente.IDCliente" style="display:none;" />
 
             </div>
             <div class="scroll-to-top">
@@ -602,6 +605,8 @@
     <script type="text/javascript" src="~/aplicacion/mainController.js"></script>
     <script type="text/javascript" src="~/aplicacion/vehiculosController.js"></script>
     <script type="text/javascript" src="~/aplicacion/busquedaArticulosController.js"></script>
+    <script type="text/javascript" src="~/aplicacion/facturasController.js"></script>
+    <script type="text/javascript" src="~/aplicacion/finanzasController.js"></script>
 
     <!--Cosas devexpress-->
 

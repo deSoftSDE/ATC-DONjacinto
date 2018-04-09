@@ -261,7 +261,41 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Error()
         {
+            
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Facturas()
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            var ad = new AdaptadorAtc(_configuration);
+            ViewData["FacturasMensuales"] = ad.FacturasMensualesLeer(usuario.Cliente.IDCliente);
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Finanzas(int? p)
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            var ad = new AdaptadorAtc(_configuration);
+            ViewData["SituacionCliente"] = ad.SituacionClienteLeer(usuario.Cliente.IDCliente);
+            ViewData["tab"] = p;
+            return View();
         }
 
 

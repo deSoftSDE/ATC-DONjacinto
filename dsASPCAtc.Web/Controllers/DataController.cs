@@ -69,6 +69,30 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
+        public IActionResult FacturasLeer(int idCliente, int pagina, int bloque, string nFactura, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.FacturasLeer(idCliente, pagina, bloque, nFactura, fechaDesde, fechaHasta);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
         public IActionResult MarcasLeer(int? IDTipoVehiculo)
         {
             ObjectResult result;
@@ -125,6 +149,102 @@ namespace dsASPCAtc.Web.Controllers
             {
                 //var res = new LecturasViewModel(_configuration, bs);
                 var res = ad.ModelosLeer(IDTipoVehiculo, IDSeccion);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
+        public IActionResult FinanzasDebitosPendientesLeer(int idcliente, int bloque, int pagina)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.FinanzasDebitosPendientesLeer(idcliente, bloque, pagina);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
+        public IActionResult FacturasMensualesLeer(int idcliente)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.FacturasMensualesLeer(idcliente);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
+        public IActionResult FinanzasExtractosLeer(int iddeudor, int bloque, int pagina)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.FinanzasExtractosLeer(iddeudor, bloque, pagina);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
+        public IActionResult FinanzasEfectosCursoLeer(int iddeudor, int bloque, int pagina)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.FinanzasEfectosCursoLeer(iddeudor, bloque, pagina);
                 result = new ObjectResult(res)
                 {
                     StatusCode = (int)HttpStatusCode.OK
