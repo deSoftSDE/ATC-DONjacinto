@@ -10,7 +10,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         dataSource: "data/customers.json",
         columns: ["Código", "Características", "Almacenes", "PVP", "%", "Neto", "Pedir"]
     };
-
+    $scope.ocultarSidebar = function() {
+        alert("Holi")
+    }
     $scope.tamanoanterior = 0;
     $scope.mostrardesplegable = false;
     var inputChangedPromise;

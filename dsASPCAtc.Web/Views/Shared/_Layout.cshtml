@@ -368,7 +368,7 @@
                 <i class="icon-close"></i> Cerrar
             </a>
             <!--  INICIO SIDEBAR OCULTA -->
-            <div class="page-quick-sidebar-wrapper" data-close-on-body-click="true">
+            <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
                 <div class="page-quick-sidebar">
                     <ul class="nav nav-tabs">
                         <li class="active">
@@ -387,120 +387,123 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
-                            <h3 class="list-heading">ARTÍCULOS EN EL CARRITO</h3>
-                            <ul class="media-list list-items">
-                                <li class="media" ng-repeat="articulo in carrito.articulos">
-                                    <div class="media-status">
-                                        <span class="badge badge-success">
-                                            <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />
-                                            {{articulo.cantidad}}
-                                            <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" />
-                                            <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo,  articulo.idUnidadManipulacion)" />
-                                        </span>
-                                    </div>
-                                    <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->
-                                    <div class="media-body">
-                                        <h4 class="media-heading">{{articulo.descripcion}}</h4>
-                                    </div>
-                                </li>
+                            <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                                <h3 class="list-heading">ARTÍCULOS EN EL CARRITO</h3>
+                                <ul class="media-list list-items">
+                                    <li class="media" ng-repeat="articulo in carrito.articulos">
+                                        <div class="media-status">
+                                            <span class="badge badge-success">
+                                                <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />
+                                                {{articulo.cantidad}}
+                                                <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" />
+                                                <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo,  articulo.idUnidadManipulacion)" />
+                                            </span>
+                                        </div>
+                                        <!--  <img class="media-object" src="assets/layouts/layout/img/avatar3.jpg" alt="..."> -->
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{articulo.descripcion}}</h4>
+                                        </div>
+                                    </li>
 
-                            </ul>
-                            <div class="inner-content">
-                                <button class="btn btn-success" type="submit" ng-click="verPaginaCarrito()">
-                                    <i class="icon-settings"></i> Procesar Pedido
-                                </button>
-                            </div>
-                        </div>
-                        <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
-                            <div class="page-quick-sidebar-alerts-list">
-                                <h3 class="list-heading">Pedidos Pendientes</h3>
-                                <ul class="feeds list-items">
-                                    <li>
-                                        <div class="col1">
-                                            <div class="cont">
-                                                <div class="cont-col1">
-                                                    <div class="label label-sm label-info">
-                                                        <i class="fa fa-check"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="cont-col2">
-                                                    <div class="desc">
-                                                        Lorem Ipsum
-                                                        <span class="label label-sm label-warning ">
-                                                            estado
-                                                            <i class="fa fa-share"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col2">
-                                            <div class="date"> OK </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
-                            <div class="page-quick-sidebar-settings-list">
-                                <h3 class="list-heading">Opciones</h3>
-                                <ul class="list-items borderless">
-                                    <li>
-                                        Opcion1
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion2
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion3
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion4
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion5
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                </ul>
-                                <h3 class="list-heading">Opciones</h3>
-                                <ul class="list-items borderless">
-                                    <li>
-                                        Security Level
-                                        <select class="form-control input-inline input-sm input-small">
-                                            <option value="1">OP1</option>
-                                            <option value="2" selected>OP2</option>
-                                            <option value="e">OP3</option>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        Opcion6
-                                        <input class="form-control input-inline input-sm input-small" value="5" />
-                                    </li>
-                                    <li>
-                                        OPcion7
-                                        <input class="form-control input-inline input-sm input-small" value="3560" />
-                                    </li>
-                                    <li>
-                                        OPcion8
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion9
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
                                 </ul>
                                 <div class="inner-content">
-                                    <button class="btn btn-success">
-                                        <i class="icon-settings"></i> Guardar Cambios
+                                    <button class="btn btn-success" type="submit" ng-click="verPaginaCarrito()">
+                                        <i class="icon-settings"></i> Procesar Pedido
                                     </button>
                                 </div>
                             </div>
+                                
+                            </div>
+                            <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
+                                <div class="page-quick-sidebar-alerts-list">
+                                    <h3 class="list-heading">Pedidos Pendientes</h3>
+                                    <ul class="feeds list-items">
+                                        <li>
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        <div class="label label-sm label-info">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cont-col2">
+                                                        <div class="desc">
+                                                            Lorem Ipsum
+                                                            <span class="label label-sm label-warning ">
+                                                                estado
+                                                                <i class="fa fa-share"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col2">
+                                                <div class="date"> OK </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
+                                <div class="page-quick-sidebar-settings-list">
+                                    <h3 class="list-heading">Opciones</h3>
+                                    <ul class="list-items borderless">
+                                        <li>
+                                            Opcion1
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion2
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion3
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion4
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion5
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                    </ul>
+                                    <h3 class="list-heading">Opciones</h3>
+                                    <ul class="list-items borderless">
+                                        <li>
+                                            Security Level
+                                            <select class="form-control input-inline input-sm input-small">
+                                                <option value="1">OP1</option>
+                                                <option value="2" selected>OP2</option>
+                                                <option value="e">OP3</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            Opcion6
+                                            <input class="form-control input-inline input-sm input-small" value="5" />
+                                        </li>
+                                        <li>
+                                            OPcion7
+                                            <input class="form-control input-inline input-sm input-small" value="3560" />
+                                        </li>
+                                        <li>
+                                            OPcion8
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion9
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                    </ul>
+                                    <div class="inner-content">
+                                        <button class="btn btn-success">
+                                            <i class="icon-settings"></i> Guardar Cambios
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <!-- END  SIDEBAR OCULTA -->
@@ -623,7 +626,9 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
+            
         })
+
     </script>
 
 
