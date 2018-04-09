@@ -226,7 +226,7 @@ namespace dsASPCAtc.DataAccess
                         DescripcionTipoEfecto = AsignaCadena("DescripcionTipoEfecto"),
                         FechaRecepcion = AsignaFecha("FechaRecepcion"),
                         FechaVto = AsignaFecha("FechaVto"),
-                        FechaCobro = AsignaFecha("FechaCobro"),
+                        FechaCobro = AsignaFechaNull("FechaCobro"),
                         Importe = AsignaDecimal("Importe"),
                         NumeroDocumento = AsignaCadena("NumeroDocumento"),
                         DocumentoOrigen = AsignaCadena("DocumentoOrigen"),
@@ -1894,6 +1894,48 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public ListadoFacturas PedidosLeer(int idCliente, int pagina, int bloque, string nFactura, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            var res = new ListadoFacturas();
+            res.Pedidos = new List<Pedido>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente),
+                    new SqlParameter("@pagina", pagina),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@nPedido", nFactura),
+                    new SqlParameter("@fechaDesde", fechaDesde),
+                    new SqlParameter("@fechaHasta", fechaHasta)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.PedidosLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res.Registros = AsignaEntero("Registros");
+
+                }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var fct = new Pedido
+                    {
+                        IdCabPedidoVentas = AsignaEntero("IDCabPedidoVentas"),
+                        FechaDocumento = AsignaFecha("FechaPedido"),
+                        Documento = AsignaCadena("Documento"),
+                        TotalBaseImponible = AsignaDecimal("TotalBaseImponible"),
+                        TotalCuotaIva = AsignaDecimal("TotalCuotaIva"),
+                        TotalCuotaRE = AsignaDecimal("TotalCuotaRE"),
+                        ImporteLiquido = AsignaDecimal("ImporteLiquido"),
+                    };
+                    res.Pedidos.Add(fct);
+                }
+
+            }
+            return res;
+        }
         public SituacionCliente SituacionClienteLeer(int idCliente)
         {
             var res = new SituacionCliente();
@@ -1921,7 +1963,7 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public List<FacturacionMensual> FacturasMensualesLeer(int idCliente)
+        public List<FacturacionMensual> EsquemasMensualesLeer(int idCliente, string proc = "Facturas")
         {
             var res = new List<FacturacionMensual>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
@@ -1931,7 +1973,7 @@ namespace dsASPCAtc.DataAccess
                 {
                     new SqlParameter("@idCliente", idCliente)
                 };
-                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.FacturasMensualesLeer", param);
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web." + proc + "MensualesLeer", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 var existe = true;
                 while (existe)
@@ -1953,7 +1995,7 @@ namespace dsASPCAtc.DataAccess
                     }
                     _reader.NextResult();
                 }
-                
+
                 _reader.NextResult();
 
             }

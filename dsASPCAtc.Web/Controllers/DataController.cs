@@ -93,6 +93,30 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
+        public IActionResult PedidosLeer(int idCliente, int pagina, int bloque, string nFactura, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.PedidosLeer(idCliente, pagina, bloque, nFactura, fechaDesde, fechaHasta);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
         public IActionResult MarcasLeer(int? IDTipoVehiculo)
         {
             ObjectResult result;
@@ -196,7 +220,31 @@ namespace dsASPCAtc.Web.Controllers
             try
             {
                 //var res = new LecturasViewModel(_configuration, bs);
-                var res = ad.FacturasMensualesLeer(idcliente);
+                var res = ad.EsquemasMensualesLeer(idcliente);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
+        public IActionResult PedidosMensualesLeer(int idcliente)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                var res = ad.EsquemasMensualesLeer(idcliente, "Pedidos");
                 result = new ObjectResult(res)
                 {
                     StatusCode = (int)HttpStatusCode.OK

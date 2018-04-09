@@ -15,10 +15,10 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        Importe pendiente: <input type="text" class="form-control" disabled value="@sc.ImportePendiente"/>
+        Importe pendiente: <input type="text" class="form-control" disabled value="@sc.ImportePendiente.ToString("N2")"/>
     </div>
     <div class="col-md-4">
-        Importe Riesgo: <input type="text" class="form-control" disabled value="@sc.ImporteRiesgo" />
+        Importe Riesgo: <input type="text" class="form-control" disabled value="@sc.ImporteRiesgo.ToString("N2")" />
     </div>
     <div class="col-md-4">
         Nº Documentos pendientes: <input type="text" class="form-control" disabled value="@sc.Documentos" />
@@ -57,6 +57,10 @@
                             <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
 
                         </div>
+                        <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                            <p>{{fct.value.toFixed(2)}}€</p>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,6 +94,10 @@
                             <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
 
                         </div>
+                        <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                            <p>{{fct.value.toFixed(2)}}€</p>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,6 +129,10 @@
                     <div id="gridContainer" dx-data-grid="dataGridEfectos" dx-item-alias="fct" style="width:100% !important;">
                         <div data-options="dxTemplate:{ name:'estadoTemplate' }">
                             <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
+
+                        </div>
+                        <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                            <p>{{fct.value.toFixed(2)}}€</p>
 
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-﻿atc.controller('facturas', function($scope, $http, Llamada, $timeout) {
+﻿atc.controller('pedidos', function($scope, $http, Llamada, $timeout) {
     var b = document.getElementById("idCliente").value;
     $scope.pagina = 1;
     $scope.bloque = 20; 
@@ -8,10 +8,10 @@
     leerFacturas = function () {
         $scope.fechaDesde = document.getElementById("fechaDesde").value;
         $scope.fechaHasta = document.getElementById("fechaHasta").value;
-        Llamada.get("FacturasLeer?idCliente=" + b + "&pagina=" + $scope.pagina + "&nFactura=" + $scope.nFactura + "&bloque=" + $scope.bloque + "&fechaDesde=" + $scope.fechaDesde + "&fechaHasta=" + $scope.fechaHasta)
+        Llamada.get("PedidosLeer?idCliente=" + b + "&pagina=" + $scope.pagina + "&nPedido=" + $scope.nFactura + "&bloque=" + $scope.bloque + "&fechaDesde=" + $scope.fechaDesde + "&fechaHasta=" + $scope.fechaHasta)
             .then(function (respuesta) {
                 $scope.registros = respuesta.data.registros;
-                $scope.facturas = respuesta.data.facturas;
+                $scope.facturas = respuesta.data.pedidos;
                 $scope.actualPag = JSON.parse("" + JSON.stringify($scope.pagina));
                 $scope.numPag = parseInt(+($scope.registros / $scope.bloque) + +1);
                 $scope.datagridoptions.option("dataSource", $scope.facturas);
@@ -68,13 +68,13 @@
 
     $scope.dataGridOptions = {
         dataSource: [],
-        keyExpr: "idFactura",
+        keyExpr: "idCabPedidoVentas",
         editing: {
             allowAdding: false, // Enables insertion
             allowDeleting: false, // Enables removing
             editEnabled: false
         },
-        noDataText: "No hay facturas para mostrar",
+        noDataText: "No hay pedidos para mostrar",
         selection: {
             mode: "single"
         },
@@ -144,7 +144,7 @@
         onInitialized: function (e) {
             console.log(e);
             $scope.chartoptions = e.component;
-            Llamada.get("FacturasMensualesLeer?idcliente=" + b)
+            Llamada.get("PedidosMensualesLeer?idcliente=" + b)
                 .then(function (respuesta) {
                     $scope.chartoptions.option("dataSource", respuesta.data)
                 })

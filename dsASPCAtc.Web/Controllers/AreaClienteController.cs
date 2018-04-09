@@ -276,8 +276,19 @@ namespace dsASPCAtc.Web.Controllers
                 ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             }
             var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
-            var ad = new AdaptadorAtc(_configuration);
-            ViewData["FacturasMensuales"] = ad.FacturasMensualesLeer(usuario.Cliente.IDCliente);
+            return View();
+        }
+        public IActionResult Pedidos()
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             return View();
         }
         [HttpGet]

@@ -219,6 +219,7 @@ namespace EntidadesAtc
     {
         public int Registros { get; set; }
         public List<Factura> Facturas { get; set; }
+        public List<Pedido> Pedidos { get; set; }
     }
     public class FacturacionMensual
     {
@@ -237,6 +238,7 @@ namespace EntidadesAtc
         public decimal TotalCuotaIva { get; set; }
         public decimal TotalCuotaRE { get; set; }
         public decimal ImporteLiquido { get; set; }
+        public int IDCabPedidoVentas { get; set; }
     }
     public class DebitosPendientes
     {
@@ -272,9 +274,19 @@ namespace EntidadesAtc
         public string Estado { get; set; }
         public DateTime FechaRecepcion { get; set; }
         public DateTime FechaVto { get; set; }
-        public DateTime FechaCobro { get; set; }
+        public DateTime? FechaCobro { get; set; }
         public string NombreCartera { get; set; }
         public string ColorEstado { get; set; }
+    }
+    public class Pedido
+    {
+        public int IdCabPedidoVentas { get; set; }
+        public DateTime FechaDocumento { get; set; }
+        public string Documento { get; set; }
+        public decimal TotalBaseImponible { get; set; }
+        public decimal TotalCuotaIva { get; set; }
+        public decimal ImporteLiquido { get; set; }
+        public decimal TotalCuotaRE { get; set; }
     }
     public class DebitoPendiente
     {
