@@ -287,6 +287,8 @@ namespace EntidadesAtc
         public decimal TotalCuotaIva { get; set; }
         public decimal ImporteLiquido { get; set; }
         public decimal TotalCuotaRE { get; set; }
+        public string Estado { get; set; }
+        public string ColorEstado { get; set; }
     }
     public class DebitoPendiente
     {
@@ -515,6 +517,7 @@ namespace EntidadesAtc
         public List<Promocion> Promociones { get; set; }
         public string UltimaIP { get; set; }
         public InfoMenuWeb InfoMenuWeb { get; set; }
+        public List<Pedido> Pedidos { get; set; }
     }
     public class RecuperacionPassword
     {

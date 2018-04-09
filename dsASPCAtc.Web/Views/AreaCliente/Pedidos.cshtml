@@ -10,7 +10,7 @@
         </li>
     </ul>
 </div>
-<div ng-controller="pedidos">
+<div ng-controller="pedidos" id="ocultocargando" style="display:none">
 
     <div class="demo-container">
         <div id="chart" dx-chart="chartOptions"></div>
@@ -69,6 +69,10 @@
     <div id="gridContainer" dx-data-grid="dataGridOptions" dx-item-alias="fct" style="width:100% !important;">
         <div data-options="dxTemplate:{ name:'currencyTemplate' }">
             <p>{{fct.value.toFixed(2)}}€</p>
+
+        </div>
+        <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+            <p class="label label-sm {{fct.data.colorEstado}}">{{fct.data.estado}}</p>
 
         </div>
     </div>

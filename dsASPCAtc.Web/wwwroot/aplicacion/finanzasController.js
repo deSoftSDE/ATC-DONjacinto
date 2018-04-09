@@ -383,4 +383,5 @@
             leerCosas('pc');
         }
     };
+    document.getElementById("ocultocargando").style.display = "inline";
 });

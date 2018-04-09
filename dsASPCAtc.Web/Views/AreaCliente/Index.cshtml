@@ -5,6 +5,7 @@
     var unclick = (List<BuscaArticulo>)ViewData["UnClick"];
     var novedades = (List<BuscaArticulo>)ViewData["Novedades"];
     var test = ViewData["Test"];
+    var d = (UsuarioWeb)ViewData["Usuario"];
 }
 <script type="text/javascript">
     function verResultados(parameters) {
@@ -332,20 +333,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td> 2018ATC02 </td>
-                                    <td> 03-01-2018 </td>
-                                    <td> 800.00€ </td>
-                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
+                                @foreach(Pedido pd in d.Pedidos)
+                                {
+
+                                    <tr>
+                                    <td> @pd.Documento </td>
+                                    <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                    <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                    <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
                                     <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
                                 </tr>
-                                <tr>
-                                    <td> 2018ATC02 </td>
-                                    <td> 03-01-2018 </td>
-                                    <td> 800.00€ </td>
-                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
-                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
-                                </tr>
+                                }
+                                
+                                
                             </tbody>
                         </table>
                     </div>

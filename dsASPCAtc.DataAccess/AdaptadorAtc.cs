@@ -1762,6 +1762,10 @@ namespace dsASPCAtc.DataAccess
                     res.Promociones.Add(pm);
                 }
             }
+            if (res.Cliente.IDCliente > 0)
+            {
+                res.Pedidos = PedidosLeer(res.Cliente.IDCliente, 1, 5, null, null, null).Pedidos;
+            }
             return res;
         }
         public Carrito CarritoVaciar(int idUsuarioWeb)
@@ -1929,7 +1933,19 @@ namespace dsASPCAtc.DataAccess
                         TotalCuotaIva = AsignaDecimal("TotalCuotaIva"),
                         TotalCuotaRE = AsignaDecimal("TotalCuotaRE"),
                         ImporteLiquido = AsignaDecimal("ImporteLiquido"),
+                        Estado = AsignaCadena("Estado"),
                     };
+                    switch(fct.Estado)
+                    {
+                        case "F":
+                            fct.Estado = "Finalizado";
+                            fct.ColorEstado = "label-primary";
+                            break;
+                        case "P":
+                            fct.Estado = "Pendiente";
+                            fct.ColorEstado = "label-warning";
+                            break;
+                    }
                     res.Pedidos.Add(fct);
                 }
 

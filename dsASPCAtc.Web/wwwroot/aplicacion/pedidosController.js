@@ -8,7 +8,8 @@
     leerFacturas = function () {
         $scope.fechaDesde = document.getElementById("fechaDesde").value;
         $scope.fechaHasta = document.getElementById("fechaHasta").value;
-        Llamada.get("PedidosLeer?idCliente=" + b + "&pagina=" + $scope.pagina + "&nPedido=" + $scope.nFactura + "&bloque=" + $scope.bloque + "&fechaDesde=" + $scope.fechaDesde + "&fechaHasta=" + $scope.fechaHasta)
+        //alert($scope.nFactura);
+        Llamada.get("PedidosLeer?idCliente=" + b + "&pagina=" + $scope.pagina + "&nFactura=" + $scope.nFactura + "&bloque=" + $scope.bloque + "&fechaDesde=" + $scope.fechaDesde + "&fechaHasta=" + $scope.fechaHasta)
             .then(function (respuesta) {
                 $scope.registros = respuesta.data.registros;
                 $scope.facturas = respuesta.data.pedidos;
@@ -115,7 +116,15 @@
                 alignment: "center",
                 allowSorting: false,
                 allowEditing: false,
-            }, 
+            }, {
+                caption: "Estado",
+                cellTemplate: "estadoTemplate",
+                width: "30%",
+                allowFiltering: false,
+                alignment: "center",
+                allowSorting: false,
+                allowEditing: false,
+            }
         ],
         onInitialized: function (e) {
             console.log(e);
@@ -150,4 +159,6 @@
                 })
         }
     };
+
+    document.getElementById("ocultocargando").style.display = "inline";
 });
