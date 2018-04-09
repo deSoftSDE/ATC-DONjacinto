@@ -1,0 +1,131 @@
+﻿@{
+    var sc = (SituacionCliente)ViewData["SituacionCliente"];
+    var tab = (int?)ViewData["tab"];
+}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a asp-controller="AreaCliente" asp-action="Index">Inicio</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Finanzas</span>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        Importe pendiente: <input type="text" class="form-control" disabled value="@sc.ImportePendiente"/>
+    </div>
+    <div class="col-md-4">
+        Importe Riesgo: <input type="text" class="form-control" disabled value="@sc.ImporteRiesgo" />
+    </div>
+    <div class="col-md-4">
+        Nº Documentos pendientes: <input type="text" class="form-control" disabled value="@sc.Documentos" />
+    </div>
+</div>
+<div class="row" ng-controller="finanzas">
+    <input type="hidden" value="@tab" id="activetab"/>
+    <uib-tabset active="activetab">
+        <uib-tab index="1">
+            <uib-tab-heading>
+                Pendientes de Cobro
+            </uib-tab-heading>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <ul class="pagination justify-content-center col-md-6 row">
+                    <li class="page-item col-md-2" ng-click="paginaAnterior('pc')">
+                        <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
+                    </li>
+                    <li class="page-item  col-md-4">
+
+                        <input type="number" class="form-control" ng-model="paginacionFinanzas.pc.pagina" ng-change="cambioPagina('pc')" />
+
+                    </li>
+                    <li class="page-item  col-md-2" ng-click="paginaSiguiente('pc')">
+                        <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
+                    </li>
+                </ul>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Estas en la pagina {{paginacionFinanzas.pc.actualPag}} de un total de {{paginacionFinanzas.pc.numPag}} paginas. Hay {{paginacionFinanzas.pc.registros}} registros.
+
+                    <div id="gridContainer" dx-data-grid="dataGridPendientes" dx-item-alias="fct" style="width:100% !important;">
+                        <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                            <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2">
+            <uib-tab-heading>
+                Extractos Movimientos
+            </uib-tab-heading>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <ul class="pagination justify-content-center col-md-6 row">
+                    <li class="page-item col-md-2" ng-click="paginaAnterior('em')">
+                        <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
+                    </li>
+                    <li class="page-item  col-md-4">
+
+                        <input type="number" class="form-control" ng-model="paginacionFinanzas.em.pagina" ng-change="cambioPagina('em')" />
+
+                    </li>
+                    <li class="page-item  col-md-2" ng-click="paginaSiguiente('em')">
+                        <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
+                    </li>
+                </ul>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Estas en la pagina {{paginacionFinanzas.em.actualPag}} de un total de {{paginacionFinanzas.em.numPag}} paginas. Hay {{paginacionFinanzas.em.registros}} registros.
+                    <div id="gridContainer" dx-data-grid="dataGridExtractos" dx-item-alias="fct" style="width:100% !important;">
+                        <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                            <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="3">
+            <uib-tab-heading>
+                Efectos en Curso
+            </uib-tab-heading>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <ul class="pagination justify-content-center col-md-6 row">
+                    <li class="page-item col-md-2" ng-click="paginaAnterior('ec')">
+                        <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
+                    </li>
+                    <li class="page-item  col-md-4">
+
+                        <input type="number" class="form-control" ng-model="paginacionFinanzas.ec.pagina" ng-change="cambioPagina('ec')" />
+
+                    </li>
+                    <li class="page-item  col-md-2" ng-click="paginaSiguiente('ec')">
+                        <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
+                    </li>
+                </ul>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Estas en la pagina {{paginacionFinanzas.ec.actualPag}} de un total de {{paginacionFinanzas.ec.numPag}} paginas. Hay {{paginacionFinanzas.ec.registros}} registros.
+                    <div id="gridContainer" dx-data-grid="dataGridEfectos" dx-item-alias="fct" style="width:100% !important;">
+                        <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                            <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

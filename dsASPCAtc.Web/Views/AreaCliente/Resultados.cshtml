@@ -302,11 +302,15 @@
 
 
         <!-- INICIO COMPLEMENTOS-->
-        <div class="row">
+        @if(dt.Accesorios.Count > 0)
+        {
+            <div class="row">
             <div class="col-md-12">
                 <h2>Accesorios</h2>
             </div>
         </div>
+
+        }
         <div ng-controller="productos">
 
             @foreach (Categoria ct in dt.Accesorios)

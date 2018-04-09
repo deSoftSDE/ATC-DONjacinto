@@ -1,6 +1,7 @@
 ﻿atc.controller('vehiculos', function ($scope, $http, Llamada, $timeout) {
-    
+    $scope.cargandoGenerico = false;
     buscarMarcas = function () {
+        $scope.cargandoGenerico = true;
         Llamada.get("MarcasLeer?IDTipoVehiculo=" + $scope.objetoBusqueda.idTipoVehiculo)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -20,9 +21,11 @@
                 if ($scope.marcas.marcas.length < 1) {
                     $scope.finalizarBusquedaTipoVehiculo();
                 }
+                $scope.cargandoGenerico = false;
             })
     }
     buscarModelos = function () {
+        $scope.cargandoGenerico = true;
         Llamada.get("ModelosLeer?IDTipoVehiculo=" + $scope.objetoBusqueda.idTipoVehiculo + "&IDSeccion=" + $scope.objetoBusqueda.marca.idSeccion)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -35,9 +38,11 @@
                 if ($scope.modelos.length < 1) {
                     $scope.finalizaBusca();
                 }
+                $scope.cargandoGenerico = false;
             })
     }
     buscarCarrocerias = function () {
+        $scope.cargandoGenerico = true;
         Llamada.get("ModelosLeerPorID?IDFamilia=" + $scope.objetoBusqueda.modelo.idFamilia)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -57,9 +62,11 @@
                 if ($scope.currentmodelo.carrocerias.length < 1) {
                     $scope.finalizaBusca();
                 }
+                $scope.cargandoGenerico = false;
             })
     }
     buscarAnos = function () {
+        $scope.cargandoGenerico = true;
         Llamada.get("AnosLeerPor?idmodelocarroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&idfamilia=" + $scope.objetoBusqueda.modelo.idFamilia)
             .then(function (respuesta) {
                 $scope.anos = respuesta.data.anos;
@@ -80,9 +87,11 @@
                     $scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
                     $scope.selectboxanos.option("dataSource", $scope.anos);
                 }
+                $scope.cargandoGenerico = false;
             })
     }
     mostrarCarroceria = function () {
+        $scope.cargandoGenerico = true;
         Llamada.get("CarroceriasLeerEsquema?idmodelocarroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&ano=" + $scope.objetoBusqueda.ano.ano)
             .then(function (respuesta) {
                 console.log(respuesta.data);
@@ -100,7 +109,7 @@
                 } else {
                     $scope.finalizarBusqueda();
                 }
-                
+                $scope.cargandoGenerico = false;
             })
     }
     $scope.objetoBusqueda = {
@@ -159,26 +168,31 @@
         cambiarPagina(2);
     }
     $scope.seleccionarMarca = function (mc) {
+        $scope.cargandoGenerico = true;
         console.log(mc);
         setMarca(mc);
         changeUrl("marca", mc.idSeccion);
     }
     $scope.seleccionarModelo = function (mc) {
+        $scope.cargandoGenerico = true;
         console.log(mc);
         setModelo(mc);
         changeUrl("modelo", mc.idFamilia);
     }
-    $scope.seleccionarVidrio = function(vd) {
+    $scope.seleccionarVidrio = function (vd) {
+        $scope.cargandoGenerico = true;
         $scope.objetoBusqueda.vidrio = vd;
         $scope.finalizaBusca();
     }
     $scope.seleccionarCarroceria = function (car) {
+        $scope.cargandoGenerico = true;
         $scope.objetoBusqueda.carroceria = JSON.parse("" + JSON.stringify(car));
         $scope.objetoBusqueda.tabs[5] = false;
         $scope.objetoBusqueda.tabs[6] = false;
         cambiarPagina(5);
     }
     $scope.seleccionarAno = function (ano) {
+        $scope.cargandoGenerico = true;
         var newano = JSON.parse(""+ JSON.stringify(ano));
         $scope.objetoBusqueda.ano = newano;
         $scope.objetoBusqueda.tabs[6] = false;
@@ -479,6 +493,7 @@
         console.log($scope.objetoBusqueda);
     }
     lanzarCambioPagina = function (val) {
+        //$scope.cargandoGenerico = true;
         console.log($scope.objetoBusqueda);
         if (NotNullNotUndefinedNotEmpty(val)) {
             resolverSwitchTab(val);
