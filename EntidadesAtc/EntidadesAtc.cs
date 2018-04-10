@@ -518,6 +518,7 @@ namespace EntidadesAtc
         public string UltimaIP { get; set; }
         public InfoMenuWeb InfoMenuWeb { get; set; }
         public List<Pedido> Pedidos { get; set; }
+        public List<MensajeWeb> Mensajes { get; set; }
     }
     public class RecuperacionPassword
     {
@@ -1111,6 +1112,33 @@ namespace EntidadesAtc
         public string lname { get; set; }
         public string email { get; set; }
         public string message { get; set; }
+    }
+
+    [DataContract]
+    public class MensajeWeb
+    {
+        [DataMember]
+        public int IdMensaje { get; set; }
+        [DataMember]
+        public int IdCliente { get; set; }
+        [DataMember]
+        public int IdUsuarioWeb { get; set; }
+        [DataMember]
+        public int Prioridad { get; set; }
+        [DataMember]
+        public string Titulo { get; set; }
+        [DataMember]
+        public string Mensaje { get; set; }
+        [DataMember]
+        public DateTime? FechaEnvio { get; set; }
+        [DataMember]
+        public DateTime? FechaLeido { get; set; }
+        [DataMember]
+        public Boolean Leido { get; set; }
+        [DataMember]
+        public string TipoTransaccion { get; set; }
+        [DataMember]
+        public string Cliente { get; set; }
     }
 
 }

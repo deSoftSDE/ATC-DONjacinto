@@ -55,6 +55,7 @@ namespace dsASPCAtc.Web.Controllers
             if (us.IdUsuarioWeb > 0)
             {
                 us.InfoMenuWeb = ad.InfoMenuWebLeer();
+                us.Mensajes = ad.MensajeLeer(us.Cliente.IDCliente, 0);
                 HttpContext.Session.SetObjectAsJson("Login", us);
                 
                 var vm = new IndexViewModel(_configuration);

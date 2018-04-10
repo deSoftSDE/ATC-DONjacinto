@@ -2017,6 +2017,64 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public void MensajeMarcarLeido(int idMensaje, int idCliente)
+        {
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente),
+                    new SqlParameter("@idMensaje", idMensaje)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.MensajeMarcarLeido", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+        }
+        public List<MensajeWeb> MensajeLeer(int idCliente, int bloque)
+        {
+            var res = new List<MensajeWeb>();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idCliente", idCliente),
+                    new SqlParameter("@bloque", bloque),
+                    new SqlParameter("@idMensaje", 0)
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.MensajeLeer", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var mj = new MensajeWeb
+                    {
+                        IdMensaje = AsignaEntero("IdMensaje"),
+
+                        IdCliente = AsignaEntero("IdCliente"),
+
+                        Prioridad = AsignaEntero("Prioridad"),
+
+                        Titulo = AsignaCadena("Titulo"),
+
+                        Mensaje = AsignaCadena("Mensaje"),
+
+                        FechaEnvio = AsignaFechaNull("FechaEnvio"),
+
+                        FechaLeido = AsignaFechaNull("FechaLeido"),
+
+                        Leido = AsignaBool("Leido"),
+
+                        TipoTransaccion = AsignaCadena("TipoTransaccion"),
+
+                        Cliente = AsignaCadena("Cliente")
+                    };
+                    res.Add(mj);
+                }
+
+            }
+            return res;
+        }
     }
     
 

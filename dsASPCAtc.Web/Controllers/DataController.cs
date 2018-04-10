@@ -141,6 +141,33 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
+        public IActionResult MensajeMarcarLeido(int idMensaje, int idCliente)
+        {
+            ObjectResult result;
+            var ad = new AdaptadorAtc(_configuration);
+            try
+            {
+                //var res = new LecturasViewModel(_configuration, bs);
+                 ad.MensajeMarcarLeido(idMensaje, idCliente);
+                var us = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+                us.Mensajes = ad.MensajeLeer(idCliente, 0);
+                HttpContext.Session.SetObjectAsJson("Login", us);
+                result = new ObjectResult(1)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
+        [HttpGet]
         public IActionResult MarcasYModelosLeerPorCadena(string cadena)
         {
             ObjectResult result;
