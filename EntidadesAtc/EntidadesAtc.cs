@@ -214,6 +214,8 @@ namespace EntidadesAtc
         public string NombreAlmacen { get; set; }
         public List<AcumuladoStock> AcumuladosStock { get; set; }
         public PrecioTarifaUM PrecioTarifaUM { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Descuento { get; set; }
     }
     public class ListadoFacturas
     {

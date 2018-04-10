@@ -258,10 +258,10 @@ else
                     </div>
                     <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
                         <div class="col-md-4">
-                            <div><small>PVP</small></div>
+                            <div><small>Precio</small></div>
                             <small>
                                 <strong>
-                                    000,00€
+                                    @ud.Precio.ToString("N2") €
                                 </strong>
                             </small>
                         </div>
@@ -269,16 +269,7 @@ else
                             <div><small>Desct.</small></div>
                             <small>
                                 <strong>
-                                    00,0%
-                                </strong>
-                            </small>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div><small>Neto</small></div>
-                            <small>
-                                <strong>
-                                    000,00€
+                                    @ud.Descuento.ToString("N2") %
                                 </strong>
                             </small>
                         </div>
@@ -492,15 +483,6 @@ else
                                                             </strong>
                                                         </small>
                                                     </div>
-
-                                                    <div class="col-md-4">
-                                                        <div><small>Neto</small></div>
-                                                        <small>
-                                                            <strong>
-                                                                000,00€
-                                                            </strong>
-                                                        </small>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class=" col-md-2 text-center">
@@ -708,18 +690,18 @@ else
                                                 </div>
                                                 <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
                                                     <div class="col-md-4">
-                                                        <div><small>PVP</small></div>
+                                                        <div><small>Precio</small></div>
                                                         <small>
                                                             <strong>
-                                                                000,00€
+                                                                @ud.Precio.ToString("N2") €
                                                             </strong>
                                                         </small>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div><small>Desct.</small></div>
+                                                        <div><small>Dto.</small></div>
                                                         <small>
                                                             <strong>
-                                                                00,0%
+                                                                @ud.Descuento.ToString("N2") %
                                                             </strong>
                                                         </small>
                                                     </div>
