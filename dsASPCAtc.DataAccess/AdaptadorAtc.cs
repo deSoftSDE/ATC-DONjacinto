@@ -2096,6 +2096,7 @@ namespace dsASPCAtc.DataAccess
                     res.Email = AsignaCadena("Email");
                     res.Web = AsignaCadena("Web");
                     res.PaginaFacebook = AsignaCadena("PaginaFacebook");
+                    res.PaginaInstagram = AsignaCadena("PaginaInstagram");
                     res.PaginaTwitter = AsignaCadena("PaginaTwitter");
                     res.PaginaGooglePlus = AsignaCadena("PaginaGooglePlus");
                     res.PaginaPinterest = AsignaCadena("PaginaPinterest");
@@ -2134,7 +2135,7 @@ namespace dsASPCAtc.DataAccess
                     res.VisibleNovedades = AsignaBool("VisibleNovedades");
 
                     res.VisibleExpress = AsignaBool("VisibleExpress");
-
+                    res.Copyright = AsignaCadena("Copyright");
                     res.VisibleUltimosPedidos = AsignaBool("VisibleUltimosPedidos");
 
                     res.VisibleIP = AsignaBool("VisibleIP");

@@ -31,9 +31,34 @@ namespace dsASPCAtc.Web.Controllers
             var res = ad.ClientesProcesarRegistro(sol);
             ViewData["Resultado"] = res;
             ViewData["Recuperacion"] = new ResultadoRecuperacionContrasena();
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
-
+        private EmpresaWeb ObtenerDatosEmpresa()
+        {
+            try
+            {
+                var res = HttpContext.Session.GetObjectFromJson<EmpresaWeb>("EmpresaWeb");
+                if (res == null)
+                {
+                    return ConsultarDatosEmpresa();
+                } else
+                {
+                    return res;
+                }
+            }
+            catch
+            {
+                return ConsultarDatosEmpresa();
+            }
+        }
+        private EmpresaWeb ConsultarDatosEmpresa()
+        {
+            var ad = new AdaptadorAtc(_configuration);
+            var dempr = ad.DatosEmpresaLeer();
+            HttpContext.Session.SetObjectAsJson("EmpresaWeb", dempr);
+            return dempr;
+        }
         public IActionResult Index()
         {
             ViewData["Resultado"] = new ResultadoRegistro();
@@ -54,33 +79,35 @@ namespace dsASPCAtc.Web.Controllers
             var h = lh.Leer();
             var li = new LectorEurocode("3587RGNM5FDKW");
             var i = li.Leer();
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
 
         public IActionResult Calidad()
         {
-            
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
         public IActionResult Historia()
         {
-
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
         public IActionResult Formacion()
         {
-
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
 
         public IActionResult Productos()
         {
-
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
         public IActionResult Contacto()
         {
             ViewData["Mensaje"] = "";
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
         [HttpPost]
@@ -89,6 +116,7 @@ namespace dsASPCAtc.Web.Controllers
             ViewData["Mensaje"] = "Formulario enviado con éxito";
             var ad = new ServicioCorreo(_configuration);
             var st = ad.CorreoContactoEnviar(form);
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
 
@@ -98,6 +126,7 @@ namespace dsASPCAtc.Web.Controllers
             var ad = new ServicioCorreo(_configuration);
             var res = ad.ClientesValidarUsuarioWebPorGuid(id);
             ViewData["Resultado"] = res;
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
 
@@ -106,11 +135,13 @@ namespace dsASPCAtc.Web.Controllers
             var ad = new ServicioCorreo(_configuration);
             var res = ad.ClientesRecuperarContrasena(sol.email);
             ViewData["Resultado"] = res;
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
         [HttpGet]
         public IActionResult Recuperar(Guid id)
         {
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             var ad = new ServicioCorreo(_configuration);
             var res = ad.ClientesValidarRecuperacionPassword(id);
             if (res.Resultado == 1)
@@ -126,6 +157,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpPost]
         public IActionResult Recuperar([FromForm] RecuperacionPassword sol)
         {
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             if (sol.password == sol.repeatpassword)
             {
                 var ad = new ServicioCorreo(_configuration);

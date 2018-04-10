@@ -671,6 +671,10 @@ namespace EntidadesAtc
         public Boolean VisibleAlmacenesListado { get; set; }
         [DataMember]
         public Boolean VisibleAlmacenesFicha { get; set; }
+        [DataMember]
+        public string PaginaInstagram { get; set; }
+        [DataMember]
+        public string Copyright { get; set; }
     }
     public class ResultadoValidacionGuidRecuperacion
     {

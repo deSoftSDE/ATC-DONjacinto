@@ -1,7 +1,10 @@
-﻿<!doctype html>
+﻿@{
+    var c = (EmpresaWeb)ViewData["DatosEmpresa"];
+}
+<!doctype html>
 <html lang="en">
 <head>
-    <title>AUTO CRISTALES TOMELLOSO | GRUPO ATC</title>
+    <title>@c.NombreSitio | GRUPO ATC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 700" rel="stylesheet">
@@ -27,9 +30,25 @@
                 <div class="row">
                     <div class="col-4 col-md-5 col-lg-4 col-xl-4  d-none d-sm-block ">
                         <ul class="social list-unstyled">
-                            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                           @if (c.PaginaFacebook != "") {
+                                <li><a href="@c.PaginaFacebook" class="p-2"><span class="fab fa-facebook-f"></span></a></li>
+                            }
+                            @if (c.PaginaTwitter != "") {
+                                <li><a href="@c.PaginaTwitter" class="p-2"><span class="fab fa-twitter"></span></a></li>
+                            }
+                             @if (c.PaginaInstagram != "") {
+                                <li><a href="@c.PaginaInstagram" class="p-2"><span class="fab fa-instagram"></span></a></li>
+                            }
+                              @if (c.PaginaLinkedIn != "") {
+                                 <li><a href="@c.PaginaLinkedIn" class="p-2"><span class="fab fa-linkedin"></span></a></li>
+                            }
+                               @if (c.PaginaPinterest != "") {
+                                 <li><a href="@c.PaginaPinterest" class="p-2"><span class="fab fa-pinterest"></span></a></li>
+                            }
+                            @if (c.PaginaGooglePlus != "") {
+                                 <li><a href="@c.PaginaGooglePlus" class="p-2"><span class="fab fa-google-plus"></span></a></li>
+                            }
+
                         </ul>
                     </div>
 
@@ -140,23 +159,21 @@
                     <h3 class="text-uppercase mb-3 h6 text-white"> Email</h3>
                     <ul class="footer-link list-unstyled">
                         <li>
-                            <a href="mailto:info@yourdomain.com">info@donjacinto.es</a>
+                            <a href="mailto:@c.dirEmailContacto">@c.dirEmailContacto</a>
                         </li>
                     </ul>
 
 
                     <h3 class="text-uppercase mb-3 h6 text-white"> Teléfonos </h3>
                     <ul class="footer-link list-unstyled">
-                        <li>926 50 60 70</li>
-                        <li>926 53 81 85</li>
+                        @c.Telefono
                     </ul>
                 </div>
                 <div class="col-md-3 mb-5">
                     <h3>Localización &amp; Contacto</h3>
                     <p class="mb-5">
-                        Pol. Ind. La Serna - Calle C - C2
-                        13710 Argamasilla de Alba
-                        (Ciudad Real) - España
+                        @c.Direccion
+                        
                     </p>
 
                 </div>
@@ -166,12 +183,32 @@
                     <hr class="border-t">
                 </div>
                 <div class="col-md-6 col-sm-12 copyright">
-                    <p>&copy; 2018 Grupo ATC Don Jacinto</p>
+                    <p>&copy;  @c.Copyright</p>
                 </div>
                 <div class="col-md-6 col-sm-12 text-md-right text-sm-left">
-                    <a href="#" class="p-2"><span class="fab fa-facebook-f"></span></a>
-                    <a href="#" class="p-2"><span class="fab fa-twitter"></span></a>
-                    <a href="#" class="p-2"><span class="fab fa-instagram"></span></a>
+                    @if (c.PaginaFacebook != "") {
+                        <a href="@c.PaginaFacebook" class="p-2"><span class="fab fa-facebook-f"></span></a>
+                    }
+                    @if (c.PaginaTwitter != "") {
+                        <a href="@c.PaginaTwitter" class="p-2"><span class="fab fa-twitter"></span></a>
+                    }
+                     @if (c.PaginaInstagram != "") {
+                        <a href="@c.PaginaInstagram" class="p-2"><span class="fab fa-instagram"></span></a>
+                    }
+                      @if (c.PaginaLinkedIn != "") {
+                         <a href="@c.PaginaLinkedIn" class="p-2"><span class="fab fa-linkedin"></span></a>
+                    }
+                       @if (c.PaginaPinterest != "") {
+                         <a href="@c.PaginaPinterest" class="p-2"><span class="fab fa-pinterest"></span></a>
+                    }
+                    @if (c.PaginaGooglePlus != "") {
+                         <a href="@c.PaginaGooglePlus" class="p-2"><span class="fab fa-google-plus"></span></a>
+                    }
+                     
+                    
+                   
+                    
+                    
                 </div>
             </div>
         </div>
