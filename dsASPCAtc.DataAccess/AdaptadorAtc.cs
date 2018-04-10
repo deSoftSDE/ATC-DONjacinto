@@ -1062,6 +1062,7 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@ano", pr.ano),
                     new SqlParameter("@eurocode", pr.eurocode),
                     new SqlParameter("@idcategoria", pr.idCategoria),
+                    new SqlParameter("@idcliente", pr.idCliente),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerBusqueda", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);

@@ -958,6 +958,7 @@ namespace EntidadesAtc
         public int? idTipoVidrio { get; set; }
         public string eurocode { get; set; }
         public int? idCategoria { get; set; }
+        public int idCliente { get; set; }
     }
     [DataContract]
     public class TipoVehiculo

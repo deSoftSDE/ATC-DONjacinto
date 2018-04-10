@@ -215,13 +215,16 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio, string euro, int? marca, int? categoria)
         {
+            var cl = new UsuarioWeb();
+            cl.Cliente = new Cliente();
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
             }
             else
             {
-                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+                cl = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+                ViewData["Usuario"] = cl;
             }
             //var ad = new AdaptadorAtc(_configuration);
             var pr = new Parametros
@@ -232,6 +235,7 @@ namespace dsASPCAtc.Web.Controllers
                 eurocode = euro,
                 idSeccion = marca,
                 idCategoria = categoria,
+                idCliente = cl.Cliente.IDCliente,
             };
             if (periodo.HasValue)
             {
