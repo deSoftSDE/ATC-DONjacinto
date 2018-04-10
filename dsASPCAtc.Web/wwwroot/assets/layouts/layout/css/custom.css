@@ -284,7 +284,10 @@ h4.letra-sola {
 }
 .btn-lista{
     width:100%;
-    padding-right:0px !important;
+    padding:20px;
+    
+    
+
 }
 div.btn-lista.seleccionado {
    background-color:#fff !important;
