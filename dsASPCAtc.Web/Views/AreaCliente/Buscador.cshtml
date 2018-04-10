@@ -178,14 +178,19 @@
                                                         <div class="col-md-12" ng-repeat="inicial in inicialesMarcas">
                                                             <div class="row">
                                                                 <div class="col-md-1 text-right">
-                                                                    <h4>  {{inicial.valor}} </h4>
+                                                                    <h4 class="letra-sola"> <strong> {{inicial.valor}}</strong> </h4>
                                                                 </div>
                                                                 <div class="col-md-11">
-                                                                    <div class="row linea-marcas">
-                                                                        <div class="col-md-2" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)" style="padding:5px 0px;">
-                                                                            @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{marca.descripcionSeccion}}</span>
+                                                                    <div class="linea-marcas">
+                                                                        <div class="row" style="padding:0px 15px">
+
+                                                                            <div class="col-md-2" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)" style="padding:5px 0px;">
+                                                                                @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{marca.descripcionSeccion}}</span>
+                                                                            </div>
+
                                                                         </div>
                                                                     </div>
+                                                                   
                                                                     
                                                                        
                                                                    
