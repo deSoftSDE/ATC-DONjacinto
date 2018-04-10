@@ -805,6 +805,7 @@ namespace EntidadesAtc
         [DataMember]
         public string Imagen { get; set; }
         public List<BuscaArticulo> Articulos { get; set; }
+        public string url { get; set; }
     }
     [DataContract]
     public class Carroceria
