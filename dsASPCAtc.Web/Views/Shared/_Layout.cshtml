@@ -370,12 +370,17 @@
                                 <span class="badge badge-danger">{{carrito.articulos.length}}</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
-                                PEDIDOS PENDIENTES
-                                @*<span class="badge badge-success">7</span>*@
-                            </a>
-                        </li>
+                        @if (d.VisibleUltimosPedidos)
+    {
+                    <li>
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
+                            Últimos pedidos
+                            @*<span class="badge badge-success">7</span>*@
+                        </a>
+                    </li>
+
+}
+
 
                     </ul>
                     <div class="tab-content">
@@ -409,7 +414,7 @@
                             </div>
                             <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
                                 <div class="page-quick-sidebar-alerts-list">
-                                    <h3 class="list-heading">Pedidos Pendientes</h3>
+                                    <h3 class="list-heading">Últimos Pedidos</h3>
                                     <ul class="feeds list-items">
                                         <li>
                                             <div class="col1">
@@ -420,13 +425,19 @@
                                                         </div>
                                                     </div>
                                                     <div class="cont-col2">
-                                                        <div class="desc">
-                                                            Lorem Ipsum
-                                                            <span class="label label-sm label-warning ">
-                                                                estado
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                        </div>
+                                                        <table>
+                                                            @foreach (Pedido pd in c.Pedidos)
+    {
+
+                                                        <tr>
+                                                            <td> @pd.Documento </td>
+                                                            <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                                            <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                                            <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
+                                                            <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                                        </tr>
+}
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
