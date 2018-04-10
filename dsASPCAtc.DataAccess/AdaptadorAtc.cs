@@ -155,8 +155,61 @@ namespace dsASPCAtc.DataAccess
             return res;
         }
 
-        
-
+        public int UsuariosWebModificarClave(FormularioCambioPassword form)
+        {
+            var res = 0;
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idUsuarioWeb", form.idUsuarioWeb),
+                    new SqlParameter("@claveActual", form.actual),
+                    new SqlParameter("@claveNueva", form.newn),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.UsuariosWebModificarClave", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res = AsignaEntero("Resultado");
+                }
+            }
+            return res;
+        }
+        public List<ImagenCabWeb> ImagenesCabWebLeer()
+        {
+            var res = new List<ImagenCabWeb>();
+            var streaming = _configuration.GetSection("StreamFiles")["rutaStreaming"];
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ImagenesCabWebLeer", null);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var cw = new ImagenCabWeb
+                    {
+                        IdImagen = AsignaEntero("IdImagen"),
+                        IdEmpresa = AsignaEntero("IdEmpresa"),
+                        RowGuid = AsignaGuid("RoweGuid"),
+                        ImagenSt = AsignaCadena("ImagenSt"),
+                        Titulo = AsignaCadena("Titulo"),
+                        Subtitulo = AsignaCadena("Subtitulo"),
+                        Contenido = AsignaCadena("Contenido"),
+                    };
+                    cw.url = streaming + cw.ImagenSt;
+                    if (cw.Subtitulo != "")
+                    {
+                        cw.classcontent = "d-none";
+                    } else
+                    {
+                        cw.classcontent = "";
+                    }
+                    res.Add(cw);
+                }
+            }
+            return res;
+        }
         public List<TipoVehiculo> TiposVehiculoLeer(int? IDTipoVehiculo)
         {
             var res = new List<TipoVehiculo>();
@@ -2096,6 +2149,7 @@ namespace dsASPCAtc.DataAccess
                     res.Email = AsignaCadena("Email");
                     res.Web = AsignaCadena("Web");
                     res.PaginaFacebook = AsignaCadena("PaginaFacebook");
+                    res.PaginaInstagram = AsignaCadena("PaginaInstagram");
                     res.PaginaTwitter = AsignaCadena("PaginaTwitter");
                     res.PaginaGooglePlus = AsignaCadena("PaginaGooglePlus");
                     res.PaginaPinterest = AsignaCadena("PaginaPinterest");
@@ -2134,7 +2188,7 @@ namespace dsASPCAtc.DataAccess
                     res.VisibleNovedades = AsignaBool("VisibleNovedades");
 
                     res.VisibleExpress = AsignaBool("VisibleExpress");
-
+                    res.Copyright = AsignaCadena("Copyright");
                     res.VisibleUltimosPedidos = AsignaBool("VisibleUltimosPedidos");
 
                     res.VisibleIP = AsignaBool("VisibleIP");
