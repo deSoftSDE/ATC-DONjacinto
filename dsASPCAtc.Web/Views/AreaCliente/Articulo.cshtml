@@ -1,6 +1,8 @@
 ﻿@{
     @using dsASPCAtc.Web.ViewModels;
     var dt = (ArticuloViewModel)ViewData["Articulo"];
+    var c = (UsuarioWeb)ViewData["Usuario"];
+    var d = c.DatosEmpresa;
 }
 @if (dt.articulo.Accesorios.Count > 0)
 {
@@ -159,7 +161,7 @@ else
                             </p>
 
 
-                            @if (dt.articulo.Eurocode != null)
+                            @if (dt.articulo.Eurocode != null && d.VisibleEurocodeFicha)
                             {
                                 <div>
                                     @if (dt.articulo.Eurocode.TipoVidrio != null)
@@ -218,7 +220,9 @@ else
                             <ul class="list-unstyled">
                                 @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
                                 {
-                                    foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                                    @if (d.VisibleAlmacenesFicha)
+                                    {
+                                        foreach (AcumuladoStock ast in ud.AcumuladosStock)
                                     {
                                         <li style="padding-bottom: 5px;">
                                             @ast.NombreAlmacen
@@ -240,6 +244,9 @@ else
                                         </li>
 
                                     }
+
+                                    }
+                                    
 
 
                                 }
@@ -449,7 +456,7 @@ else
                                 </div>
                                 <div class="col-md-3">
                                     <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
-                                    @if (ar.Eurocode != null)
+                                    @if (ar.Eurocode != null && d.VisibleEurocodeListado)
                                     {
                                         <div>
                                             @if (ar.Eurocode.TipoVidrio != null)
@@ -511,6 +518,7 @@ else
                                             <div class="row ">
 
                                                 <div class="col-md-12">
+
                                                     @if (ud.AcumuladosStock.Count < 1)
                                                     {
                                                         <small><strong><i class="fa fa-industry"></i> Bajo pedido </strong></small>
@@ -525,8 +533,9 @@ else
                                                     <ul class="list-unstyled list-inline">
 
 
-
-                                                        @foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                                                        @if (d.VisibleAlmacenesListado)
+                                                        {
+                                                            @foreach (AcumuladoStock ast in ud.AcumuladosStock)
                                                         {
                                                             <li class="list-inline-item" style="padding-bottom: 5px;">
 
@@ -546,6 +555,9 @@ else
                                                             </li>
 
                                                         }
+
+                                                        }
+                                                        
 
 
                                                     </ul>

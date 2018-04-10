@@ -55,6 +55,8 @@ namespace dsASPCAtc.Web.Controllers
             if (us.IdUsuarioWeb > 0)
             {
                 us.InfoMenuWeb = ad.InfoMenuWebLeer();
+                us.Mensajes = ad.MensajeLeer(us.Cliente.IDCliente, 0);
+                us.DatosEmpresa = ad.DatosEmpresaLeer();
                 HttpContext.Session.SetObjectAsJson("Login", us);
                 
                 var vm = new IndexViewModel(_configuration);
@@ -276,8 +278,19 @@ namespace dsASPCAtc.Web.Controllers
                 ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             }
             var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
-            var ad = new AdaptadorAtc(_configuration);
-            ViewData["FacturasMensuales"] = ad.FacturasMensualesLeer(usuario.Cliente.IDCliente);
+            return View();
+        }
+        public IActionResult Pedidos()
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var usuario = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             return View();
         }
         [HttpGet]

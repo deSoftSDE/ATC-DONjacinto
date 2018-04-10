@@ -10,7 +10,7 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         dataSource: "data/customers.json",
         columns: ["Código", "Características", "Almacenes", "PVP", "%", "Neto", "Pedir"]
     };
-    $scope.ocultarSidebar = function() {
+    $scope.ocultarSidebar = function () {
         alert("Holi")
     }
     $scope.tamanoanterior = 0;
@@ -29,7 +29,7 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.verResultados = function () {
         verResultados($scope.cadena);
     }
-    buscarMarcaModelos = function() {
+    buscarMarcaModelos = function () {
         $scope.loading = true;
         if ($scope.cadena.length > 3) {
             Llamada.get("MarcasYModelosLeerPorCadena?cadena=" + $scope.cadena)
@@ -76,11 +76,11 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             $scope.mostrardesplegable = true;
         }
     }
-    $scope.buscarConCadena = function() { 
-        if ($scope.cadena.length > 3) { 
+    $scope.buscarConCadena = function () {
+        if ($scope.cadena.length > 3) {
             window.location.href = "/AreaCliente/Resultados?euro=" + $scope.cadena;
         }
-        
+
     }
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);
@@ -93,9 +93,21 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 if (noabrir !== true) {
                     $("body").addClass("page-quick-sidebar-open");
                 }
-                
+
                 $scope.carrito = respuesta.data;
             })
+    }
+    $scope.marcarMensajeLeido = function (idMensaje, idCliente, otrocliente) {
+        //alert("EEOO")
+        if (otrocliente > 0) {
+            Llamada.get("MensajeMarcarLeido?idMensaje=" + idMensaje + "&IDCliente=" + idCliente)
+            document.getElementById("mj " + idMensaje).style.display = "none";
+            var cantidad = parseInt(document.getElementById("canmensajes").innerHTML);
+            cantidad--;
+            document.getElementById("canmensajes").innerHTML = cantidad;
+            document.getElementById("canmensajes2").innerHTML = cantidad;
+        }
+        
     }
     $scope.eliminarCarrito = function () {
 

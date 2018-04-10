@@ -1,5 +1,6 @@
 ﻿@{ 
     var c = (UsuarioWeb)ViewData["Usuario"];
+    var d = c.DatosEmpresa;
 }
 <!DOCTYPE html>
 <html lang="es" ng-app="atcapp">
@@ -80,94 +81,60 @@
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-
-                        <li class="nav-item">
+                        @if (d.VisibleUltimaConexion)
+                        {
+                            <li class="nav-item">
                             <a class="nav-link link-conect">Última Conexión @c.UltimaConexion</a>
 
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-conect">desde IP @c.UltimaIP</a>
+                            </li>
 
-                        </li>
-                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        }
+                        @if (d.VisibleIP)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link link-conect">desde IP @c.UltimaIP</a>
+
+                            </li>
+
+                        }
+                        @if(d.VisibleMensajes)
+                        {
+                            <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
-                                <span class="badge badge-default"> 4 </span>
+                                <span class="badge badge-default" id="canmensajes"> @c.Mensajes.Count </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>
                                         Tiene
-                                        <span class="bold">4 Nuevos</span> Mensajes
+                                        <span class="bold"><span id="canmensajes2">@c.Mensajes.Count</span> Nuevos</span> Mensajes
                                     </h3>
-                                    <a href="app_inbox.html">ver todos</a>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                        <li>
-                                            <a href="#">
+                                        @foreach(MensajeWeb msj in c.Mensajes)
+                                        {
+                                            <li id="mj @msj.IdMensaje">
+                                            <a ng-click="marcarMensajeLeido(@msj.IdMensaje, @c.Cliente.IDCliente, @msj.IdCliente)">
                                                 <span class="photo">
                                                     <img src="~/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
                                                 </span>
                                                 <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">Justo ahora </span>
+                                                    <span class="from"> @msj.Titulo</span>
+                                                    <span class="time"> @msj.FechaEnvio</span>
                                                 </span>
-                                                <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+                                                <span class="message"> @msj.Mensaje </span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="~/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">16 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="~/assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Bob Nilson </span>
-                                                    <span class="time">2 hrs </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="~/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">40 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="~/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">46 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
+
+                                        }
                                     </ul>
                                 </li>
                             </ul>
                         </li>
+
+                        }
 
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -246,14 +213,19 @@
                                 <span class="title">Realizar Pedido</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-bag"></i>
+                        @if (d.VisiblePedidos)
+                        {
+                            <li class="nav-item  ">
+                            <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
+                                <i class="icon-puzzle"></i>
                                 <span class="title">Ver Pedidos</span>
 
                             </a>
-                        </li>
-                        <li class="heading">
+                            </li>
+                        }
+                        @if(d.VisibleFacturas)
+                        {
+                            <li class="heading">
                             <h3 class="uppercase">FACTURAS</h3>
                         </li>
                         <li class="nav-item  ">
@@ -263,7 +235,11 @@
 
                             </a>
                         </li>
-                        <li class="heading">
+
+                        }
+                        @if (d.VisibleFinanzas)
+                        {
+                            <li class="heading">
                             <h3 class="uppercase">finanzas</h3>
                         </li>
                         <li class="nav-item  ">
@@ -288,10 +264,19 @@
                             </a>
                         </li>
 
-                        <li class="heading">
+                        }
+                        
+                        @if (d.VisibleVehiculos || d.VisibleCategorias)
+                        {
+                             <li class="heading">
                             <h3 class="uppercase">productos</h3>
                         </li>
-                        <li class="nav-item  ">
+
+                        }
+                       
+                        @if (d.VisibleVehiculos)
+                        {
+                            <li class="nav-item  ">
 
 
 
@@ -319,7 +304,11 @@
                                 }
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+
+                        }
+                        @if (d.VisibleCategorias)
+                        {
+                            <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="fa fa-circle"></i>
                                 <span class="title">Complementos</span>
@@ -338,6 +327,9 @@
 
                             </ul>
                         </li>
+
+                        }
+                        
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->
@@ -378,12 +370,17 @@
                                 <span class="badge badge-danger">{{carrito.articulos.length}}</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
-                                PEDIDOS PENDIENTES
-                                @*<span class="badge badge-success">7</span>*@
-                            </a>
-                        </li>
+                        @if (d.VisibleUltimosPedidos)
+    {
+                    <li>
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
+                            Últimos pedidos
+                            @*<span class="badge badge-success">7</span>*@
+                        </a>
+                    </li>
+
+}
+
 
                     </ul>
                     <div class="tab-content">
@@ -426,98 +423,105 @@
                                         <i class="icon-settings"></i> Procesar Pedido
                                     </button>
                                 </div>
-                        </div>
-                        
-                        <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
-                            <div class="page-quick-sidebar-alerts-list">
-                                <h3 class="list-heading">Pedidos Pendientes</h3>
-                                <ul class="feeds list-items">
-                                    <li>
-                                        <div class="col1">
-                                            <div class="cont">
-                                                <div class="cont-col1">
-                                                    <div class="label label-sm label-info">
-                                                        
+                            </div>
+                                
+                            </div>
+                            <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
+                                <div class="page-quick-sidebar-alerts-list">
+                                    <h3 class="list-heading">Últimos Pedidos</h3>
+                                    <ul class="feeds list-items">
+                                        <li>
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        <div class="label label-sm label-info">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="cont-col2">
-                                                    <div class="desc">
-                                                        Lorem Ipsum
-                                                        <span class="label label-sm label-warning ">
-                                                            estado
-                                                            <i class="fa fa-share"></i>
-                                                        </span>
+                                                    <div class="cont-col2">
+                                                        <table>
+                                                            @foreach (Pedido pd in c.Pedidos)
+    {
+
+                                                        <tr>
+                                                            <td> @pd.Documento </td>
+                                                            <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                                            <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                                            <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
+                                                            <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                                        </tr>
+}
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col2">
-                                            <div class="date"> OK </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                            <div class="col2">
+                                                <div class="date"> OK </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
-                            <div class="page-quick-sidebar-settings-list">
-                                <h3 class="list-heading">Opciones</h3>
-                                <ul class="list-items borderless">
-                                    <li>
-                                        Opcion1
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion2
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion3
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion4
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion5
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                </ul>
-                                <h3 class="list-heading">Opciones</h3>
-                                <ul class="list-items borderless">
-                                    <li>
-                                        Security Level
-                                        <select class="form-control input-inline input-sm input-small">
-                                            <option value="1">OP1</option>
-                                            <option value="2" selected>OP2</option>
-                                            <option value="e">OP3</option>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        Opcion6
-                                        <input class="form-control input-inline input-sm input-small" value="5" />
-                                    </li>
-                                    <li>
-                                        OPcion7
-                                        <input class="form-control input-inline input-sm input-small" value="3560" />
-                                    </li>
-                                    <li>
-                                        OPcion8
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                    <li>
-                                        Opcion9
-                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                    </li>
-                                </ul>
-                                <div class="inner-content">
-                                    <button class="btn btn-success">
-                                        <i class="icon-settings"></i> Guardar Cambios
-                                    </button>
+                            <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
+                                <div class="page-quick-sidebar-settings-list">
+                                    <h3 class="list-heading">Opciones</h3>
+                                    <ul class="list-items borderless">
+                                        <li>
+                                            Opcion1
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion2
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion3
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion4
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion5
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                    </ul>
+                                    <h3 class="list-heading">Opciones</h3>
+                                    <ul class="list-items borderless">
+                                        <li>
+                                            Security Level
+                                            <select class="form-control input-inline input-sm input-small">
+                                                <option value="1">OP1</option>
+                                                <option value="2" selected>OP2</option>
+                                                <option value="e">OP3</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            Opcion6
+                                            <input class="form-control input-inline input-sm input-small" value="5" />
+                                        </li>
+                                        <li>
+                                            OPcion7
+                                            <input class="form-control input-inline input-sm input-small" value="3560" />
+                                        </li>
+                                        <li>
+                                            OPcion8
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                        <li>
+                                            Opcion9
+                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                        </li>
+                                    </ul>
+                                    <div class="inner-content">
+                                        <button class="btn btn-success">
+                                            <i class="icon-settings"></i> Guardar Cambios
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <!-- END  SIDEBAR OCULTA -->
@@ -622,6 +626,7 @@
     <script type="text/javascript" src="~/aplicacion/vehiculosController.js"></script>
     <script type="text/javascript" src="~/aplicacion/busquedaArticulosController.js"></script>
     <script type="text/javascript" src="~/aplicacion/facturasController.js"></script>
+    <script type="text/javascript" src="~/aplicacion/pedidosController.js"></script>
     <script type="text/javascript" src="~/aplicacion/finanzasController.js"></script>
 
     <!--Cosas devexpress-->

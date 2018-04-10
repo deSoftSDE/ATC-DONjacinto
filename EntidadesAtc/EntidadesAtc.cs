@@ -219,6 +219,7 @@ namespace EntidadesAtc
     {
         public int Registros { get; set; }
         public List<Factura> Facturas { get; set; }
+        public List<Pedido> Pedidos { get; set; }
     }
     public class FacturacionMensual
     {
@@ -237,6 +238,7 @@ namespace EntidadesAtc
         public decimal TotalCuotaIva { get; set; }
         public decimal TotalCuotaRE { get; set; }
         public decimal ImporteLiquido { get; set; }
+        public int IDCabPedidoVentas { get; set; }
     }
     public class DebitosPendientes
     {
@@ -272,8 +274,20 @@ namespace EntidadesAtc
         public string Estado { get; set; }
         public DateTime FechaRecepcion { get; set; }
         public DateTime FechaVto { get; set; }
-        public DateTime FechaCobro { get; set; }
+        public DateTime? FechaCobro { get; set; }
         public string NombreCartera { get; set; }
+        public string ColorEstado { get; set; }
+    }
+    public class Pedido
+    {
+        public int IdCabPedidoVentas { get; set; }
+        public DateTime FechaDocumento { get; set; }
+        public string Documento { get; set; }
+        public decimal TotalBaseImponible { get; set; }
+        public decimal TotalCuotaIva { get; set; }
+        public decimal ImporteLiquido { get; set; }
+        public decimal TotalCuotaRE { get; set; }
+        public string Estado { get; set; }
         public string ColorEstado { get; set; }
     }
     public class DebitoPendiente
@@ -503,6 +517,9 @@ namespace EntidadesAtc
         public List<Promocion> Promociones { get; set; }
         public string UltimaIP { get; set; }
         public InfoMenuWeb InfoMenuWeb { get; set; }
+        public List<Pedido> Pedidos { get; set; }
+        public List<MensajeWeb> Mensajes { get; set; }
+        public EmpresaWeb DatosEmpresa { get; set; }
     }
     public class RecuperacionPassword
     {
@@ -558,6 +575,102 @@ namespace EntidadesAtc
     public class SolicitudRecuperacion
     {
         public string email { get; set; }
+    }
+    [DataContract]
+    public class EmpresaWeb
+    {
+        [DataMember]
+        public int IdDatosWeb { get; set; }
+        [DataMember]
+        public int IdEmpresa { get; set; }
+        [DataMember]
+        public Guid GuidImg { get; set; }
+        [DataMember]
+        public Guid GuidIcono { get; set; }
+        [DataMember]
+        public string Direccion { get; set; }
+        [DataMember]
+        public string CodPostal { get; set; }
+        [DataMember]
+        public string Localidad { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Web { get; set; }
+        [DataMember]
+        public string PaginaFacebook { get; set; }
+        [DataMember]
+        public string PaginaTwitter { get; set; }
+        [DataMember]
+        public string PaginaGooglePlus { get; set; }
+        [DataMember]
+        public string PaginaPinterest { get; set; }
+        [DataMember]
+        public string PaginaLinkedIn { get; set; }
+        [DataMember]
+        public string AcercaDe { get; set; }
+        [DataMember]
+        public int IdClienteVentaDirecta { get; set; }
+        [DataMember]
+        public Boolean VisiblePedidos { get; set; }
+        [DataMember]
+        public Boolean VisibleFacturas { get; set; }
+        [DataMember]
+        public Boolean VisibleFinanzas { get; set; }
+        [DataMember]
+        public Boolean VisibleCatalogo { get; set; }
+        [DataMember]
+        public Boolean VisibleCuenta { get; set; }
+        [DataMember]
+        public Boolean VisibleIdiomas { get; set; }
+        [DataMember]
+        public Boolean VisibleMensajes { get; set; }
+        [DataMember]
+        public Boolean VisiblePlantillas { get; set; }
+        [DataMember]
+        public Boolean VisibleInvitado { get; set; }
+        [DataMember]
+        public Boolean VisibleVentaDirecta { get; set; }
+        [DataMember]
+        public string NombreCuenta { get; set; }
+        [DataMember]
+        public string Usuario { get; set; }
+        [DataMember]
+        public string Clave { get; set; }
+        [DataMember]
+        public string ServCorreoSal { get; set; }
+        [DataMember]
+        public int PuertoCorreoSal { get; set; }
+        [DataMember]
+        public string NombreSitio { get; set; }
+        [DataMember]
+        public string RutaLogo { get; set; }
+        [DataMember]
+        public string dirEmailContacto { get; set; }
+        [DataMember]
+        public Boolean VisibleCategorias { get; set; }
+        [DataMember]
+        public Boolean VisibleVehiculos { get; set; }
+        [DataMember]
+        public Boolean VisibleNovedades { get; set; }
+        [DataMember]
+        public Boolean VisibleExpress { get; set; }
+        [DataMember]
+        public Boolean VisibleUltimosPedidos { get; set; }
+        [DataMember]
+        public Boolean VisibleIP { get; set; }
+        [DataMember]
+        public Boolean VisibleUltimaConexion { get; set; }
+        [DataMember]
+        public Boolean VisibleEurocodeListado { get; set; }
+        [DataMember]
+        public Boolean VisibleEurocodeFicha { get; set; }
+        [DataMember]
+        public Boolean VisibleAlmacenesListado { get; set; }
+        [DataMember]
+        public Boolean VisibleAlmacenesFicha { get; set; }
     }
     public class ResultadoValidacionGuidRecuperacion
     {
@@ -1096,6 +1209,33 @@ namespace EntidadesAtc
         public string lname { get; set; }
         public string email { get; set; }
         public string message { get; set; }
+    }
+
+    [DataContract]
+    public class MensajeWeb
+    {
+        [DataMember]
+        public int IdMensaje { get; set; }
+        [DataMember]
+        public int IdCliente { get; set; }
+        [DataMember]
+        public int IdUsuarioWeb { get; set; }
+        [DataMember]
+        public int Prioridad { get; set; }
+        [DataMember]
+        public string Titulo { get; set; }
+        [DataMember]
+        public string Mensaje { get; set; }
+        [DataMember]
+        public DateTime? FechaEnvio { get; set; }
+        [DataMember]
+        public DateTime? FechaLeido { get; set; }
+        [DataMember]
+        public Boolean Leido { get; set; }
+        [DataMember]
+        public string TipoTransaccion { get; set; }
+        [DataMember]
+        public string Cliente { get; set; }
     }
 
 }

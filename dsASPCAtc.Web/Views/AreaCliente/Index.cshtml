@@ -5,6 +5,8 @@
     var unclick = (List<BuscaArticulo>)ViewData["UnClick"];
     var novedades = (List<BuscaArticulo>)ViewData["Novedades"];
     var test = ViewData["Test"];
+    var d = (UsuarioWeb)ViewData["Usuario"];
+    var e = d.DatosEmpresa;
 }
 <script type="text/javascript">
     function verResultados(parameters) {
@@ -246,7 +248,9 @@
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">
-        <div class="col-md-6">
+        @if (e.VisibleExpress)
+        {
+            <div class="col-md-6">
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
@@ -309,7 +313,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+
+        }
+        @if (e.VisibleUltimosPedidos)
+        {
+            <div class="col-md-6">
             <div class="portlet light portlet-fit ">
                 <div class="portlet-title">
                     <div class="caption">
@@ -332,30 +340,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td> 2018ATC02 </td>
-                                    <td> 03-01-2018 </td>
-                                    <td> 800.00€ </td>
-                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
-                                    
+                                @foreach(Pedido pd in d.Pedidos)
+                                {
+
+                                    <tr>
+                                    <td> @pd.Documento </td>
+                                    <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                    <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                    <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
+                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
                                 </tr>
-                                <tr>
-                                    <td> 2018ATC02 </td>
-                                    <td> 03-01-2018 </td>
-                                    <td> 800.00€ </td>
-                                    <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
-                                   
-                                </tr>
+                                }
+                                
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             </div>
+
+        }
+        
         </div>
     </div>
     <div>
-        <div class="portlet light bordered">
+        @if (e.VisibleNovedades)
+        {
+            <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-exclamation font-blue-chambray"></i>
@@ -406,5 +418,8 @@ else
                 </div>
             </div>
         </div>
+
+        }
+        
     </div>
     <!-- /INICIO CONTENIDO GENERICO HOME -->
