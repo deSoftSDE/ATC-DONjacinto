@@ -153,6 +153,50 @@ namespace dsASPCAtc.Web.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult Cuenta()
+        {
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            ViewData["Mensaje"] = new MensajeError();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Cuenta([FromForm] FormularioCambioPassword form)
+        {
+            var me = new MensajeError();
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            if (form.newn == form.newnew)
+            {
+                var ad = new AdaptadorAtc(_configuration);
+                var a = ad.UsuariosWebModificarClave(form);
+                if (a == -1)
+                {
+                    me.Contenido = "La contraseña anterior es incorrecta";
+                } else
+                {
+                    me.Contenido = "Contraseña modificada exitosamente";
+                }
+            } else
+            {
+                me.Contenido = "Las nuevas contraseñas no coinciden";
+            }
+            ViewData["Mensaje"] = me;
+            return View();
+        }
+        [HttpGet]
         public IActionResult Productos(string producto)
         {
             if (!ComprobarLogin())

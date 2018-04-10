@@ -681,6 +681,18 @@ namespace EntidadesAtc
         public int Resultado { get; set; }
         public UsuarioDatosEmail Usuario { get; set; }
     }
+    [DataContract]
+    public class FormularioCambioPassword
+    {
+        [DataMember]
+        public string actual { get; set; }
+        [DataMember]
+        public string newn { get; set; }
+        [DataMember]
+        public string newnew { get; set; }
+        [DataMember]
+        public string idUsuarioWeb { get; set; }
+    }
     public class UsuarioDatosEmail
     {
         public int IdUsuarioWeb { get; set; }

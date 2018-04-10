@@ -155,7 +155,27 @@ namespace dsASPCAtc.DataAccess
             return res;
         }
 
-        
+        public int UsuariosWebModificarClave(FormularioCambioPassword form)
+        {
+            var res = 0;
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idUsuarioWeb", form.idUsuarioWeb),
+                    new SqlParameter("@claveActual", form.actual),
+                    new SqlParameter("@claveNueva", form.newn),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.UsuariosWebModificarClave", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res = AsignaEntero("Resultado");
+                }
+            }
+            return res;
+        }
 
         public List<TipoVehiculo> TiposVehiculoLeer(int? IDTipoVehiculo)
         {
