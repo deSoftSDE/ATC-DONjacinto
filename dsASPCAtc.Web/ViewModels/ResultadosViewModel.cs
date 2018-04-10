@@ -36,6 +36,11 @@ namespace dsASPCAtc.Web.ViewModels
                 var le = new LectorEurocode(ar.Codigo);
                 ar.Eurocode = le.Leer();
             }
+            var streaming = _configuration.GetSection("StreamFiles")["rutaStreaming"];
+            foreach (TipoVidrio tiv in TiposVidrio)
+            {
+                tiv.url = streaming +  tiv.Imagen;
+            }
             foreach (Categoria cat in Accesorios)
             {
                 foreach (BuscaArticulo ar in cat.Articulos)
