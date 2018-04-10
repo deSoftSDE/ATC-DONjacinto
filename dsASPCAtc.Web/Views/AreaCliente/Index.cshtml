@@ -6,6 +6,7 @@
     var novedades = (List<BuscaArticulo>)ViewData["Novedades"];
     var test = ViewData["Test"];
     var d = (UsuarioWeb)ViewData["Usuario"];
+    var e = d.DatosEmpresa;
 }
 <script type="text/javascript">
     function verResultados(parameters) {
@@ -247,7 +248,9 @@
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">
-        <div class="col-md-6">
+        @if (e.VisibleExpress)
+        {
+            <div class="col-md-6">
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
@@ -310,7 +313,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+
+        }
+        @if (e.VisibleUltimosPedidos)
+        {
+            <div class="col-md-6">
             <div class="portlet light portlet-fit ">
                 <div class="portlet-title">
                     <div class="caption">
@@ -352,10 +359,15 @@
                 </div>
             </div>
             </div>
+
+        }
+        
         </div>
     </div>
     <div>
-        <div class="portlet light bordered">
+        @if (e.VisibleNovedades)
+        {
+            <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-exclamation font-blue-chambray"></i>
@@ -406,5 +418,8 @@ else
                 </div>
             </div>
         </div>
+
+        }
+        
     </div>
     <!-- /INICIO CONTENIDO GENERICO HOME -->

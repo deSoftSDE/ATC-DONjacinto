@@ -1,5 +1,6 @@
 ﻿@{ 
     var c = (UsuarioWeb)ViewData["Usuario"];
+    var d = c.DatosEmpresa;
 }
 <!DOCTYPE html>
 <html lang="es" ng-app="atcapp">
@@ -80,16 +81,25 @@
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-
-                        <li class="nav-item">
+                        @if (d.VisibleUltimaConexion)
+                        {
+                            <li class="nav-item">
                             <a class="nav-link link-conect">Última Conexión @c.UltimaConexion</a>
 
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-conect">desde IP @c.UltimaIP</a>
+                            </li>
 
-                        </li>
-                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        }
+                        @if (d.VisibleIP)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link link-conect">desde IP @c.UltimaIP</a>
+
+                            </li>
+
+                        }
+                        @if(d.VisibleMensajes)
+                        {
+                            <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
                                 <span class="badge badge-default" id="canmensajes"> @c.Mensajes.Count </span>
@@ -123,6 +133,8 @@
                                 </li>
                             </ul>
                         </li>
+
+                        }
 
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -201,14 +213,19 @@
                                 <span class="title">Realizar Pedido</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        @if (d.VisiblePedidos)
+                        {
+                            <li class="nav-item  ">
                             <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
                                 <i class="icon-puzzle"></i>
                                 <span class="title">Ver Pedidos</span>
 
                             </a>
-                        </li>
-                        <li class="heading">
+                            </li>
+                        }
+                        @if(d.VisibleFacturas)
+                        {
+                            <li class="heading">
                             <h3 class="uppercase">FACTURAS</h3>
                         </li>
                         <li class="nav-item  ">
@@ -218,7 +235,11 @@
 
                             </a>
                         </li>
-                        <li class="heading">
+
+                        }
+                        @if (d.VisibleFinanzas)
+                        {
+                            <li class="heading">
                             <h3 class="uppercase">finanzas</h3>
                         </li>
                         <li class="nav-item  ">
@@ -243,10 +264,19 @@
                             </a>
                         </li>
 
-                        <li class="heading">
+                        }
+                        
+                        @if (d.VisibleVehiculos || d.VisibleCategorias)
+                        {
+                             <li class="heading">
                             <h3 class="uppercase">productos</h3>
                         </li>
-                        <li class="nav-item  ">
+
+                        }
+                       
+                        @if (d.VisibleVehiculos)
+                        {
+                            <li class="nav-item  ">
 
 
 
@@ -274,7 +304,11 @@
                                 }
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+
+                        }
+                        @if (d.VisibleCategorias)
+                        {
+                            <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-docs"></i>
                                 <span class="title">Complementos</span>
@@ -293,6 +327,9 @@
 
                             </ul>
                         </li>
+
+                        }
+                        
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->
