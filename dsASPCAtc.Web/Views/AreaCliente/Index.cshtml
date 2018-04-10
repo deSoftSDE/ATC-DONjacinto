@@ -22,14 +22,14 @@
 </div>
 <!-- BEGIN PAGE TITLE-->
 <h1 class="page-title">
-    GRUPO ATC
-    <small>DON JACINTO</small>
+    Auto-Cristales TOMELLOSO - 
+    <small>GRUPO ATC</small>
 </h1>
 <!-- END PAGE TITLE-->
 <div class="container-fluid">
     <!--  INICIO FORMULARIO DE BUSQUEDA -->
     <div class="row">
-        <div class="col-md-12" style="background-color:#2d5f8b ;background-size: cover; background-position: center;">
+        <div class="col-md-12" style="background-color:#172a38 ;background-size: cover; background-position: center;     min-height: 291px;">
            
             <div class="row">
                 <!--asp-controller="AreaCliente" asp-action="Productos" method="get"-->
@@ -110,7 +110,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-lg-offset-0  col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control campo-search " ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto" value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
+                                                <input type="text" class="form-control campo-search " ng-blur="focofuera()" ng-focus="entrafoco()" placeholder="Buscar producto por Eurocode, marca, descripción..." value="" id="busqueda_producto" tabindex="1" autocomplete="off" ng-change="cambiobusqueda()" ng-model="cadena" name="producto">
                                                 <span class="input-group-btn">
 
                                                     <button class="btn btn-default boton-buscar" id="btn_buscar" tabindex="2" ng-click="buscarConCadena()">
@@ -137,7 +137,7 @@
                                                                 <a class="resul-search" href="/AreaCliente/Buscador?marca={{resultado.idSeccion}}">
                                                                     {{resultado.descripcionSeccion}}
                                                                 </a>
-                                                                <table class="tablaresultados">
+                                                                <table class="tablaresultados2">
                                                                     <tr ng-repeat="modelo in resultado.modelos">
                                                                         <td class="">
                                                                             <a class="resul-search" href="/AreaCliente/Buscador?modelo={{modelo.idFamilia}}">
@@ -187,7 +187,7 @@
                                 <div class="tab-pane" id="tab_15_2">
                                     <div class="row" style="background-color:rgba(255, 255, 255, 0.8);">
                                         <div class="col-lg-12 text-center titulo-search ">
-                                            <h4 class="font-dark"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.40);">Selecciona el tipo de vehículo</span></h4>
+                                            <h4 class="font-dark"><span style="text-shadow: -1px 0px 0px rgba(255, 255, 255, 0.40);font-weight: 700;">Selecciona el tipo de vehículo</span></h4>
                                         </div>
 
                                         @foreach (TipoVehiculo vehiculo in vh)
@@ -269,14 +269,14 @@
                                 </div>*@
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="mt-img">
+                                        <div class="vr-img">
                                             <img class="img-responsive" ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'">
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="mt-body">
                                             <h3 class="mt-username">@ar.Descripcion</h3>
-                                            <p class="mt-user-title"> @ar.DescripcionCorta </p>
+                                            @*<p class="mt-user-title"> @ar.DescripcionCorta </p>*@
                                             <div class="mt-stats">
                                                 <div class="btn-group btn-group btn-group-justified">
                                                     <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
@@ -327,7 +327,7 @@
                                     <th> Fecha </th>
                                     <th> Total </th>
                                     <th> Estado </th>
-                                    <th>  </th>
+                                   
                                     
                                 </tr>
                             </thead>
@@ -337,14 +337,14 @@
                                     <td> 03-01-2018 </td>
                                     <td> 800.00€ </td>
                                     <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
-                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td> 2018ATC02 </td>
                                     <td> 03-01-2018 </td>
                                     <td> 800.00€ </td>
                                     <td> <span class="label label-sm label-warning"> Pendiente </span> </td>
-                                    <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                   
                                 </tr>
                             </tbody>
                         </table>
@@ -387,7 +387,7 @@ else
 {
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive"></a>
+                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive center-block"></a>
                                     <small>@ar.Descripcion</small>
                                 </div>
                             </div>

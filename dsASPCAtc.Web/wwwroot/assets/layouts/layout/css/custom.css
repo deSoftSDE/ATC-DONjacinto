@@ -21,7 +21,8 @@ a > i.ico-prod, a:hover > i.ico-prod, a p.texto-prod {
     color: initial;
     margin-top: -5px;
     /*line-height: 1px;*/
-    color: #2d5f8b;
+    color: #172a38;
+    font-weight: bold;
 }
 
  a.texto-prod:hover {
@@ -29,7 +30,7 @@ a > i.ico-prod, a:hover > i.ico-prod, a p.texto-prod {
  }
 
 .titulo-search {
-    border-bottom: 1px solid rgba(255,255,255,0.8);
+    border-bottom: 1px solid #172a38;
 }
 .control-search{
     background-color:rgba(255, 255, 255, 0.5);
@@ -41,13 +42,20 @@ a > i.ico-prod, a:hover > i.ico-prod, a p.texto-prod {
     } 
 a.resul-search {
     color: #1b1b1b;
+    display:block;
 }
 a.resul-search:hover{
     text-decoration:none;
 }
 
-.tablaresultados  tr:hover  {
+
+
+.tablaresultados  tr  td a:hover  {
     background-color:#cdd6e4;
+}
+.tablaresultados2{
+    width:100%;
+    margin-left:10px;
 }
 /*MARGENES*/
 .m-t {
@@ -210,3 +218,68 @@ a.link-conect:hover {
     cursor:default;
     background-color:transparent !important;
 }
+.list-carrito{
+    font-size:12px;
+    margin: 0px 0px !important;
+}
+.btn-carrito{
+    width:20px !important;
+    height:20px !important;
+    line-height:0px !important;
+    margin-top:0px !important;
+}
+    .btn-carrito i {
+        line-height: 0px !important;
+        margin-top: 0px !important;
+        font-size:10px;
+    }
+.page-quick-sidebar-wrapper .page-quick-sidebar .page-quick-sidebar-chat .page-quick-sidebar-chat-users .media-list .media:hover{
+    cursor:default;
+}
+.vr-img {
+    display: inline-block;
+    border: 4px solid #e7ecf1;
+    margin: 10px 0 10px;
+}
+.mt-widget-1 .mt-body .mt-username {
+    text-align: center;
+    margin: 10px 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.mt-widget-1 .mt-body .mt-stats {
+    margin: 8px 0 0;
+}
+
+.linea-marcas {
+    margin-top: 3px;
+    margin-bottom: 5px;
+    background-color: #f5f5f5;
+    border-radius: 5px !important;
+    padding: 4px 15px;
+   position:relative;
+}
+    /*.linea-marcas:after, .linea-marcas:before {
+        right: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }*/
+
+/*.linea-marcas {
+    border-color: rgba(245, 245, 245, 0);
+    border-right-color: #f5f5f5;
+    border-width: 30px;
+    margin-top: -30px;
+}*/
+
+    /*.linea-marcas:before {
+        border-color: rgba(181, 181, 181, 0);
+        border-right-color: #b5b5b5;
+        border-width: 31px;
+        margin-top: -31px;
+    }*/

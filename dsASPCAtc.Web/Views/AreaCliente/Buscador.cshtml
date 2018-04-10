@@ -173,14 +173,39 @@
                                         <uib-tab tabindex="1" heading="Ver Todas">
                                             <div class="row">
                                                 <div class="col-12 todo-padding-b-0">
-                                                    <div class="row" style="margin: 0 20px;"  > 
+                                                    @*INICIO INICIALES CON MARCAS*@
+                                                    <div class="row" style="margin: 0 20px;">
+                                                        <div class="col-md-12" ng-repeat="inicial in inicialesMarcas">
+                                                            <div class="row">
+                                                                <div class="col-md-1 text-right">
+                                                                    <h4>  {{inicial.valor}} </h4>
+                                                                </div>
+                                                                <div class="col-md-11">
+                                                                    <div class="row linea-marcas">
+                                                                        <div class="col-md-2" ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)" style="padding:5px 0px;">
+                                                                            @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{marca.descripcionSeccion}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                       
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                           
+
+                                                        </div>
+
+                                                    </div>
+                                                    @*FIN INICIALES CON MARCAS*@
+                                                    @*INICIO ACORDEON CON MARCAS*@
+                                                    @*<div class="row" style="margin: 0 20px;"  > 
                                                             <div class="panel panel-default col-md-2" style="padding:0" ng-repeat="inicial in inicialesMarcas">
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">
                                                                         <a class="accordion-toggle btn-accordion" data-toggle="collapse" data-parent="#{{inicial.valor}}" href="#collapse{{inicial.valor}}" aria-expanded="false">
                                                                             <font style="vertical-align: inherit;">
                                                                                 <font style="vertical-align: inherit;">
-                                                                                    {{inicial.valor}}
+                                                                                    {{inicial.valor}} 
                                                                                 </font>
                                                                             </font>
                                                                         </a>
@@ -191,12 +216,13 @@
                                                                         <ul class="list-unstyled text-center">
                                                                             <li ng-repeat="marca in inicial.marcas" ng-click="seleccionarMarca(marca)" class="btn-enlace " style="padding:5px 0px;">
                                                                                 @*<img style="width:10px" ng-src="{{marca.url}}" />*@<span class="btn-enlace">{{marca.descripcionSeccion}}</span>
-                                                                            </li>
+                                                                            @*</li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                    </div>
+                                                    </div>*@
+                                                    @*FIN ACORDEON CON MARCAS*@
 
                                                 </div>
                                                

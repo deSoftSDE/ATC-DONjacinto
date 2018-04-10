@@ -261,28 +261,34 @@
     /* All links */ }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a,
     .page-sidebar .page-sidebar-menu > li > a {
-      border-top: 1px solid #4a83b6;
-      color: #C9DFF5; }
-      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i,
-      .page-sidebar .page-sidebar-menu > li > a > i {
-        color: #8EB8DE; }
-      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class^="icon-"],
-      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class*="icon-"],
-      .page-sidebar .page-sidebar-menu > li > a > i[class^="icon-"],
-      .page-sidebar .page-sidebar-menu > li > a > i[class*="icon-"] {
-        color: #a2c4e4; }
+        border-top: 1px solid #4d5052;
+        color: #f5f5f5;
+    }
+        .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i,
+        .page-sidebar .page-sidebar-menu > li > a > i {
+            color: #f5f5f5;
+        }
+        .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class^="icon-"],
+        .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class*="icon-"],
+        .page-sidebar .page-sidebar-menu > li > a > i[class^="icon-"],
+        .page-sidebar .page-sidebar-menu > li > a > i[class*="icon-"] {
+            color: #f5f5f5;
+        }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > .arrow.open:before,
       .page-sidebar .page-sidebar-menu > li > a > .arrow:before,
       .page-sidebar .page-sidebar-menu > li > a > .arrow.open:before {
         color: #8EB8DE; }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.heading > h3,
     .page-sidebar .page-sidebar-menu > li.heading > h3 {
-      color: #66a4e3; }
+      color: #fff;
+      font-weight:700;
+    }
     .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a,
     .page-sidebar .page-sidebar-menu > li:hover > a,
     .page-sidebar .page-sidebar-menu > li.open > a {
-      background: #497FAE;
-      color: #C9DFF5; }
+        background: #234056;
+        color: #C9DFF5;
+    }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > i, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > i,
       .page-sidebar .page-sidebar-menu > li:hover > a > i,
       .page-sidebar .page-sidebar-menu > li.open > a > i {
@@ -300,12 +306,12 @@
       background:#2d5f8b;
       border-top-color: transparent;
       color: #ffffff; }
-      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a:hover, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a:hover,
-      .page-sidebar .page-sidebar-menu > li.active > a:hover,
-      .page-sidebar .page-sidebar-menu > li.active.open > a:hover {
-        /*background: #d64635;*/
-        background:#3979b2;
-      }
+        .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a:hover, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a:hover,
+        .page-sidebar .page-sidebar-menu > li.active > a:hover,
+        .page-sidebar .page-sidebar-menu > li.active.open > a:hover {
+            /*background: #d64635;*/
+            background: #234056;
+        }
       .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > i, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a > i,
       .page-sidebar .page-sidebar-menu > li.active > a > i,
       .page-sidebar .page-sidebar-menu > li.active.open > a > i {
