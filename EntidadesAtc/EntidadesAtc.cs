@@ -682,6 +682,28 @@ namespace EntidadesAtc
         public UsuarioDatosEmail Usuario { get; set; }
     }
     [DataContract]
+    public class ImagenCabWeb
+    {
+        [DataMember]
+        public int IdImagen { get; set; }
+        [DataMember]
+        public int IdEmpresa { get; set; }
+        [DataMember]
+        public Guid RowGuid { get; set; }
+        [DataMember]
+        public string ImagenSt { get; set; }
+        [DataMember]
+        public string Titulo { get; set; }
+        [DataMember]
+        public string Subtitulo { get; set; }
+        [DataMember]
+        public string Contenido { get; set; }
+        [DataMember]
+        public int tipoTransaccion { get; set; }
+        public string url { get; set; }
+        public string classcontent { get; set; }
+    }
+    [DataContract]
     public class FormularioCambioPassword
     {
         [DataMember]

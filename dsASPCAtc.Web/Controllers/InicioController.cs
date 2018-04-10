@@ -32,6 +32,8 @@ namespace dsASPCAtc.Web.Controllers
             ViewData["Resultado"] = res;
             ViewData["Recuperacion"] = new ResultadoRecuperacionContrasena();
             ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
+            var ad2 = new AdaptadorAtc(_configuration);
+            ViewData["Cabeceras"] = ad2.ImagenesCabWebLeer();
             return View();
         }
         private EmpresaWeb ObtenerDatosEmpresa()
@@ -80,6 +82,8 @@ namespace dsASPCAtc.Web.Controllers
             var li = new LectorEurocode("3587RGNM5FDKW");
             var i = li.Leer();
             ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
+            var ad2 = new AdaptadorAtc(_configuration);
+            ViewData["Cabeceras"] = ad2.ImagenesCabWebLeer();
             return View();
         }
 

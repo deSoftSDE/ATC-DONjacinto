@@ -176,7 +176,40 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-
+        public List<ImagenCabWeb> ImagenesCabWebLeer()
+        {
+            var res = new List<ImagenCabWeb>();
+            var streaming = _configuration.GetSection("StreamFiles")["rutaStreaming"];
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ImagenesCabWebLeer", null);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var cw = new ImagenCabWeb
+                    {
+                        IdImagen = AsignaEntero("IdImagen"),
+                        IdEmpresa = AsignaEntero("IdEmpresa"),
+                        RowGuid = AsignaGuid("RoweGuid"),
+                        ImagenSt = AsignaCadena("ImagenSt"),
+                        Titulo = AsignaCadena("Titulo"),
+                        Subtitulo = AsignaCadena("Subtitulo"),
+                        Contenido = AsignaCadena("Contenido"),
+                    };
+                    cw.url = streaming + cw.ImagenSt;
+                    if (cw.Subtitulo != "")
+                    {
+                        cw.classcontent = "d-none";
+                    } else
+                    {
+                        cw.classcontent = "";
+                    }
+                    res.Add(cw);
+                }
+            }
+            return res;
+        }
         public List<TipoVehiculo> TiposVehiculoLeer(int? IDTipoVehiculo)
         {
             var res = new List<TipoVehiculo>();

@@ -2,6 +2,7 @@
     Layout = "_LayoutCorporativa";
     @using EntidadesAtc;
     var c = (ResultadoRegistro)ViewData["Resultado"];
+    var cab = (List<ImagenCabWeb>)ViewData["Cabeceras"];
 }
 
 @if (c.Resultado != null)
@@ -66,8 +67,49 @@
     </div>
 </div>
 <section class="home-slider owl-carousel">
+    @foreach (ImagenCabWeb cb in cab)
+    {
+        <div class="slider-item" style="background-image: url('@cb.url');">
 
-    <div class="slider-item" style="background-image: url('img/fondo_w1b.jpg');">
+            <div class="container">
+                <div class="row slider-text align-items-center">
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-12 element-animate">
+                        @if (cb.Subtitulo == "")
+                                {
+                                    <h1 >@cb.Titulo</h1>
+
+                                } else
+                                {
+                                    
+                                            <div class="row">
+                                    <div class="col-12 ">
+                                        <h2 class="text-white" style="font-size:50px;">@cb.Titulo</h2>
+                                
+                                    </div>
+                                </div>
+                                }
+                        
+                        <h2 class="text-center text-sm-center text-md-left text-lg-left text-white">@cb.Subtitulo</h2>
+                        <p class="@cb.classcontent d-xl-block">@cb.Contenido</p>
+                        <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                                Acceso Área Clientes
+                            </button>
+                            <div>
+                                <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal" style="color:#fff;">
+                                    <small class="">Recuperar Contraseña</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-xs-12"></div>
+
+                </div>
+            </div>
+        </div>
+
+    }
+    @*<div class="slider-item" style="background-image: url('img/fondo_w1b.jpg');">
 
         <div class="container">
             <div class="row slider-text align-items-center">
@@ -100,11 +142,11 @@
             <div class="row slider-text align-items-center">
                 <div class="col-md-7 col-sm-12 element-animate">
                     <h1>Grupo ATC</h1>
-                    
+
                     <p>Somos uno de los mayores almacenes de distribución de Europa de lunas y accesorios para automóviles, vehículos industriales y nueva incorporación de parabrisas para autobuses. </p>
                     <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left ">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                           Acceso Área Clientes
+                            Acceso Área Clientes
                         </button>
                         <div class="text-center text-sm-center text-md-left text-lg-left">
                             <a href="#javascript," type="" class="text-white" data-toggle="modal" data-target="#exampleModal">
@@ -114,39 +156,12 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-xs-12">
-                    @*<div class="card">
-                            <div class="card-block p-2">
-                                <h4>Acceso Área Cliente</h4>
-                                <form asp-controller="AreaCliente" asp-action="Index" method="post">
-                                    <div class="form-group">
-                                        <label class="text-black">Usuario</label>
-                                        <input type="text" class="form-control" name="email" id="appointment_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-black">Contraseña</label>
-                                        <input type="text" class="form-control" name="password" id="appointment_email">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal">
-                                                    <small class="text-black">Recuperar Contraseña</small>
-                                                </a>
-                                            </div>
-                                            <div class="col-6 text-right"><input type="submit" value="Enviar" class="btn btn-primary"></div>
-                                        </div>
-
-
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>*@
+                    
                 </div>
             </div>
         </div>
 
-    </div>
+    </div>*@
 </section>
 <!-- END slider -->
 
