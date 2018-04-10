@@ -1216,6 +1216,8 @@ namespace dsASPCAtc.DataAccess
                         idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
                         StockFinalUV = AsignaDecimal("StockFinalUV"),
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        Precio = AsignaDecimal("Precio"),
+                        Descuento = AsignaDecimal("Dto1"),
                         AcumuladosStock = new List<AcumuladoStock>(),
 
                     };
@@ -1231,6 +1233,8 @@ namespace dsASPCAtc.DataAccess
                         idAcumuladoUdMan = AsignaEntero("IdAcumuladoUdMan"),
                         StockFinalUV = AsignaDecimal("StockFinalUV"),
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
+                        Precio = AsignaDecimal("Precio"),
+                        Descuento = AsignaDecimal("Dto1"),
                         AcumuladosStock = new List<AcumuladoStock>(),
                     };
                     udman.Add(um);
