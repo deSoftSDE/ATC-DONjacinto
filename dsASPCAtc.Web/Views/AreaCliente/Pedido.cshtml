@@ -6,7 +6,6 @@
         <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod">
         <thead>
             <tr>
-                <th></th>
                 <th>Artículo</th>
                 <th>Cantidad</th>
                 <th>Precio</th>
@@ -21,9 +20,6 @@
             
             <tr class="odd gradeX" ng-repeat="articulo in carrito.articulos">
 
-
-                <td>@*<img width="20px" ng-src="{{imagenArticulo(articulo.idArticulo)}}" onerror="this.src='../img/altdisponible.png'" /> He quitado esto porque noto que se ralentiza*@</td>
-
                 <td>{{articulo.descripcion}}</td>
                 <td>
                     <input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion, true)" />
@@ -32,19 +28,19 @@
                     <input type="submit" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion, true)" />
                 </td>
                 <td>
-                    0€
+                    {{articulo.precioUd.toFixed(2)}}€
                 </td>
                 <td>
-                    %
+                    {{articulo.dto1.toFixed(2)}}%
                 </td>
                 <td>
-                    
+                    {{articulo.bon1.toFixed(2)}}%
                 </td>
                 <td>
-                    0€
+                    {{articulo.precio.toFixed(2)}} €
                 </td>
                 <td>
-                    <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo)" />
+                    <input type="submit" value="Eliminar" ng-click="eliminarArticulo(articulo.idArticulo, true)" />
                 </td>
             </tr>
 
@@ -66,7 +62,7 @@
                     }
             </select>
 
-            <div>Total base Imponible: 0€</div>
+            <div>Total base Imponible: {{carrito.totalBaseImponible.toFixed(2)}}€</div>
             <div class="row">
                 <div class="col-md-4">
                     % IVA
@@ -78,22 +74,22 @@
                     Cuota IVA
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-repeat="tiva in carrito.tipoIva">
                 <div class="col-md-4">
-                    0
+                    {{tiva.porcentajeIva.toFixed(2)}} %
                 </div>
                 <div class="col-md-4">
-                    0
+                    {{tiva.totalArticulos.toFixed(2)}}  €
                 </div>
                 <div class="col-md-4">
-                    0
+                    {{tiva.totalIva.toFixed(2)}} €
                 </div>
             </div>
             <div class="row">
-                Total Iva: 0
+                Total Iva: {{carrito.totalIva.toFixed(2)}} €
             </div>
             <div class="row">
-                Total pedido:	0.00€
+                Total pedido:	{{carrito.totalPedido.toFixed(2)}} €
 
             </div>
             <div class="row">

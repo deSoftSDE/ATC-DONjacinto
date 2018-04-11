@@ -22,13 +22,13 @@ namespace dsASPCAtc.Web.Controllers
             _configuration = configuration;
         }
         [HttpGet]
-        public IActionResult AnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion)
+        public IActionResult AnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion, Boolean EnProcesar)
         {
             ObjectResult result;
             try
             {
                 var ad = new AdaptadorAtc(_configuration);
-                _carrito = ad.CarritosUsuariosAnadirArticulo(IDUsuario, IDArticulo, Cantidad, IDUnidadManipulacion);
+                _carrito = ad.CarritosUsuariosAnadirArticulo(IDUsuario, IDArticulo, Cantidad, IDUnidadManipulacion, EnProcesar);
                 result = new ObjectResult(_carrito)
                 {
                     StatusCode = (int)HttpStatusCode.OK
@@ -70,13 +70,13 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
-        public IActionResult EliminarArticulo(int IDUsuario, int IDArticulo)
+        public IActionResult EliminarArticulo(int IDUsuario, int IDArticulo, Boolean EnProcesar)
         {
             ObjectResult result;
             try
             {
                 var ad = new AdaptadorAtc(_configuration);
-                _carrito = ad.CarritosUsuariosEliminarArticulo(IDUsuario, IDArticulo);
+                _carrito = ad.CarritosUsuariosEliminarArticulo(IDUsuario, IDArticulo, EnProcesar);
                 result = new ObjectResult(_carrito)
                 {
                     StatusCode = (int)HttpStatusCode.OK
@@ -94,13 +94,13 @@ namespace dsASPCAtc.Web.Controllers
             return result;
         }
         [HttpGet]
-        public IActionResult LeerCarrito(int IDUsuario)
+        public IActionResult LeerCarrito(int IDUsuario, Boolean EnProcesar)
         {
             ObjectResult result;
             try
             {
                 var ad = new AdaptadorAtc(_configuration);
-                _carrito = ad.CarritosUsuariosLeerPorIDUsuario(IDUsuario);
+                _carrito = ad.CarritosUsuariosLeerPorIDUsuario(IDUsuario, EnProcesar);
                 result = new ObjectResult(_carrito)
                 {
                     StatusCode = (int)HttpStatusCode.OK

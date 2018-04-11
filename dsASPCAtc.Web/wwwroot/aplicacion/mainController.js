@@ -86,7 +86,7 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         return NotNullNotUndefinedNotEmpty(val);
     }
     $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion, noabrir) {
-        Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion)
+        Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion, noabrir)
             .then(function (respuesta) {
 
                 console.log(respuesta.data);
@@ -140,8 +140,8 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
 
         
     }
-    $scope.eliminarArticulo = function (idArticulo) {
-        Carrito.eliminarArticulo(idArticulo)
+    $scope.eliminarArticulo = function (idArticulo, enProcesar) {
+        Carrito.eliminarArticulo(idArticulo, enProcesar)
             .then(function (respuesta) {
 
                 console.log(respuesta.data);
@@ -158,12 +158,21 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     }
     $scope.verPaginaCarrito = function() { 
             window.location.href = "/AreaCliente/Pedido";
-        }
-    Carrito.verCarrito()
-        .then(function (respuesta) {
-            console.log(respuesta.data);
-            $scope.carrito = respuesta.data;
-        })
+    }
+    if (window.location.href.indexOf("/AreaCliente/Pedido") > -1) {
+        Carrito.verCarrito(true)
+            .then(function (respuesta) {
+                console.log(respuesta.data);
+                $scope.carrito = respuesta.data;
+            })
+    } else {
+        Carrito.verCarrito()
+            .then(function (respuesta) {
+                console.log(respuesta.data);
+                $scope.carrito = respuesta.data;
+            })
+    }
+    
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
     var obj = {

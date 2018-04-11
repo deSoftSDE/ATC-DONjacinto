@@ -295,15 +295,18 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Articulo(int id)
         {
+            var cl = new UsuarioWeb();
+            cl.Cliente = new Cliente();
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
             }
             else
             {
-                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+                cl = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+                ViewData["Usuario"] = cl;
             }
-            var vm = new ArticuloViewModel(_configuration, id);
+            var vm = new ArticuloViewModel(_configuration, id, cl.Cliente.IDCliente);
             ViewData["Articulo"] = vm;
             return View();
         }

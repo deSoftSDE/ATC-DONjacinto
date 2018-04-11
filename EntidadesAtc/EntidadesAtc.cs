@@ -100,7 +100,7 @@ namespace EntidadesAtc
         public int? IdUnidadVenta { get; set; }
         public int IdPoIva { get; set; }
         public decimal PoIva { get; set; }
-        public int PoRE { get; set; }
+        public decimal PoRE { get; set; }
         public int IdUnidadManipulacion { get; set; }
         public int CantidadPalets { get; set; }
         public int CantidadXPalet { get; set; }
@@ -108,8 +108,8 @@ namespace EntidadesAtc
         public int CantidadXUM { get; set; }
         public int CantidadUV { get; set; }
         public decimal Precio { get; set; }
-        public int PoDto1 { get; set; }
-        public int PoDto2 { get; set; }
+        public decimal PoDto1 { get; set; }
+        public decimal PoDto2 { get; set; }
         public decimal ImporteBruto { get; set; }
         public decimal ImporteDtosLinea { get; set; }
         public decimal ImporteBonificaciones { get; set; }
@@ -127,6 +127,7 @@ namespace EntidadesAtc
         public int? IdPromocion { get; set; }
         public Boolean Bonificada { get; set; }
         public string TipoTrans { get; set; }
+        public int IdTipoIva { get; set; }
     }
     public class LineaIva
     {
@@ -141,6 +142,7 @@ namespace EntidadesAtc
         public decimal CuotaRE { get; set; }
         public Boolean Manual { get; set; }
         public string TipoTrans { get; set; }
+        public List<LineaPedidoVentas> Articulos { get; set; }
     }
     [DataContract]
     public class CampoBusqueda
@@ -792,6 +794,37 @@ namespace EntidadesAtc
         public int? IDUsuario { get; set; }
         [DataMember]
         public decimal Precio { get; set; }
+        [DataMember]
+        public List<TipoIva> TipoIva { get; set; }
+        [DataMember]
+        public decimal TotalBaseImponible { get; set; }
+        [DataMember]
+        public decimal TotalIva { get; set; }
+        [DataMember]
+        public decimal TotalPedido { get; set; }
+    }
+    public class TipoIva
+    {
+        [DataMember]
+        public int IdTipoIva { get; set; }
+        [DataMember]
+        public string DescripcionTipoIva { get; set; }
+        [DataMember]
+        public decimal PorcentajeIva { get; set; }
+        [DataMember]
+        public decimal PorcentajeRE { get; set; }
+        [DataMember]
+        public int IdPorcentajeIva { get; set; }
+        [DataMember]
+        public List<ArticuloCarrito> Articulos { get; set; }
+        [DataMember]
+        public decimal TotalArticulos { get; set; }
+        [DataMember]
+        public decimal PrecioConIva { get; set; }
+        [DataMember]
+        public decimal TotalIva { get; set; }
+        public decimal ValorIva { get; set; }
+        public decimal ValorRE { get; set; }
     }
     [DataContract]
     public class ArticuloCarrito
@@ -808,6 +841,15 @@ namespace EntidadesAtc
         public decimal PrecioUd { get; set; }
         [DataMember]
         public int IDUnidadManipulacion { get; set; }
+        [DataMember]
+        public decimal Dto1 { get; set; }
+        [DataMember]
+        public decimal Dto2 { get; set; }
+        [DataMember]
+        public decimal Bon1 { get; set; }
+        [DataMember]
+        public decimal Bon2 { get; set; }
+        public int IdTipoIva { get; set; }
     }
 
     [DataContract]

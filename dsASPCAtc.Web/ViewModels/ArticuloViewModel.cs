@@ -11,12 +11,12 @@ namespace dsASPCAtc.Web.ViewModels
     public class ArticuloViewModel
     {
         public BuscaArticulo articulo;
-        public ArticuloViewModel(IConfiguration configuration, int id)
+        public ArticuloViewModel(IConfiguration configuration, int id, int? idcliente)
         {
             if (id > 0)
             {
                 var ad = new AdaptadorAtc(configuration);
-                var res = ad.ArticulosLeerPorID(id);
+                var res = ad.ArticulosLeerPorID(id, idcliente);
                 articulo = res;
                 var le = new LectorEurocode(articulo.Codigo);
                 articulo.Eurocode = le.Leer();
