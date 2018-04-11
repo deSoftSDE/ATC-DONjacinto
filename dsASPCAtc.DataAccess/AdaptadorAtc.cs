@@ -1420,7 +1420,7 @@ namespace dsASPCAtc.DataAccess
             return res;
         }
 
-        public BuscaArticulo ArticulosLeerPorID(int IDArticulo)
+        public BuscaArticulo ArticulosLeerPorID(int IDArticulo, int? idcliente)
         {
             var res = new BuscaArticulo();
             res.Modelo = new Modelo();
@@ -1437,6 +1437,7 @@ namespace dsASPCAtc.DataAccess
                 SqlParameter[] param = new SqlParameter[]
                 {
                     new SqlParameter("@IDArticulo", IDArticulo),
+                    new SqlParameter("@IDCliente", idcliente),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerPorID", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1567,6 +1568,8 @@ namespace dsASPCAtc.DataAccess
                         StockFinalUV = AsignaDecimal("StockFinalUV"),
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
                         AcumuladosStock = new List<AcumuladoStock>(),
+                        Precio = AsignaDecimal("Precio"),
+                        Descuento = AsignaDecimal("Dto1"),
                     };
                     res.UnidadesManipulacion.Add(um);
                 }
@@ -1581,6 +1584,8 @@ namespace dsASPCAtc.DataAccess
                         StockFinalUV = AsignaDecimal("StockFinalUV"),
                         NombreAlmacen = AsignaCadena("NombreAlmacen"),
                         AcumuladosStock = new List<AcumuladoStock>(),
+                        Precio = AsignaDecimal("Precio"),
+                        Descuento = AsignaDecimal("Dto1"),
                     };
                     uds.Add(um);
                 }
@@ -1649,7 +1654,7 @@ namespace dsASPCAtc.DataAccess
             
             return res;
         }
-        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion)
+        public Carrito CarritosUsuariosAnadirArticulo(int IDUsuario, int IDArticulo, int? Cantidad, int? IDUnidadManipulacion, Boolean EnProcesar)
         {
             var res = new Carrito();
             res.Articulos = new List<ArticuloCarrito>();
@@ -1662,6 +1667,7 @@ namespace dsASPCAtc.DataAccess
                     new SqlParameter("@IDUsuario", IDUsuario),
                     new SqlParameter("@Cantidad", Cantidad),
                     new SqlParameter("@IDUnidadManipulacion", IDUnidadManipulacion),
+                    new SqlParameter("@EnProcesar", EnProcesar),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosAnadirArticulo", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1669,7 +1675,7 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public Carrito CarritosUsuariosEliminarArticulo(int IDUsuario, int IDArticulo)
+        public Carrito CarritosUsuariosEliminarArticulo(int IDUsuario, int IDArticulo, Boolean EnProcesar)
         {
             var res = new Carrito();
             res.Articulos = new List<ArticuloCarrito>();
@@ -1680,6 +1686,7 @@ namespace dsASPCAtc.DataAccess
                 {
                     new SqlParameter("@IDArticulo", IDArticulo),
                     new SqlParameter("@IDUsuario", IDUsuario),
+                    new SqlParameter("@EnProcesar", EnProcesar),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosEliminarArticulo", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1687,9 +1694,10 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
-        public Carrito CarritosUsuariosLeerPorIDUsuario(int IDUsuario)
+        public Carrito CarritosUsuariosLeerPorIDUsuario(int IDUsuario, Boolean EnProcesar)
         {
             var res = new Carrito();
+
             res.Articulos = new List<ArticuloCarrito>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
@@ -1697,6 +1705,7 @@ namespace dsASPCAtc.DataAccess
                 SqlParameter[] param = new SqlParameter[]
                 {
                     new SqlParameter("@IDUsuario", IDUsuario),
+                    new SqlParameter("@EnProcesar", EnProcesar),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosLeerPorIDUsuario", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -1708,6 +1717,8 @@ namespace dsASPCAtc.DataAccess
         private Carrito RellenarCarrito(int IDUsuario)
         {
             var res = new Carrito();
+            var Cliente = new PedidoWeb();
+            res.TipoIva = new List<TipoIva>();
             res.Articulos = new List<ArticuloCarrito>();
             res.IDUsuario = IDUsuario;
             if (_reader.Read())
@@ -1725,10 +1736,86 @@ namespace dsASPCAtc.DataAccess
                     PrecioUd = AsignaDecimal("PrecioUd"),
                     Precio = AsignaDecimal("Precio"),
                     IDUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                    Dto1 = AsignaDecimal("Dto1"),
+                    Dto2 = AsignaDecimal("Dto2"),
+                    Bon1 = AsignaDecimal("Bon1"),
+                    Bon2 = AsignaDecimal("Bon2"),
+                    IdTipoIva = AsignaEntero("IdTipoIva"),
                 };
                 res.Articulos.Add(ar);
             }
+            _reader.NextResult();
+            while (_reader.Read())
+            {
+                var tiva = new TipoIva
+                {
+                    IdTipoIva = AsignaEntero("IDTipoIva"),
+                    DescripcionTipoIva = AsignaCadena("DescripcionTipoIva"),
+                    PorcentajeIva = AsignaDecimal("PorcentajeIva"),
+                    PorcentajeRE = AsignaDecimal("PorcentajeRE"),
+                    IdPorcentajeIva = AsignaEntero("IdPorcentajeIva"),
+                    Articulos = new List<ArticuloCarrito>(),
+                };
+                res.TipoIva.Add(tiva);
+            }
+            _reader.NextResult();
+            if (_reader.Read())
+            {
+                Cliente.AplicarIva = AsignaBool("AplicarIva");
+                Cliente.AplicarRe = AsignaBool("AplicarRE");
+            }
+            foreach (ArticuloCarrito ar in res.Articulos)
+            {
+                ar.Precio = CalcularDescuento(ar.PrecioUd, ar.Dto1);
+                ar.Precio = CalcularDescuento(ar.Precio, ar.Dto2);
+                ar.Precio = CalcularDescuento(ar.Precio, ar.Bon1);
+                ar.Precio = CalcularDescuento(ar.Precio, ar.Bon2);
+                ar.Precio = ar.Precio * ar.Cantidad;
+                foreach (TipoIva tiva in res.TipoIva)
+                {
+                    if (tiva.IdTipoIva == ar.IdTipoIva)
+                    {
+                        tiva.Articulos.Add(ar);
+                    }
+                }
+            }
+
+            res.TipoIva.RemoveAll(tiva => tiva.Articulos.Count < 1);
+            foreach (TipoIva tiva in res.TipoIva)
+            {
+                tiva.TotalArticulos = tiva.Articulos.Sum(articulo => articulo.Precio);
+                if (Cliente.AplicarIva)
+                {
+
+                    tiva.ValorIva = CalcularIva(tiva.TotalArticulos, tiva.PorcentajeIva);
+                }
+                if (Cliente.AplicarRe)
+                {
+                    tiva.ValorRE = CalcularIva(tiva.TotalArticulos, tiva.PorcentajeRE);
+                }
+                tiva.TotalIva = tiva.ValorRE + tiva.ValorIva;
+
+                tiva.Articulos = null;
+            }
+            res.TotalBaseImponible = res.Articulos.Sum(articulo => articulo.Precio);
+            res.TotalIva = res.TipoIva.Sum(tiva => tiva.TotalIva);
+            res.TotalPedido = res.TotalBaseImponible + res.TotalIva;
+
             return res;
+        }
+        public decimal CalcularDescuento(decimal precio, decimal dto)
+        {
+            decimal res;
+            var resta = (precio * dto) / 100;
+            res = precio - resta;
+            return res;
+        }
+        public decimal CalcularIva(decimal precio, decimal iva)
+        {
+            decimal res;
+            var suma = (precio * iva) / 100;
+            res = precio + suma;
+            return suma;
         }
         public UsuarioWeb UsuariosLogin(string email, string password, string ipaddress)
         {
@@ -1842,6 +1929,10 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        private decimal CalcularRestaDescuento(decimal precio, decimal dto)
+        {
+            return (precio * dto) / 100;
+        }
         public Carrito PedidosCrear(int IDUsuarioWeb, int IdDomiEnt)
         {
             //throw new Exception("Holi");
@@ -1849,6 +1940,7 @@ namespace dsASPCAtc.DataAccess
             pw.Fecha = DateTime.Now;
             pw.IdDomiEnt = IdDomiEnt;
             pw.LineasPedido = new List<LineaPedidoVentas>();
+            pw.LineasIva = new List<LineaIva>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -1862,6 +1954,9 @@ namespace dsASPCAtc.DataAccess
                 {
                     pw.IdDelegacion = AsignaEntero("IdDelegacion");
                     pw.IdCliente = AsignaEntero("IDCliente");
+                    pw.AplicarIva = AsignaBool("AplicarIva");
+                    pw.AplicarRe = AsignaBool("AplicarRE");
+                    pw.IdRegimenIva = AsignaEntero("IDRegimenIva");
 
                 }
                 _reader.NextResult();
@@ -1874,12 +1969,77 @@ namespace dsASPCAtc.DataAccess
                         CantidadUM = AsignaEntero("Cantidad"),
                         CantidadUV = AsignaEntero("Cantidad"),
                         TipoTrans = "Insercion",
-                        IdArticulo = AsignaEntero("IDArticulo")
+                        IdArticulo = AsignaEntero("IDArticulo"),
+                        IdTipoIva = AsignaEntero("IdTipoIva"),
+                        Precio = AsignaDecimal("PrecioUd"),
+                        PoDto1 = AsignaDecimal("Dto1"),
+                        PoDto2 = AsignaDecimal("Dto2"),
+                        ImporteBonificaciones = AsignaDecimal("Bon1"),
                     };
                     pw.LineasPedido.Add(lp);
                 }
+                _reader.NextResult();
+                while (_reader.Read())
+                {
+                    var li = new LineaIva
+                    {
+                        IdTipoIva = AsignaEntero("IdTipoIva"),
+                        PoIva = AsignaDecimal("PorcentajeIva"),
+                        PoRE = AsignaDecimal("PorcentajeRe"),
+                        TipoTrans = "Insercion",
+                        Articulos = new List<LineaPedidoVentas>(),
+                    };
+                    pw.LineasIva.Add(li);
+                }
 
             }
+            foreach (LineaPedidoVentas ar in pw.LineasPedido)
+            {
+                ar.ImporteBruto = ar.Precio * ar.CantidadUM;
+                ar.ImporteDtosLinea = CalcularRestaDescuento(ar.ImporteBruto, ar.PoDto1);
+                ar.ImporteDtosLinea = ar.ImporteDtosLinea + CalcularRestaDescuento(ar.ImporteBruto, ar.PoDto2);
+                ar.ImporteBonificaciones = CalcularRestaDescuento(ar.ImporteBruto, ar.BonifPrecio);
+                ar.ImporteNeto = ar.ImporteBruto - ar.ImporteDtosLinea - ar.ImporteBonificaciones;
+                ar.ImporteNeto = decimal.Round(ar.ImporteNeto, 2);
+
+                foreach (LineaIva tiva in pw.LineasIva)
+                {
+                    if (tiva.IdTipoIva == ar.IdTipoIva)
+                    {
+                        if (pw.AplicarRe)
+                        {
+                            ar.PoRE = tiva.PoRE;
+                        }
+                        if (pw.AplicarIva)
+                        {
+                            ar.PoIva = tiva.PoIva;
+                        }
+                        tiva.Articulos.Add(ar);
+                    }
+                }
+            }
+            pw.LineasIva.RemoveAll(tiva => tiva.Articulos.Count < 1);
+            foreach (LineaIva tiva in pw.LineasIva)
+            {
+                tiva.BaseImponible = tiva.Articulos.Sum(articulo => articulo.ImporteNeto);
+                tiva.BaseBruta = tiva.Articulos.Sum(articulo => articulo.ImporteBruto);
+                if (pw.AplicarIva)
+                {
+                    tiva.CuotaIva = CalcularIva(tiva.BaseImponible, tiva.PoIva);
+                }
+                if (pw.AplicarRe)
+                {
+                    tiva.CuotaRE = CalcularIva(tiva.BaseImponible, tiva.PoRE);
+                }
+                tiva.Articulos = null;
+            }
+            pw.TotalCuotaIva = pw.LineasIva.Sum(ln => ln.CuotaIva);
+            pw.TotalCuotaRE = pw.LineasIva.Sum(ln => ln.CuotaRE);
+            pw.ImporteBruto = pw.LineasPedido.Sum(lp => lp.ImporteNeto);
+            pw.TotalBaseImponible = pw.LineasPedido.Sum(lp => lp.ImporteNeto);
+            pw.ImporteDocumento = pw.TotalBaseImponible + pw.TotalCuotaIva + pw.TotalCuotaRE;
+            pw.ImporteLiquido = pw.ImporteDocumento;
+
             var pedido = dsCore.Comun.Ayudas.SerializarACadenaXML(pw);
             using (SqlConnection conn = new SqlConnection(cc))
             {

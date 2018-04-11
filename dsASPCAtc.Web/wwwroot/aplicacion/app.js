@@ -43,18 +43,18 @@ atc.factory('Carrito', function ($http, $q) {
     var api_carrito = "http://" + location.host + "/Carrito/";
     var idUsuario = document.getElementById("idusuarioweb").value;
     var http = {
-        anadirArticulo: function (idArticulo, Cantidad, idUnidadManipulacion) {
+        anadirArticulo: function (idArticulo, Cantidad, idUnidadManipulacion, enProcesar) {
             var deferred = $q.defer();
-            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad=" + Cantidad + "&IDUnidadManipulacion=" + idUnidadManipulacion)
+            $http.get(api_carrito + "AnadirArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&Cantidad=" + Cantidad + "&IDUnidadManipulacion=" + idUnidadManipulacion + "&EnProcesar=" + enProcesar)
                 .then(function (respuesta) {
                     console.log(respuesta);
                     deferred.resolve(respuesta);
                 })
             return deferred.promise;
         },
-        eliminarArticulo: function (idArticulo) {
+        eliminarArticulo: function (idArticulo, enProcesar) {
             var deferred = $q.defer();
-            $http.get(api_carrito + "EliminarArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario)
+            $http.get(api_carrito + "EliminarArticulo?IDArticulo=" + idArticulo + "&IDUsuario=" + idUsuario + "&EnProcesar=" + enProcesar)
                 .then(function (respuesta) {
                     console.log(respuesta);
                     deferred.resolve(respuesta);
@@ -70,9 +70,9 @@ atc.factory('Carrito', function ($http, $q) {
                 })
             return deferred.promise;
         },
-        verCarrito: function () {
+        verCarrito: function (enProcesar) {
             var deferred = $q.defer();
-            $http.get(api_carrito + "LeerCarrito?IDUsuario=" + idUsuario)
+            $http.get(api_carrito + "LeerCarrito?IDUsuario=" + idUsuario + "&EnProcesar=" + enProcesar)
                 .then(function (respuesta) {
                     console.log(respuesta);
                     deferred.resolve(respuesta);
