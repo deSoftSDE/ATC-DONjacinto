@@ -203,3 +203,6 @@ div#accesorios > ul.nav-tabs > li > a:hover {
     cursor:default;
 
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}

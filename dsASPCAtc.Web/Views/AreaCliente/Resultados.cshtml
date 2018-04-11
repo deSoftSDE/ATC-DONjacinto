@@ -253,15 +253,24 @@ else
 
                     </div>
                     <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div><small>Precio</small></div>
                             <small>
-                                <strong>
-                                    @ud.Precio.ToString("N2") €
-                                </strong>
+                                 @if (ud.Precio == 0)
+                                            {
+                                                <strong>No disponible</strong>
+
+                                            } else
+                                            {
+                                                 <strong>
+
+                                                @ud.Precio.ToString("N2") €
+                                            </strong>
+
+                                            }
                             </small>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div><small>Desct.</small></div>
                             <small>
                                 <strong>
@@ -529,28 +538,29 @@ else
 
                                 </div>
                                 <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div><small>Precio</small></div>
                                         <small>
-                                            <strong>
+                                            @if (ud.Precio == 0)
+                                            {
+                                                <strong>No disponible</strong>
+
+                                            } else
+                                            {
+                                                 <strong>
+
                                                 @ud.Precio.ToString("N2") €
                                             </strong>
+
+                                            }
+                                           
                                         </small>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div><small>Dto.</small></div>
                                         <small>
                                             <strong>
                                                 @ud.Descuento.ToString("N2") %
-                                            </strong>
-                                        </small>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div><small>Neto</small></div>
-                                        <small>
-                                            <strong>
-                                                000,00€
                                             </strong>
                                         </small>
                                     </div>
