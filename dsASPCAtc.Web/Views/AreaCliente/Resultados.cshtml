@@ -252,7 +252,9 @@ else
 
 
                     </div>
-                    <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
+                    @if(d.VisiblePrecioListado)
+                    {
+                        <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
                         <div class="col-md-6">
                             <div><small>Precio</small></div>
                             <small>
@@ -279,6 +281,9 @@ else
                             </small>
                         </div>
                     </div>
+
+                    }
+                    
                 </div>
                 <div class=" col-md-2 text-center">
                     <div class="row">
@@ -538,7 +543,8 @@ else
 
 
                                 </div>
-                                <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
+                                @if(d.VisiblePrecioListado) { 
+                                    <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
                                     <div class="col-md-6">
                                         <div><small>Precio</small></div>
                                         <small>
@@ -566,6 +572,8 @@ else
                                         </small>
                                     </div>
                                 </div>
+                                }
+                                
                             </div>
                             <div class=" col-md-2 text-center">
                                 <div class="row">

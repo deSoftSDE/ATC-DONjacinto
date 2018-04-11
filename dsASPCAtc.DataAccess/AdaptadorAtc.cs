@@ -2367,6 +2367,9 @@ namespace dsASPCAtc.DataAccess
                     res.VisibleAlmacenesListado = AsignaBool("VisibleAlmacenesListado");
 
                     res.VisibleAlmacenesFicha = AsignaBool("VisibleAlmacenesFicha");
+
+
+                    res.VisiblePrecioListado = AsignaBool("VisiblePrecioListado");
                 }
             }
             return res;
