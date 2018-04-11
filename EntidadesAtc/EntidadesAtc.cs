@@ -14,7 +14,7 @@ using MimeKit;
 
 namespace EntidadesAtc
 {
-    
+
     public class Company
     {
         public int ID { get; set; }
@@ -353,6 +353,8 @@ namespace EntidadesAtc
         public int IDArticulo { get; set; }
         [DataMember]
         public string Descripcion { get; set; }
+        public string Cantidad { get; set; }
+        public int CantidadInt { get; set; }
     }
 
     [DataContract]
@@ -1105,6 +1107,10 @@ namespace EntidadesAtc
 
         [DataMember]
         public string Contenido { get; set; }
+        public string Codigo { get; set; }
+        public int Estado { get; set; }
+        public int Cantidad { get; set; }
+        public string Descripcion { get; set; }
     }
     public class ListadoAnos
     {
@@ -1338,6 +1344,14 @@ namespace EntidadesAtc
         public string TipoTransaccion { get; set; }
         [DataMember]
         public string Cliente { get; set; }
+    }
+    [DataContract]
+    public class FormularioExcel
+    {
+        [DataMember]
+        public IFormFile files { get; set; }
+        [DataMember]
+        public Boolean vaciar { get; set; }
     }
 
 }

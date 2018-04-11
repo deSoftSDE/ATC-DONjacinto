@@ -1,0 +1,27 @@
+﻿@{
+    @using EntidadesAtc;
+    var c = (List<MensajeError>)ViewData["Mensajes"];
+
+}
+<h1>El archivo subido ha arrojado los siguientes resultados:</h1>
+<ul>
+    @foreach (MensajeError msj in c)
+    {
+        @switch(msj.Estado)
+            {
+                case 0:
+                    <li>No se ha encontrado ningún artículo que corresponda con el código '@msj.Codigo'</li>
+                break;
+                case 1:
+                    <li>Se han añadido @msj.Cantidad unidades del artículo @msj.Descripcion, correspondiente al código '@msj.Codigo' al carrito.</li>
+                break;
+                case 2:
+                    <li>@msj.Descripcion</li>
+                break;
+
+            }
+        
+
+    }
+
+</ul>
