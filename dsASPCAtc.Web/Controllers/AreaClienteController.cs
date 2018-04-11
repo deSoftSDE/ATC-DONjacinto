@@ -11,6 +11,9 @@ using dsASPCAtc.Web.ViewModels;
 using DevExtreme.AspNet.Mvc;
 using DevExtreme.AspNet.Data;
 using dsASPCAtc.DataAccess;
+using System.IO;
+using OfficeOpenXml;
+using System.Text;
 
 namespace dsASPCAtc.Web.Controllers
 {
@@ -123,6 +126,98 @@ namespace dsASPCAtc.Web.Controllers
                 return RedirectToAction("ErrorPedido", "AreaCliente", c);
             }
             
+        }
+        [HttpPost]
+        public IActionResult SubirExcel([FromForm] FormularioExcel a)
+        {
+            var us = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            if (!ComprobarLogin())
+            {
+                return RedirectToAction(_defaultPage, _defaultController);
+            }
+            else
+            {
+                ViewData["Usuario"] = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
+            }
+            var msj = new List<MensajeError>();
+            var res = new List<ArticuloBasico>();
+            if (a.files != null)
+            {
+                try
+                {
+                    using (var ms = new MemoryStream())
+                    {
+
+                        a.files.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        string s = Convert.ToBase64String(fileBytes);
+                        // act on the Base64 data
+                        using (ExcelPackage package = new ExcelPackage(ms))
+                        {
+                            ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                            int rowCount = worksheet.Dimension.Rows;
+                            int ColCount = worksheet.Dimension.Columns;
+                            bool bHeaderRow = true;
+                            for (int row = 1; row <= rowCount; row++)
+                            {
+                                if (bHeaderRow)
+                                {
+                                    bHeaderRow = false;
+                                }
+                                else
+                                {
+                                    var ar = new ArticuloBasico();
+                                    bool eurocode = true;
+                                    for (int col = 1; col <= ColCount; col++)
+                                    {
+                                        if (eurocode)
+                                        {
+                                            ar.Descripcion = worksheet.Cells[row, col].Value.ToString();
+                                            eurocode = false;
+                                        }
+                                        else
+                                        {
+                                            ar.Cantidad = worksheet.Cells[row, col].Value.ToString();
+                                            //sb.Append(worksheet.Cells[row, col].Value.ToString() + "\t");
+                                        }
+                                    }
+                                    res.Add(ar);
+                                }
+
+                            }
+                            var i = 1;
+                        }
+                    }
+                    if (res.Count > 0)
+                    {
+                        try
+                        {
+                            var ad = new AdaptadorAtc(_configuration);
+                            msj = ad.CarritosUsuariosAnadirMasivamente(res, a.vaciar, us.IdUsuarioWeb);
+                        }
+                        catch (Exception ex)
+                        {
+                            msj.Add(new MensajeError { Descripcion = "Excel vacío", Estado = 2 });
+                        }
+                    } else
+                    {
+                        msj.Add(new MensajeError { Descripcion = "Excel vacío", Estado = 2 });
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    msj.Add(new MensajeError { Descripcion = "Archivo no válido", Estado = 2 });
+                }
+            } else
+            {
+                msj.Add(new MensajeError { Descripcion = "Archivo no válido", Estado = 2 });
+            }
+            
+
+            
+            ViewData["Mensajes"] = msj;
+            return View();
         }
         public IActionResult ErrorPedido(MensajeError ex)
         {

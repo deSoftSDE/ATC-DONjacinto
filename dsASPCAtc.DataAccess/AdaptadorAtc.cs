@@ -2293,6 +2293,46 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public List<MensajeError> CarritosUsuariosAnadirMasivamente(List<ArticuloBasico> art, Boolean Vaciar, int idUsuarioWeb)
+        {
+            var res = new List<MensajeError>();
+            foreach(ArticuloBasico ab in art)
+            {
+                try
+                {
+                    ab.CantidadInt = Int32.Parse(ab.Cantidad);
+                }
+                catch (Exception ex)
+                {
+                    ab.CantidadInt = 1;
+                }
+            }
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            var artstr = dsCore.Comun.Ayudas.SerializarACadenaXML(art);
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@articulos", artstr),
+                    new SqlParameter("@Vaciar", Vaciar),
+                    new SqlParameter("@idUsuarioWeb", idUsuarioWeb),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.CarritosUsuariosAnadirMasivamente", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (_reader.Read())
+                {
+                    var me = new MensajeError
+                    {
+                        Codigo = AsignaCadena("Codigo"),
+                        Estado = AsignaEntero("Estado"),
+                        Cantidad = AsignaEntero("Cantidad"),
+                        Descripcion = AsignaCadena("Descripcion")
+                    };
+                    res.Add(me);
+                }
+            }
+            return res;
+        }
         public EmpresaWeb DatosEmpresaLeer()
         {
             var res = new EmpresaWeb();
