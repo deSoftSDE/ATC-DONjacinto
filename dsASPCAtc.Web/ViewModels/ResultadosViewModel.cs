@@ -21,6 +21,10 @@ namespace dsASPCAtc.Web.ViewModels
 
         public List<TipoVidrio> TiposVidrio;
 
+        public string minHeightVidrio;
+        public string minHeightAccesorio;
+
+
         public ResultadosViewModel(IConfiguration _configuration, Parametros parametros)
         {
             var ad = new AdaptadorAtc(_configuration);
@@ -37,6 +41,8 @@ namespace dsASPCAtc.Web.ViewModels
                 ar.Eurocode = le.Leer();
             }
             var streaming = _configuration.GetSection("StreamFiles")["rutaStreaming"];
+            minHeightVidrio = (TiposVidrio.Count * 103).ToString() + "px";
+            minHeightAccesorio = (Accesorios.Count * 64).ToString() + "px";
             foreach (TipoVidrio tiv in TiposVidrio)
             {
                 tiv.url = streaming +  tiv.Imagen;

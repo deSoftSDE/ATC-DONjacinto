@@ -119,7 +119,7 @@ else
                 </div>
                
             </div>
-            <div class="col-md-10" style="background-color:#fff; padding-top:18px">
+            <div class="col-md-10" style="background-color:#fff; padding-top:18px; min-height:@dt.minHeightVidrio;">
                 <div class="row">
                     <uib-tabset active="tabVidrio" id="resultado">
 
@@ -174,7 +174,7 @@ else
 }
 
 
-                    @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
+                    @*@if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
         {
             <div>Modificaciones</div>
             <ul>
@@ -186,7 +186,7 @@ else
             </ul>
 
 
-}
+}*@
 
                    
 
@@ -312,11 +312,11 @@ else
 }
 
             <div class="row">
-                <div class="col-md-12 ">
+                <div class="col-md-6 ">
                     @if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
     {
                <div class="wrapper-carac">
-                <div class="caract">Características</div>
+                <div class="caract" ng-cloak><strong>Características</strong></div>
                 <ul class="list-unstyled caract">
                     @foreach (CaracteristicasArticulo cr in ar.Eurocode.Caracteristicas)
     {
@@ -327,6 +327,22 @@ else
             </div>
 
 }
+                </div>
+                <div class="col-md-6">
+                    @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
+                {
+                        <div class></div>
+                    <div>Modificaciones</div>
+                    <ul>
+                        @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
+            {
+                    <li>@cr.Valor</li>
+
+        }
+                    </ul>
+
+
+        }
                 </div>
                 
             </div>
@@ -384,7 +400,7 @@ else
                 </div>
                
             </div>
-            <div class="col-md-10" style="background-color:#fff; padding-top:18px">
+            <div class="col-md-10" style="background-color:#fff; padding-top:18px; min-height:@dt.minHeightAccesorio;" >
                 <uib-tabset active="tabCat" id="accesorios">
                     @foreach (Categoria ct in dt.Accesorios)
     {
