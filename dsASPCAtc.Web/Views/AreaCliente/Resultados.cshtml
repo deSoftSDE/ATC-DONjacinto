@@ -290,7 +290,7 @@ else
                         @if (ud.AcumuladosStock.Count < 1)
             {
                 <div class="col-md-12" style="padding-top:-9px">
-                    <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
+                    <a href="javascript:;" class="icon-btn btn-pedir" ng-click="bajoPedidoPopup('@ar.Descripcion', '@ar.Codigo')">
                         <i class="glyphicon glyphicon-envelope"></i>
                         <div> Bajo Pedido</div>
                     </a>
@@ -579,7 +579,7 @@ else
                                     @if (ud.AcumuladosStock.Count < 1)
             {
                         <div class="col-md-12" style="padding-top:-9px">
-                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
+                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="bajoPedidoPopup('@ar.Descripcion', '@ar.Codigo')">
                                 <i class="glyphicon glyphicon-envelope"></i>
                                 <div> Bajo Pedido</div>
                             </a>

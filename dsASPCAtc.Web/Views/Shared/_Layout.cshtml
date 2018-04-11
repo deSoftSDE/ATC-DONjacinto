@@ -140,7 +140,8 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="~/img/usuario-esta.png" />
                                 @*<span class="glyphicon glyphicon-user" style="font-size:17px;"> </span>*@
-                                <span class="username username-hide-on-mobile"> @c.Cliente.Nombre </span>
+                                <span class="username username-hide-on-mobile" id="nombreCliente"> @c.Cliente.Nombre </span>
+
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -652,7 +653,27 @@
         })
 
     </script>
+     <div dx-popup="popupOptions">
+        <div class='popup-property-details'>
+            <div class="form">
+                <label>Artículo</label>
+                <div class="row">
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" ng-model="bajoPedidoForm.descripcionArticulo" disabled />
+                    </div>
+                    <div class="col-md-3">
+                        <input class="form-control" type="text" ng-model="bajoPedidoForm.eurocodeArticulo" disabled />
+                    </div>
+                </div>
+                <label>Comentario:</label>
+                <textarea class="form-control" ng-model="bajoPedidoForm.comentario">
 
+                </textarea>
+                <input class="btn btn-primary" type="submit" value="Enviar" ng-click="enviarBajoPedido()" />
+
+            </div>
+        </div>
+      </div>
 
     @RenderSection("Scripts", required: false)
 </body>

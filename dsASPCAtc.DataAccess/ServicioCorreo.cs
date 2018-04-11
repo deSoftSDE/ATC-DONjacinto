@@ -62,6 +62,13 @@ namespace dsASPCAtc.DataAccess
             var res = EnviarCorreo(pp.dirEmailContacto, "Contacto", email, pp);
             return res;
         }
+        public string CorreoBajoPedidoEnviar(FormularioBajoPedido form)
+        {
+            var pp = PropiedadesSitioLeer();
+            var email = RellenarEmailBajoPedido(pp.CorreoBajoPedido, form, pp);
+            var res = EnviarCorreo(pp.dirEmailBajoPedido, "Bajo Pedido", email, pp);
+            return res;
+        }
         public ResultadoRegistro ClientesProcesarRegistro(SolicitudRegistro sol)
         {
             var res = new ResultadoRegistro();
@@ -201,7 +208,9 @@ namespace dsASPCAtc.DataAccess
                 res.NombreSitio = AsignaCadena("NombreSitio");
                 res.RutaLogo = AsignaCadena("RutaLogo");
                 res.CorreoContacto = AsignaCadena("CorreoContacto");
+                res.CorreoBajoPedido = AsignaCadena("CorreoBajoPedido");
                 res.dirEmailContacto = AsignaCadena("dirEmailContacto");
+                res.dirEmailBajoPedido = AsignaCadena("dirEmailBajoPedido");
             }
             return res;
         }
@@ -239,6 +248,16 @@ namespace dsASPCAtc.DataAccess
             newmail = newmail.Replace("#%nombre%#", us.nombre);
             newmail = newmail.Replace("#%email%#", us.email);
             newmail = newmail.Replace("#%mensaje%#", us.message);
+            newmail = newmail.Replace("#%nombreSitio%#", pr.NombreSitio);
+            newmail = newmail.Replace("#%rutaLogo%#", pr.RutaLogo);
+            return newmail;
+        }
+        private string RellenarEmailBajoPedido(string email, FormularioBajoPedido us, PropiedadesSitio pr)
+        {
+            var newmail = email.Replace("#%descripcion%#", us.descripcionArticulo);
+            newmail = newmail.Replace("#%codigo%#", us.eurocodeArticulo);
+            newmail = newmail.Replace("#%cliente%#", us.nombreCliente);
+            newmail = newmail.Replace("#%comentario%#", us.comentario);
             newmail = newmail.Replace("#%nombreSitio%#", pr.NombreSitio);
             newmail = newmail.Replace("#%rutaLogo%#", pr.RutaLogo);
             return newmail;
