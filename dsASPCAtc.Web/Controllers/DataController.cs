@@ -429,6 +429,29 @@ namespace dsASPCAtc.Web.Controllers
             }
             return result;
         }
+        [HttpPost]
+        public IActionResult BajoPedidoEnviar([FromBody] FormularioBajoPedido form)
+        {
+            var ad = new ServicioCorreo(_configuration);
+            ObjectResult result;
+            try
+            {
+                var res = ad.CorreoBajoPedidoEnviar(form);
+                result = new ObjectResult(res)
+                {
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+            }
+            return result;
+        }
         [HttpGet]
         public IActionResult PedidosCrear(int idUsuarioWeb, int idDomiEnt)
         {

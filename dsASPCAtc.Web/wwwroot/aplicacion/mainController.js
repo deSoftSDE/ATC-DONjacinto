@@ -13,6 +13,40 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.ocultarSidebar = function () {
         alert("Holi")
     }
+
+
+    $scope.popupOptions = {
+        width: 660,
+        height: 300,
+        showTitle: true,
+        title: "Bajo Pedido",
+        fullScreen:false,
+        dragEnabled: false,
+        bindingOptions: {
+            visible: 'bajopedidoVisible'
+        },
+        closeOnOutsideClick: true
+    };
+
+    $scope.bajoPedidoPopup = function(descripcion, eurocode) {
+        $scope.bajopedidoVisible = true;
+        $scope.bajoPedidoForm = { 
+            descripcionArticulo: descripcion,
+            eurocodeArticulo: eurocode,
+            comentario: "",
+            idCliente: document.getElementById("idCliente").value,
+            nombreCliente: document.getElementById("nombreCliente").innerHTML,
+        }
+    }
+    $scope.enviarBajoPedido = function() {
+        $scope.bajopedidoVisible = false;
+        Llamada.post("BajoPedidoEnviar", $scope.bajoPedidoForm)
+            .then(function(respuesta) { 
+                mensajeExito("Mensaje enviado correctamente");
+                
+            });
+    }
+    
     $scope.tamanoanterior = 0;
     $scope.mostrardesplegable = false;
     var inputChangedPromise;

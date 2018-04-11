@@ -682,6 +682,20 @@ namespace EntidadesAtc
         [DataMember]
         public Boolean VisiblePrecioListado { get; set; }
     }
+    [DataContract]
+    public class FormularioBajoPedido
+    {
+        [DataMember]
+        public string descripcionArticulo { get; set; }
+        [DataMember]
+        public string eurocodeArticulo { get; set; }
+        [DataMember]
+        public string comentario { get; set; }
+        [DataMember]
+        public int idCliente { get; set; }
+        [DataMember]
+        public string nombreCliente { get; set; }
+    }
     public class ResultadoValidacionGuidRecuperacion
     {
         public int Resultado { get; set; }
@@ -1288,6 +1302,8 @@ namespace EntidadesAtc
         public string RutaRecuperacion { get; set; }
         public string CorreoContacto { get; set; }
         public string dirEmailContacto { get; set; }
+        public string dirEmailBajoPedido { get; set; }
+        public string CorreoBajoPedido { get; set; }
     }
     public class FormularioContacto
     {
