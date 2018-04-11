@@ -2000,6 +2000,7 @@ namespace dsASPCAtc.DataAccess
                 ar.ImporteDtosLinea = ar.ImporteDtosLinea + CalcularRestaDescuento(ar.ImporteBruto, ar.PoDto2);
                 ar.ImporteBonificaciones = CalcularRestaDescuento(ar.ImporteBruto, ar.BonifPrecio);
                 ar.ImporteNeto = ar.ImporteBruto - ar.ImporteDtosLinea - ar.ImporteBonificaciones;
+                ar.ImporteNeto = decimal.Round(ar.ImporteNeto, 2);
 
                 foreach (LineaIva tiva in pw.LineasIva)
                 {
@@ -2034,7 +2035,7 @@ namespace dsASPCAtc.DataAccess
             }
             pw.TotalCuotaIva = pw.LineasIva.Sum(ln => ln.CuotaIva);
             pw.TotalCuotaRE = pw.LineasIva.Sum(ln => ln.CuotaRE);
-            pw.ImporteBruto = pw.LineasPedido.Sum(lp => lp.ImporteBruto);
+            pw.ImporteBruto = pw.LineasPedido.Sum(lp => lp.ImporteNeto);
             pw.TotalBaseImponible = pw.LineasPedido.Sum(lp => lp.ImporteNeto);
             pw.ImporteDocumento = pw.TotalBaseImponible + pw.TotalCuotaIva + pw.TotalCuotaRE;
             pw.ImporteLiquido = pw.ImporteDocumento;
