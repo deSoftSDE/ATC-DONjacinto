@@ -679,6 +679,8 @@ namespace EntidadesAtc
         public string PaginaInstagram { get; set; }
         [DataMember]
         public string Copyright { get; set; }
+        [DataMember]
+        public Boolean VisiblePrecioListado { get; set; }
     }
     public class ResultadoValidacionGuidRecuperacion
     {
