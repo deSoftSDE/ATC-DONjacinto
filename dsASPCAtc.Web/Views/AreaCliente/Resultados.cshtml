@@ -312,11 +312,11 @@ else
 }
 
             <div class="row">
-                <div class="col-md-6 ">
+                <div class="col-md-12 ">
                     @if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
     {
                <div class="wrapper-carac">
-                <div class="caract" ng-cloak><strong>Características</strong></div>
+                <div class="caract"><strong>Características</strong></div>
                 <ul class="list-unstyled caract">
                     @foreach (CaracteristicasArticulo cr in ar.Eurocode.Caracteristicas)
     {
@@ -328,18 +328,19 @@ else
 
 }
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
                 {
-                        <div class></div>
-                    <div>Modificaciones</div>
-                    <ul>
-                        @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
-            {
+                    <div class="wrapper-carac">
+                        <div class="caract"><strong>Modificaciones</strong></div>
+                        <ul class="list-unstyled caract">
+                            @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
+        {
                     <li>@cr.Valor</li>
 
-        }
-                    </ul>
+}
+                        </ul>
+                    </div>
 
 
         }
@@ -454,7 +455,7 @@ else
 }
 
 
-                            @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
+                            @*@if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
     {
                         <div>Modificaciones</div>
                         <ul>
@@ -466,7 +467,7 @@ else
                         </ul>
 
 
-}
+}*@
 
                         @*@if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
         {
@@ -607,7 +608,7 @@ else
                                 @if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
         {
                         <div class="wrapper-carac">
-                            <div class="caract">Características</div>
+                            <div class="caract"><strong>Características</strong></div>
                             <ul class="list-unstyled caract">
                                 @foreach (CaracteristicasArticulo cr in ar.Eurocode.Caracteristicas)
         {
@@ -616,6 +617,23 @@ else
 }
                             </ul>
                         </div>
+
+}
+                            </div>
+                            <div class="col-md-12">
+                                @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
+        {
+                        <div class="wrapper-carac">
+                            <div class="caract"><strong>Modificaciones</strong></div>
+                            <ul class="list-unstyled caract">
+                                @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
+        {
+                        <li>@cr.Valor</li>
+
+}
+                            </ul>
+                        </div>
+
 
 }
                             </div>
