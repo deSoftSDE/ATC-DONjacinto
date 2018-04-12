@@ -1318,6 +1318,25 @@ namespace dsASPCAtc.DataAccess
             }
             return res;
         }
+        public Byte[] ImagenesLeerPorID(int IDImagenArticulo)
+        {
+            Byte[] res = new List<Byte>().ToArray();
+            var cc = _configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(cc))
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@IDImagenArticulo", IDImagenArticulo),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ImagenesArticulosLeerPorID", param);
+                _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                if (_reader.Read())
+                {
+                    res = AsignaArrayByte("Imagen");
+                }
+            }
+            return res;
+        }
         public UnClickYNovedades ArticulosLeerUnClick()
         {
             var res = new UnClickYNovedades();
@@ -1431,6 +1450,7 @@ namespace dsASPCAtc.DataAccess
             var AcumuladosStockRel = new List<AcumuladoStock>();
             var uds = new List<UnidadManipulacion>();
             var preciosTarifaUM = new List<PrecioTarifaUM>();
+            res.Imagenes = new List<ImagenArticulo>();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
@@ -1590,28 +1610,60 @@ namespace dsASPCAtc.DataAccess
                     uds.Add(um);
                 }
                 _reader.NextResult();
+                //while (_reader.Read())
+                //{
+                //    var ptu = new PrecioTarifaUM
+                //    {
+                //        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                //        DescripcionUM = AsignaCadena("DescripcionUM"),
+                //        PrecioTarifa = AsignaDecimal("PrecioTarifa"),
+                //    };
+                //    preciosTarifaUM.Add(ptu);
+                //}
+                //_reader.NextResult();
+                //while (_reader.Read())
+                //{
+                //    var ptu = new PrecioTarifaUM
+                //    {
+                //        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
+                //        DescripcionUM = AsignaCadena("DescripcionUM"),
+                //        PrecioTarifa = AsignaDecimal("PrecioTarifa"),
+                //    };
+                //    preciosTarifaUM.Add(ptu);
+                //}
+                //_reader.NextResult();
                 while (_reader.Read())
                 {
-                    var ptu = new PrecioTarifaUM
+                    var i = new ImagenArticulo
                     {
-                        idUnidadManipulacion = AsignaEntero("IDUnidadManipulacion"),
-                        DescripcionUM = AsignaCadena("DescripcionUM"),
-                        PrecioTarifa = AsignaDecimal("PrecioTarifa"),
+                        IDImagenArticulo = AsignaEntero("IDImagenArticulo")
                     };
-                    preciosTarifaUM.Add(ptu);
+                    res.Imagenes.Add(i);
                 }
             }
-            foreach (UnidadManipulacion ud in res.UnidadesManipulacion)
-            {
-                foreach (PrecioTarifaUM ptu in preciosTarifaUM)
-                {
-                    if (ptu.idUnidadManipulacion == ud.idUnidadManipulacion)
-                    {
-                        ud.PrecioTarifa = ptu.PrecioTarifa;
-                        ud.DescripcionUM = ptu.DescripcionUM;
-                    }
-                }
-            }
+            //foreach (UnidadManipulacion ud in res.UnidadesManipulacion)
+            //{
+            //    foreach (PrecioTarifaUM ptu in preciosTarifaUM)
+            //    {
+            //        if (ptu.idUnidadManipulacion == ud.idUnidadManipulacion)
+            //        {
+            //            ud.PrecioTarifa = ptu.PrecioTarifa;
+            //            ud.DescripcionUM = ptu.DescripcionUM;
+            //        }
+            //    }
+            //}
+            //foreach (UnidadManipulacion ud in uds)
+            //{
+            //    foreach (PrecioTarifaUM ptu in preciosTarifaUM)
+            //    {
+            //        if (ptu.idUnidadManipulacion == ud.idUnidadManipulacion)
+            //        {
+            //            ud.PrecioTarifa = ptu.PrecioTarifa;
+            //            ud.DescripcionUM = ptu.DescripcionUM;
+            //        }
+            //    }
+            //}
+
             foreach (AcumuladoStock ast in AcumuladosStockArticulo)
             {
                 foreach (UnidadManipulacion ud in res.UnidadesManipulacion)

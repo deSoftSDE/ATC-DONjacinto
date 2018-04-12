@@ -43,6 +43,10 @@ namespace dsASPCAtc.Web.ViewModels
                             articulo.Modelo.Imagenes[0].active = true;
                         }
                     }
+                    if (articulo.Imagenes.Count > 0)
+                    {
+                        articulo.Imagenes[0].active = true;
+                    }
                 }
                 catch (Exception ex)
                 {
