@@ -3,25 +3,46 @@
     var c = (List<MensajeError>)ViewData["Mensajes"];
 
 }
-<h1>El archivo subido ha arrojado los siguientes resultados:</h1>
-<ul>
+<h2>El archivo subido ha arrojado los siguientes resultados:</h2>
+<ul class="list-group">
     @foreach (MensajeError msj in c)
     {
-        @switch(msj.Estado)
-            {
-                case 0:
-                    <li>No se ha encontrado ningún artículo que corresponda con el código '@msj.Codigo'</li>
+        @switch (msj.Estado)
+        {
+            case 0:
+                <li class="list-group-item list-group-item-danger">No se ha encontrado ningún artículo que corresponda con el código '@msj.Codigo'</li>
                 break;
-                case 1:
-                    <li>Se han añadido @msj.Cantidad unidades del artículo @msj.Descripcion, correspondiente al código '@msj.Codigo' al carrito.</li>
+            case 1:
+                <li class="list-group-item list-group-item-success">Se han añadido @msj.Cantidad unidades del artículo @msj.Descripcion, correspondiente al código '@msj.Codigo' al carrito.</li>
                 break;
-                case 2:
-                    <li>@msj.Descripcion</li>
+            case 2:
+                <li class="list-group-item list-group-item-warning">@msj.Descripcion</li>
                 break;
+            case 3:
+                <li class="list-group-item list-group-item-warning">Se han añadido hasta @msj.Cantidad unidades del artículo @msj.Descripcion, correspondiente al código '@msj.Codigo' al carrito.</li>
+                break;
+            case 4:
+                <li class="list-group-item list-group-item-danger">No hay stock del artículo @msj.Descripcion, correspondiente al código '@msj.Codigo'.</li>
+                break;
+        }
 
-            }
-        
 
     }
 
 </ul>
+<div class="row">
+    <div class="col-md-3">
+        <form method="get" asp-controller="AreaCliente" asp-action="Index">
+            <input type="submit" class="btn btn-primary  form-control" value="Volver a Inicio" />
+        </form>
+    </div>
+    <div class="col-md-3">
+        <form method="get" asp-controller="AreaCliente" asp-action="Pedido">
+            <input type="submit" class="btn btn-primary form-control" value="Procesar Pedido" />
+        </form>
+
+    </div>
+
+</div>
+
+

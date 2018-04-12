@@ -200,7 +200,7 @@
                             @*<p class="text-center font-white">Bienvenido <strong>@c.Cliente.Nombre</strong></p>*@
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start active open">
+                        <li class="nav-item start {{esRutaDefecto()}}">
                             <a asp-area="" asp-controller="AreaCliente" asp-action="Index" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Inicio</span>
@@ -210,62 +210,93 @@
                         <li class="heading">
                             <h3 class="uppercase">Pedidos</h3>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  {{esRutaActiva('Pedido')}} ">
                             <a asp-controller="AreaCliente" asp-action="Pedido" class="nav-link nav-toggle">
                                 <i class="icon-note"></i>
                                 <span class="title">Realizar Pedido</span>
+                                <span class="selected"></span>
                             </a>
                         </li>
                         @if (d.VisiblePedidos)
-                {
-                    <li class="nav-item  ">
-                        <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
-                            <i class="icon-puzzle"></i>
-                            <span class="title">Ver Pedidos</span>
+                        {
+                            <li class="nav-item {{esRutaActiva('Pedidos')}}">
+                            <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Ver Pedidos</span>
+                                <span class="selected"></span>
+                            </a>
+                            </li>
+                        }
+                        @if (d.VisibleFacturas || d.VisibleFinanzas)
+                        {
+                            <li class="heading">
+                            <h3 class="uppercase">
+                                @if(d.VisibleFacturas)
+                                {
+                                    
+                                <span>FACTURAS</span>
 
-                        </a>
-                    </li>
-        }
-                        @if (d.VisibleFacturas)
-                {
-                    <li class="heading">
-                        <h3 class="uppercase">FACTURAS</h3>
-                    </li>
-                    <li class="nav-item  ">
-                        <a asp-controller="AreaCliente" asp-action="Facturas" class="nav-link nav-toggle">
-                            <i class=" icon-docs"></i>
-                            <span class="title">Consulta Facturas</span>
+                                }
+                                @if (d.VisibleFinanzas && d.VisibleFacturas)
+                                {
+                                    
+                                <span>Y</span>
 
-                        </a>
-                    </li>
+                                }
+                                @if(d.VisibleFinanzas)
+                                {
+                                    
+                                <span>FINANZAS</span>
+
+                                }
+                            </h3>
+                        </li>
+                        }
+                            
+                        @if(d.VisibleFacturas)
+                        {
+                        <li class="nav-item  {{esRutaActiva('Facturas')}} ">
+                            <a asp-controller="AreaCliente" asp-action="Facturas" class="nav-link nav-toggle">
+                                <i class=" icon-docs"></i>
+                                <span class="title">Consulta Facturas</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
 
         }
                         @if (d.VisibleFinanzas)
-                {
-                    <li class="heading">
-                        <h3 class="uppercase">finanzas</h3>
-                    </li>
-                    <li class="nav-item  ">
-                        <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="1">
-                            <i class="fa fa-eur"></i>
-                            <span class="title">Pendientes de Cobro</span>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="2">
-                            <i class="fa fa-exchange"></i>
-                            <span class="title">Extractos Movimientos</span>
-
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
-                        <a asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="3" class="nav-link nav-toggle">
-                            <i class="fa fa-briefcase"></i>
-                            <span class="title">Efectos en Curso</span>
-
-                        </a>
-                    </li>
+                        {
+                            @*<li class="heading">
+                            <h3 class="uppercase">finanzas</h3>
+                        </li>*@
+                        <li class="nav-item  {{esRutaActiva('Finanzas')}} ">
+                            <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas">
+                                <i class="fa fa-eur"></i>
+                                <span class="title">Finanzas</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        @*<li class="nav-item  {{esRutaActiva('Finanzas?p=1', 1)}} ">
+                            <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="1">
+                                <i class="fa fa-eur"></i>
+                                <span class="title">Pendientes de Cobro</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{esRutaActiva('Finanzas?p=2', 2)}} ">
+                            <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="2">
+                                <i class="fa fa-exchange"></i>
+                                <span class="title">Extractos Movimientos</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{esRutaActiva('Finanzas?p=3', 3)}}  ">
+                            <a asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="3" class="nav-link nav-toggle">
+                                <i class="fa fa-briefcase"></i>
+                                <span class="title">Efectos en Curso</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>*@
 
         }
 

@@ -1764,6 +1764,11 @@ namespace dsASPCAtc.DataAccess
                 Cliente.AplicarIva = AsignaBool("AplicarIva");
                 Cliente.AplicarRe = AsignaBool("AplicarRE");
             }
+            _reader.NextResult();
+            if (_reader.Read())
+            {
+                res.Mensaje = AsignaCadena("Mensaje");
+            }
             foreach (ArticuloCarrito ar in res.Articulos)
             {
                 ar.Precio = CalcularDescuento(ar.PrecioUd, ar.Dto1);

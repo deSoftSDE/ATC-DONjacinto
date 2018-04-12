@@ -119,6 +119,33 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.NotNull = function (val) {
         return NotNullNotUndefinedNotEmpty(val);
     }
+    $scope.estaSeleccionado = function (id) {
+        return $scope.domicilio == id;
+    }
+
+    $scope.esRutaActiva = function (ruta) {
+
+        if (window.location.href.indexOf(ruta) > -1) {
+            if (ruta == "Pedido") {
+                if (window.location.pathname.indexOf("Pedidos") > -1) {
+                    return "";
+                } else {
+                    return "active open";
+                }
+            } else {
+                return "active open";
+            }
+        } else {
+            return "";
+        }
+    }
+    $scope.esRutaDefecto = function () {
+        if (window.location.pathname == "/AreaCliente") {
+            return "active open";
+        } else {
+            return "";
+        }
+    }
     $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion, noabrir) {
         Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion, noabrir)
             .then(function (respuesta) {
@@ -129,6 +156,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 }
 
                 $scope.carrito = respuesta.data;
+                if (NotNullNotUndefinedNotEmpty($scope.carrito.mensaje)) {
+                    mensajeError($scope.carrito.mensaje)
+                }
             })
     }
     $scope.marcarMensajeLeido = function (idMensaje, idCliente, otrocliente) {

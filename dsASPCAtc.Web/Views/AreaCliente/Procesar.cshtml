@@ -2,4 +2,7 @@
     @using EntidadesAtc;
 
 }
-<p>Tu pedido ha sido procesado correctamente.</p>
+<p class="alert alert-primary">Tu pedido ha sido procesado correctamente.</p>
+<form method="get" asp-controller="AreaCliente" asp-action="Index" >
+    <input type="submit" class="btn btn-primary" value="Volver a Inicio"/>
+</form>

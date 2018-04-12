@@ -3,5 +3,9 @@
     string c = (string)ViewData["Contenido"];
 
 }
-<p>Ha ocurrido un error al procesar tu pedido.</p>
-<p>@c</p>
+<p class="alert alert-danger">Ha ocurrido un error al procesar tu pedido:</p>
+<p class="alert alert-warning">@c</p>
+
+<form method="get" asp-controller="AreaCliente" asp-action="Index">
+    <input type="submit" class="btn btn-primary" value="Volver a Inicio" />
+</form>
