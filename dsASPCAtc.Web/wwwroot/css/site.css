@@ -206,3 +206,7 @@ div#accesorios > ul.nav-tabs > li > a:hover {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+.list-group .list-group-item-success {
+    color: #27b03e !important;
+    background-color: #abedb6 !important;
+}

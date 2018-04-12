@@ -820,6 +820,8 @@ namespace EntidadesAtc
         public decimal TotalIva { get; set; }
         [DataMember]
         public decimal TotalPedido { get; set; }
+        [DataMember]
+        public string Mensaje { get; set; }
     }
     public class TipoIva
     {
