@@ -60,6 +60,9 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     $scope.imagenArticulo = function (idArticulo) {
         return Llamada.rutaStreamingArticulo() + idArticulo;
     }
+    $scope.imagenPorID = function (idImagenArticulo) {
+        return Llamada.rutaStreamingImagenArticulo() + idImagenArticulo;
+    }
     $scope.verResultados = function () {
         verResultados($scope.cadena);
     }

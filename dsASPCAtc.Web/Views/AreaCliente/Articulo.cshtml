@@ -66,8 +66,43 @@ else
 <div class="portlet light bordered">
     <div class="row">
         <div class="col-md-4">
-            <img ng-src="{{imagenArticulo(@dt.articulo.IdArticulo)}}" onerror="this.src='../../img/nodisponible-art.png'" class="img-responsive center-block" />
+            <div class="carousel carousel-showonemoveone slide" id="carousel124">
+                                <div class="carousel-inner">
 
+                                    @foreach (ImagenArticulo im in dt.articulo.Imagenes)
+                                    {
+                                        if (im.active == true)
+                                        {
+                                            <div class="item active">
+                                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                                                    <img ng-src="{{imagenPorID(@im.IDImagenArticulo)}}" onerror="this.src='../../img/nodisponible.png'" class="img-fluid">
+
+                                                </div>
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="item">
+                                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                                                    <img ng-src="{{imagenPorID(@im.IDImagenArticulo)}}" onerror="this.src='../../img/nodisponible.png'" class="img-fluid">
+
+                                                </div>
+                                            </div>
+
+                                        }
+
+
+                                    }
+                                </div>
+                                <a class="left carousel-control" href="#carousel124" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                <a class="right carousel-control" href="#carousel124" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            </div>
+            @*@foreach(ImagenArticulo im in dt.articulo.Imagenes)
+            {
+                <img ng-src="{{imagenPorID(@im.IDImagenArticulo)}}" onerror="this.src='../../img/altdisponible.png'" class="img-responsive center-block" />
+            }*@
+            
         </div>
         <div class="col-md-5">
 

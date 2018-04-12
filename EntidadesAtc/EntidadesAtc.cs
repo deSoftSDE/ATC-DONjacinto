@@ -27,6 +27,13 @@ namespace EntidadesAtc
         public string Fax { get; set; }
         public string Website { get; set; }
     }
+    [DataContract]
+    public class ImagenArticulo
+    {
+        [DataMember]
+        public int IDImagenArticulo { get; set; }
+        public bool active { get; set; }
+    }
     public class Login
     {
         public string email { get; set; }
@@ -455,6 +462,7 @@ namespace EntidadesAtc
         public ArticuloEurocode Eurocode { get; set; }
         [DataMember]
         public Modelo Modelo { get; set; }
+        public List<ImagenArticulo> Imagenes { get; set; }
         //[DataMember]
         //public List<ModificarAccesorio> accesorioseliminar { get; set; }
     }

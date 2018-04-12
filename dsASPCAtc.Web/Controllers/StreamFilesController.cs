@@ -137,6 +137,48 @@ namespace dsASPCAtc.Web.Controllers
             }
         }
         [HttpGet]
+        public IActionResult GetImagenPorID(int idImagenArticulo)
+        {
+            IActionResult result;
+            try
+            {
+                var ad = new AdaptadorAtc(_configuration);
+                var a = ad.ImagenesLeerPorID(idImagenArticulo);
+                var memory = new MemoryStream(a);
+
+                if (a.Length < 1)
+                {
+                    var ex = new Exception("Imagen no encontrada");
+                    result = new ObjectResult(ex)
+                    {
+                        StatusCode = (int)HttpStatusCode.Conflict
+                    };
+                    Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+                    return result;
+                }
+                else
+                {
+                    //memory.Position = 0;
+                    result = new ObjectResult(memory)
+                    {
+                        StatusCode = (int)HttpStatusCode.OK
+                    };
+                }
+
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result = new ObjectResult(ex)
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                };
+                Request.HttpContext.Response.Headers.Add("dsError", ex.Message);
+                return result;
+            }
+        }
+        [HttpGet]
         public async Task<IActionResult> Get(string filename)
         {
             try
