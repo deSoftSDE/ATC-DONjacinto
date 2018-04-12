@@ -66,7 +66,7 @@ else
 <div class="portlet light bordered">
     <div class="row">
         <div class="col-md-4">
-            <img ng-src="{{imagenArticulo(@dt.articulo.IdArticulo)}}" onerror="this.src='../../img/altdisponible.png'" class="img-responsive center-block" />
+            <img ng-src="{{imagenArticulo(@dt.articulo.IdArticulo)}}" onerror="this.src='../../img/nodisponible-art.png'" class="img-responsive center-block" />
 
         </div>
         <div class="col-md-5">
@@ -331,8 +331,9 @@ else
         @*FIN SEGUNDA fila*@
     </div>
     <div class="row sep-secciones">
-        <div class="col-md-8">
-            <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible.png'" />
+        <div class=""></div>
+        <div class="col-md-3">
+            <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible-modelo.png'"  class="img-responsive" />
         </div>
     </div>
     </div>
