@@ -152,6 +152,7 @@ namespace dsASPCAtc.Web.Controllers
                         var fileBytes = ms.ToArray();
                         string s = Convert.ToBase64String(fileBytes);
                         // act on the Base64 data
+
                         using (ExcelPackage package = new ExcelPackage(ms))
                         {
                             ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
@@ -167,8 +168,24 @@ namespace dsASPCAtc.Web.Controllers
                                 else
                                 {
                                     var ar = new ArticuloBasico();
-                                    bool eurocode = true;
-                                    for (int col = 1; col <= ColCount; col++)
+                                    //bool eurocode = true;
+                                    if (worksheet.Cells[row, 1].Value != null)
+                                    {
+                                        var r = worksheet.Cells["C1"].Start;
+                                        ar.Descripcion = worksheet.Cells[row, 1].Value.ToString();
+                                        if (worksheet.Cells[row, 2].Value != null)
+                                        {
+                                            ar.Cantidad = worksheet.Cells[row, 2].Value.ToString();
+                                        }
+                                        else
+                                        {
+                                            ar.Cantidad = "1";
+                                        }
+                                        res.Add(ar);
+
+                                    }
+
+                                    /*for (int col = 1; col <= ColCount; col++)
                                     {
                                         if (eurocode)
                                         {
@@ -180,35 +197,30 @@ namespace dsASPCAtc.Web.Controllers
                                             ar.Cantidad = worksheet.Cells[row, col].Value.ToString();
                                             //sb.Append(worksheet.Cells[row, col].Value.ToString() + "\t");
                                         }
-                                    }
-                                    res.Add(ar);
+                                    }*/
+
                                 }
 
                             }
                             var i = 1;
                         }
                     }
-                    if (res.Count > 0)
-                    {
-                        try
-                        {
-                            var ad = new AdaptadorAtc(_configuration);
-                            msj = ad.CarritosUsuariosAnadirMasivamente(res, a.vaciar, us.IdUsuarioWeb);
-                        }
-                        catch (Exception ex)
-                        {
-                            msj.Add(new MensajeError { Descripcion = "Excel vacío", Estado = 2 });
-                        }
-                    } else
-                    {
-                        msj.Add(new MensajeError { Descripcion = "Excel vacío", Estado = 2 });
-                    }
-                    
                 }
                 catch (Exception ex)
                 {
                     msj.Add(new MensajeError { Descripcion = "Archivo no válido", Estado = 2 });
                 }
+                
+                if (res.Count > 0)
+                {
+                    var ad = new AdaptadorAtc(_configuration);
+                    msj = ad.CarritosUsuariosAnadirMasivamente(res, a.vaciar, us.IdUsuarioWeb);
+                }
+                else
+                {
+                    msj.Add(new MensajeError { Descripcion = "Excel vacío", Estado = 2 });
+                }
+
             } else
             {
                 msj.Add(new MensajeError { Descripcion = "Archivo no válido", Estado = 2 });

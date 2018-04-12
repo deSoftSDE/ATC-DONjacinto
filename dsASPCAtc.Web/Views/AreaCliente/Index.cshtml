@@ -243,18 +243,7 @@
                     </div>
                 </form>
 
-                <form method="post" asp-action="SubirExcel" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="file" id="fUpload" name="files" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8" style="padding-top:10px;">
-                            <button type="submit">Subir Excel</button>
-                        </div>
-                    </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -381,7 +370,37 @@
         }
         
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet light portlet-fit ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-microphone font-dark hide"></i>
+                            <span class="caption-subject bold font-dark uppercase">PEDIDOS MASIVOS</span>
+                            <span class="caption-helper">Rellena el archivo de Excel que te adjuntamos para hacer tus pedidos más rápido.</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form method="post" asp-action="SubirExcel" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="file" id="fUpload" name="files" class="form-control" />
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="btn btn-danger" href="~/aplicacion/plantilla-pedidos.xls">Descargar Plantilla</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">Subir Excel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         </div>
     <div>
         @if (e.VisibleNovedades)
         {
