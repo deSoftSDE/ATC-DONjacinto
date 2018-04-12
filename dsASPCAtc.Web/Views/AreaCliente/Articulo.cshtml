@@ -72,30 +72,25 @@ else
         <div class="col-md-3">
 
             <p>COD. <strong> @dt.articulo.Codigo</strong></p>
-            <p> @dt.articulo.Descripcion</p>
             <p>
                 @dt.articulo.DescripcionWeb1 <br /> @dt.articulo.DescripcionWeb2
             </p>
             <hr />
-            
-
-        </div>
-        <div class="col-md-5">
             @*INICIO ALMACENES*@
 
-            <div >
+            <div>
                 @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
 
         {
 
             if (ud.AcumuladosStock.Count < 1)
             {
-                <i class="fa fa-industry"></i><span>Bajo Pedido</span>
+                <i class="fa fa-industry"></i><span> Bajo Pedido</span>
 
-                    }
-                    else
-                    {
-                <i class="fa fa-industry"></i><span>Disponible</span>
+    }
+    else
+    {
+        <i class="fa fa-industry"></i><span> Disponible</span>
 }
 
 
@@ -139,6 +134,96 @@ else
 
 
             @*FIN ALMACENES*@
+
+        </div>
+        <div class="col-md-4">
+            @*columna características*@
+            @*<H3>Características</H3>*@
+            @if (dt.articulo.Eurocode != null && d.VisibleEurocodeFicha)
+    {
+        <div>
+            @if (dt.articulo.Eurocode.TipoVidrio != null)
+    {
+        <div>Tipo de Vidrio:<strong> @dt.articulo.Eurocode.TipoVidrio</strong></div>
+}
+            @if (dt.articulo.Eurocode.TipoAccesorio != null)
+    {
+        <div>Tipo de Accesorio:<strong> @dt.articulo.Eurocode.TipoAccesorio</strong></div>
+}
+            @if (dt.articulo.Eurocode.BandaSuperior != null)
+    {
+        <div>Banda Superior:<strong> @dt.articulo.Eurocode.BandaSuperior</strong></div>
+}
+            @if (dt.articulo.Eurocode.Carroceria != null)
+    {
+        <div>Carrocería:<strong> @dt.articulo.Eurocode.Carroceria</strong></div>
+}
+            @if (dt.articulo.Eurocode.Color != null)
+    {
+        <div>Color: <strong>@dt.articulo.Eurocode.Color</strong> </div>
+}
+
+
+            @if (dt.articulo.Eurocode.Modificaciones != null && dt.articulo.Eurocode.Modificaciones.Count > 0)
+    {
+        <div>Modificaciones</div>
+        <ul class="list-unstyled">
+            @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Modificaciones)
+    {
+        <li class="list-items">@cr.Valor</li>
+
+}
+        </ul>
+
+
+}
+
+            @if (dt.articulo.Eurocode.Caracteristicas != null && dt.articulo.Eurocode.Caracteristicas.Count > 0)
+    {
+        <div>Caracteristicas</div>
+        <ul>
+            @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Caracteristicas)
+    {
+        <li>@cr.Valor</li>
+
+}
+        </ul>
+
+}
+
+        </div>
+}
+            @*fin columna caracteristicas*@
+        </div>
+        <div class="col-md-1">
+            @*COLUMNA BOTON*@
+            <div class="row">
+                @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
+    {
+            @if (ud.AcumuladosStock.Count < 1)
+{
+            <div class="col-md-12" style="padding-top:-9px">
+                <a href="javascript:;" class="icon-btn btn-pedir" ng-click="bajoPedidoPopup('@dt.articulo.Descripcion', '@dt.articulo.Codigo')">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <div> Bajo Pedido</div>
+                </a>
+            </div> }
+else
+{
+            <div class="col-md-12" style="padding-top:-9px">
+                <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@dt.articulo.IdArticulo, 0, @ud.idUnidadManipulacion)">
+                    <i class="fa fa-cart-plus fa-lg"></i>
+                    <div> Añadir</div>
+                </a>
+            </div>
+
+}
+
+}
+
+            </div>
+            @*FIN COLUMNA PRECIO*@
+
         </div>
        </div>
     @*fin primera fila*@
