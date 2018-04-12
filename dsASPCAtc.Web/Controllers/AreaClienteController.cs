@@ -171,6 +171,7 @@ namespace dsASPCAtc.Web.Controllers
                                     //bool eurocode = true;
                                     if (worksheet.Cells[row, 1].Value != null)
                                     {
+                                        var r = worksheet.Cells["C1"].Start;
                                         ar.Descripcion = worksheet.Cells[row, 1].Value.ToString();
                                         if (worksheet.Cells[row, 2].Value != null)
                                         {

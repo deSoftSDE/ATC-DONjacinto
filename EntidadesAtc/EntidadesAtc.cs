@@ -1352,6 +1352,10 @@ namespace EntidadesAtc
         public IFormFile files { get; set; }
         [DataMember]
         public Boolean vaciar { get; set; }
+        [DataMember]
+        public string CoordenadasCodigo { get; set; }
+        [DataMember]
+        public string CoordenadasCantidad { get; set; }
     }
 
 }
