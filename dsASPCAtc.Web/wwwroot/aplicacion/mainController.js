@@ -248,10 +248,10 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             })
     }
     quitarCapaCargando = function () {
-        document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5); display:none;");
+        //document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5); display:none;margin-top: -25px;margin-left: -20px;");
     }
     ponerCapaCargando = function () {
-        document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);");
+        document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);margin-top: -25px;margin-left: -20px;");   
     }
     //quitarCapaCargando();
 

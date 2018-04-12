@@ -115,6 +115,7 @@ function ocultarCargando() {
 //redimensiona el ancho del modal cargando
 function anchoCargando() {
     //ancho
+console.log("HOLI");
     var menu_vertical = $("#menu_vertical").width();
     if (menu_vertical > 0) {
         var ancho_ventana = $(window).width();

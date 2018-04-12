@@ -1,7 +1,7 @@
 ﻿atc.controller('vehiculos', function ($scope, $http, Llamada, $timeout) {
-    $scope.cargandoGenerico = false;
+    // este lo he quitado de manera mala $scope.cargandoGenerico = false;
     buscarMarcas = function () {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         Llamada.get("MarcasLeer?IDTipoVehiculo=" + $scope.objetoBusqueda.idTipoVehiculo)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -21,11 +21,11 @@
                 if ($scope.marcas.marcas.length < 1) {
                     $scope.finalizarBusquedaTipoVehiculo();
                 }
-                $scope.cargandoGenerico = false;
+                quitarCapaCargando();
             })
     }
     buscarModelos = function () {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         Llamada.get("ModelosLeer?IDTipoVehiculo=" + $scope.objetoBusqueda.idTipoVehiculo + "&IDSeccion=" + $scope.objetoBusqueda.marca.idSeccion)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -38,11 +38,11 @@
                 if ($scope.modelos.length < 1) {
                     $scope.finalizaBusca();
                 }
-                $scope.cargandoGenerico = false;
+                quitarCapaCargando();
             })
     }
     buscarCarrocerias = function () {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         Llamada.get("ModelosLeerPorID?IDFamilia=" + $scope.objetoBusqueda.modelo.idFamilia)
             .then(function (respuesta) {
                 console.log(respuesta);
@@ -62,11 +62,11 @@
                 if ($scope.currentmodelo.carrocerias.length < 1) {
                     $scope.finalizaBusca();
                 }
-                $scope.cargandoGenerico = false;
+                quitarCapaCargando();
             })
     }
     buscarAnos = function () {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         Llamada.get("AnosLeerPor?idmodelocarroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&idfamilia=" + $scope.objetoBusqueda.modelo.idFamilia)
             .then(function (respuesta) {
                 $scope.anos = respuesta.data.anos;
@@ -87,11 +87,11 @@
                     $scope.anos.splice(0, 0, { valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' });
                     $scope.selectboxanos.option("dataSource", $scope.anos);
                 }
-                $scope.cargandoGenerico = false;
+                quitarCapaCargando()
             })
     }
     mostrarCarroceria = function () {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         Llamada.get("CarroceriasLeerEsquema?idmodelocarroceria=" + $scope.objetoBusqueda.carroceria.idModeloCarroceria + "&ano=" + $scope.objetoBusqueda.ano.ano)
             .then(function (respuesta) {
                 console.log(respuesta.data);
@@ -109,7 +109,7 @@
                 } else {
                     $scope.finalizarBusqueda();
                 }
-                $scope.cargandoGenerico = false;
+                quitarCapaCargando();
             })
     }
     $scope.objetoBusqueda = {
@@ -168,31 +168,31 @@
         cambiarPagina(2);
     }
     $scope.seleccionarMarca = function (mc) {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         console.log(mc);
         setMarca(mc);
         changeUrl("marca", mc.idSeccion);
     }
     $scope.seleccionarModelo = function (mc) {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         console.log(mc);
         setModelo(mc);
         changeUrl("modelo", mc.idFamilia);
     }
     $scope.seleccionarVidrio = function (vd) {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         $scope.objetoBusqueda.vidrio = vd;
         $scope.finalizaBusca();
     }
     $scope.seleccionarCarroceria = function (car) {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         $scope.objetoBusqueda.carroceria = JSON.parse("" + JSON.stringify(car));
         $scope.objetoBusqueda.tabs[5] = false;
         $scope.objetoBusqueda.tabs[6] = false;
         cambiarPagina(5);
     }
     $scope.seleccionarAno = function (ano) {
-        $scope.cargandoGenerico = true;
+        ponerCapaCargando();
         var newano = JSON.parse(""+ JSON.stringify(ano));
         $scope.objetoBusqueda.ano = newano;
         $scope.objetoBusqueda.tabs[6] = false;
@@ -430,6 +430,7 @@
         });
     }
     $scope.finalizaBusca = function () {
+        ponerCapaCargando();
         if (isNaN($scope.objetoBusqueda.ano.valor)) {
             $scope.objetoBusqueda.ano.valor = 0;
         }
