@@ -160,10 +160,10 @@ img.img-list-pro{
     height: 15px;
     border-radius: 50% !important;
     padding: 0px 0px !important;
-    background-color: #26C281;
+    /*background-color: #172a38;*/
     font-size: 10px;
     display: inline-block;
-    color: #fff;
+    color: #172a38;
     text-align: center;
 }
 span.dispo i{
@@ -174,10 +174,10 @@ span.dispo i{
     height: 15px;
     border-radius: 50% !important;
     padding: 0px 0px !important;
-    background-color: red;
+    /*background-color: red;*/
     font-size: 10px;
     display: inline-block;
-    color: #fff;
+    color: red;
     text-align: center;
 }
 .btn-pedir{

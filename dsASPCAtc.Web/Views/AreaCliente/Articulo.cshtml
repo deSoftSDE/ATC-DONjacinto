@@ -58,7 +58,7 @@ else
 <!-- BEGIN PAGE TITLE-->
 <h1 class="page-title">
 
-    <strong>COD. @dt.articulo.Codigo</strong> - <small>@dt.articulo.Descripcion</small>
+    COD.<strong> @dt.articulo.Codigo</strong> - <small>@dt.articulo.Descripcion</small>
 </h1>
 
 <!-- END PAGE TITLE-->
@@ -126,7 +126,7 @@ else
                     }
                     else
                     {
-                        <i class="fa fa-industry"></i><span><strong> Disponible</strong> </span>
+                        <i class="fa fa-industry"></i><span><strong> Disponible en</strong> </span>
                     }
 
 
@@ -138,7 +138,7 @@ else
                         foreach (AcumuladoStock ast in ud.AcumuladosStock)
                         {
 
-                            <div class="list-items">
+                            <div class="list-items" style="padding-bottom:5px">
 
                                 @if (ast.StockFinalUV >= 1)
                                 {
@@ -180,7 +180,7 @@ else
                     {
 
                         <div class="row text-center row-precio">
-                            <div class="col-md-12 " style="padding:10px 54px">
+                            <div class="col-md-12 " style="padding:10px 12px">
                                 <div class="row">
                                     <div class=" col-md-6 text-left">Precio </div>
                                     <div class="col-md-6 text-right">
@@ -201,7 +201,7 @@ else
 
 
                             </div>
-                            <div class="col-md-12" style="padding:10px 54px">
+                            <div class="col-md-12" style="padding:10px 12px">
                                 <div class="row">
                                     <div class="col-md-6 text-left">
                                         Descuento
