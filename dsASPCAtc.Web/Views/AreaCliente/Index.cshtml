@@ -14,7 +14,7 @@
         window.location.href = url + "?producto=" + parameters;
     }
 </script>
-<div class="page-bar">
+<div ng-controller="generico" class="page-bar">
     <ul class="page-breadcrumb">
         <li>
             <a asp-area="" asp-controller="AreaCliente" asp-action="Index">Inicio</a>
@@ -129,7 +129,7 @@
                                                     <tbody>
                                                         <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
                                                             <td class="">
-                                                                <a class="resul-search" href="/AreaCliente/Articulo/{{resultado.idArticulo}}">
+                                                                <a  onclick="clickCapaCargando()" class="resul-search" href="/AreaCliente/Articulo/{{resultado.idArticulo}}">
                                                                     {{resultado.descripcion}}
                                                                 </a>
                                                             </td>
@@ -290,7 +290,7 @@
                                             @*<p class="mt-user-title"> @ar.DescripcionCorta </p>*@
                                             <div class="mt-stats">
                                                 <div class="btn-group btn-group btn-group-justified">
-                                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
+                                                    <a onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo" class="btn ">
                                                         <!--<i class="fa fa-star"></i>-->  Más info
                                                     </a>
                                                     @foreach(UnidadManipulacion ua in ar.UnidadesManipulacion)
@@ -426,7 +426,7 @@
         {
                             <div class="item active">
                                 <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
+                                    <a onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
                                     <img class="img-responsive center-block" ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" ></a>
                                     <small>@ar.Descripcion</small>
                                 </div>
@@ -437,7 +437,7 @@ else
 {
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                    <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive center-block"></a>
+                                    <a onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"><img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='img/nodisponible.png'" class="img-responsive center-block"></a>
                                     <small>@ar.Descripcion</small>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ else
 
 }
 
-<div class="page-bar">
+<div class="page-bar" ng-controller="generico">
     <ul class="page-breadcrumb">
         <li>
             <a asp-action="Index">Inicio</a>
@@ -42,12 +42,12 @@ else
         @if (dt.articulo.IdFamilia.HasValue)
         {
             <li>
-                <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@dt.articulo.IdFamilia">@dt.articulo.DescripcionFamilia</a>
+                <a  onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@dt.articulo.IdFamilia">@dt.articulo.DescripcionFamilia</a>
                 <i class="fa fa-circle"></i>
             </li>
         }
         <li>
-            <a asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@dt.articulo.IdArticulo">@dt.articulo.Descripcion</a>
+            <a  onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@dt.articulo.IdArticulo">@dt.articulo.Descripcion</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>

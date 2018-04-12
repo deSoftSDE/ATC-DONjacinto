@@ -604,9 +604,11 @@
             $scope.objetoBusqueda.idTipoVehiculo = 0;
             $scope.objetoBusqueda.NombreTipoVehiculo = 'Todos los vehículos';
         }
+        quitarCapaCargando();
     }
     catch (Ex) {
         console.log(Ex);
+        quitarCapaCargando();
     }
 
 });

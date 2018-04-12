@@ -51,14 +51,14 @@ else
             @if (descripciones.idFamilia.HasValue)
             {
                 <li>
-                    <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia">@descripciones.descripcionFamilia</a>
+                    <a  onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia">@descripciones.descripcionFamilia</a>
                     <i class="fa fa-circle"></i>
                 </li>
             }
             @if (descripciones.idCarroceria.HasValue)
             {
                 <li>
-                    <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria">@descripciones.descripcionCarroceria</a>
+                    <a onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria">@descripciones.descripcionCarroceria</a>
                     <i class="fa fa-circle"></i>
                 </li>
             }
@@ -72,7 +72,7 @@ else
             @if (descripciones.idTipoVidrio.HasValue)
             {
                 <li>
-                    <a asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria" asp-route-periodo="@descripciones.ano" asp-route-vidrio="@descripciones.idVidrio">@descripciones.descripcionTipoVidrio</a>
+                    <a  onclick="clickCapaCargando()" asp-action="Resultados" asp-route-modelo="@descripciones.idFamilia" asp-route-carroceria="@descripciones.idModeloCarroceria" asp-route-periodo="@descripciones.ano" asp-route-vidrio="@descripciones.idVidrio">@descripciones.descripcionTipoVidrio</a>
                     <i class="fa fa-circle"></i>
                 </li>
             }
@@ -140,7 +140,7 @@ else
                                 <span>COD. <strong>@ar.Codigo</strong></span>
                             </div>
                             <div class="col-md-12">
-                                <a class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
+                                <a  onclick="clickCapaCargando()" class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
                                     <i class="fa fa-list-alt"></i> Detalles del  producto
                                 </a>
                             </div>
@@ -148,7 +148,7 @@ else
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
+                        <a  onclick="clickCapaCargando()" class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
                         @if (ar.Eurocode != null && d.VisibleEurocodeListado)
             {
                 <div style="font-size:85%;">
@@ -423,14 +423,14 @@ else
                                         <span>COD. <strong>@ar.Codigo</strong></span>
                                     </div>
                                     <div class="col-md-12 text-center">
-                                        <a class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
+                                        <a  onclick="clickCapaCargando()" class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
                                             <i class="fa fa-list-alt"></i> Detalles del  producto
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
+                                <a  onclick="clickCapaCargando()" class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
                                 @if (ar.Eurocode != null && d.VisibleEurocodeListado)
         {
                         <div style="font-size:83%">

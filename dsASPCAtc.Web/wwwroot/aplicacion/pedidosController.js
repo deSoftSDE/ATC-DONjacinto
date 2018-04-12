@@ -19,6 +19,7 @@
                 if ($scope.actualPag > $scope.numPag) {
                     $scope.datagridoptions.option("dataSource", []);
                 }
+                quitarCapaCargando()
             });
     }
     var inputPaginaPromise;

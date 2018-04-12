@@ -352,7 +352,7 @@
                             @foreach (Categoria ct in c.InfoMenuWeb.Categorias)
                     {
                         <li class="nav-item  ">
-                            <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
+                            <a  onclick="clickCapaCargando()" asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
                                 <i class="fa fa-circle-o"></i>
                                 <span class="title">@ct.Descripcion</span>
                             </a>
