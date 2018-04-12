@@ -56,6 +56,8 @@
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" ng-controller="main">
+    @*CAPA CARGANDO*@
+    
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
@@ -84,7 +86,7 @@
                         @if (d.VisibleUltimaConexion)
                         {
                             <li class="nav-item">
-                            <a class="nav-link link-conect">Última Conexión @c.UltimaConexion</a>
+                                <a class="nav-link link-conect">Última Conexión @c.UltimaConexion</a>
 
                             </li>
 
@@ -97,42 +99,42 @@
                             </li>
 
                         }
-                        @if(d.VisibleMensajes)
+                        @if (d.VisibleMensajes)
                         {
                             <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icon-envelope-open"></i>
-                                <span class="badge badge-default" id="canmensajes"> @c.Mensajes.Count </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        Tiene
-                                        <span class="bold"><span id="canmensajes2">@c.Mensajes.Count</span> Nuevos</span> Mensajes
-                                    </h3>
-                                </li>
-                                <li>
-                                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                        @foreach(MensajeWeb msj in c.Mensajes)
-                                        {
-                                            <li id="mj @msj.IdMensaje">
-                                            <a ng-click="marcarMensajeLeido(@msj.IdMensaje, @c.Cliente.IDCliente, @msj.IdCliente)">
-                                                <span class="photo">
-                                                    <img src="~/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from"> @msj.Titulo</span>
-                                                    <span class="time"> @msj.FechaEnvio</span>
-                                                </span>
-                                                <span class="message"> @msj.Mensaje </span>
-                                            </a>
-                                        </li>
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <i class="icon-envelope-open"></i>
+                                    <span class="badge badge-default" id="canmensajes"> @c.Mensajes.Count </span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="external">
+                                        <h3>
+                                            Tiene
+                                            <span class="bold"><span id="canmensajes2">@c.Mensajes.Count</span> Nuevos</span> Mensajes
+                                        </h3>
+                                    </li>
+                                    <li>
+                                        <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                            @foreach (MensajeWeb msj in c.Mensajes)
+                                            {
+                                                <li id="mj @msj.IdMensaje">
+                                                    <a ng-click="marcarMensajeLeido(@msj.IdMensaje, @c.Cliente.IDCliente, @msj.IdCliente)">
+                                                        <span class="photo">
+                                                            <img src="~/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">
+                                                        </span>
+                                                        <span class="subject">
+                                                            <span class="from"> @msj.Titulo</span>
+                                                            <span class="time"> @msj.FechaEnvio</span>
+                                                        </span>
+                                                        <span class="message"> @msj.Mensaje </span>
+                                                    </a>
+                                                </li>
 
-                                        }
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
 
                         }
 
@@ -215,122 +217,122 @@
                             </a>
                         </li>
                         @if (d.VisiblePedidos)
-                        {
-                            <li class="nav-item  ">
-                            <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
-                                <i class="icon-puzzle"></i>
-                                <span class="title">Ver Pedidos</span>
+                {
+                    <li class="nav-item  ">
+                        <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Ver Pedidos</span>
 
-                            </a>
-                            </li>
-                        }
-                        @if(d.VisibleFacturas)
-                        {
-                            <li class="heading">
-                            <h3 class="uppercase">FACTURAS</h3>
-                        </li>
-                        <li class="nav-item  ">
-                            <a asp-controller="AreaCliente" asp-action="Facturas" class="nav-link nav-toggle">
-                                <i class=" icon-docs"></i>
-                                <span class="title">Consulta Facturas</span>
+                        </a>
+                    </li>
+        }
+                        @if (d.VisibleFacturas)
+                {
+                    <li class="heading">
+                        <h3 class="uppercase">FACTURAS</h3>
+                    </li>
+                    <li class="nav-item  ">
+                        <a asp-controller="AreaCliente" asp-action="Facturas" class="nav-link nav-toggle">
+                            <i class=" icon-docs"></i>
+                            <span class="title">Consulta Facturas</span>
 
-                            </a>
-                        </li>
+                        </a>
+                    </li>
 
-                        }
+        }
                         @if (d.VisibleFinanzas)
-                        {
-                            <li class="heading">
-                            <h3 class="uppercase">finanzas</h3>
-                        </li>
-                        <li class="nav-item  ">
-                            <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="1">
-                                <i class="fa fa-eur"></i>
-                                <span class="title">Pendientes de Cobro</span>
+                {
+                    <li class="heading">
+                        <h3 class="uppercase">finanzas</h3>
+                    </li>
+                    <li class="nav-item  ">
+                        <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="1">
+                            <i class="fa fa-eur"></i>
+                            <span class="title">Pendientes de Cobro</span>
 
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-toggle"  asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="2">
-                                <i class="fa fa-exchange"></i>
-                                <span class="title">Extractos Movimientos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-toggle" asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="2">
+                            <i class="fa fa-exchange"></i>
+                            <span class="title">Extractos Movimientos</span>
 
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a  asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="3" class="nav-link nav-toggle">
-                                <i class="fa fa-briefcase"></i>
-                                <span class="title">Efectos en Curso</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a asp-controller="AreaCliente" asp-action="Finanzas" asp-route-p="3" class="nav-link nav-toggle">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">Efectos en Curso</span>
 
-                            </a>
-                        </li>
+                        </a>
+                    </li>
 
-                        }
-                        
+        }
+
                         @if (d.VisibleVehiculos || d.VisibleCategorias)
-                        {
-                             <li class="heading">
-                            <h3 class="uppercase">productos</h3>
-                        </li>
+                {
+                    <li class="heading">
+                        <h3 class="uppercase">productos</h3>
+                    </li>
 
-                        }
-                       
+        }
+
                         @if (d.VisibleVehiculos)
-                        {
+                {
+                    <li class="nav-item  ">
+
+
+
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-circle"></i>
+                            <span class="title">Lunas</span>
+                            <span class="arrow"></span>
+                        </a>
+
+                        <ul class="sub-menu">
                             <li class="nav-item  ">
-
-
-
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-circle"></i> 
-                                <span class="title">Lunas</span>
-                                <span class="arrow"></span>
+                                <a asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="0" class="nav-link ">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Todos los vehículos</span>
+                                </a>
+                            </li>
+                            @foreach (TipoVehiculo tv in c.InfoMenuWeb.Vehiculos)
+                    {
+                        <li class="nav-item  ">
+                            <a asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="@tv.IDTipoVehiculo" class="nav-link ">
+                                <i class="fa fa-circle-o"></i>
+                                <span class="title">@tv.Descripcion</span>
                             </a>
-
-                            <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="0" class="nav-link ">
-                                        <i class="icon-home"></i>
-                                        <span class="title">Todos los vehículos</span>
-                                    </a>
-                                </li>
-                                @foreach (TipoVehiculo tv in c.InfoMenuWeb.Vehiculos)
-                                {
-                                    <li class="nav-item  ">
-                                        <a asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="@tv.IDTipoVehiculo" class="nav-link ">
-                                            <i class="fa fa-circle-o"></i>
-                                            <span class="title">@tv.Descripcion</span>
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
                         </li>
+            }
+                        </ul>
+                    </li>
 
-                        }
+        }
                         @if (d.VisibleCategorias)
-                        {
-                            <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-circle"></i>
-                                <span class="title">Complementos</span>
-                                <span class="arrow"></span>
+                {
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-circle"></i>
+                            <span class="title">Complementos</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @foreach (Categoria ct in c.InfoMenuWeb.Categorias)
+                    {
+                        <li class="nav-item  ">
+                            <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
+                                <i class="fa fa-circle-o"></i>
+                                <span class="title">@ct.Descripcion</span>
                             </a>
-                            <ul class="sub-menu">
-                                @foreach (Categoria ct in c.InfoMenuWeb.Categorias)
-                                {
-                                    <li class="nav-item  ">
-                                        <a asp-controller="AreaCliente" asp-action="Resultados" asp-route-categoria="@ct.IDCategoria" class="nav-link ">
-                                            <i class="fa fa-circle-o"></i>
-                                            <span class="title">@ct.Descripcion</span>
-                                        </a>
-                                    </li>
-                                }
-
-                            </ul>
                         </li>
+            }
 
-                        }
-                        
+                        </ul>
+                    </li>
+
+        }
+
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->
@@ -339,9 +341,19 @@
             </div>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
+            
             <div class="page-content-wrapper">
-                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN CONTENT BODY --> 
+                
                 <div class="page-content">
+                    <div id="capa_cargando" style="width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);">
+                        <div id="contenido_capa_cargando">
+                            <img src="~/images/loading.gif">
+                            <br>
+                            <div id="texto_cargando">Cargando...</div>
+                        </div>
+                    </div>
+
 
                     @RenderBody()
 
@@ -352,8 +364,7 @@
             @{
 
             }
-            <div id="accordion">
-            </div>
+
 
 
             <!-- END CONTENT -->
@@ -372,7 +383,7 @@
                             </a>
                         </li>
                         @if (d.VisibleUltimosPedidos)
-    {
+                {
                     <li>
                         <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
                             Últimos pedidos
@@ -380,7 +391,7 @@
                         </a>
                     </li>
 
-}
+        }
 
 
                     </ul>
@@ -400,8 +411,8 @@
                                                 </button>
                                                 @*<input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />*@
                                                 {{articulo.cantidad}}
-                                                <button type="submit" class="btn btn-icon-only default btn-carrito" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)" >  
-                                                <i class="fa fa-plus"></i> 
+                                                <button type="submit" class="btn btn-icon-only default btn-carrito" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)">
+                                                    <i class="fa fa-plus"></i>
                                                 </button>
 
                                             </div>
@@ -411,118 +422,118 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        
-                                      
-                                      
+
+
+
                                     </li>
 
                                 </ul>
-                                
-                           </div>
-                                <div class="inner-content" style="position:fixed; bottom:0;width: 411px;background-color:#234056;padding-bottom: 10px;margin-bottom: 0px;">
-                                    <button class="btn btn-success" type="submit" ng-click="verPaginaCarrito()">
-                                        <i class="icon-settings"></i> Procesar Pedido
+
+                            </div>
+                            <div class="inner-content" style="position:fixed; bottom:0;width: 411px;background-color:#234056;padding-bottom: 10px;margin-bottom: 0px;">
+                                <button class="btn btn-success" type="submit" ng-click="verPaginaCarrito()">
+                                    <i class="icon-settings"></i> Procesar Pedido
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
+                            <div class="page-quick-sidebar-alerts-list">
+                                <h3 class="list-heading">Últimos Pedidos</h3>
+                                <ul class="feeds list-items">
+                                    <li>
+                                        <div class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <div class="label label-sm label-info">
+                                                        <i class="fa fa-check"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="cont-col2">
+                                                    <table>
+                                                        @foreach (Pedido pd in c.Pedidos)
+                                                {
+
+                                                    <tr>
+                                                        <td> @pd.Documento </td>
+                                                        <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                                        <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                                        <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
+                                                        <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
+                                                    </tr>
+                                        }
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div class="date"> OK </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
+                            <div class="page-quick-sidebar-settings-list">
+                                <h3 class="list-heading">Opciones</h3>
+                                <ul class="list-items borderless">
+                                    <li>
+                                        Opcion1
+                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                    <li>
+                                        Opcion2
+                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                    <li>
+                                        Opcion3
+                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                    <li>
+                                        Opcion4
+                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                    <li>
+                                        Opcion5
+                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                </ul>
+                                <h3 class="list-heading">Opciones</h3>
+                                <ul class="list-items borderless">
+                                    <li>
+                                        Security Level
+                                        <select class="form-control input-inline input-sm input-small">
+                                            <option value="1">OP1</option>
+                                            <option value="2" selected>OP2</option>
+                                            <option value="e">OP3</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        Opcion6
+                                        <input class="form-control input-inline input-sm input-small" value="5" />
+                                    </li>
+                                    <li>
+                                        OPcion7
+                                        <input class="form-control input-inline input-sm input-small" value="3560" />
+                                    </li>
+                                    <li>
+                                        OPcion8
+                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                    <li>
+                                        Opcion9
+                                        <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                    </li>
+                                </ul>
+                                <div class="inner-content">
+                                    <button class="btn btn-success">
+                                        <i class="icon-settings"></i> Guardar Cambios
                                     </button>
                                 </div>
                             </div>
-                                
-                           
-                            <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
-                                <div class="page-quick-sidebar-alerts-list">
-                                    <h3 class="list-heading">Últimos Pedidos</h3>
-                                    <ul class="feeds list-items">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <table>
-                                                            @foreach (Pedido pd in c.Pedidos)
-    {
-
-                                                        <tr>
-                                                            <td> @pd.Documento </td>
-                                                            <td> @pd.FechaDocumento.ToShortDateString() </td>
-                                                            <td> @pd.ImporteLiquido.ToString("N2")</td>
-                                                            <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
-                                                            <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
-                                                        </tr>
-}
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> OK </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
-                                <div class="page-quick-sidebar-settings-list">
-                                    <h3 class="list-heading">Opciones</h3>
-                                    <ul class="list-items borderless">
-                                        <li>
-                                            Opcion1
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                        <li>
-                                            Opcion2
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                        <li>
-                                            Opcion3
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                        <li>
-                                            Opcion4
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                        <li>
-                                            Opcion5
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                    </ul>
-                                    <h3 class="list-heading">Opciones</h3>
-                                    <ul class="list-items borderless">
-                                        <li>
-                                            Security Level
-                                            <select class="form-control input-inline input-sm input-small">
-                                                <option value="1">OP1</option>
-                                                <option value="2" selected>OP2</option>
-                                                <option value="e">OP3</option>
-                                            </select>
-                                        </li>
-                                        <li>
-                                            Opcion6
-                                            <input class="form-control input-inline input-sm input-small" value="5" />
-                                        </li>
-                                        <li>
-                                            OPcion7
-                                            <input class="form-control input-inline input-sm input-small" value="3560" />
-                                        </li>
-                                        <li>
-                                            OPcion8
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                        <li>
-                                            Opcion9
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF">
-                                        </li>
-                                    </ul>
-                                    <div class="inner-content">
-                                        <button class="btn btn-success">
-                                            <i class="icon-settings"></i> Guardar Cambios
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
             <!-- END  SIDEBAR OCULTA -->
@@ -649,11 +660,11 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
-            
+
         })
 
     </script>
-     <div dx-popup="popupOptions">
+    <div dx-popup="popupOptions">
         <div class='popup-property-details'>
             <div class="form">
                 <label>Artículo</label>
@@ -673,7 +684,7 @@
 
             </div>
         </div>
-      </div>
+    </div>
 
     @RenderSection("Scripts", required: false)
 </body>

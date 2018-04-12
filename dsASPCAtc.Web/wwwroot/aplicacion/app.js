@@ -99,3 +99,36 @@ function VacioSiUndefined(val) {
 function cambiarPagina(a) {
     document.getElementById("accionpagina").value = a;
 }
+
+function mostrarCargando() {
+    anchoCargando();
+    $("#capa_cargando").css({ opacity: 0, display: "block" }).animate({ opacity: 1, zIndex: 100 }, 500);
+}
+
+//oculta la capa emergente Cargando...
+function ocultarCargando() {
+    //display->none no funciona en animate
+    $("#capa_cargando").css({ opacity: 1 }).animate({ opacity: 0, zIndex: 0 }, 500);
+    $("#capa_cargando").css({ display: "none" });
+}
+
+//redimensiona el ancho del modal cargando
+function anchoCargando() {
+    //ancho
+    var menu_vertical = $("#menu_vertical").width();
+    if (menu_vertical > 0) {
+        var ancho_ventana = $(window).width();
+
+        var ancho_cargando = ancho_ventana - menu_vertical;
+        $("#capa_cargando").width(ancho_cargando);
+    }
+
+    //alto
+    var menu_superior = $("#menu_superior").height();
+    if (menu_superior > 0) {
+        var alto_ventana = $(window).height();
+
+        var alto_cargando = alto_ventana - menu_superior;
+        $("#capa_cargando").height(alto_cargando);
+    }
+}
