@@ -265,7 +265,7 @@ else
     @*fin primera fila*@
     <div class="row sep-secciones">
         @*INICIO SEGUNDA FILA*@
-        <div class="col-md-6">
+        <div class="col-md-4">
             @*columna características*@
             <H3>Detalles del Producto</H3>
             @if (dt.articulo.Eurocode != null && d.VisibleEurocodeFicha)
@@ -326,7 +326,7 @@ else
             }
             @*fin columna caracteristicas*@
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             @if (dt.articulo.Carrocerias.Count > 0)
             {
                 <h5>Válido para:</h5>
@@ -347,12 +347,12 @@ else
                             <tr class="odd gradeX">
 
 
-                                <td>@car.DescripcionSeccion</td>
+                                <td >@car.DescripcionSeccion</td>
 
-                                <td>@car.DescripcionFamilia</td>
-                                <td>@car.DescripcionCarroceria</td>
+                                <td >@car.DescripcionFamilia</td>
+                                <td >@car.DescripcionCarroceria</td>
 
-                                <td>
+                                <td style="white-space: nowrap; width:1px;">
                                     @if (car.Anos == "")
                                     {
                                         <span>Todos los Años</span>
@@ -376,9 +376,82 @@ else
         @*FIN SEGUNDA fila*@
     </div>
     <div class="row sep-secciones">
-        <div class=""></div>
+        <div class="col-md-12">
+            <h3>Modelo Vehículo</h3>
+        </div>
         <div class="col-md-3">
-            <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible-modelo.png'"  class="img-responsive" />
+            @if (dt.articulo.Modelo != null)
+            {
+            <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible-modelo.png'" class="img-responsive" />
+
+            }
+        
+        </div>
+        <div class="col-md-9">
+            @if (dt.articulo.Modelo != null)
+    {
+        <div class="row">
+            
+            <div class="col-md-12">
+                @if (dt.articulo.Modelo.Imagenes != null)
+        {
+            @if (dt.articulo.Modelo.Imagenes.Count > 3)
+    {
+        <div class="col-md-12">
+            <div class="carousel carousel-showmanymoveone slide" id="carousel123">
+                <div class="carousel-inner">
+
+                    @foreach (ImagenFamilia ifam in dt.articulo.Modelo.Imagenes)
+            {
+                if (ifam.active == true)
+                {
+                    <div class="item active">
+                        <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                            <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
+
+                        </div>
+                    </div>
+
+        }
+        else
+        {
+            <div class="item">
+                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                    <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
+
+                </div>
+            </div>
+
+}
+
+
+}
+                </div>
+                <a class="left carousel-control" href="#carousel123" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#carousel123" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+
+}
+else
+{
+        @foreach (ImagenFamilia ifam in dt.articulo.Modelo.Imagenes)
+{
+        <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
+}
+
+}
+
+
+}
+            </div>
+
+        </div>
+
+
+
+
+}
         </div>
     </div>
     </div>
@@ -390,580 +463,227 @@ else
 
 
 
-    @if (dt.articulo.Modelo != null)
-    {
-        <div class="row">
-            <div class="col-md-2">
-                <img src="@dt.articulo.Modelo.url" onerror="this.src='../../img/nodisponible.png'" />
-            </div>
-            <div class="col-md-10">
-                @if (dt.articulo.Modelo.Imagenes != null)
-                {
-                    @if (dt.articulo.Modelo.Imagenes.Count > 3)
-                    {
-                        <div class="col-md-12">
-                            <div class="carousel carousel-showmanymoveone slide" id="carousel123">
-                                <div class="carousel-inner">
-
-                                    @foreach (ImagenFamilia ifam in dt.articulo.Modelo.Imagenes)
-                                    {
-                                        if (ifam.active == true)
-                                        {
-                                            <div class="item active">
-                                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                                    <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
-
-                                                </div>
-                                            </div>
-
-                                        }
-                                        else
-                                        {
-                                            <div class="item">
-                                                <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-                                                    <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
-
-                                                </div>
-                                            </div>
-
-                                        }
-
-
-                                    }
-                                </div>
-                                <a class="left carousel-control" href="#carousel123" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                <a class="right carousel-control" href="#carousel123" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                            </div>
-                        </div>
-
-                    }
-                    else
-                    {
-                        @foreach (ImagenFamilia ifam in dt.articulo.Modelo.Imagenes)
-                        {
-                            <img src="@ifam.url" onerror="this.src='../../img/nodisponible.png'" class="img-responsive">
-                        }
-
-                    }
-
-
-                }
-            </div>
-
-        </div>
-
-
-
-
-    }
-    <div class="portlet light bordered listaArticulos">
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img ng-src="{{imagenArticulo(@dt.articulo.IdArticulo)}}" onerror="this.src='../../img/nodisponible.png'" class="img-responsive center-block" />
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-12">
-                                <p>
-                                    @dt.articulo.DescripcionCorta
-                                </p>
-                                <small>@dt.articulo.Codigo</small>
-                                <p>
-                                    @dt.articulo.DescripcionWeb1
-                                </p>
-                                <p>
-                                    @dt.articulo.DescripcionWeb2
-                                </p>
-
-
-                                @if (dt.articulo.Eurocode != null && d.VisibleEurocodeFicha)
-                                {
-                                    <div>
-                                        @if (dt.articulo.Eurocode.TipoVidrio != null)
-                                        {
-                                            <div>Tipo de Vidrio: @dt.articulo.Eurocode.TipoVidrio</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.TipoAccesorio != null)
-                                        {
-                                            <div>Tipo de Accesorio: @dt.articulo.Eurocode.TipoAccesorio</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.BandaSuperior != null)
-                                        {
-                                            <div>Banda Superior: @dt.articulo.Eurocode.BandaSuperior</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.Carroceria != null)
-                                        {
-                                            <div>Carrocería: @dt.articulo.Eurocode.Carroceria</div>
-                                        }
-                                        @if (dt.articulo.Eurocode.Color != null)
-                                        {
-                                            <div>Color: @dt.articulo.Eurocode.Color</div>
-                                        }
-
-
-                                        @if (dt.articulo.Eurocode.Modificaciones != null && dt.articulo.Eurocode.Modificaciones.Count > 0)
-                                        {
-                                            <div>Modificaciones</div>
-                                            <ul>
-                                                @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Modificaciones)
-                                                {
-                                                    <li>@cr.Valor</li>
-
-                                                }
-                                            </ul>
-
-
-                                        }
-
-                                        @if (dt.articulo.Eurocode.Caracteristicas != null && dt.articulo.Eurocode.Caracteristicas.Count > 0)
-                                        {
-                                            <div>Caracteristicas</div>
-                                            <ul>
-                                                @foreach (CaracteristicasArticulo cr in dt.articulo.Eurocode.Caracteristicas)
-                                                {
-                                                    <li>@cr.Valor</li>
-
-                                                }
-                                            </ul>
-
-                                        }
-
-                                    </div>
-                                }
-                            </div>
-                            <div class="col-12">
-                                <ul class="list-unstyled">
-                                    @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
-                                    {
-                                        @if (d.VisibleAlmacenesFicha)
-                                        {
-                                            foreach (AcumuladoStock ast in ud.AcumuladosStock)
-                                            {
-                                                <li style="padding-bottom: 5px;">
-                                                    @ast.NombreAlmacen
-
-                                                    @if (ast.StockFinalUV >= 1)
-                                                    {
-                                                        <span class="label label-sm label-success">
-                                                            Disponible
-                                                        </span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="label label-sm label-default">
-                                                            Agotado
-                                                        </span>
-
-                                                    }
-
-                                                </li>
-
-                                            }
-
-                                        }
-                                        <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                                            <div class="col-md-4">
-                                                <div><small>Precio</small></div>
-                                                <small>
-                                                    <strong>
-                                                        @ud.Precio.ToString("N2") €
-                                                    </strong>
-                                                </small>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div><small>Dto.</small></div>
-                                                <small>
-                                                    <strong>
-                                                        @ud.Descuento.ToString("N2") %
-                                                    </strong>
-                                                </small>
-                                            </div>
-                                        </div>
-
-
-
-                                    }
-                                </ul>
-                            </div>
-                            <div>
-                                @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
-                                {
-
-
-                                    <a href="javascript:;" ng-click="anadirCarrito(@dt.articulo.IdArticulo, 0, @ud.idUnidadManipulacion)" class="btn btn-icon-only default">
-                                        <i class="fa fa-cart-plus"></i>
-                                    </a>
-                                }
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="dataTables_wrapper">
-            <div class="row">
-
-            </div>
-            <div class="row">
-                @if (dt.articulo.Carrocerias.Count > 0)
-                {
-                    <h3>Válido para:</h3>
-                    <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod">
-                        <thead>
-                            <tr>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                <th>Carrocería</th>
-                                <th>Descripción</th>
-                                <th>Años</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (ArticuloCarroceria car in dt.articulo.Carrocerias)
-                            {
-                                <tr class="odd gradeX">
-
-
-                                    <td>@car.DescripcionSeccion</td>
-
-                                    <td>@car.DescripcionFamilia</td>
-                                    <td>@car.DescripcionCarroceria</td>
-                                    <td>@car.DescripcionArticuloModelo</td>
-                                    <td>
-                                        @if (car.Anos == "")
-                                        {
-                                            <span>Todos los Años</span>
-
-                                        }
-                                        @car.Anos
-
-                                    </td>
-                                </tr>
-
-
-
-
-                            }
-                        </tbody>
-
-                    </table>
-
-                }
-
-
-            </div>
-        </div>
-
-
-
-    </div>
-    <!-- FIN TABLA  parabrisas-->
-    <!-- TABLA  Gomas-->
-    @*@if (dt.articulo.Accesorios.Count > 0)
-        {
-            <h4>Complementos:</h4>
-            @foreach (Categoria ct in dt.articulo.Accesorios)
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet light bordered">
-                            <h1>@ct.Descripcion</h1>
-                            <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod" id="sample_2">
-                                <thead>
-                                    <tr>
-                                        <th class="">
-
-                                        </th>
-                                        <th> Código </th>
-                                        <th> Características </th>
-                                        <th> Almacenes </th>
-                                        <th class="text-center">PVP</th>
-                                        <th class="text-center">%</th>
-                                        <th class="text-center">Neto</th>
-                                        <th class="text-center">Incl. pedido</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (BuscaArticulo ar in ct.Articulos)
-                                    {
-                                        <tr class="odd gradeX">
-                                            <td class="text-center">
-                                                <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../../img/nodisponible.png'" class="img-responsive center-block" style="width:80%;" />
-                                            </td>
-                                            <td>@ar.Codigo</td>
-                                            <td>
-                                                <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> @ar.Descripcion </a>
-                                            </td>
-                                            <td>
-                                                <ul class="list-unstyled">
-                                                    @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
-                                                    {
-                                                        <li style="padding-bottom: 5px;">
-                                                            @ud.NombreAlmacen
-
-                                                            @if (ud.StockFinalUV >= 1)
-                                                            {
-                                                                <span class="label label-sm label-success">
-                                                                    Disponible
-                                                                </span>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span class="label label-sm label-default">
-                                                                    Agotado
-                                                                </span>
-
-                                                            }
-
-                                                        </li>
-
-                                                    }
-                                                </ul>
-
-                                            </td>
-                                            <td class="text-right">0.00€</td>
-                                            <td class="text-right">0%</td>
-                                            <td class="text-right">0.00€</td>
-                                            <td class="text-center">
-                                                <a href="javascript:;" class="btn btn-icon-only default">
-                                                    <i class="fa fa-cart-plus"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            }
-
-        }*@
-
+<div class="portlet  listaArticulos" ng-controller="productos">
     <div class="row">
         <div class="col-md-12">
             <h2>Accesorios</h2>
         </div>
     </div>
-    <div ng-controller="productos">
-
-        @foreach (Categoria ct in dt.articulo.Accesorios)
-        {
-            <button ng-click="cambiarTabCategorias(@ct.IDCategoria)" class="btn btn-default">
-                @ct.Descripcion
-                {{esActivo(@ct.IDCategoria)}}
-            </button>
-
-        }
-
-        <uib-tabset active="tabCat" id="accesorios">
-            @foreach (Categoria ct in dt.articulo.Accesorios)
+    <div class="row">
+        <div class="col-md-2" style="padding-right:0px">
+            <div class="row">
+                @foreach (Categoria ct in dt.articulo.Accesorios)
             {
-                <uib-tab index="@ct.IDCategoria">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            @foreach (BuscaArticulo ar in ct.Articulos)
-                            {
-                                <div class="row margin-bottom-10 row-prod">
-                                    <div class="col-md-3">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../../img/altdisponible.png'" class="img-responsive center-block img-list-pro" />
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                                <span>COD. <strong>@ar.Codigo</strong></span>
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                                <a class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
-                                                    <i class="fa fa-list-alt"></i> Detalles del  producto
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
-                                        @if (ar.Eurocode != null && d.VisibleEurocodeListado)
-                                        {
-                                            <div>
-                                                @if (ar.Eurocode.TipoVidrio != null)
-                                                {
-                                                    <div>Tipo de Vidrio: @ar.Eurocode.TipoVidrio</div>
-                                                }
-                                                @if (ar.Eurocode.TipoAccesorio != null)
-                                                {
-                                                    <div>Tipo de Accesorio: @ar.Eurocode.TipoAccesorio</div>
-                                                }
-                                                @if (ar.Eurocode.BandaSuperior != null)
-                                                {
-                                                    <div>Banda Superior: @ar.Eurocode.BandaSuperior</div>
-                                                }
-                                                @if (ar.Eurocode.Carroceria != null)
-                                                {
-                                                    <div>Carrocería: @ar.Eurocode.Carroceria</div>
-                                                }
-                                                @if (ar.Eurocode.Color != null)
-                                                {
-                                                    <div>Color: @ar.Eurocode.Color</div>
-                                                }
-
-
-                                                @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
-                                                {
-                                                    <div>Modificaciones</div>
-                                                    <ul>
-                                                        @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
-                                                        {
-                                                            <li>@cr.Valor</li>
-
-                                                        }
-                                                    </ul>
-
-
-                                                }
-
-                                                @if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
-                                                {
-                                                    <div>Caracteristicas</div>
-                                                    <ul>
-                                                        @foreach (CaracteristicasArticulo cr in ar.Eurocode.Caracteristicas)
-                                                        {
-                                                            <li>@cr.Valor</li>
-
-                                                        }
-                                                    </ul>
-
-                                                }
-
-                                            </div>
-                                        }
-                                    </div>
-                                    @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
-                                    {
-                                        <span class="unidadmanipulacion">
-                                            <div class="col-md-4">
-                                                <div class="row ">
-
-                                                    <div class="col-md-12">
-
-                                                        @if (ud.AcumuladosStock.Count < 1)
-                                                        {
-                                                            <small><i class="fa fa-industry"></i><strong> Bajo pedido </strong></small>
-
-
-                                                        }
-                                                        else
-                                                        {
-                                                            <small><i class="fa fa-industry"></i><strong> Disponible</strong></small>
-
-                                                        }
-                                                        <ul class="list-unstyled list-inline">
-
-
-                                                            @if (d.VisibleAlmacenesListado)
-                                                            {
-                                                                @foreach (AcumuladoStock ast in ud.AcumuladosStock)
-                                                                {
-                                                                    <li class="list-inline-item" style="padding-bottom: 5px;">
-
-
-                                                                        @if (ast.StockFinalUV >= 1)
-                                                                        {
-                                                                            <span class=" dispon">
-                                                                                <i class="fa fa-check"></i>
-                                                                            </span>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <span class="no-dispon">
-                                                                                <i class="fa fa-remove"></i>
-                                                                            </span>
-                                                                        } <small>@ast.NombreAlmacen</small>
-                                                                    </li>
-
-                                                                }
-
-                                                            }
-
-
-
-                                                        </ul>
-
-                                                        @*<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#@ar.IdArticulo">Almacenes</button>
-                                                            <div id="@ar.IdArticulo" class="collapse">
-
-                                                            </div>*@
-                                                    </div>
-
-
-                                                </div>
-                                                @if (d.VisiblePrecioListado)
-                                                {
-                                                    <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                                                        <div class="col-md-4">
-                                                            <div><small>Precio</small></div>
-                                                            <small>
-                                                                <strong>
-                                                                    @ud.Precio.ToString("N2") €
-                                                                </strong>
-                                                            </small>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div><small>Dto.</small></div>
-                                                            <small>
-                                                                <strong>
-                                                                    @ud.Descuento.ToString("N2") %
-                                                                </strong>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                }
-
-                                            </div>
-                                            <div class=" col-md-2 text-center">
-                                                <div class="row">
-                                                    @if (ud.AcumuladosStock.Count < 1)
-                                                    {
-                                                        <div class="col-md-12" style="padding-top:-9px">
-                                                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
-                                                                <i class="glyphicon glyphicon-envelope"></i>
-                                                                <div> Bajo Pedido</div>
-                                                            </a>
-                                                        </div> }
-                                                    else
-                                                    {
-                                                        <div class="col-md-12" style="padding-top:-9px">
-                                                            <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo, 0, @ud.idUnidadManipulacion)">
-                                                                <i class="fa fa-cart-plus fa-lg"></i>
-                                                                <div> Añadir</div>
-                                                            </a>
-                                                        </div>
-
-                                                    }
-                                                </div>
-
-                                            </div>
-                                        </span>
-                                    }
-                                </div>
-
-                            }
+                <div class="col-md-12">
+                    <div class="btn-lista {{esActivo(@ct.IDCategoria)}}" ng-click="cambiarTabCategorias(@ct.IDCategoria)">
+                        <div class="txt-ficha text-center row cont-btn-lista ">
+                            @ct.Descripcion
                         </div>
                     </div>
-                </uib-tab>
-            }
-        </uib-tabset>
+                </div>
 
+        }
+            </div>
+        </div>
+        <div class="col-md-10" style="background-color:#fff; padding-top:18px; min-height:500px;">
+            <uib-tabset active="tabCat" id="accesorios">
+                @foreach (Categoria ct in dt.articulo.Accesorios)
+        {
+            <uib-tab index="@ct.IDCategoria">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        @foreach (BuscaArticulo ar in ct.Articulos)
+                {
+                    <div class="row margin-bottom-10 row-prod">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img ng-src="{{imagenArticulo(@ar.IdArticulo)}}" onerror="this.src='../../img/altdisponible.png'" class="img-responsive center-block img-list-pro" />
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <span>COD. <strong>@ar.Codigo</strong></span>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <a class="btn grey-mint btn-xs" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo">
+                                        <i class="fa fa-list-alt"></i> Detalles del  producto
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="font-dark" asp-controller="AreaCliente" asp-action="Articulo" asp-route-id="@ar.IdArticulo"> <strong>@ar.Descripcion</strong>  </a>
+                            @if (ar.Eurocode != null && d.VisibleEurocodeListado)
+                    {
+                        <div>
+                            @if (ar.Eurocode.TipoVidrio != null)
+                    {
+                        <div><small>Tipo de Vidrio:<strong>@ar.Eurocode.TipoVidrio</strong> </small> </div>
+            }
+                            @if (ar.Eurocode.TipoAccesorio != null)
+                    {
+                        <div>Tipo de Accesorio: @ar.Eurocode.TipoAccesorio</div>
+            }
+                            @if (ar.Eurocode.BandaSuperior != null)
+                    {
+                        <div>Banda Superior: @ar.Eurocode.BandaSuperior</div>
+            }
+                            @if (ar.Eurocode.Carroceria != null)
+                    {
+                        <div>Carrocería: @ar.Eurocode.Carroceria</div>
+            }
+                            @if (ar.Eurocode.Color != null)
+                    {
+                        <div>Color: @ar.Eurocode.Color</div>
+            }
+
+
+                            @if (ar.Eurocode.Modificaciones != null && ar.Eurocode.Modificaciones.Count > 0)
+                    {
+                        <div>Modificaciones</div>
+                        <ul>
+                            @foreach (CaracteristicasArticulo cr in ar.Eurocode.Modificaciones)
+                    {
+                        <li>@cr.Valor</li>
+
+            }
+                        </ul>
+
+
+            }
+
+                            @if (ar.Eurocode.Caracteristicas != null && ar.Eurocode.Caracteristicas.Count > 0)
+                    {
+                        <div>Caracteristicas</div>
+                        <ul>
+                            @foreach (CaracteristicasArticulo cr in ar.Eurocode.Caracteristicas)
+                    {
+                        <li>@cr.Valor</li>
+
+            }
+                        </ul>
+
+            }
+
+                        </div>
+            }
+                        </div>
+                        @foreach (UnidadManipulacion ud in ar.UnidadesManipulacion)
+                {
+                    <span class="unidadmanipulacion">
+                        <div class="col-md-4">
+                            <div class="row ">
+
+                                <div class="col-md-12">
+
+                                    @if (ud.AcumuladosStock.Count < 1)
+                            {
+                                <small><i class="fa fa-industry"></i><strong> Bajo pedido </strong></small>
+
+
+                    }
+                    else
+                    {
+                        <small><i class="fa fa-industry"></i><strong> Disponible</strong></small>
+
+            }
+                                    <ul class="list-unstyled list-inline">
+
+
+                                        @if (d.VisibleAlmacenesListado)
+                                {
+                                    @foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                            {
+                                <li class="list-inline-item" style="padding-bottom: 5px;">
+
+
+                                    @if (ast.StockFinalUV >= 1)
+                            {
+                                <span class=" dispon">
+                                    <i class="fa fa-check"></i>
+                                </span>
+                    }
+                    else
+                    {
+                        <span class="no-dispon">
+                            <i class="fa fa-remove"></i>
+                        </span>
+            } <small>@ast.NombreAlmacen</small>
+        </li>
+
+}
+
+                        }
+
+
+
+                                    </ul>
+
+
+                                </div>
+
+
+                            </div>
+                            @if (d.VisiblePrecioListado)
+                    {
+                        <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
+                            <div class="col-md-4">
+                                <div><small>Precio</small></div>
+                                <small>
+                                    <strong>
+                                        @ud.Precio.ToString("N2") €
+                                    </strong>
+                                </small>
+                            </div>
+                            <div class="col-md-4">
+                                <div><small>Dto.</small></div>
+                                <small>
+                                    <strong>
+                                        @ud.Descuento.ToString("N2") %
+                                    </strong>
+                                </small>
+                            </div>
+                        </div>
+            }
+
+                        </div>
+                        <div class=" col-md-2 text-center">
+                            <div class="row">
+                                @if (ud.AcumuladosStock.Count < 1)
+                        {
+                            <div class="col-md-12" style="padding-top:-9px">
+                                <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo)">
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    <div> Bajo Pedido</div>
+                                </a>
+                            </div> }
+                else
+                {
+                    <div class="col-md-12" style="padding-top:-9px">
+                        <a href="javascript:;" class="icon-btn btn-pedir" ng-click="anadirCarrito(@ar.IdArticulo, 0, @ud.idUnidadManipulacion)">
+                            <i class="fa fa-cart-plus fa-lg"></i>
+                            <div> Añadir</div>
+                        </a>
+                    </div>
+
+        }
+                            </div>
+
+                        </div>
+                    </span>
+        }
+                    </div>
+
+        }
+                    </div>
+                </div>
+            </uib-tab>
+}
+            </uib-tabset>
+        </div>
+      </div>
 
     </div>
+    
+    
