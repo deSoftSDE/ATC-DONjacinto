@@ -58,7 +58,7 @@ else
 <!-- BEGIN PAGE TITLE-->
 <h1 class="page-title">
 
-    <strong>COD. @dt.articulo.Codigo</strong>  
+    <strong>COD. @dt.articulo.Codigo</strong> - <small>@dt.articulo.Descripcion</small>
 </h1>
 
 <!-- END PAGE TITLE-->
@@ -81,9 +81,67 @@ else
 
         </div>
         <div class="col-md-5">
-            precios, almacen y carrito
+            @*INICIO ALMACENES*@
+
+            <div >
+                @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
+
+        {
+
+            if (ud.AcumuladosStock.Count < 1)
+            {
+                <i class="fa fa-industry"></i><span>Bajo Pedido</span>
+
+                    }
+                    else
+                    {
+                <i class="fa fa-industry"></i><span>Disponible</span>
+}
+
+
+
+if (d.VisibleAlmacenesFicha)
+{
+
+
+foreach (AcumuladoStock ast in ud.AcumuladosStock)
+{
+
+        <div class="list-items">
+
+            @if (ast.StockFinalUV >= 1)
+    {
+        <span class="dispon">
+            <i class="fa fa-check"></i>
+        </span>
+
+
+}
+
+else
+{
+        <span class="no-dispon">
+            <i class="fa fa-remove"></i>
+        </span>
+
+} <small>@ast.NombreAlmacen</small>
         </div>
-    </div>
+}
+
+
+}
+
+}
+            </div>
+
+
+
+
+
+            @*FIN ALMACENES*@
+        </div>
+       </div>
+    @*fin primera fila*@
     <div class="row">
         <div class="col-md-6">
             @if (dt.articulo.Carrocerias.Count > 0)
@@ -281,58 +339,58 @@ else
                             }
                         </div>
                         <div class="col-12">
-                            <ul class="list-unstyled">
-                                @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
-                                {
-                                    @if (d.VisibleAlmacenesFicha)
-                                    {
-                                        foreach (AcumuladoStock ast in ud.AcumuladosStock)
-                                    {
-                                        <li style="padding-bottom: 5px;">
-                                            @ast.NombreAlmacen
+                              <ul class="list-unstyled">
+            @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
+            {
+                @if (d.VisibleAlmacenesFicha)
+                {
+                    foreach (AcumuladoStock ast in ud.AcumuladosStock)
+                {
+                    <li style="padding-bottom: 5px;">
+                        @ast.NombreAlmacen
 
-                                            @if (ast.StockFinalUV >= 1)
-                                            {
-                                                <span class="label label-sm label-success">
-                                                    Disponible
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="label label-sm label-default">
-                                                    Agotado
-                                                </span>
+                        @if (ast.StockFinalUV >= 1)
+                        {
+                            <span class="label label-sm label-success">
+                                Disponible
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="label label-sm label-default">
+                                Agotado
+                            </span>
 
-                                            }
+                        }
 
-                                        </li>
+                    </li>
 
-                                    }
+                }
 
-                                    }
-                                    <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                                                <div class="col-md-4">
-                                                    <div><small>Precio</small></div>
-                                                    <small>
-                                                        <strong>
-                                                            @ud.Precio.ToString("N2") €
-                                                        </strong>
-                                                    </small>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div><small>Dto.</small></div>
-                                                    <small>
-                                                        <strong>
-                                                            @ud.Descuento.ToString("N2") %
-                                                        </strong>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                    
+                }
+                <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
+                            <div class="col-md-4">
+                                <div><small>Precio</small></div>
+                                <small>
+                                    <strong>
+                                        @ud.Precio.ToString("N2") €
+                                    </strong>
+                                </small>
+                            </div>
+                            <div class="col-md-4">
+                                <div><small>Dto.</small></div>
+                                <small>
+                                    <strong>
+                                        @ud.Descuento.ToString("N2") %
+                                    </strong>
+                                </small>
+                            </div>
+                        </div>
 
 
-                                }
-                            </ul>
+
+            }
+        </ul>
                         </div>
                         <div>
                             @foreach (UnidadManipulacion ud in dt.articulo.UnidadesManipulacion)
