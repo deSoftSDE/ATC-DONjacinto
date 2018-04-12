@@ -21,6 +21,7 @@
                             $scope.paginacionFinanzas.pc.numPag++;
                         }
                         $scope.datagridpendientes.option("dataSource", respuesta.data.contenido);
+                        quitarCapaCargando();
                     })
             }
         },
@@ -37,6 +38,7 @@
                             $scope.paginacionFinanzas.em.numPag++;
                         }
                         $scope.datagridextractos.option("dataSource", respuesta.data.contenido);
+                        quitarCapaCargando();
                     })
             }
         },
@@ -53,6 +55,7 @@
                             $scope.paginacionFinanzas.ec.numPag++;
                         }
                         $scope.datagridefectos.option("dataSource", respuesta.data.contenido);
+                        quitarCapaCargando();
                     })
             }
         }

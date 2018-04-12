@@ -3,7 +3,7 @@
     var c = (List<MensajeError>)ViewData["Mensajes"];
 
 }
-<h2>El archivo subido ha arrojado los siguientes resultados:</h2>
+<h2 ng-controller="generico">El archivo subido ha arrojado los siguientes resultados:</h2>
 <ul class="list-group">
     @foreach (MensajeError msj in c)
     {

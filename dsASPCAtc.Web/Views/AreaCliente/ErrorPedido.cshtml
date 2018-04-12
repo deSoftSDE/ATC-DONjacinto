@@ -3,7 +3,7 @@
     string c = (string)ViewData["Contenido"];
 
 }
-<p class="alert alert-danger">Ha ocurrido un error al procesar tu pedido:</p>
+<p ng-controller="generico" class="alert alert-danger">Ha ocurrido un error al procesar tu pedido:</p>
 <p class="alert alert-warning">@c</p>
 
 <form method="get" asp-controller="AreaCliente" asp-action="Index">

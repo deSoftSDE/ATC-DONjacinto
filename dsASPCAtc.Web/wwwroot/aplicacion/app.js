@@ -132,3 +132,6 @@ function anchoCargando() {
         $("#capa_cargando").height(alto_cargando);
     }
 }
+function clickCapaCargando() {
+    document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);");
+}

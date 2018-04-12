@@ -147,6 +147,10 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         }
     }
     $scope.anadirCarrito = function (idArticulo, cantidad, idUnidadManipulacion, noabrir) {
+        if (noabrir === true) {
+            ponerCapaCargando();
+        }
+        
         Carrito.anadirArticulo(idArticulo, cantidad, idUnidadManipulacion, noabrir)
             .then(function (respuesta) {
 
@@ -154,11 +158,14 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 if (noabrir !== true) {
                     $("body").addClass("page-quick-sidebar-open");
                 }
+                quitarCapaCargando();
 
                 $scope.carrito = respuesta.data;
                 if (NotNullNotUndefinedNotEmpty($scope.carrito.mensaje)) {
                     mensajeError($scope.carrito.mensaje)
                 }
+
+                
             })
     }
     $scope.marcarMensajeLeido = function (idMensaje, idCliente, otrocliente) {
@@ -205,9 +212,12 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         
     }
     $scope.eliminarArticulo = function (idArticulo, enProcesar) {
+        if (enProcesar === true) {
+            ponerCapaCargando();
+        }
         Carrito.eliminarArticulo(idArticulo, enProcesar)
             .then(function (respuesta) {
-
+                quitarCapaCargando();
                 console.log(respuesta.data);
                 $("body").addClass("page-quick-sidebar-open");
                 $scope.carrito = respuesta.data;
@@ -228,6 +238,7 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             .then(function (respuesta) {
                 console.log(respuesta.data);
                 $scope.carrito = respuesta.data;
+                quitarCapaCargando();
             })
     } else {
         Carrito.verCarrito()
@@ -236,6 +247,14 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
                 $scope.carrito = respuesta.data;
             })
     }
+    quitarCapaCargando = function () {
+        document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5); display:none;");
+    }
+    ponerCapaCargando = function () {
+        document.getElementById("capa_cargando").setAttribute("style", "width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);");
+    }
+    //quitarCapaCargando();
+
     
 });
 atc.controller('listaArticulos', function ($scope, $http, Llamada, $timeout) {
@@ -352,4 +371,9 @@ atc.controller('productosvidrio', function ($scope, $http, Llamada, $timeout, Ca
 
 atc.controller('resultadosBusqueda', function ($scope, $http, Llamada, $timeout, Carrito) {
     document.getElementById("contenedorResultados").style.display = "inline";
+
+    quitarCapaCargando()
+});
+atc.controller('generico', function ($scope, $http, Llamada, $timeout, Carrito) {
+    quitarCapaCargando();
 });
