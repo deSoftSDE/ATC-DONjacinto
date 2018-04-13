@@ -212,19 +212,19 @@
                         </li>
                         <li class="nav-item  {{esRutaActiva('Pedido')}} ">
                             <a asp-controller="AreaCliente" asp-action="Pedido" class="nav-link nav-toggle">
-                                <i class="icon-note"></i>
-                                <span class="title">Realizar Pedido</span>
+                                <i class="icon-share-alt"></i>
+                                <span class="title">Procesar Pedido</span>
                                 <span class="selected"></span>
                             </a>
                         </li>
                         @if (d.VisiblePedidos)
                         {
                             <li class="nav-item {{esRutaActiva('Pedidos')}}">
-                            <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
-                                <i class="icon-puzzle"></i>
-                                <span class="title">Ver Pedidos</span>
-                                <span class="selected"></span>
-                            </a>
+                                <a asp-controller="AreaCliente" asp-action="Pedidos" class="nav-link nav-toggle">
+                                    <i class="icon-note"></i>
+                                    <span class="title">Consulta Pedidos</span>
+                                    <span class="selected"></span>
+                                </a>
                             </li>
                         }
                         @if (d.VisibleFacturas || d.VisibleFinanzas)
@@ -379,7 +379,7 @@
                 <div class="page-content">
                     <div id="capa_cargando" style="width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);margin-top: -25px;margin-left: -20px;">
                         <div id="contenido_capa_cargando">
-                            <img src="~/images/loading.gif">
+                            <img class="img-cargando" src="~/images/loading.gif">
                             <br>
                             <div id="texto_cargando">Cargando...</div>
                         </div>
@@ -440,8 +440,9 @@
                                                 <button class="btn btn-icon-only default btn-carrito" type="submit" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
-                                                @*<input type="submit" value="-" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion)" />*@
-                                                {{articulo.cantidad}}
+                                                <span class="border-after-green-dark">
+                                                    {{articulo.cantidad}}
+                                                </span>
                                                 <button type="submit" class="btn btn-icon-only default btn-carrito" value="+" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion)">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -471,38 +472,44 @@
 
                         <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
                             <div class="page-quick-sidebar-alerts-list">
-                                <h3 class="list-heading">Últimos Pedidos</h3>
-                                <ul class="feeds list-items">
-                                    <li>
-                                        <div class="col1">
-                                            <div class="cont">
-                                                <div class="cont-col1">
-                                                    <div class="label label-sm label-info">
-                                                        <i class="fa fa-check"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="cont-col2">
-                                                    <table>
-                                                        @foreach (Pedido pd in c.Pedidos)
-                                                {
 
+                                <h3 class="list-heading">ÚLTIMOS PEDIDOS</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class=" list-items">
+                                            <li>
+
+                                                <table class="table table-carrito">
+                                                <thead>
                                                     <tr>
-                                                        <td> @pd.Documento </td>
-                                                        <td> @pd.FechaDocumento.ToShortDateString() </td>
-                                                        <td> @pd.ImporteLiquido.ToString("N2")</td>
-                                                        <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
-                                                        <td> <a href="" class="btn btn-sm btn-default"><i class="fa fa-search"></i> Ver pedido</a> </td>
-                                                    </tr>
-                                        }
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col2">
-                                            <div class="date"> OK </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                                        <th>Nº Documento</th>
+                                                        <th>Fecha</th>
+                                                        <th>Importe</th>
+                                                        <th>Estado</th>
+                                                    </tr>  
+                                                </thead>
+                                                    @foreach (Pedido pd in c.Pedidos)
+                                                    
+            {
+
+                                        <tr>
+                                            <td> @pd.Documento </td>
+                                            <td> @pd.FechaDocumento.ToShortDateString() </td>
+                                            <td> @pd.ImporteLiquido.ToString("N2")</td>
+                                            <td> <span class="label label-sm @pd.ColorEstado"> @pd.Estado </span> </td>
+
+                                        </tr>
+}
+                                                </table>
+
+
+
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">

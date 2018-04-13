@@ -382,7 +382,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 todo-padding-b-0">
-                                    <div class="row" style="margin: 0 20px;">
+                                    <div class="row" style="margin: 20px 20px;">
                                         <div class="panel panel-default col-md-2" style="padding:0" ng-repeat="intervalo in intervalos">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -405,6 +405,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="button" class="btn-todos" ng-click="seleccionarAno({ valor: 'Todos los años', ano: 0, cantidadArticulos: 'muchos ' })"> 
+                                            <span class="">
+                                                Todos los Años
+                                            </span>
+                                        </button>
                                     </div>
 
                                 </div>

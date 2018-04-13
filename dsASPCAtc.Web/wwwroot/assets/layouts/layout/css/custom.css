@@ -382,3 +382,48 @@ div.btn-lista-com div.txt-ficha {
     margin-top: 20px;
     padding-top: 20px;
 }
+#contenido_capa_cargando {
+    position: relative;
+    top: 50%;
+    /*text-align:center;*/
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.img-cargando{
+    display:block;
+    margin:0% 40%;
+}
+#texto_cargando {
+    display: block;
+    margin: 0% 40%;
+}
+.table.table-carrito > tbody > tr > td {
+    border-top: none !important;
+}
+.btn-todos {
+    border-color: #ddd;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    color: #736e6e;
+}
+.fila-precio{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-between;
+    align-content:center;
+    align-items:center;
+}
+.fila-precio .celda-precio{
+    margin-right:0.8rem;
+}
+#chart{
+    max-width:100%;
+    margin:0 auto;
+    padding:18px;
+}

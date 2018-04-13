@@ -1,4 +1,5 @@
-﻿atc.controller('pedidos', function($scope, $http, Llamada, $timeout) {
+﻿atc.controller('pedidos', function ($scope, $http, Llamada, $timeout) {
+    
     var b = document.getElementById("idCliente").value;
     $scope.pagina = 1;
     $scope.bloque = 20; 
@@ -66,9 +67,15 @@
         
     };
     
-
-
+    $scope.showBorders = true;
+    $scope.rowAlternationEnabled = true;
     $scope.dataGridOptions = {
+        bindingOptions: {
+            showColumnLines: "showColumnLines",
+            showRowLines: "showRowLines",
+            showBorders: "showBorders",
+            rowAlternationEnabled: "rowAlternationEnabled"
+        },
         dataSource: [],
         keyExpr: "idCabPedidoVentas",
         editing: {
@@ -80,6 +87,7 @@
         selection: {
             mode: "single"
         },
+
         columns: [
             {
                 dataField: "documento",
@@ -96,6 +104,7 @@
                 allowFiltering: false,
                 alignment: "center",
                 dataType: "date",
+                format: 'dd/MM/yyyy',
                 allowSorting: false,
                 allowEditing: false,
             }, {
@@ -136,7 +145,11 @@
 
 
     $scope.chartOptions = {
+        equalBarWidth: false,
         dataSource: [],
+        adaptiveLayout:{
+            width: 400,
+        },
         legend: {
             visible: false
         },

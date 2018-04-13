@@ -2,63 +2,71 @@
     var d = (UsuarioWeb)ViewData["Usuario"];
 }
 <div class="row" ng-cloak>
+
     <div class="col-md-8">
-        <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod">
-        <thead>
-            <tr class="d-flex">
-                <th class="col-md-6" >Artículo</th>
-                <th class="col-md-3">Cantidad</th>
-                <th>Precio</th>
-                <th>Dto</th>
-                <th>Bon</th>
-                <th>Importe</th>
-                <th>Eliminar</th>
+        <div class="row">
+            <div class="portlet light bordered">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column tabla-listado-prod">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-md-6">Artículo</th>
+                            <th class="col-md-3">Cantidad</th>
+                            <th>Precio</th>
+                            <th>Dto.</th>
+                            <th>Bon.</th>
+                            <th>Importe</th>
+                            <th>Eliminar</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            
-            <tr class="odd gradeX d-flex" ng-repeat="articulo in carrito.articulos">
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" ng-if="carrito.articulos.length < 1"> <strong>No hay ningún pedido pendiente de procesar</strong></td>
+                        </tr>
+                        <tr class="odd gradeX d-flex" ng-repeat="articulo in carrito.articulos" >
 
-                <td class="col-md-6" >{{articulo.descripcion}}</td>
-                <td class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-4 center-align">
-                            <input type="submit" value="-" class="btn btn-icon-only default btn-carrito" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion, true)" />
+                            <td class="col-md-12">{{articulo.descripcion}}</td>
+                            <td class="col-md-12">
+                               <div class="fila-precio">
+                                    <div >
+                                        <input type="submit" value="-" class="btn btn-icon-only default btn-carrito" ng-click="anadirCarrito(articulo.idArticulo, -1, articulo.idUnidadManipulacion, true)" />
 
-                        </div>
-                        <p class="col-md-4 align-content-center center-align">
-                            {{articulo.cantidad}}
-                        </p>
-                        @*Cuando la cantidad es mayor que 10 el botón de + se baja a la siguiente linea*@
-                        <div class="col-md-4  center-align">
-                            <input type="submit" value="+" class="btn btn-icon-only default btn-carrito" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion, true)" />
-                        </div>
-                    </div>
-                    
-                   
-                </td>
-                <td>
-                    {{articulo.precioUd.toFixed(2)}}€
-                </td>
-                <td>
-                    {{articulo.dto1.toFixed(2)}}%
-                </td>
-                <td>
-                    {{articulo.bon1.toFixed(2)}}%
-                </td>
-                <td>
-                    {{articulo.precio.toFixed(2)}} €
-                </td>
-                <td>
-                    <input type="submit" value="Eliminar"  class="form-control" ng-click="eliminarArticulo(articulo.idArticulo, true)" />
-                </td>
-            </tr>
+                                    </div>
+                                    <div class="celda-precio">
+                                        {{articulo.cantidad}}
+                                    </div>
+                                    @*Cuando la cantidad es mayor que 10 el botón de + se baja a la siguiente linea*@
+                                    <div >
+                                        <input type="submit" value="+" class="btn btn-icon-only default btn-carrito" ng-click="anadirCarrito(articulo.idArticulo, 1, articulo.idUnidadManipulacion, true)" />
+                                    </div>
+                                </div>
 
 
-        </tbody>
+                            </td>
+                            <td>
+                                {{articulo.precioUd.toFixed(2)}}€
+                            </td>
+                            <td>
+                                {{articulo.dto1.toFixed(2)}}%
+                            </td>
+                            <td>
+                                {{articulo.bon1.toFixed(2)}}%
+                            </td>
+                            <td>
+                                {{articulo.precio.toFixed(2)}} €
+                            </td>
+                            <td>
+                                <input type="submit" value="Eliminar" class="form-control" ng-click="eliminarArticulo(articulo.idArticulo, true)" />
+                            </td>
+                        </tr>
 
-        </table>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        
     </div>
     <div class="col-md-4">
         
@@ -100,45 +108,52 @@
 
                     }
                 </div>
-                <table class="table">
-                    <tr>
-                        <th>
-                            % IVA
-                        </th>
-                        <th>
-                            Base Imponible
-                        </th>
-                        <th>
-                            Cuota IVA
-                        </th>
-                    </tr>
-                    <tr ng-repeat="tiva in carrito.tipoIva">
-                        <td>
-                            {{tiva.porcentajeIva.toFixed(2)}} %
-                        </td>
-                        <td>
-                            {{tiva.totalArticulos.toFixed(2)}}  €
-                        </td>
-                        <td>
-                            {{tiva.totalIva.toFixed(2)}} €
-                        </td>
-                    </tr>
-                </table>
-                <div class="panel-body row">
-                    <div class="col-md-6">
-                        <h5>Total base Imponible: </h5>
-                        {{carrito.totalBaseImponible.toFixed(2)}}€
-                        <h5>Total Iva:</h5> {{carrito.totalIva.toFixed(2)}} €
-                    </div>
-                    <div class="col-md-6">
-                        <h4>Total pedido:</h4>	<h3>{{carrito.totalPedido.toFixed(2)}} €</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    % IVA
+                                </th>
+                                <th>
+                                    Base Imponible
+                                </th>
+                                <th>
+                                    Cuota IVA
+                                </th>
+                            </tr>
+                            <tr ng-repeat="tiva in carrito.tipoIva">
+                                <td>
+                                    {{tiva.porcentajeIva.toFixed(2)}} %
+                                </td>
+                                <td>
+                                    {{tiva.totalArticulos.toFixed(2)}}  €
+                                </td>
+                                <td>
+                                    {{tiva.totalIva.toFixed(2)}} €
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="panel-body row">
+                            <div class="col-md-6">
+                                <h5>Total base Imponible: </h5>
+                                {{carrito.totalBaseImponible.toFixed(2)}}€
+                                <h5>Total Iva:</h5> {{carrito.totalIva.toFixed(2)}} €
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Total pedido:</h4>	<h3>{{carrito.totalPedido.toFixed(2)}} €</h3>
+                            </div>
+                        </div>
+                        <div class="panel-body panel-body-default">
+                            <input type="hidden" name="usuario" value="@d.IdUsuarioWeb" />
+                            <button type="button" class="btn btn-danger" ng-click="eliminarCarrito()"><i class="glyphicon glyphicon-remove"></i>Limpiar Carrito</button>
+                            <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i>Procesar Pedido</button>
+                        </div>
+
                     </div>
                 </div>
-                <div class="panel-body panel-body-default">
-                    <input type="hidden" name="usuario" value="@d.IdUsuarioWeb" />
-                    <button type="button" class="btn btn-danger" ng-click="eliminarCarrito()"><i class="glyphicon glyphicon-remove"></i>Limpiar Carrito</button>
-                    <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i>Procesar Pedido</button>
-                </div>
+                
+                
             </div>
         </form>
     </div>
