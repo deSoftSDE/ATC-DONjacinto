@@ -129,10 +129,17 @@
         }
         
     };
-    
+    $scope.showBorders = true;
+    $scope.rowAlternationEnabled = true;
 
 
     $scope.dataGridEfectos = {
+        bindingOptions: {
+            showColumnLines: "showColumnLines",
+            showRowLines: "showRowLines",
+            showBorders: "showBorders",
+            rowAlternationEnabled: "rowAlternationEnabled"
+        },
         dataSource: [],
         keyExpr: "idEfectoCobro",
         editing: {
@@ -229,6 +236,12 @@
         }
     };
     $scope.dataGridExtractos = {
+        bindingOptions: {
+            showColumnLines: "showColumnLines",
+            showRowLines: "showRowLines",
+            showBorders: "showBorders",
+            rowAlternationEnabled: "rowAlternationEnabled"
+        },
         dataSource: [],
         keyExpr: "idOrigen",
         editing: {
@@ -287,7 +300,14 @@
             leerCosas('em');
         }
     };
+   
     $scope.dataGridPendientes = {
+        bindingOptions: {
+            showColumnLines: "showColumnLines",
+            showRowLines: "showRowLines",
+            showBorders: "showBorders",
+            rowAlternationEnabled: "rowAlternationEnabled"
+        },
         dataSource: [],
         keyExpr: "idDebito",
         editing: {

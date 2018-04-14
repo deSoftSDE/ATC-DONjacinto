@@ -427,3 +427,10 @@ div.btn-lista-com div.txt-ficha {
     margin:0 auto;
     padding:18px;
 }
+div#tab-finanzas .nav-tabs-justified > .active > a, div#tab-finanzas .nav-tabs-justified > .active > a:focus, div#tab-finanzas .nav-tabs-justified > .active > a:hover, div#tab-finanzas .nav-tabs.nav-justified > .active > a, div#tab-finanzas .nav-tabs.nav-justified > .active > a:focus, div#tab-finanzas .nav-tabs.nav-justified > .active > a:hover {
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ddd !important;
+    border-bottom-color: transparent !important;
+    cursor: default;
+}

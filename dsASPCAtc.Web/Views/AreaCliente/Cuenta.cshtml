@@ -10,15 +10,52 @@
 }
 
 <div class="row" ng-controller="generico">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h3>Información personal</h3>
     </div>
-    <div class="col-md-6 text-right">
-
-        @*<input type="button" value="Modificar Contraseña" class="btn btn-primary" />*@
-    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet light portlet-fit " style="margin:20px; padding:20px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br /><label>Nombre</label>
+                        <input type="text" disabled class="form-control margin-bottom-10" value="@d.Cliente.Nombre" />
+                        <input type="text" disabled class="form-control margin-bottom-10" value="@d.Cliente.Apellido1" />
+                        <input type="text" disabled class="form-control margin-bottom-10" value="@d.Cliente.Apellido2" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Modificar Contraseña</h4>
+                        <form asp-action="Cuenta" method="post">
+                            <input type="text" name="actual" class="form-control margin-bottom-10" placeholder="Contraseña Actual" />
+                            <input type="text" name="newn" class="form-control margin-bottom-10" placeholder="Contraseña Nueva" />
+                            <input type="text" name="newnew" class="form-control margin-bottom-10" placeholder="Repetir Contraseña Actual" />
+                            <input type="hidden" name="idUsuarioWeb" value="@d.IdUsuarioWeb" />
+                            <div class="row">
+                                <div class="col-md-12 margin-top-20">
+                                    <input type="submit" value="Modificar Contraseña" class="btn btn-primary" />
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="portlet light portlet-fit " style="margin:20px; padding:20px;">
+                <br /><label>CIF/NIF</label>
+                <input type="text" disabled class="form-control" value="@d.Cliente.Cif" />
+                <br /><label>Razón social</label>
+                <input type="text" disabled class="form-control" value="@d.Cliente.RazonSocial" />
+                <br /><label>Nombre Comercial</label>
+                <input type="text" disabled class="form-control" value="@d.Cliente.NombreComercial" />
+            </div>
+        </div>
+    
 </div>
-<div class="row">
+@*<div class="row">
     <div class="col-md-6">
         <br /><label>Nombre</label>
         <input type="text" disabled class="form-control" value="@d.Cliente.Nombre" />
@@ -43,5 +80,5 @@
         <input type="text" disabled class="form-control" value="@d.Cliente.NombreComercial" />
 
     </div>
-</div>
+</div>*@
 

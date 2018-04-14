@@ -13,135 +13,145 @@
         </li>
     </ul>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        Importe pendiente: <input type="text" class="form-control" disabled value="@sc.ImportePendiente.ToString("N2")"/>
+<div class="portlet light portlet-fit margin-bottom-20 margin-top-20">
+    <div class="portlet-title">
+        <div class="row padding-tb-20" style="padding-left:20px;padding-right:20px;">
+            <h3>Finanzas</h3>
+            <div class="col-md-4">
+                Importe pendiente: <input type="text" class="form-control" disabled value="@sc.ImportePendiente.ToString("N2")" />
+            </div>
+            <div class="col-md-4">
+                Importe Riesgo: <input type="text" class="form-control" disabled value="@sc.ImporteRiesgo.ToString("N2")" />
+            </div>
+            <div class="col-md-4">
+                Nº Documentos pendientes: <input type="text" class="form-control" disabled value="@sc.Documentos" />
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        Importe Riesgo: <input type="text" class="form-control" disabled value="@sc.ImporteRiesgo.ToString("N2")" />
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" ng-controller="finanzas" style="padding-left:20px;padding-right:20px;">
+                    <div id="ocultocargando" style="display:none"></div>
+                    <input type="hidden" value="@tab" id="activetab" />
+                    <div class="col-md-12">
+                        <uib-tabset active="activetab" justified="true" id="tab-finanzas">
+                            @*pedientes de cobro*@
+                            <uib-tab index="1" classes="tab-finanzas" >
+                                <uib-tab-heading>
+                                    <i class="fa fa-fw fa-euro"></i> Pendientes de Cobro
+                                </uib-tab-heading>
+                                <div class="row">
+                                    <div class="col-md-12 margin-top-20">
+                                        <div id="gridContainer" dx-data-grid="dataGridPendientes" dx-item-alias="fct" style="width:100% !important;">
+                                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                                                <p style="color:{{fct.data.colorEstado}}" ng-cloak>{{fct.data.estado}}</p>
+
+                                            </div>
+                                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                                                <p ng-cloak>{{fct.value.toFixed(2)}}€</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center margin-top-30">
+                                        <small class="font-blue-oleo" ng-cloak> Estas en la pagina <strong> {{paginacionFinanzas.pc.actualPag}} </strong>de un total de <strong>{{paginacionFinanzas.pc.numPag}}</strong>  paginas. Hay <strong>{{paginacionFinanzas.pc.registros}}</strong> registros.</small>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-4 text-center margin-top-10">
+                                        <div class="pagination-panel">
+                                            <a class="btn btn-sm default prev " ng-click="paginaAnterior('pc')" >
+                                                <i class="fa fa-angle-left"></i>
+                                            </a>
+                                            <input type="text" class="pagination-panel-input form-control input-sm input-inline input-mini" ng-model="paginacionFinanzas.pc.pagina" ng-change="cambioPagina('pc')">
+                                            <a class="btn btn-sm default next" ng-click="paginaSiguiente('pc')">
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            @*extractos de movimientos*@
+                            <uib-tab index="2">
+                                <uib-tab-heading>
+                                    <i class="fa fa-fw fa-exchange"></i> Extractos Movimientos
+                                </uib-tab-heading>
+                                <div class="row">
+                                    <div class="col-md-12 margin-top-20">
+                                        <div id="gridContainer" dx-data-grid="dataGridExtractos" dx-item-alias="fct" style="width:100% !important;">
+                                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                                                <p style="color:{{fct.data.colorEstado}}" ng-cloak>{{fct.data.estado}}</p>
+
+                                            </div>
+                                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                                                <p ng-cloak>{{fct.value.toFixed(2)}}€</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center margin-top-30">
+                                        <small class="font-blue-oleo" ng-cloak> Estas en la pagina <strong> {{paginacionFinanzas.em.actualPag}} </strong>de un total de <strong>{{paginacionFinanzas.em.numPag}}</strong>  paginas. Hay <strong>{{paginacionFinanzas.em.registros}}</strong> registros.</small>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-4 text-center margin-top-10">
+                                        <div class="pagination-panel">
+                                            <a class="btn btn-sm default prev " ng-click="paginaAnterior('em')">
+                                                <i class="fa fa-angle-left"></i>
+                                            </a>
+                                            <input type="text" class="pagination-panel-input form-control input-sm input-inline input-mini" ng-model="paginacionFinanzas.pc.pagina" ng-change="cambioPagina('em')">
+                                            <a class="btn btn-sm default next" ng-click="paginaSiguiente('em')">
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>   
+                                </div> 
+                            </uib-tab>
+                            @*efectos en curso*@
+                            <uib-tab index="3">
+                                <uib-tab-heading>
+                                    <i class="fa fa-fw fa-briefcase"></i> Efectos en Curso
+                                </uib-tab-heading>
+                                <div class="row">
+                                    <div class="col-md-12 margin-top-20">
+                                        <div id="gridContainer" dx-data-grid="dataGridEfectos" dx-item-alias="fct" style="width:100% !important;">
+                                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
+                                                <p style="color:{{fct.data.colorEstado}}" ng-cloak>{{fct.data.estado}}</p>
+
+                                            </div>
+                                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
+                                                <p ng-cloak>{{fct.value.toFixed(2)}}€</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center margin-top-30">
+                                        <small class="font-blue-oleo" ng-cloak> Estas en la pagina <strong> {{paginacionFinanzas.ec.actualPag}} </strong>de un total de <strong>{{paginacionFinanzas.ec.numPag}}</strong>  paginas. Hay <strong>{{paginacionFinanzas.ec.registros}}</strong> registros.</small>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-4 text-center margin-top-10">
+                                        <div class="pagination-panel">
+                                            <a class="btn btn-sm default prev " ng-click="paginaAnterior('ec')">
+                                                <i class="fa fa-angle-left"></i>
+                                            </a>
+                                            <input type="text" class="pagination-panel-input form-control input-sm input-inline input-mini" ng-model="paginacionFinanzas.ec.pagina" ng-change="cambioPagina('ec')">
+                                            <a class="btn btn-sm default next" ng-click="paginaSiguiente('ec')">
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </uib-tab>
+                        </uib-tabset>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="col-md-4">
-        Nº Documentos pendientes: <input type="text" class="form-control" disabled value="@sc.Documentos" />
-    </div>
+    
 </div>
 
-<div class="row" ng-controller="finanzas">
-    <div id="ocultocargando" style="display:none">
-        <input type="hidden" value="@tab" id="activetab" />
-        <uib-tabset active="activetab">
-            <uib-tab index="1">
-                <uib-tab-heading>
-                    Pendientes de Cobro
-                </uib-tab-heading>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <ul class="pagination justify-content-center col-md-6 row">
-                        <li class="page-item col-md-2" ng-click="paginaAnterior('pc')">
-                            <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
-                        </li>
-                        <li class="page-item  col-md-4">
 
-                            <input type="number" class="form-control" ng-model="paginacionFinanzas.pc.pagina" ng-change="cambioPagina('pc')" />
-
-                        </li>
-                        <li class="page-item  col-md-2" ng-click="paginaSiguiente('pc')">
-                            <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
-                        </li>
-                    </ul>
-                    <div class="col-md-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Estas en la pagina {{paginacionFinanzas.pc.actualPag}} de un total de {{paginacionFinanzas.pc.numPag}} paginas. Hay {{paginacionFinanzas.pc.registros}} registros.
-
-                        <div id="gridContainer" dx-data-grid="dataGridPendientes" dx-item-alias="fct" style="width:100% !important;">
-                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
-                                <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
-
-                            </div>
-                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
-                                <p>{{fct.value.toFixed(2)}}€</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>
-            <uib-tab index="2">
-                <uib-tab-heading>
-                    Extractos Movimientos
-                </uib-tab-heading>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <ul class="pagination justify-content-center col-md-6 row">
-                        <li class="page-item col-md-2" ng-click="paginaAnterior('em')">
-                            <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
-                        </li>
-                        <li class="page-item  col-md-4">
-
-                            <input type="number" class="form-control" ng-model="paginacionFinanzas.em.pagina" ng-change="cambioPagina('em')" />
-
-                        </li>
-                        <li class="page-item  col-md-2" ng-click="paginaSiguiente('em')">
-                            <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
-                        </li>
-                    </ul>
-                    <div class="col-md-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Estas en la pagina {{paginacionFinanzas.em.actualPag}} de un total de {{paginacionFinanzas.em.numPag}} paginas. Hay {{paginacionFinanzas.em.registros}} registros.
-                        <div id="gridContainer" dx-data-grid="dataGridExtractos" dx-item-alias="fct" style="width:100% !important;">
-                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
-                                <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
-
-                            </div>
-                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
-                                <p>{{fct.value.toFixed(2)}}€</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>
-            <uib-tab index="3">
-                <uib-tab-heading>
-                    Efectos en Curso
-                </uib-tab-heading>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <ul class="pagination justify-content-center col-md-6 row">
-                        <li class="page-item col-md-2" ng-click="paginaAnterior('ec')">
-                            <a class="page-link"><i class="fa fa-caret-left fa-xs "></i><small style="font-size:72%"></small> </a>
-                        </li>
-                        <li class="page-item  col-md-4">
-
-                            <input type="number" class="form-control" ng-model="paginacionFinanzas.ec.pagina" ng-change="cambioPagina('ec')" />
-
-                        </li>
-                        <li class="page-item  col-md-2" ng-click="paginaSiguiente('ec')">
-                            <a class="page-link"><small style="font-size:72%"></small>  <i class="fa fa-caret-right fa-xs "></i></a>
-                        </li>
-                    </ul>
-                    <div class="col-md-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Estas en la pagina {{paginacionFinanzas.ec.actualPag}} de un total de {{paginacionFinanzas.ec.numPag}} paginas. Hay {{paginacionFinanzas.ec.registros}} registros.
-                        <div id="gridContainer" dx-data-grid="dataGridEfectos" dx-item-alias="fct" style="width:100% !important;">
-                            <div data-options="dxTemplate:{ name:'estadoTemplate' }">
-                                <p style="color:{{fct.data.colorEstado}}">{{fct.data.estado}}</p>
-
-                            </div>
-                            <div data-options="dxTemplate:{ name:'currencyTemplate' }">
-                                <p>{{fct.value.toFixed(2)}}€</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>
-        </uib-tabset>
-    </div>
-
-</div>
