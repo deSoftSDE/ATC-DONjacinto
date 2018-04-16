@@ -5,28 +5,110 @@
     var cab = (List<ImagenCabWeb>)ViewData["Cabeceras"];
 }
 
+@*@if (c.Resultado != null)
+    {
+        <div>Resultado del Registro: @c.Resultado</div>
+        <div> Que significa: @c.Cadena </div>
+        <div>El resultado del mail es: @c.CadenaMail</div>
+        <div>A continuación, te dejo divs que se mostrarán según el resultado:</div>
+        switch (c.Resultado)
+        {
+            case -3:
+                <div> El teléfono introducido no es válido </div>
+                break;
+            case -2:
+                <div>La contraseña introducida no es válida</div>
+                break;
+            case -1:
+                <div>El usuario ya existe</div>
+                break;
+            case 0:
+                <div> Se ha enviado la solicitud. Un administrador la revisará y recibirás noticias nuestras con la máxima brevedad posible. </div>
+                break;
+            case 1:
+                <div> Se ha procesado la solicitud. Revisa tu email para confirmar tu cuenta. </div>
+                break;
+
+        }
+
+    }*@
+
 @if (c.Resultado != null)
 {
-    <div>Resultado del Registro: @c.Resultado</div>
-    <div> Que significa: @c.Cadena </div>
-    <div>El resultado del mail es: @c.CadenaMail</div>
-    <div>A continuación, te dejo divs que se mostrarán según el resultado:</div>
+    @*<div>Resultado del Registro: @rs.Resultado</div>
+        <div> Que significa: @rs.Cadena </div>
+        <div>El resultado del mail es: @rs.CadenaMail</div>
+        <div>A continuación, te dejo divs que se mostrarán según el resultado:</div>*@
     switch (c.Resultado)
     {
         case -3:
-            <div> El teléfono introducido no es válido </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                        <strong>El teléfono introducido no es válido</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             break;
         case -2:
-            <div>La contraseña introducida no es válida</div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                        <strong>La contraseña introducida no es válida</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             break;
         case -1:
-            <div>El usuario ya existe</div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                        <strong>El usuario ya existe</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
             break;
         case 0:
-            <div> Se ha enviado la solicitud. Un administrador la revisará y recibirás noticias nuestras con la máxima brevedad posible. </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                        <strong> Se ha enviado la solicitud.  </strong> <br />Un administrador la revisará y recibirás noticias nuestras con la máxima brevedad posible.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             break;
         case 1:
-            <div> Se ha procesado la solicitud. Revisa tu email para confirmar tu cuenta. </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                        <div> Se ha procesado la solicitud. Revisa tu email para confirmar tu cuenta. </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             break;
 
     }
@@ -75,20 +157,21 @@
                 <div class="row slider-text align-items-center">
                     <div class="col-lg-7 col-md-7 col-sm-12 col-12 element-animate">
                         @if (cb.Subtitulo == "")
-                                {
-                                    <h1 >@cb.Titulo</h1>
+                        {
+                            <h1>@cb.Titulo</h1>
 
-                                } else
-                                {
-                                    
-                                            <div class="row">
-                                    <div class="col-12 ">
-                                        <h2 class="text-white" style="font-size:50px;">@cb.Titulo</h2>
-                                
-                                    </div>
+                        }
+                        else
+                        {
+
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <h2 class="text-white" style="font-size:50px;">@cb.Titulo</h2>
+
                                 </div>
-                                }
-                        
+                            </div>
+                        }
+
                         <h2 class="text-center text-sm-center text-md-left text-lg-left text-white">@cb.Subtitulo</h2>
                         <p class="@cb.classcontent d-xl-block">@cb.Contenido</p>
                         <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left">
@@ -111,57 +194,57 @@
     }
     @*<div class="slider-item" style="background-image: url('img/fondo_w1b.jpg');">
 
-        <div class="container">
-            <div class="row slider-text align-items-center">
-                <div class="col-lg-7 col-md-7 col-sm-12 col-12 element-animate">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <h2 class="text-white" style="font-size:50px;">Auto-Cristales TOMELLOSO</h2>
+            <div class="container">
+                <div class="row slider-text align-items-center">
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-12 element-animate">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <h2 class="text-white" style="font-size:50px;">Auto-Cristales TOMELLOSO</h2>
+                            </div>
+                        </div>
+                        <h2 class="text-center text-sm-center text-md-left text-lg-left text-white">Lunas y Parabrisas para Vehículos</h2>
+                        <p class="d-none d-xl-block">Distribución de todo tipo de cristales, lunas y parabrisas de automoción y todos los accesorios para su instalación.</p>
+                        <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                                Acceso Área Clientes
+                            </button>
+                            <div>
+                                <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal" style="color:#fff;">
+                                    <small class="">Recuperar Contraseña</small>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <h2 class="text-center text-sm-center text-md-left text-lg-left text-white">Lunas y Parabrisas para Vehículos</h2>
-                    <p class="d-none d-xl-block">Distribución de todo tipo de cristales, lunas y parabrisas de automoción y todos los accesorios para su instalación.</p>
-                    <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                            Acceso Área Clientes
-                        </button>
-                        <div>
-                            <a href="#javascript," type="" class="" data-toggle="modal" data-target="#exampleModal" style="color:#fff;">
-                                <small class="">Recuperar Contraseña</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-xs-12"></div>
+                    <div class="col-lg-5 col-xs-12"></div>
 
-            </div>
-        </div>
-    </div>
-    <div class="slider-item" style="background-image: url('img/fachada-aerea.jpg');">
-        <div class="container">
-            <div class="row slider-text align-items-center">
-                <div class="col-md-7 col-sm-12 element-animate">
-                    <h1>Grupo ATC</h1>
-
-                    <p>Somos uno de los mayores almacenes de distribución de Europa de lunas y accesorios para automóviles, vehículos industriales y nueva incorporación de parabrisas para autobuses. </p>
-                    <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left ">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                            Acceso Área Clientes
-                        </button>
-                        <div class="text-center text-sm-center text-md-left text-lg-left">
-                            <a href="#javascript," type="" class="text-white" data-toggle="modal" data-target="#exampleModal">
-                                <small class="">Recuperar Contraseña</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-xs-12">
-                    
                 </div>
             </div>
         </div>
+        <div class="slider-item" style="background-image: url('img/fachada-aerea.jpg');">
+            <div class="container">
+                <div class="row slider-text align-items-center">
+                    <div class="col-md-7 col-sm-12 element-animate">
+                        <h1>Grupo ATC</h1>
 
-    </div>*@
+                        <p>Somos uno de los mayores almacenes de distribución de Europa de lunas y accesorios para automóviles, vehículos industriales y nueva incorporación de parabrisas para autobuses. </p>
+                        <div class="d-xl-none text-center text-sm-center text-md-left text-lg-left ">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                                Acceso Área Clientes
+                            </button>
+                            <div class="text-center text-sm-center text-md-left text-lg-left">
+                                <a href="#javascript," type="" class="text-white" data-toggle="modal" data-target="#exampleModal">
+                                    <small class="">Recuperar Contraseña</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xs-12">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
 </section>
 <!-- END slider -->
 
@@ -254,53 +337,53 @@
 </section>
 <!-- END section -->
 @*<section class="section custom-tabs bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 border-right element-animate">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span>01</span> Área de Clientes</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span>02</span> Servivio Especilizado</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span>03</span> Almacenes</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><span>04</span> Productos</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 border-right element-animate">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span>01</span> Área de Clientes</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span>02</span> Servivio Especilizado</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span>03</span> Almacenes</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><span>04</span> Productos</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-7 element-animate">
+                <div class="col-md-1"></div>
+                <div class="col-md-7 element-animate">
 
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <span class="icon flaticon-personas"></span>
-                        <h2 class="text-primary">Área de Cliente</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
-                        <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
-                        <p><a href="#" class="btn btn-primary">Ver más</a></p>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <span class="icon flaticon-transporte"></span>
-                        <h2 class="text-primary">Servicio Especilizado</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
-                        <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
-                        <p><a href="#" class="btn btn-primary">Ver más</a></p>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <span class="icon flaticon-fabrica"></span>
-                        <h2 class="text-primary">Almacenes</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
-                        <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
-                       
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <span class="icon flaticon-transporte-1"></span>
-                        <h2 class="text-primary">Productos</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
-                        <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
-                        <p><a href="#" class="btn btn-primary">Ver más</a></p>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <span class="icon flaticon-personas"></span>
+                            <h2 class="text-primary">Área de Cliente</h2>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+                            <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
+                            <p><a href="#" class="btn btn-primary">Ver más</a></p>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <span class="icon flaticon-transporte"></span>
+                            <h2 class="text-primary">Servicio Especilizado</h2>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+                            <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
+                            <p><a href="#" class="btn btn-primary">Ver más</a></p>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <span class="icon flaticon-fabrica"></span>
+                            <h2 class="text-primary">Almacenes</h2>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+                            <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
+
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <span class="icon flaticon-transporte-1"></span>
+                            <h2 class="text-primary">Productos</h2>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+                            <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
+                            <p><a href="#" class="btn btn-primary">Ver más</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>*@
+    </section>*@
 <!-- END section -->
 <!-- <section class="section bg-light">
   <div class="container">
@@ -451,118 +534,118 @@
                 <h2 class="text-uppercase heading border-bottom mb-4"><i class="fas fa-users"></i> NUEVA ÁREA DE CLIENTES </h2>
                 <p class="mb-0 lead">Desde Auto-Cristales TOMELLOSO, queremos facilitar a nuestros clientes el trabajo, facilitando el acceso a realizar y consultar pedidos, ver la disponibilidad de artículos.... </p>
                 <img class="d-block mx-auto img-fluid" src="~/img/pantallazo-aplic.png" />
-            
-           </div>
+
+            </div>
         </div>
         @*<div class="row element-animate">
-            <div class="major-caousel js-carousel-2 owl-carousel">
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/266973-600-400.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                          
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Consulta de Facturas</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                               
-                            </p>
+                <div class="major-caousel js-carousel-2 owl-carousel">
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/266973-600-400.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Consulta de Facturas</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/comprar-online.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Pedidos Online</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/ofertas_descuentos_promociones.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Ofertas y descuentos</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/CAP_Valencia_Permiso_C_camion.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Envios</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/Finanzas_tradicionales_vs_Fintech_Quin_gana_el_partido.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Estado del pedido</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/devoluciones_compradores.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Devoluciones</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/24x7.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">24x7x365</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media d-block media-custom text-left">
+                            <img src="img/mensajes.jpg" alt="Image Placeholder" class="img-fluid">
+                            <div class="media-body">
+
+                                <h3 class="mt-0 text-black"><a href="#" class="text-black">Solicite registro</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p class="clearfix">
+
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/comprar-online.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                          
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Pedidos Online</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                               
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/ofertas_descuentos_promociones.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                           
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Ofertas y descuentos</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                                
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/CAP_Valencia_Permiso_C_camion.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                            
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Envios</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                              
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/Finanzas_tradicionales_vs_Fintech_Quin_gana_el_partido.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                          
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Estado del pedido</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                              
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/devoluciones_compradores.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                          
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Devoluciones</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                               
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/24x7.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                           
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">24x7x365</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                               
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="media d-block media-custom text-left">
-                        <img src="img/mensajes.jpg" alt="Image Placeholder" class="img-fluid">
-                        <div class="media-body">
-                           
-                            <h3 class="mt-0 text-black"><a href="#" class="text-black">Solicite registro</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <p class="clearfix">
-                               
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
-        </div>*@
+
+            </div>*@
     </div>
 </section>
 <!-- END section -->
