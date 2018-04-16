@@ -138,7 +138,7 @@ namespace dsASPCAtc.Web.Controllers
         {
             var ad = new ServicioCorreo(_configuration);
             var res = ad.ClientesRecuperarContrasena(sol.email);
-            ViewData["Resultado"] = res;
+            ViewData["Resultado1"] = res;
             ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             return View();
         }
