@@ -59,10 +59,12 @@
                     $scope.currentmodelo.carrocerias[i].url = Llamada.getRuta($scope.currentmodelo.carrocerias[i].imagen);
                 }
                 $scope.objetoBusqueda.infoModelo = $scope.currentmodelo;
+                quitarCapaCargando();
                 if ($scope.currentmodelo.carrocerias.length < 1) {
+                    ponerCapaCargando();
                     $scope.finalizaBusca();
                 }
-                quitarCapaCargando();
+                
             })
     }
     buscarAnos = function () {

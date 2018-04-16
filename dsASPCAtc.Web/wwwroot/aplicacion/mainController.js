@@ -222,7 +222,10 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             .then(function (respuesta) {
                 quitarCapaCargando();
                 console.log(respuesta.data);
-                $("body").addClass("page-quick-sidebar-open");
+                if (enProcesar !== true) {
+                    $("body").addClass("page-quick-sidebar-open");
+                }
+                
                 $scope.carrito = respuesta.data;
             })
     }
