@@ -61,26 +61,37 @@ namespace dsASPCAtc.Web.Controllers
             HttpContext.Session.SetObjectAsJson("EmpresaWeb", dempr);
             return dempr;
         }
+        public IActionResult Incorrecta()
+        {
+            var res = new ResultadoRegistro();
+            res.Resultado = -4;
+            ViewData["Resultado"] = res;
+            ViewData["Recuperacion"] = new ResultadoRecuperacionContrasena();
+            ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
+            var ad2 = new AdaptadorAtc(_configuration);
+            ViewData["Cabeceras"] = ad2.ImagenesCabWebLeer();
+            return View("Index");
+        }
         public IActionResult Index()
         {
             ViewData["Resultado"] = new ResultadoRegistro();
             ViewData["Recuperacion"] = new ResultadoRecuperacionContrasena();
-            var lc = new LectorEurocode("6548RGSH5FD");
-            var c = lc.Leer();
-            var ld = new LectorEurocode("2722ACL1B");
-            var d = ld.Leer();
-            //LUNETA
-            var le = new LectorEurocode("6548BGPEAOW1J");
-            var e = le.Leer();
-            //ACCESORIO
-            var lf = new LectorEurocode("2715ASMH");
-            var f = lf.Leer();
-            var lg = new LectorEurocode("2711AGNGN");
-            var g = lg.Leer();
-            var lh = new LectorEurocode("3739AGNBLV1P");
-            var h = lh.Leer();
-            var li = new LectorEurocode("3587RGNM5FDKW");
-            var i = li.Leer();
+            //var lc = new LectorEurocode("6548RGSH5FD");
+            //var c = lc.Leer();
+            //var ld = new LectorEurocode("2722ACL1B");
+            //var d = ld.Leer();
+            ////LUNETA
+            //var le = new LectorEurocode("6548BGPEAOW1J");
+            //var e = le.Leer();
+            ////ACCESORIO
+            //var lf = new LectorEurocode("2715ASMH");
+            //var f = lf.Leer();
+            //var lg = new LectorEurocode("2711AGNGN");
+            //var g = lg.Leer();
+            //var lh = new LectorEurocode("3739AGNBLV1P");
+            //var h = lh.Leer();
+            //var li = new LectorEurocode("3587RGNM5FDKW");
+            //var i = li.Leer();
             ViewData["DatosEmpresa"] = ObtenerDatosEmpresa();
             var ad2 = new AdaptadorAtc(_configuration);
             ViewData["Cabeceras"] = ad2.ImagenesCabWebLeer();

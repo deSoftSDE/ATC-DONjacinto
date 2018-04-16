@@ -2392,11 +2392,20 @@ namespace dsASPCAtc.DataAccess
         }
         public EmpresaWeb DatosEmpresaLeer()
         {
+            return DatosEmpresaLeer(null);
+        }
+        public EmpresaWeb DatosEmpresaLeer(int? idUsuarioWeb)
+        {
             var res = new EmpresaWeb();
+            var deUsuario = new EmpresaWeb();
             var cc = _configuration.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(cc))
             {
-                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.DatosEmpresaLeer", null);
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@idusuarioweb", idUsuarioWeb),
+                };
+                _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.DatosEmpresaLeer", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 if (_reader.Read())
                 {
@@ -2467,6 +2476,96 @@ namespace dsASPCAtc.DataAccess
 
 
                     res.VisiblePrecioListado = AsignaBool("VisiblePrecioListado");
+                }
+                _reader.NextResult();
+                if (_reader.Read())
+                {
+
+                    deUsuario.VisiblePedidos = AsignaBool("VisiblePedidos");
+                    deUsuario.VisibleFacturas = AsignaBool("VisibleFacturas");
+                    deUsuario.VisibleFinanzas = AsignaBool("VisibleFinanzas");
+                    deUsuario.VisibleCatalogo = AsignaBool("VisibleCatalogo");
+                    deUsuario.VisibleCuenta = AsignaBool("VisibleCuenta");
+                    deUsuario.VisibleIdiomas = AsignaBool("VisibleIdiomas");
+                    deUsuario.VisibleMensajes = AsignaBool("VisibleMensajes");
+                    deUsuario.VisiblePlantillas = AsignaBool("VisiblePlantillas");
+                    deUsuario.VisibleInvitado = AsignaBool("VisibleInvitado");
+                    deUsuario.VisibleVentaDirecta = AsignaBool("VisibleVentaDirecta");
+                    deUsuario.VisibleCategorias = AsignaBool("VisibleCategorias");
+                    deUsuario.VisibleVehiculos = AsignaBool("VisibleVehiculos");
+                    deUsuario.VisibleNovedades = AsignaBool("VisibleNovedades");
+                    deUsuario.VisibleExpress = AsignaBool("VisibleExpress");
+                    deUsuario.Copyright = AsignaCadena("Copyright");
+                    deUsuario.VisibleUltimosPedidos = AsignaBool("VisibleUltimosPedidos");
+                    deUsuario.VisibleIP = AsignaBool("VisibleIP");
+                    deUsuario.VisibleUltimaConexion = AsignaBool("VisibleUltimaConexion");
+                    deUsuario.VisibleEurocodeListado = AsignaBool("VisibleEurocodeListado");
+                    deUsuario.VisibleEurocodeFicha = AsignaBool("VisibleEurocodeFicha");
+                    deUsuario.VisibleAlmacenesListado = AsignaBool("VisibleAlmacenesListado");
+                    deUsuario.VisibleAlmacenesFicha = AsignaBool("VisibleAlmacenesFicha");
+                    deUsuario.VisiblePrecioListado = AsignaBool("VisiblePrecioListado");
+                }
+            }
+            if (idUsuarioWeb != null)
+            {
+                if (idUsuarioWeb > 0)
+                {
+                    if (res.VisiblePedidos && deUsuario.VisiblePedidos)
+                    {
+                        res.VisiblePedidos = false;
+                    }
+                    if (res.VisibleFacturas && deUsuario.VisibleFacturas)
+                    {
+                        res.VisibleFacturas = false;
+                    }
+                    if (res.VisibleFinanzas && deUsuario.VisibleFinanzas)
+                    {
+                        res.VisibleFinanzas = false;
+                    }
+                    if (res.VisibleMensajes && deUsuario.VisibleMensajes)
+                    {
+                        res.VisibleMensajes = false;
+                    }
+                    if (res.VisibleCategorias && deUsuario.VisibleCategorias)
+                    {
+                        res.VisibleCategorias = false;
+                    }
+                    if (res.VisibleVehiculos && deUsuario.VisibleVehiculos)
+                    {
+                        res.VisibleVehiculos = false;
+                    }
+                    if (res.VisibleNovedades && deUsuario.VisibleNovedades)
+                    {
+                        res.VisibleNovedades = false;
+                    }
+                    if (res.VisibleExpress && deUsuario.VisibleExpress)
+                    {
+                        res.VisibleExpress = false;
+                    }
+                    if (res.VisibleUltimosPedidos && deUsuario.VisibleUltimosPedidos)
+                    {
+                        res.VisibleUltimosPedidos = false;
+                    }
+                    if (res.VisibleIP && deUsuario.VisibleIP)
+                    {
+                        res.VisibleIP = false;
+                    }
+                    if (res.VisibleUltimaConexion && deUsuario.VisibleUltimaConexion)
+                    {
+                        res.VisibleUltimaConexion = false;
+                    }
+                    if (res.VisibleEurocodeListado && deUsuario.VisibleEurocodeListado)
+                    {
+                        res.VisibleEurocodeListado = false;
+                    }
+                    if (res.VisibleEurocodeFicha && deUsuario.VisibleEurocodeFicha)
+                    {
+                        res.VisibleEurocodeFicha = false;
+                    }
+                    if (res.VisiblePrecioListado && deUsuario.VisiblePrecioListado)
+                    {
+                        res.VisiblePrecioListado = false;
+                    }
                 }
             }
             return res;

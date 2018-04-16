@@ -59,7 +59,7 @@ namespace dsASPCAtc.Web.Controllers
             {
                 us.InfoMenuWeb = ad.InfoMenuWebLeer();
                 us.Mensajes = ad.MensajeLeer(us.Cliente.IDCliente, 0);
-                us.DatosEmpresa = ad.DatosEmpresaLeer();
+                us.DatosEmpresa = ad.DatosEmpresaLeer(us.IdUsuarioWeb);
                 HttpContext.Session.SetObjectAsJson("Login", us);
                 
                 var vm = new IndexViewModel(_configuration);
@@ -71,7 +71,8 @@ namespace dsASPCAtc.Web.Controllers
                 return View();
             } else
             {
-                return RedirectToAction(_defaultPage, _defaultController);
+                //var msj = new MensajeError();
+                return RedirectToAction("Incorrecta", _defaultController);
             }
         }
         public IActionResult Pedido()
