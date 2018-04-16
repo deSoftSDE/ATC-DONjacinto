@@ -4,17 +4,41 @@
     var c = (ResultadoRecuperacionContrasena)ViewData["Resultado1"];
 }
 
-Validación completada con el @c.Resultado y resultado:
-@c.Resultado
+@*Validación completada con el @c.Resultado y resultado:
+    @c.Resultado*@
 
 
 @switch (c.Resultado)
 {
     case 1:
-        <div>En breve recibirás un correo con las instrucciones para recuperar tu contraseña.</div>
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                    <div class="col-md-8 text-center">
+                        <h2 class="text-uppercase heading border-bottom mb-4"><i class="fas fa-users"></i> RECUPERACIÓN DE CONTRASEÑA </h2>
+                        <p class="mb-0 lead">En breve recibirá un correo con las instrucciones para recuperar su contraseña. </p>
+                        <p class="mb-0 lead">Si no recibe este correo, puede ponerse en contacto con nosotros desde la sección contacto de esta web o llamando al teléfono <strong>926 50 60 70</strong> </p>
+                        <img class="d-block mx-auto img-fluid" src="/img/pantallazo-aplic.png">
+
+                    </div>
+                </div>
+            </div>
+        </section>
         break;
     default:
-        <div>El correo introducido no es válido.</div>
+        <div class="container">
+            <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                <div class="col-md-6">
+                     <img class="d-block mx-auto img-fluid" src="~/img/magnifier.png">
+                </div>
+                <div class="col-md-6 text-center">
+                    <h2 class="text-uppercase heading border-bottom mb-4">DIRECCIÓN DE EMAIL INCORRECTA</h2>
+                    <p class="mb-0 lead">La direccion de correo indicada no se corresponde con ningún cliente. </p>
+                </div>
+                
+            </div>
+        </div>
+        
         break;
 
 }

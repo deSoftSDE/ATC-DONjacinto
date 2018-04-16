@@ -9,23 +9,41 @@ Validación completada con el @c.Resultado y resultado:
 @switch (c.Resultado)
 {
     case 1:
-
-        <div>Hola, @c.Usuario.NombreCompleto</div>
-        <div>Para cambiar tu contraseña rellena este formulario:</div>
-
-        <form asp-controller="Inicio" asp-action="Recuperar" method="post">
-            <input type="hidden" name="id" value="@c.Usuario.IdUsuarioWeb" />
-            <input type="hidden" name="nombre" value="@c.Usuario.NombreCompleto" />
-            <input type="hidden" name="username" value="@c.Usuario.Nombre" />
-            <input type="password" name="password" />
-            <input type="password" name="repeatpassword" />
-            <input type="submit" />
-        </form>
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                    <div class="col-md-8 text-center">
+                        <h2 class="text-uppercase heading border-bottom mb-4"><i class="fas fa-users"></i> HOLA @c.Usuario.NombreCompleto </h2>
+                        <p class="mb-0 lead">Para cambiar tu contraseña rellena este formulario: </p>
+                        <div class="mb-0 lead">
+                            <form asp-controller="Inicio" asp-action="Recuperar" method="post">
+                                <input type="hidden" name="id" value="@c.Usuario.IdUsuarioWeb" />
+                                <input type="hidden" name="nombre" value="@c.Usuario.NombreCompleto" />
+                                <input type="hidden" name="username" value="@c.Usuario.Nombre" />
+                                <input type="password" name="password" />
+                                <input type="password" name="repeatpassword" />
+                                <input type="submit" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         break;
     case 2:
-
-        <div>Tu contraseña ha sido cambiada con éxito. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a> utilizando tus nuevos credenciales:</div>
-        <div> Usuario: @c.Usuario.Nombre </div>
-        <div>Contraseña: @c.Usuario.Password</div>
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                    <div class="col-md-8 text-center">
+                        <h2 class="text-uppercase heading border-bottom mb-4"> HOLA @c.Usuario.NombreCompleto </h2>
+                        <div class="mb-0 lead">Tu contraseña ha sido cambiada con éxito. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a> utilizando tus nuevos credenciales:</div> 
+                        <div class="mb-0 lead">
+                            <div> Usuario: @c.Usuario.Nombre </div>
+                            <div>Contraseña: @c.Usuario.Password</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         break;
 }

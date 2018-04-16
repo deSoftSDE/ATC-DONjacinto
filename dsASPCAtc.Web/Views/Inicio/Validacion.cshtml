@@ -4,17 +4,37 @@
     var c = (ResultadoIM)ViewData["Resultado"];
 }
 
-Validación completada con el @c.Identidad y resultado:
-@c.Resultado
+@*Validación completada con el @c.Identidad y resultado:
+    @c.Resultado*@
 
 
 @switch (c.Identidad)
 {
     case 1:
-        <div>El usuario ha sido validado correctamente. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a></div>
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                    <div class="col-md-8 text-center">
+                        <div class="mb-0 lead">El usuario ha sido validado correctamente. Ahora podrás <a asp-controller="Inicio" asp-action="Index">iniciar sesión</a></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
         break;
     default:
-        <div>La validación no ha sido correcta.</div>
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
+                    <div class="col-md-8 text-center">
+                        <div class="mb-0 lead">La validación no ha sido correcta.</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+       
         break;
 
 }
