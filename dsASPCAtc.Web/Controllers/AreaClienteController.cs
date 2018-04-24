@@ -14,6 +14,7 @@ using dsASPCAtc.DataAccess;
 using System.IO;
 using OfficeOpenXml;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace dsASPCAtc.Web.Controllers
 {
@@ -21,13 +22,14 @@ namespace dsASPCAtc.Web.Controllers
     {
         private IConfiguration _configuration;
         private IHttpContextAccessor _accessor;
+        private EntidadEurocodes _entidadEurocodes;
         private string _defaultPage = "Index";
         private string _defaultController ="Inicio";
-        public AreaClienteController(IConfiguration configuration, IHttpContextAccessor accessor)
+        public AreaClienteController(IConfiguration configuration, IHttpContextAccessor accessor, IOptions<EntidadEurocodes> EntidadEurocodes)
         {
             _configuration = configuration;
             _accessor = accessor;
-
+            _entidadEurocodes = EntidadEurocodes.Value;
 
         }
         public IActionResult Index()
@@ -353,7 +355,7 @@ namespace dsASPCAtc.Web.Controllers
                 }
 
             }
-            var vm = new ResultadosViewModel(_configuration, pr);
+            var vm = new ResultadosViewModel(_configuration, pr, _entidadEurocodes);
             //var desc = vm.desc
             
            
@@ -414,7 +416,7 @@ namespace dsASPCAtc.Web.Controllers
                 cl = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
                 ViewData["Usuario"] = cl;
             }
-            var vm = new ArticuloViewModel(_configuration, id, cl.Cliente.IDCliente);
+            var vm = new ArticuloViewModel(_configuration, id, cl.Cliente.IDCliente, cl.IdUsuarioWeb, _entidadEurocodes);
             ViewData["Articulo"] = vm;
             return View();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntidadesAtc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,9 +13,15 @@ namespace dsASPCAtc.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"customsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,8 +31,10 @@ namespace dsASPCAtc.Web
         {
 
             //services.AddMvc();
-            
+
             // Add MVC services to the services container.
+            services.AddApplicationInsightsTelemetry(Configuration);
+            services.Configure<EntidadEurocodes>(options => Configuration.GetSection("EntidadEurocodes").Bind(options));
             services.AddMvc();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache

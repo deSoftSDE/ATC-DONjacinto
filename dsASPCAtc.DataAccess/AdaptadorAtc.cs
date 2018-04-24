@@ -1439,7 +1439,7 @@ namespace dsASPCAtc.DataAccess
             return res;
         }
 
-        public BuscaArticulo ArticulosLeerPorID(int IDArticulo, int? idcliente)
+        public BuscaArticulo ArticulosLeerPorID(int IDArticulo, int? idcliente, int? idUsuarioWeb)
         {
             var res = new BuscaArticulo();
             res.Modelo = new Modelo();
@@ -1458,6 +1458,7 @@ namespace dsASPCAtc.DataAccess
                 {
                     new SqlParameter("@IDArticulo", IDArticulo),
                     new SqlParameter("@IDCliente", idcliente),
+                    new SqlParameter("@IDUsuarioWeb", idUsuarioWeb),
                 };
                 _cmd = SQLHelper.PrepareCommand(conn, null, CommandType.StoredProcedure, @"Web.ArticulosLeerPorID", param);
                 _reader = _cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -2476,6 +2477,9 @@ namespace dsASPCAtc.DataAccess
 
 
                     res.VisiblePrecioListado = AsignaBool("VisiblePrecioListado");
+                    res.VisiblePrecios = AsignaBool("VisiblePrecios");
+                    res.VisibleDtos = AsignaBool("VisibleDtos");
+                    res.VisibleTotalCompra = AsignaBool("VisibleTotalCompra");
                 }
                 _reader.NextResult();
                 if (_reader.Read())
@@ -2504,6 +2508,9 @@ namespace dsASPCAtc.DataAccess
                     deUsuario.VisibleAlmacenesListado = AsignaBool("VisibleAlmacenesListado");
                     deUsuario.VisibleAlmacenesFicha = AsignaBool("VisibleAlmacenesFicha");
                     deUsuario.VisiblePrecioListado = AsignaBool("VisiblePrecioListado");
+                    deUsuario.VisiblePrecios = AsignaBool("VisiblePrecios");
+                    deUsuario.VisibleDtos = AsignaBool("VisibleDtos");
+                    deUsuario.VisibleTotalCompra = AsignaBool("VisibleTotalCompra");
                 }
             }
             if (idUsuarioWeb != null)
@@ -2565,6 +2572,18 @@ namespace dsASPCAtc.DataAccess
                     if (res.VisiblePrecioListado && deUsuario.VisiblePrecioListado)
                     {
                         res.VisiblePrecioListado = false;
+                    }
+                    if (res.VisiblePrecios && deUsuario.VisiblePrecios)
+                    {
+                        res.VisiblePrecios = false;
+                    }
+                    if (res.VisibleDtos && deUsuario.VisibleDtos)
+                    {
+                        res.VisibleDtos = false;
+                    }
+                    if (res.VisibleTotalCompra && deUsuario.VisibleTotalCompra)
+                    {
+                        res.VisibleTotalCompra = false;
                     }
                 }
             }

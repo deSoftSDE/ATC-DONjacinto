@@ -25,7 +25,7 @@ namespace dsASPCAtc.Web.ViewModels
         public string minHeightAccesorio;
 
 
-        public ResultadosViewModel(IConfiguration _configuration, Parametros parametros)
+        public ResultadosViewModel(IConfiguration _configuration, Parametros parametros, EntidadEurocodes entidadEurocodes)
         {
             var ad = new AdaptadorAtc(_configuration);
             var res = ad.ArticulosLeerBusqueda(parametros);
@@ -37,7 +37,7 @@ namespace dsASPCAtc.Web.ViewModels
             jsinfo = js.Serialize(desc);
             foreach (BuscaArticulo ar in Articulos)
             {
-                var le = new LectorEurocode(ar.Codigo);
+                var le = new LectorEurocode(ar.Codigo, entidadEurocodes);
                 ar.Eurocode = le.Leer();
             }
             var streaming = _configuration.GetSection("StreamFiles")["rutaStreaming"];
@@ -51,7 +51,7 @@ namespace dsASPCAtc.Web.ViewModels
             {
                 foreach (BuscaArticulo ar in cat.Articulos)
                 {
-                    var le = new LectorEurocode(ar.Codigo);
+                    var le = new LectorEurocode(ar.Codigo, entidadEurocodes);
                     ar.Eurocode = le.Leer();
                 }
             }

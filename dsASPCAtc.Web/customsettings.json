@@ -1,0 +1,2281 @@
+﻿{
+  "EntidadEurocodes": {
+    "TiposVidrio": [
+      {
+        "euro": "A",
+        "desc": "Parabrisas"
+      },
+      {
+        "euro": "B",
+        "desc": "Luneta"
+      },
+      {
+        "euro": "C",
+        "desc": "Parabrisas alternativo"
+      },
+      {
+        "euro": "D",
+        "desc": "Parabrisas con accesorios en paquete"
+      },
+      {
+        "euro": "E",
+        "desc": "Luneta con accesorios en pack"
+      },
+      {
+        "euro": "F",
+        "desc": "Lateral Plano"
+      },
+      {
+        "euro": "G",
+        "desc": "Techo de Cristal"
+      },
+      {
+        "euro": "H",
+        "desc": "Lateral plano con accesorios en pack"
+      },
+      {
+        "euro": "L",
+        "desc": "Laterales Izquierdo"
+      },
+      {
+        "euro": "M",
+        "desc": "Lateral izquiero con accesorios en pack"
+      },
+      {
+        "euro": "R",
+        "desc": "Lateral Derecho"
+      },
+      {
+        "euro": "S",
+        "desc": "Accesorios para ambos lados"
+      },
+      {
+        "euro": "T",
+        "desc": "Lateral derecho con accesorios en pack"
+      }
+    ],
+    "Color": [
+      {
+        "euro": "AB",
+        "desc": "Antivandálico incoloro (5 capas)"
+      },
+      {
+        "euro": "AC",
+        "desc": "Antivandálico (2 capas con multiples capas de PVB)"
+      },
+      {
+        "euro": "AF",
+        "desc": "Antibalas (2 capas de vidrio + 1 capa de policarbonato)"
+      },
+      {
+        "euro": "AG",
+        "desc": "Antivandálico verde (5 capas)"
+      },
+      {
+        "euro": "AP",
+        "desc": "Antivandálico privado(5 capas)"
+      },
+      {
+        "euro": "AS",
+        "desc": "Vidrio de seguridad incoloro(3-capas)"
+      },
+      {
+        "euro": "BA",
+        "desc": "Azul + Acústico"
+      },
+      {
+        "euro": "BB",
+        "desc": "Azul - PVB absorbente de calor"
+      },
+      {
+        "euro": "BD",
+        "desc": "Azul Oscuro"
+      },
+      {
+        "euro": "BL",
+        "desc": "Azul"
+      },
+      {
+        "euro": "BP",
+        "desc": "Azul - Vidrio privado"
+      },
+      {
+        "euro": "BS",
+        "desc": "Azul - Control Solar"
+      },
+      {
+        "euro": "BZ",
+        "desc": "Bronce"
+      },
+      {
+        "euro": "CA",
+        "desc": "Incoloro + Acústico"
+      },
+      {
+        "euro": "CB",
+        "desc": "Incoloro  - PVB Absorbente de Carlos"
+      },
+      {
+        "euro": "CC",
+        "desc": "Reflectante"
+      },
+      {
+        "euro": "CD",
+        "desc": "Reflectante + Acústico"
+      },
+      {
+        "euro": "CF",
+        "desc": "Vidrio esmerilado o vidrio con tinte proporcionado a través de una lámina adhesiva"
+      },
+      {
+        "euro": "CH",
+        "desc": "Reflectante con alto efecto de reflexión de Calor"
+      },
+      {
+        "euro": "CK",
+        "desc": "Reflectante con alto efecto de reflexión de Calor + Acústico"
+      },
+      {
+        "euro": "CL",
+        "desc": "Incoloro"
+      },
+      {
+        "euro": "GA",
+        "desc": "Verde + Acústico"
+      },
+      {
+        "euro": "GB",
+        "desc": "Verde  - PVB Absorbente de Calor"
+      },
+      {
+        "euro": "GC",
+        "desc": "Verde - PVD Absorbente de calor + Acústico"
+      },
+      {
+        "euro": "GD",
+        "desc": "Verde oscuro"
+      },
+      {
+        "euro": "GN",
+        "desc": "Verde"
+      },
+      {
+        "euro": "GP",
+        "desc": "Verde - Vidrio privado"
+      },
+      {
+        "euro": "GQ",
+        "desc": "Verde - Vidrio privado acústico"
+      },
+      {
+        "euro": "GR",
+        "desc": "Verde Control solar + Acústico"
+      },
+      {
+        "euro": "GS",
+        "desc": "Verde control solar"
+      },
+      {
+        "euro": "GY",
+        "desc": "Gris"
+      },
+      {
+        "euro": "LG",
+        "desc": "Verde Japones (Claro)"
+      },
+      {
+        "euro": "YA",
+        "desc": "Gris + Acústico"
+      },
+      {
+        "euro": "YC",
+        "desc": "Gris reflectante"
+      },
+      {
+        "euro": "YD",
+        "desc": "Gris oscuro"
+      },
+      {
+        "euro": "YP",
+        "desc": "Gris - Vidrio Privado"
+      },
+      {
+        "euro": "YQ",
+        "desc": "Griis - Vidrio Privado + Acústico"
+      },
+      {
+        "euro": "YR",
+        "desc": "Gris - Vidrio privado reflectante"
+      },
+      {
+        "euro": "YS",
+        "desc": "Gris - Control Solar"
+      },
+      {
+        "euro": "ZP",
+        "desc": "Bronce - Vidrio Privado"
+      }
+    ],
+    "Luneta": [
+      {
+        "euro": "H",
+        "desc": "Hatchback/Crossover"
+      },
+      {
+        "euro": "S",
+        "desc": "Saloon/sedan"
+      },
+      {
+        "euro": "C",
+        "desc": "Coupe"
+      },
+      {
+        "euro": "E",
+        "desc": "Estate/break/Ranchera"
+      },
+      {
+        "euro": "M",
+        "desc": "MPV (todos los MPV fueron codificados como furgonetas hasta el final de 2005)"
+      },
+      {
+        "euro": "R",
+        "desc": "Ranger/SUV"
+      },
+      {
+        "euro": "T",
+        "desc": "Tourer sport/cabrio"
+      },
+      {
+        "euro": "L",
+        "desc": "Camión/Truck"
+      },
+      {
+        "euro": "V",
+        "desc": "Furgoneta/Van"
+      },
+      {
+        "euro": "P",
+        "desc": "Pick-up"
+      }
+    ],
+    "CaracLuneta": [
+      {
+        "euro": "A",
+        "desc": "Antena"
+      },
+      {
+        "euro": "B",
+        "desc": "'Brakelight - Refers to the following specificities identifying a brakelight : Specific silkscreenm, Specific Wire network, Specific fitting(s), Specific Bracket(s), Complete brakelight'"
+      },
+      {
+        "euro": "C",
+        "desc": "Parte Central"
+      },
+      {
+        "euro": "D",
+        "desc": "Doble acristalamiento"
+      },
+      {
+        "euro": "E",
+        "desc": ""
+      },
+      {
+        "euro": "F",
+        "desc": "Plano"
+      },
+      {
+        "euro": "G",
+        "desc": "GPS"
+      },
+      {
+        "euro": "H",
+        "desc": ""
+      },
+      {
+        "euro": "I",
+        "desc": "Hardware en el vidrio que no se usa en el proceso de ajuste del vidrio o no tiene un impacto directo en el funcionamiento de otras características"
+      },
+      {
+        "euro": "J",
+        "desc": "Antena de TV"
+      },
+      {
+        "euro": "K",
+        "desc": "Laminado"
+      },
+      {
+        "euro": "L",
+        "desc": "Izquierdo"
+      },
+      {
+        "euro": "M",
+        "desc": "Sistema de mensajes de Emergencia"
+      },
+      {
+        "euro": "N",
+        "desc": "Vidrio hidrofugo (Repelente al Agua)"
+      },
+      {
+        "euro": "O",
+        "desc": "Abierto"
+      },
+      {
+        "euro": "P",
+        "desc": "Conectores de Tlfn y móvil"
+      },
+      {
+        "euro": "Q",
+        "desc": "Antena de apertura sin llave"
+      },
+      {
+        "euro": "R",
+        "desc": "Derecho"
+      },
+      {
+        "euro": "S",
+        "desc": "Marco con vidrio deslizante y fijo"
+      },
+      {
+        "euro": "T",
+        "desc": "Banda superior"
+      },
+      {
+        "euro": "U",
+        "desc": "Frio"
+      },
+      {
+        "euro": "V",
+        "desc": "VIN"
+      },
+      {
+        "euro": "W",
+        "desc": "Premontado, hardware usado para la instalación del vidrio"
+      },
+      {
+        "euro": "X",
+        "desc": "Alarma"
+      },
+      {
+        "euro": "Y",
+        "desc": "Parte específica para vehículos con RHD (volante a la derecha)"
+      },
+      {
+        "euro": "Z",
+        "desc": "'Encapsulación a través de: Inyección, Extrusión de robot PU, Extrusión '"
+      },
+      {
+        "euro": "1A",
+        "desc": "Cambio en la serigrafía"
+      },
+      {
+        "euro": "6A",
+        "desc": "Cambio en la curvatura"
+      },
+      {
+        "euro": "1B",
+        "desc": "Apariencia o cambio en la serigrafía"
+      },
+      {
+        "euro": "6B",
+        "desc": "Cambio en la serigrafía, el hardware y la antena"
+      },
+      {
+        "euro": "1C",
+        "desc": "Cambio en las medidas y la serigrafía"
+      },
+      {
+        "euro": "6C",
+        "desc": "Cambio en el espesor del vidrio y la serigrafía"
+      },
+      {
+        "euro": "1D",
+        "desc": "Cambio en la encapsulación"
+      },
+      {
+        "euro": "6D",
+        "desc": "Unidad completa, incluyendo luz trasera y techo  duro"
+      },
+      {
+        "euro": "1E",
+        "desc": "Cambio en el térmico"
+      },
+      {
+        "euro": "6E",
+        "desc": "Unidad complta, incluyengo luz trasera y techo blando"
+      },
+      {
+        "euro": "1F",
+        "desc": "Cambio en la antena"
+      },
+      {
+        "euro": "6F",
+        "desc": "Cambio en la antena  y le hardaware"
+      },
+      {
+        "euro": "1G",
+        "desc": "Cambio en el Vin"
+      },
+      {
+        "euro": "6G",
+        "desc": "Cambio o cambio de apariencia en la banda superior"
+      },
+      {
+        "euro": "1H",
+        "desc": "Cambio o cambio de apariencia del taladro"
+      },
+      {
+        "euro": "6H",
+        "desc": "Cambio de antena y taladro"
+      },
+      {
+        "euro": "1I",
+        "desc": "Cambio de antena y serigrafía"
+      },
+      {
+        "euro": "6I",
+        "desc": "Cambio en la antena y la apariencia o cambio en la banda"
+      },
+      {
+        "euro": "1J",
+        "desc": "Cambio de mediddas"
+      },
+      {
+        "euro": "6J",
+        "desc": "Cambio de medidas y serigrafía"
+      },
+      {
+        "euro": "1K",
+        "desc": "Cambio en el hardware"
+      },
+      {
+        "euro": "6K",
+        "desc": "Cambio en el hardware y las medidas"
+      },
+      {
+        "euro": "1L",
+        "desc": "Cambio en las medidas, taladros y serigrafía"
+      },
+      {
+        "euro": "6L",
+        "desc": ""
+      },
+      {
+        "euro": "1M",
+        "desc": "Logotipo que indentifica las características de seguridad y protección"
+      },
+      {
+        "euro": "6M",
+        "desc": "Logotipo que indentifica las características de seguridad y proteccion y cambio de medidas"
+      },
+      {
+        "euro": "1N",
+        "desc": "Cambio en la serigrafía y el logotipo de características de protección y seguridad"
+      },
+      {
+        "euro": "6N",
+        "desc": "Change to tint of softtop or hardtop"
+      },
+      {
+        "euro": "1O",
+        "desc": ""
+      },
+      {
+        "euro": "60",
+        "desc": ""
+      },
+      {
+        "euro": "1P",
+        "desc": "Cambio en los taladros y cambio en el térmico"
+      },
+      {
+        "euro": "6P",
+        "desc": ""
+      },
+      {
+        "euro": "1Q",
+        "desc": "Cambio en los taladros y en la serígrafía"
+      },
+      {
+        "euro": "6Q",
+        "desc": "Cambio en los taladros, cambio en la serigrafía y cambio en la encapsulación"
+      },
+      {
+        "euro": "1R",
+        "desc": "Cambios en las medidas y taladro"
+      },
+      {
+        "euro": "6R",
+        "desc": "Cambio en las medidas y antena"
+      },
+      {
+        "euro": "1S",
+        "desc": "Cambio en las medidas y térmico"
+      },
+      {
+        "euro": "6S",
+        "desc": ""
+      },
+      {
+        "euro": "1T",
+        "desc": "Lototipo de medidas de seguridad y protección y cambio en el taladro"
+      },
+      {
+        "euro": "6T",
+        "desc": ""
+      },
+      {
+        "euro": "1U",
+        "desc": "Cambio en el térmico y la serigrafía"
+      },
+      {
+        "euro": "6U",
+        "desc": ""
+      },
+      {
+        "euro": "1V",
+        "desc": "Cambio la serigrafía y la encapsulación"
+      },
+      {
+        "euro": "6V",
+        "desc": ""
+      },
+      {
+        "euro": "1W",
+        "desc": "Cambio en el térmico y la encapsulación"
+      },
+      {
+        "euro": "6W",
+        "desc": ""
+      },
+      {
+        "euro": "1X",
+        "desc": "Cambio en la luz de freno"
+      },
+      {
+        "euro": "6X",
+        "desc": ""
+      },
+      {
+        "euro": "1Y",
+        "desc": "Cambio en la antela y el térmico"
+      },
+      {
+        "euro": "6Y",
+        "desc": ""
+      },
+      {
+        "euro": "1Z",
+        "desc": "Producto que requiere más de 15 dígitos"
+      },
+      {
+        "euro": "6Z",
+        "desc": ""
+      }
+    ],
+    "TopTins": [
+      {
+        "euro": "BL",
+        "desc": "Banza Azul"
+      },
+      {
+        "euro": "BZ",
+        "desc": "Banda Bronce"
+      },
+      {
+        "euro": "GN",
+        "desc": "Banda Verde"
+      },
+      {
+        "euro": "GY",
+        "desc": "Bande Gris"
+      },
+      {
+        "euro": "LG",
+        "desc": "Banda verde claro"
+      },
+      {
+        "euro": "YD",
+        "desc": "Banda Verde oscuro"
+      }
+    ],
+    "CaracParabrisas": [
+      {
+        "euro": "A",
+        "desc": "Antena"
+      },
+      {
+        "euro": "B",
+        "desc": "RHD (Conduccíon derecha) parabrisas"
+      },
+      {
+        "euro": "C",
+        "desc": "'Soporte y / o accesorios de la cámara: -Vision nocturna - LDW: advertencia de salida de carril - IHC: control inteligente de los faros - LC: control de luz detectando los coches en sentido contrario - TL: límite de velocidad - Funcionalidad ACC - Sistema de frenado de emergencia de la ciudad - Reconocimiento de señales de tráfico'"
+      },
+      {
+        "euro": "D",
+        "desc": ""
+      },
+      {
+        "euro": "E",
+        "desc": "'Sistema de mensajería de emergencia del vehículo - VICS: Sistema de información y comunicación del vehículo(tecnología utilizada en Japón)'"
+      },
+      {
+        "euro": "F",
+        "desc": ""
+      },
+      {
+        "euro": "G",
+        "desc": "GPS"
+      },
+      {
+        "euro": "H",
+        "desc": "Térmico"
+      },
+      {
+        "euro": "I",
+        "desc": "Hardware en el vidrio que no se usa en el proceso de ajuste del vidrio o no tiene un impacto directo en el funcionamiento de otras funciones"
+      },
+      {
+        "euro": "J",
+        "desc": "Antena de TV"
+      },
+      {
+        "euro": "K",
+        "desc": "Térmico originada a través del recubrimiento en el vidriog originated through coating on the glass"
+      },
+      {
+        "euro": "L",
+        "desc": "Parabrisas lado izquierdo"
+      },
+      {
+        "euro": "M",
+        "desc": "Sensor (luz y/o lluvia) o accesorios"
+      },
+      {
+        "euro": "N",
+        "desc": "Vidrio repelente de agua (hidrofugo)"
+      },
+      {
+        "euro": "O",
+        "desc": "Antivaho"
+      },
+      {
+        "euro": "P",
+        "desc": "'Modificación de serigrafía para Detector de sensor, De - Vapor(desempañador) LDW, IHC, LC, TL, Sistema de frenado de emergencia de la ciudad, visión nocturna, colisión de la ciudad sistema, etc...'"
+      },
+      {
+        "euro": "Q",
+        "desc": ""
+      },
+      {
+        "euro": "R",
+        "desc": "Parabrisas lado derecho"
+      },
+      {
+        "euro": "S",
+        "desc": ""
+      },
+      {
+        "euro": "T",
+        "desc": ""
+      },
+      {
+        "euro": "U",
+        "desc": "H.U.D (Pantalla Integrada)"
+      },
+      {
+        "euro": "V",
+        "desc": "VIN"
+      },
+      {
+        "euro": "W",
+        "desc": "Hardware necesario para el montaje del vidrio"
+      },
+      {
+        "euro": "X",
+        "desc": ""
+      },
+      {
+        "euro": "Y",
+        "desc": ""
+      },
+      {
+        "euro": "Z",
+        "desc": "'Encapsulación a través de: Inyección Extrusión de robot PU Extrusión '"
+      },
+
+      {
+        "euro": "1A",
+        "desc": "Cambios en el espesor"
+      },
+      {
+        "euro": "6A",
+        "desc": "Corte en el PVB en vidrio reflectante"
+      },
+      {
+        "euro": "1B",
+        "desc": "Apariencia o cambio en la serigrafía"
+      },
+      {
+        "euro": "6B",
+        "desc": "Cambia la serigrafía y el hardware"
+      },
+      {
+        "euro": "1C",
+        "desc": "Aspecto o cambio el soporte de espejo"
+      },
+      {
+        "euro": "6C",
+        "desc": "Cambia el soporte de espejo y el logotipo para identificar las funciones de seguridad y protección"
+      },
+      {
+        "euro": "1D",
+        "desc": "Cambia la encapsulación"
+      },
+      {
+        "euro": "6D",
+        "desc": "Cambia VIN y cambia el soporte de espejo"
+      },
+      {
+        "euro": "1E",
+        "desc": "Cambio en el térmico"
+      },
+
+      {
+        "euro": "6E",
+        "desc": "Cambio en el térmico y el hardware"
+      },
+      {
+        "euro": "1F",
+        "desc": "Cambia la antena"
+      },
+      {
+        "euro": "6F",
+        "desc": "Cambia la antena y el soporte de espejo"
+      },
+      {
+        "euro": "1G",
+        "desc": "Cambia el VIN"
+      },
+      {
+        "euro": "6G",
+        "desc": "Mismo tono de color pero mas oscuro"
+      },
+      {
+        "euro": "1H",
+        "desc": "Cambio la posición del soporte del espejo"
+      },
+      {
+        "euro": "6H",
+        "desc": "Cambia la serigrafía, el sensor y el térmico"
+      },
+      {
+        "euro": "1I",
+        "desc": "Cambia la serigrafía, el soporte y el hardware"
+      },
+      {
+        "euro": "6I",
+        "desc": "Cambia la serigrafía, el soporte o la posición y el logotipo de caracteristicas"
+      },
+      {
+        "euro": "1J",
+        "desc": "Cambia la encapsulacion y la posicion del espejo"
+      },
+      {
+        "euro": "6J",
+        "desc": "Cambia la encalsulacion y la serigrafía"
+      },
+      {
+        "euro": "1K",
+        "desc": "Cambio en el hardware"
+      },
+      {
+        "euro": "6K",
+        "desc": "Cambia el soporte de espejo, la serigrafía y la encapsulación"
+      },
+      {
+        "euro": "1L",
+        "desc": "Change to camera bracket and to features"
+      },
+      {
+        "euro": "6L",
+        "desc": "Cambia el soporte, la serigrafía y el espesor del vidrio"
+      },
+      {
+        "euro": "1M",
+        "desc": "Incluye logotipo que identifica las características de seguridad y protección"
+      },
+      {
+        "euro": "6M",
+        "desc": "Cambia el hardware y el logotipo de características de seguridad y protección"
+      },
+      {
+        "euro": "1N",
+        "desc": "Cambia la serigrafía y el espesor del vidrio"
+      },
+      {
+        "euro": "6N",
+        "desc": "Cambia la serigrafía y el grosor del vidrio junto al logotipo de funciones de seguridad y protección"
+      },
+      {
+        "euro": "1O",
+        "desc": "Cambio en la ventana VIN y antena"
+      },
+      {
+        "euro": "6O",
+        "desc": "Cambia la serigrafía y la antena"
+      },
+      {
+        "euro": "1P",
+        "desc": "Cambia el soporte y serigrafía"
+      },
+      {
+        "euro": "6P",
+        "desc": "Cambia el soporte, la serigrafía y el sensor"
+      },
+      {
+        "euro": "1Q",
+        "desc": "Cambia el VIN y el hardware"
+      },
+      {
+        "euro": "6Q",
+        "desc": "Cambia la camara´y las funcionalidades, la serigrafía y el soporte."
+      },
+      {
+        "euro": "1R",
+        "desc": "Logo que indentifica las funciones de seguridad y protección y cambia la serigrafía"
+      },
+      {
+        "euro": "6R",
+        "desc": "Logo que indentifica las funciones de seguridad y protección y cambia la serigrafía y el VIN"
+      },
+      {
+        "euro": "1S",
+        "desc": "Cambia la serigrafía y el térmico"
+      },
+      {
+        "euro": "6S",
+        "desc": "Cambia la camara y su funcinalidad, la serigrafía, el térmico y el soporte."
+      },
+      {
+        "euro": "1T",
+        "desc": "Cambio en el sensor"
+      },
+      {
+        "euro": "6T",
+        "desc": "Cambio en el sensor y la serigrafía"
+      },
+      {
+        "euro": "1U",
+        "desc": "Cambia la serigrafía, el soporte y el térmico"
+      },
+      {
+        "euro": "6U",
+        "desc": "Cambia el térmico, sensor, serigrafía y hardware"
+      },
+      {
+        "euro": "1V",
+        "desc": "Cambia la serigrafía y la posición del soporte"
+      },
+      {
+        "euro": "6V",
+        "desc": "Cambia la camara y su funcinalidad, tambien cambia el grosor del vidrio"
+      },
+      {
+        "euro": "1W",
+        "desc": "Cambia el sensor, la serigrafía y el hardware"
+      },
+      {
+        "euro": "6W",
+        "desc": "Cambia el soporte y el hardware"
+      },
+      {
+        "euro": "1X",
+        "desc": "Cambia el soporte, el soporte de la cámara y las funcionalidades"
+      },
+      {
+        "euro": "6X",
+        "desc": "Logotipo que indenfitica las caracteristias de seguridad y protección, además cambio en el sensor y la serigrafía"
+      },
+
+      {
+        "euro": "1Y",
+        "desc": "Cambio mínimo en las dimensiones y cambios en el hardware"
+      },
+      {
+        "euro": "6Y",
+        "desc": "Producto codificado con las caterísticas D/F/S/T/Y antes del 21/09/05"
+      },
+      {
+        "euro": "1Z",
+        "desc": "Producto que requiere mas de 15 dígitos para su codificación"
+      },
+      {
+        "euro": "6Z",
+        "desc": "Cambios mínimos en las dimensiones"
+      },
+      {
+        "euro": "10",
+        "desc": "Apariencia o cambio en la serigrafía y cambio la cámara y características"
+      },
+      {
+        "euro": "15",
+        "desc": "Cambia la encapsulación, el sensor, y la serigrafía"
+      },
+      {
+        "euro": "20",
+        "desc": ""
+      },
+      {
+        "euro": "25",
+        "desc": ""
+      },
+      {
+        "euro": "30",
+        "desc": ""
+      },
+      {
+        "euro": "35",
+        "desc": "Cambia la posición del sensor y la serigrafía"
+      },
+      {
+        "euro": "40",
+        "desc": "Cambia la posicion del sensor, la serigrafía y el térmico."
+      },
+      {
+        "euro": "45",
+        "desc": "Cambia la posición del sensor, la serigrafía y el hardware"
+      },
+      {
+        "euro": "50",
+        "desc": "Cambia la serigrafía, en sensor, el térmico y el VIN"
+      },
+      {
+        "euro": "55",
+        "desc": "Cambia la posición del sensor, la serigrafía y la encapulación"
+      },
+      {
+        "euro": "60",
+        "desc": "Cambia la serigrafía, la posicíon del soporte y la encapsulación"
+      },
+      {
+        "euro": "65",
+        "desc": "Cambia el sensor, la posicíon del sensor, el soporte y la posición del soporte, además de la serigrafía"
+      },
+      {
+        "euro": "70",
+        "desc": ""
+      },
+      {
+        "euro": "75",
+        "desc": "Cambia el soporte, la posición del mismo y la serigrafía"
+      },
+      {
+        "euro": "80",
+        "desc": ""
+      },
+      {
+        "euro": "85",
+        "desc": ""
+      },
+      {
+        "euro": "90",
+        "desc": ""
+      },
+      {
+        "euro": "95",
+        "desc": "Modificación específica detallada en la descripción de la pieza"
+      }
+    ],
+    "CarroceriasVehiculos": [
+      {
+        "euro": "H3",
+        "desc": "Hatchback/Crossover 3 puertas"
+      },
+      {
+        "euro": "H4",
+        "desc": "Hatchback/Crossover 4 puertas"
+      },
+      {
+        "euro": "H5",
+        "desc": "Hatchback/Crossover 5 puertas"
+      },
+      {
+        "euro": "S2",
+        "desc": "Saloon/sedan 2 puertas"
+      },
+      {
+        "euro": "S4",
+        "desc": "Saloon/sedan 4 puertas"
+      },
+      {
+        "euro": "S6",
+        "desc": "Limusina 6 puertas"
+      },
+      {
+        "euro": "C2",
+        "desc": "Coupe 2 puertas"
+      },
+      {
+        "euro": "C4",
+        "desc": "Coupe 4 puertas"
+      },
+      {
+        "euro": "C5",
+        "desc": "Coupe 5 puertas"
+      },
+      {
+        "euro": "E3",
+        "desc": "Estate/break/Ranchera 3 puertas"
+      },
+      {
+        "euro": "E5",
+        "desc": "Estate/break/Ranchera 5 puertas"
+      },
+      {
+        "euro": "E6",
+        "desc": "Estate/break/Ranchera 6 puertas"
+      },
+      {
+        "euro": "M3",
+        "desc": "MPV 3 puertas"
+      },
+      {
+        "euro": "M4",
+        "desc": "MPV 4 puertas"
+      },
+      {
+        "euro": "M5",
+        "desc": "MPV 5 puertas"
+      },
+      {
+        "euro": "R3",
+        "desc": "Ranger/SUV 3 puertas"
+      },
+      {
+        "euro": "R5",
+        "desc": "Ranger/SUV 5 puertas"
+      },
+      {
+        "euro": "T2",
+        "desc": "Tourer Sport/cabrio 2 puertas"
+      },
+      {
+        "euro": "L2",
+        "desc": "Lorry/truck 2 puertas"
+      },
+      {
+        "euro": "L4",
+        "desc": "Lorry/truck 4 puertas"
+      },
+      {
+        "euro": "V2",
+        "desc": "Furgoneta/Van 2 puertas"
+      },
+      {
+        "euro": "V3",
+        "desc": "Furgoneta/Van 3 puertas"
+      },
+      {
+        "euro": "V4",
+        "desc": "Furgoneta/Van 4 puertas"
+      },
+      {
+        "euro": "V5",
+        "desc": "Furgoneta/Van 5 puertas"
+      },
+      {
+        "euro": "P2",
+        "desc": "Pick-up 2 puertas"
+      },
+      {
+        "euro": "P4",
+        "desc": "Pick-up 4 puertas"
+      }
+    ],
+    "PosicionesVidrios": [
+      {
+        "euro": "FD",
+        "desc": "Descente delantero"
+      },
+      {
+        "euro": "FQ",
+        "desc": "Custodia delantera"
+      },
+      {
+        "euro": "FV",
+        "desc": "Fijo delantero"
+      },
+      {
+        "euro": "MD",
+        "desc": "Descendente central/Puerta central"
+      },
+      {
+        "euro": "MQ",
+        "desc": "Fijo puerta central/Zona central"
+      },
+      {
+        "euro": "PG",
+        "desc": "Partition glass"
+      },
+      {
+        "euro": "RD",
+        "desc": "Descendente trasero"
+      },
+      {
+        "euro": "RQ",
+        "desc": "Custodia trasera"
+      },
+      {
+        "euro": "RV",
+        "desc": "Fijo trasero"
+      },
+      {
+        "euro": "GP",
+        "desc": "Panel de vidrio"
+      },
+      {
+        "euro": "GR",
+        "desc": "Techo de cristal"
+      },
+      {
+        "euro": "LA",
+        "desc": "Lamina"
+      },
+      {
+        "euro": "LR",
+        "desc": "Techo solar Grande"
+      },
+      {
+        "euro": "PR",
+        "desc": "Techo panorámico"
+      },
+      {
+        "euro": "SR",
+        "desc": "Techo solar OE"
+      },
+      {
+        "euro": "SS",
+        "desc": "Techo solar con panel solar"
+      }
+    ],
+    "CaracLateralesTechos": [
+      {
+        "euro": "A",
+        "desc": "Antena"
+      },
+      {
+        "euro": "B",
+        "desc": "Parte de abajo"
+      },
+      {
+        "euro": "C",
+        "desc": ""
+      },
+      {
+        "euro": "D",
+        "desc": "Doble acristalamiento"
+      },
+      {
+        "euro": "E",
+        "desc": "Operado electricamente"
+      },
+      {
+        "euro": "F",
+        "desc": "Marco con vidrio deslizando y fijo"
+      },
+      {
+        "euro": "G",
+        "desc": "GPS"
+      },
+      {
+        "euro": "H",
+        "desc": "Térmico"
+      },
+      {
+        "euro": "I",
+        "desc": "Hardware en el vidrio que no se usa en el proceso de ajuste del vidrio o no tiene un impacto directo en el funcionamiento de otras funciones"
+      },
+      {
+        "euro": "J",
+        "desc": "Antena de TV"
+      },
+      {
+        "euro": "K",
+        "desc": "Laminado"
+      },
+      {
+        "euro": "L",
+        "desc": ""
+      },
+      {
+        "euro": "M",
+        "desc": ""
+      },
+      {
+        "euro": "N",
+        "desc": "Cristal Hidrofugo (Repelente de Agua)"
+      },
+      {
+        "euro": "O",
+        "desc": "Abierto"
+      },
+      {
+        "euro": "P",
+        "desc": "Antena de calentamiento"
+      },
+      {
+        "euro": "Q",
+        "desc": "Antena de apertura sin llave"
+      },
+      {
+        "euro": "R",
+        "desc": ""
+      },
+      {
+        "euro": "S",
+        "desc": "Corredizo"
+      },
+      {
+        "euro": "T",
+        "desc": "Mitad para usar en un marco"
+      },
+      {
+        "euro": "U",
+        "desc": "Superior"
+      },
+      {
+        "euro": "V",
+        "desc": "VIN"
+      },
+      {
+        "euro": "W",
+        "desc": "Premontado para usar en el montaje del vidrio"
+      },
+      {
+        "euro": "X",
+        "desc": "Alarma"
+      },
+      {
+        "euro": "Y",
+        "desc": "Específico para vehículos con RHD (manejo a la derecha)"
+      },
+      {
+        "euro": "Z",
+        "desc": "'Encapsulación a través de:Inyección Extrusión de robot PU Extrusión '"
+      },
+      {
+        "euro": "1A",
+        "desc": "Cambio en el espesor del vidrio"
+      },
+      {
+        "euro": "6A",
+        "desc": "2º vidrio corredizo en el vidrio de la puerta"
+      },
+      {
+        "euro": "1B",
+        "desc": "Cambio en la serigrafía"
+      },
+      {
+        "euro": "6B",
+        "desc": "Cambio o cambio de apariencia en la serigrafía y el espesor del vidrio"
+      },
+      {
+        "euro": "1C",
+        "desc": "Cambio en las medidas y serigrañfia"
+      },
+      {
+        "euro": "6C",
+        "desc": "Cambio en la encapsulacion y la serigrafía"
+      },
+      {
+        "euro": "1D",
+        "desc": "Cambio en el tipo de encapsulado ( P. ejemplo de negro mate a cromado)"
+      },
+      {
+        "euro": "6D",
+        "desc": "Cambio el tipo de encapsulado y el espesor"
+      },
+      {
+        "euro": "1E",
+        "desc": "Cambio en el térmico"
+      },
+      {
+        "euro": "6E",
+        "desc": "Cambio en las medidas y le encapsulación"
+      },
+      {
+        "euro": "1F",
+        "desc": "Cambio en la antena"
+      },
+      {
+        "euro": "6F",
+        "desc": "Cambio en la antena y la encapsulación"
+      },
+      {
+        "euro": "1G",
+        "desc": "Cambio en la encapsulacion "
+      },
+      {
+        "euro": "6G",
+        "desc": "Cambio en el PVB intercalado"
+      },
+      {
+        "euro": "1H",
+        "desc": "Cambio de taladros"
+      },
+      {
+        "euro": "6H",
+        "desc": "Cambio de medidas y PVB intercalado"
+      },
+      {
+        "euro": "1I",
+        "desc": "Cambio de medidas y tipo de encapsulado"
+      },
+      {
+        "euro": "6I",
+        "desc": "Cambio del tipo de encapsulado y antena"
+      },
+      {
+        "euro": "1J",
+        "desc": "Cambio de medidas"
+      },
+      {
+        "euro": "6J",
+        "desc": "Cambio en las meddias y el logotipo de indentificación de seguridad y protección"
+      },
+      {
+        "euro": "1K",
+        "desc": "Cambio en el hardare"
+      },
+      {
+        "euro": "6K",
+        "desc": "Cambio en las medidas, taladros y hardware"
+      },
+      {
+        "euro": "1L",
+        "desc": "Cambio en el encapsulado y logotipo que identifica las funciones de seguridad y protección"
+      },
+      {
+        "euro": "6L",
+        "desc": "Cambia el hardware y la serigrafía"
+      },
+      {
+        "euro": "1M",
+        "desc": "Logotipo que identifica las funciones de seguridad y protección"
+      },
+      {
+        "euro": "6M",
+        "desc": "Cambio medidas, antena y encapsulado"
+      },
+      {
+        "euro": "1N",
+        "desc": "Cambio de la serigrafía y el logo que identifica las funciones de seguridad y protección"
+      },
+      {
+        "euro": "6N",
+        "desc": "Cambio en la antena y el logo que identifica las funciones de seguridad y protección"
+      },
+      {
+        "euro": "1O",
+        "desc": "Cambio del tinte de vidrio mediante la aplicación de una lámina"
+      },
+      {
+        "euro": "60",
+        "desc": "Cambia la encapsulación, el tono de encapsulación y antena"
+      },
+      {
+        "euro": "1P",
+        "desc": "Cambian las medidas y el espesor del vidrio"
+      },
+      {
+        "euro": "6P",
+        "desc": "Cambia la antena, el encapsulado y el logotipo que indentifica las funciones de seguridad y proteccion"
+      },
+      {
+        "euro": "1Q",
+        "desc": "Cambia la serigrafía y el taladro"
+      },
+      {
+        "euro": "6Q",
+        "desc": "Cambia el espesor y taladro"
+      },
+      {
+        "euro": "1R",
+        "desc": "Cambia las medidas y el taladro"
+      },
+      {
+        "euro": "6R",
+        "desc": "Cambias las medidas y el hardware (premontado)"
+      },
+      {
+        "euro": "1S",
+        "desc": "Cambias las meddias y la antena"
+      },
+      {
+        "euro": "6S",
+        "desc": "Camban las medidas, la antena y el tono de encapsulación"
+      },
+      {
+        "euro": "1T",
+        "desc": "Cambia el hardware y el premontado"
+      },
+      {
+        "euro": "6T",
+        "desc": ""
+      },
+      {
+        "euro": "1U",
+        "desc": ""
+      },
+      {
+        "euro": "6U",
+        "desc": ""
+      },
+      {
+        "euro": "1V",
+        "desc": ""
+      },
+      {
+        "euro": "6V",
+        "desc": ""
+      },
+      {
+        "euro": "1W",
+        "desc": ""
+      },
+      {
+        "euro": "6W",
+        "desc": ""
+      },
+      {
+        "euro": "1X",
+        "desc": ""
+      },
+      {
+        "euro": "6X",
+        "desc": ""
+      },
+      {
+        "euro": "1Y",
+        "desc": ""
+      },
+      {
+        "euro": "6Y",
+        "desc": ""
+      },
+      {
+        "euro": "1Z",
+        "desc": "Producto que requiere mas de 15 dígitos"
+      },
+      {
+        "euro": "6Z",
+        "desc": ""
+      }
+    ],
+    "TipoAccesorioSK": [
+      {
+        "euro": "A",
+        "desc": "Antena GPS"
+      },
+      {
+        "euro": "B",
+        "desc": "Soporte de Espejo"
+      },
+      {
+        "euro": "C",
+        "desc": "Clip/tape"
+      },
+      {
+        "euro": "D",
+        "desc": "Aleron"
+      },
+      {
+        "euro": "E",
+        "desc": "Embellecedor del pilar"
+      },
+      {
+        "euro": "F",
+        "desc": "Fillerstrip/insert"
+      },
+      {
+        "euro": "G",
+        "desc": "Glazing channel"
+      },
+      {
+        "euro": "H",
+        "desc": "Cubierta de agujero para el limpia parabrisas"
+      },
+      {
+        "euro": "I",
+        "desc": "Insercion de guia"
+      },
+      {
+        "euro": "J",
+        "desc": "Junta"
+      },
+      {
+        "euro": "K",
+        "desc": "Grapas + Molduras"
+      },
+      {
+        "euro": "L",
+        "desc": "Sensor de Luz"
+      },
+      {
+        "euro": "M",
+        "desc": "Molduras"
+      },
+      {
+        "euro": "N",
+        "desc": "Sensor de Lluvia"
+      },
+      {
+        "euro": "P",
+        "desc": "Membrana de la puerta / membrana de protección del parabrisas"
+      },
+      {
+        "euro": "Q",
+        "desc": "Elevalunas + Sistema de Bloqueo"
+      },
+      {
+        "euro": "R",
+        "desc": "Goma"
+      },
+      {
+        "euro": "S",
+        "desc": "Remache"
+      },
+      {
+        "euro": "V",
+        "desc": "Sensor antiempañamiento"
+      },
+      {
+        "euro": "W",
+        "desc": "Panel del limpiaparabrisas"
+      }
+    ],
+    "TipoAccesorioX": [
+      {
+        "euro": "A",
+        "desc": "Antena"
+      },
+      {
+        "euro": "B",
+        "desc": "Soporte para sensor o cámara"
+      },
+      {
+        "euro": "C",
+        "desc": "Cámara para todo tipo de sistemas de seguridad y asistencia"
+      },
+      {
+        "euro": "D",
+        "desc": ""
+      },
+      {
+        "euro": "E",
+        "desc": "Cable / cable eléctrico, conector o arnés"
+      },
+      {
+        "euro": "F",
+        "desc": "Luz de freno, luz interior"
+      },
+      {
+        "euro": "G",
+        "desc": "Repuestos de GPS que no sean de antena"
+      },
+      {
+        "euro": "H",
+        "desc": "'Manija, bisagra, rieles de techo'"
+      },
+      {
+        "euro": "I",
+        "desc": "Spoiler"
+      },
+      {
+        "euro": "J",
+        "desc": "Chorro de agua"
+      },
+      {
+        "euro": "K",
+        "desc": "Pegatina o cinta adhesiva / cinta adhesiva"
+      },
+      {
+        "euro": "L",
+        "desc": "Sistema o elemento de bloqueo - eléctrico o manual"
+      },
+      {
+        "euro": "M",
+        "desc": "Espejo"
+      },
+      {
+        "euro": "N",
+        "desc": ""
+      },
+      {
+        "euro": "P",
+        "desc": "Almohadillas adhesivas para sensor u otras partes"
+      },
+      {
+        "euro": "Q",
+        "desc": "Calefacción interior, aire acondicionado, sistemas de filtrado"
+      },
+      {
+        "euro": "R",
+        "desc": "Espejo retrovisor"
+      },
+      {
+        "euro": "S",
+        "desc": "Sensor gel"
+      },
+      {
+        "euro": "V",
+        "desc": "Cortinas"
+      },
+      {
+        "euro": "W",
+        "desc": "Brazo del limpiaparabrisas, soporte del brazo del limpiaparabrisas"
+      },
+      {
+        "euro": "X",
+        "desc": "Adhesivo o placa con logo"
+      },
+      {
+        "euro": "Y",
+        "desc": ""
+      },
+      {
+        "euro": "Z",
+        "desc": "Marco para vidrio, hardware para ensamblaje de vidrio, barra separadora"
+      }
+    ],
+    "CaracAccesorioSK": [
+      {
+        "euro": "A",
+        "desc": ""
+      },
+      {
+        "euro": "B",
+        "desc": "Parte Inferior"
+      },
+      {
+        "euro": "C",
+        "desc": "Cromado"
+      },
+      {
+        "euro": "D",
+        "desc": "Moldura de techo"
+      },
+      {
+        "euro": "E",
+        "desc": "Operado electricamente"
+      },
+      {
+        "euro": "F",
+        "desc": "Borde delantero (solo se aplica a los laterales)"
+      },
+      {
+        "euro": "G",
+        "desc": "Canaleta"
+      },
+      {
+        "euro": "H",
+        "desc": "'Borde trasero (solo se aplica a los laterales)'"
+      },
+      {
+        "euro": "I",
+        "desc": "Interior"
+      },
+      {
+        "euro": "J",
+        "desc": "Estuche del sensor con lente solamente"
+      },
+      {
+        "euro": "K",
+        "desc": "Esquina"
+      },
+      {
+        "euro": "L",
+        "desc": "Izquiero"
+      },
+      {
+        "euro": "M",
+        "desc": "Acabado de goma"
+      },
+      {
+        "euro": "N",
+        "desc": ""
+      },
+      {
+        "euro": "O",
+        "desc": "Exterior"
+      },
+      {
+        "euro": "P",
+        "desc": "Bracket"
+      },
+      {
+        "euro": "Q",
+        "desc": "Carcasa"
+      },
+      {
+        "euro": "R",
+        "desc": "Derecho"
+      },
+      {
+        "euro": "S",
+        "desc": "No guarda mano"
+      },
+      {
+        "euro": "T",
+        "desc": "Parte Superior"
+      },
+      {
+        "euro": "U",
+        "desc": "Perno / Tornillo"
+      },
+      {
+        "euro": "V",
+        "desc": "Vertical"
+      },
+      {
+        "euro": "W",
+        "desc": "Accesorios"
+      },
+      {
+        "euro": "X",
+        "desc": ""
+      },
+      {
+        "euro": "Y",
+        "desc": ""
+      },
+      {
+        "euro": "Z",
+        "desc": ""
+      },
+      {
+        "euro": "1A",
+        "desc": "Cambia la longuitud del Perfil"
+      },
+      {
+        "euro": "6A",
+        "desc": "Cambia el grosor del perfil"
+      },
+      {
+        "euro": "1B",
+        "desc": "Diferente tipo de clip para el mismo lado del vidio"
+      },
+      {
+        "euro": "6B",
+        "desc": "Diferente tipo de clip para el mismo vidrio"
+      },
+      {
+        "euro": "1C",
+        "desc": "Cambia el color de la moldura / clip"
+      },
+      {
+        "euro": "6C",
+        "desc": "Cambia el material de fabricacion"
+      },
+      {
+        "euro": "1D",
+        "desc": "Cambio el refuerzo interno"
+      },
+      {
+        "euro": "6D",
+        "desc": "Cambia el espesor y el material de fabricacion"
+      },
+      {
+        "euro": "1E",
+        "desc": "Diferente tipo de clip para los laterales"
+      },
+      {
+        "euro": "6E",
+        "desc": "Diferente tipo de clip para los laterales"
+      },
+      {
+        "euro": "1F",
+        "desc": "Official A.R.G.I.C. kit"
+      },
+      {
+        "euro": "6F",
+        "desc": "Official A.R.G.I.C. kit"
+      },
+      {
+        "euro": "1G",
+        "desc": "Non-official A.R.G.I.C. kit"
+      },
+      {
+        "euro": "6G",
+        "desc": "Non-official A.R.G.I.C. kit"
+      },
+      {
+        "euro": "1H",
+        "desc": "Cambia el diseño del perfil"
+      },
+      {
+        "euro": "6H",
+        "desc": "Producto con diferentes aplicaciones en el mismo lado del vidrio"
+      },
+      {
+        "euro": "1I",
+        "desc": "Cambio en el color del moldeado"
+      },
+      {
+        "euro": "6I",
+        "desc": "Cambio en el color del moldeado"
+      },
+      {
+        "euro": "1J",
+        "desc": "Diferentes tipos de grapas para el mismo vidrio"
+      },
+      {
+        "euro": "6J",
+        "desc": ""
+      },
+      {
+        "euro": "1K",
+        "desc": "Diferente tipo de perfil para diferentes tipos de carrocerías"
+      },
+      {
+        "euro": "6K",
+        "desc": "Específico para vehículos con RHD (conducción a la derecha)"
+      },
+      {
+        "euro": "1L",
+        "desc": "Logotipo que identifica características de seguridad y cambio de tamaño"
+      },
+      {
+        "euro": "6L",
+        "desc": "Sensor de humedad diferente para el mismo vehículo"
+      },
+      {
+        "euro": "1M",
+        "desc": "Diferente tipo de mecanismo de puerta para la misma carrocería"
+      },
+      {
+        "euro": "6M",
+        "desc": "Diferente tipo de antena para el mismo vehículo"
+      },
+      {
+        "euro": "1N",
+        "desc": "Diferentes tipos de mecanismo de puerta para diferentes carrocerías"
+      },
+      {
+        "euro": "6N",
+        "desc": "Diferente tipo de clip para el mismo vidrio"
+      },
+      {
+        "euro": "1O",
+        "desc": ""
+      },
+      {
+        "euro": "60",
+        "desc": ""
+      },
+      {
+        "euro": "1P",
+        "desc": "Cambia el diseño y la longitud del perfil"
+      },
+      {
+        "euro": "6P",
+        "desc": ""
+      },
+      {
+        "euro": "1Q",
+        "desc": "Kit completo o piezas con accesorios"
+      },
+      {
+        "euro": "6Q",
+        "desc": ""
+      },
+      {
+        "euro": "1R",
+        "desc": "Cambio en el color del moldeado"
+      },
+      {
+        "euro": "6R",
+        "desc": ""
+      },
+      {
+        "euro": "1S",
+        "desc": ""
+      },
+      {
+        "euro": "6S",
+        "desc": ""
+      },
+      {
+        "euro": "1T",
+        "desc": ""
+      },
+      {
+        "euro": "6T",
+        "desc": ""
+      },
+      {
+        "euro": "1U",
+        "desc": ""
+      },
+      {
+        "euro": "6U",
+        "desc": ""
+      },
+      {
+        "euro": "1V",
+        "desc": ""
+      },
+      {
+        "euro": "6V",
+        "desc": ""
+      },
+      {
+        "euro": "1W",
+        "desc": ""
+      },
+      {
+        "euro": "6W",
+        "desc": ""
+      },
+      {
+        "euro": "1X",
+        "desc": ""
+      },
+      {
+        "euro": "6X",
+        "desc": ""
+      },
+      {
+        "euro": "1Y",
+        "desc": ""
+      },
+      {
+        "euro": "6Y",
+        "desc": "Diferentes tipos de accesorios especiales que se definirán en la descripción"
+      },
+      {
+        "euro": "1Z",
+        "desc": "Producto que requiere más de 15 dígitos"
+      },
+      {
+        "euro": "6Z",
+        "desc": "Diferentes tipos de accesorios especiales que se definirán en la descripción"
+      }
+    ],
+    "CaracAccesorioX": [
+      {
+        "euro": "A",
+        "desc": "Autoadhesivo"
+      },
+      {
+        "euro": "B",
+        "desc": "Parte inferior"
+      },
+      {
+        "euro": "C",
+        "desc": "Carcasa"
+      },
+      {
+        "euro": "D",
+        "desc": ""
+      },
+      {
+        "euro": "E",
+        "desc": "Motor"
+      },
+      {
+        "euro": "F",
+        "desc": "Accesorios"
+      },
+      {
+        "euro": "G",
+        "desc": ""
+      },
+      {
+        "euro": "H",
+        "desc": "Parte trasera"
+      },
+      {
+        "euro": "I",
+        "desc": "Interior"
+      },
+      {
+        "euro": "J",
+        "desc": "Articulación, conector, retención"
+      },
+      {
+        "euro": "K",
+        "desc": "Electrocromático"
+      },
+      {
+        "euro": "L",
+        "desc": "Izquierda"
+      },
+      {
+        "euro": "M",
+        "desc": "Mecanismo, amplificador"
+      },
+      {
+        "euro": "N",
+        "desc": ""
+      },
+      {
+        "euro": "O",
+        "desc": ""
+      },
+      {
+        "euro": "P",
+        "desc": "Plástico"
+      },
+      {
+        "euro": "Q",
+        "desc": ""
+      },
+      {
+        "euro": "R",
+        "desc": "Derecho"
+      },
+      {
+        "euro": "S",
+        "desc": "Basado en slilicio"
+      },
+      {
+        "euro": "T",
+        "desc": "Parte Superior"
+      },
+      {
+        "euro": "U",
+        "desc": ""
+      },
+      {
+        "euro": "V",
+        "desc": "Parte delantera"
+      },
+      {
+        "euro": "W",
+        "desc": "Alambre, plomo"
+      },
+      {
+        "euro": "X",
+        "desc": ""
+      },
+      {
+        "euro": "Y",
+        "desc": "Husillo para el limpiaparabrisas"
+      },
+      {
+        "euro": "Z",
+        "desc": ""
+      },
+      {
+        "euro": "1A",
+        "desc": ""
+      },
+      {
+        "euro": "6A",
+        "desc": ""
+      },
+      {
+        "euro": "1B",
+        "desc": ""
+      },
+      {
+        "euro": "6B",
+        "desc": ""
+      },
+      {
+        "euro": "1C",
+        "desc": "Tono de accesorio diferente"
+      },
+      {
+        "euro": "6C",
+        "desc": ""
+      },
+      {
+        "euro": "1D",
+        "desc": "Cambio de identificación en la pegatina"
+      },
+      {
+        "euro": "6D",
+        "desc": ""
+      },
+      {
+        "euro": "1E",
+        "desc": "Kit completo o piezas con accesorios"
+      },
+      {
+        "euro": "6E",
+        "desc": ""
+      },
+      {
+        "euro": "1F",
+        "desc": "Cambio de diseño de accesorios para usos específicos"
+      },
+      {
+        "euro": "6F",
+        "desc": ""
+      },
+      {
+        "euro": "1G",
+        "desc": "Diferentes tipos de accesorios para el mismo accesorio"
+      },
+      {
+        "euro": "6G",
+        "desc": ""
+      },
+      {
+        "euro": "1H",
+        "desc": "Cambio en el diseño del accesorio"
+      },
+      {
+        "euro": "6H",
+        "desc": ""
+      },
+      {
+        "euro": "1I",
+        "desc": ""
+      },
+      {
+        "euro": "6I",
+        "desc": ""
+      },
+      {
+        "euro": "1J",
+        "desc": ""
+      },
+      {
+        "euro": "6J",
+        "desc": "Lámina para cambiar el tono del vidrio"
+      },
+      {
+        "euro": "1K",
+        "desc": "Producto que se aplica específicamente a los rieles del techo"
+      },
+      {
+        "euro": "6K",
+        "desc": "Producto específico para vehículos con RHD (conducción a la derecha)"
+      },
+      {
+        "euro": "1L",
+        "desc": "Diferente tipo de sensor para el mismo vehículo"
+      },
+      {
+        "euro": "6L",
+        "desc": ""
+      },
+      {
+        "euro": "1M",
+        "desc": ""
+      },
+      {
+        "euro": "6M",
+        "desc": ""
+      },
+      {
+        "euro": "1N",
+        "desc": ""
+      },
+      {
+        "euro": "6N",
+        "desc": ""
+      },
+      {
+        "euro": "1O",
+        "desc": ""
+      },
+      {
+        "euro": "60",
+        "desc": ""
+      },
+      {
+        "euro": "1P",
+        "desc": ""
+      },
+      {
+        "euro": "6P",
+        "desc": ""
+      },
+      {
+        "euro": "1Q",
+        "desc": ""
+      },
+      {
+        "euro": "6Q",
+        "desc": ""
+      },
+      {
+        "euro": "1R",
+        "desc": ""
+      },
+      {
+        "euro": "6R",
+        "desc": ""
+      },
+      {
+        "euro": "1S",
+        "desc": ""
+      },
+      {
+        "euro": "6S",
+        "desc": ""
+      },
+      {
+        "euro": "1T",
+        "desc": ""
+      },
+      {
+        "euro": "6T",
+        "desc": ""
+      },
+      {
+        "euro": "1U",
+        "desc": ""
+      },
+      {
+        "euro": "6U",
+        "desc": ""
+      },
+      {
+        "euro": "1V",
+        "desc": ""
+      },
+      {
+        "euro": "6V",
+        "desc": ""
+      },
+      {
+        "euro": "1W",
+        "desc": ""
+      },
+      {
+        "euro": "6W",
+        "desc": ""
+      },
+      {
+        "euro": "1X",
+        "desc": ""
+      },
+      {
+        "euro": "6X",
+        "desc": ""
+      },
+      {
+        "euro": "1Y",
+        "desc": ""
+      },
+      {
+        "euro": "6Y",
+        "desc": ""
+      },
+      {
+        "euro": "1Z",
+        "desc": ""
+      },
+      {
+        "euro": "6Z",
+        "desc": ""
+      }
+    ]
+  }
+}

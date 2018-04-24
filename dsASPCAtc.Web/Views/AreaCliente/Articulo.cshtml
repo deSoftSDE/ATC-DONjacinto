@@ -191,7 +191,9 @@ else
 
                         <div class="row text-center row-precio">
                             <div class="col-md-12 " style="padding:10px 12px">
-                                <div class="row">
+                                @if(d.VisiblePrecios)
+                                {
+                                    <div class="row">
                                     <div class=" col-md-6 text-left">Precio </div>
                                     <div class="col-md-6 text-right">
                                         @if (ud.Precio == 0)
@@ -209,10 +211,14 @@ else
                                     </div>
                                 </div>
 
+                                }
+                                
+
 
                             </div>
                             <div class="col-md-12" style="padding:10px 12px">
-                                <div class="row">
+                                @if(d.VisibleDtos && d.VisiblePrecios) {
+                                    <div class="row">
                                     <div class="col-md-6 text-left">
                                         Descuento
                                     </div>
@@ -222,6 +228,8 @@ else
                                         </strong>
                                     </div>
                                 </div>
+                                }
+                                
 
 
                             </div>
@@ -627,10 +635,12 @@ else
 
 
                                                         </div>
-                                                        @if (d.VisiblePrecioListado)
+                                                        @if (d.VisiblePrecioListado && d.VisiblePrecios)
                                                         {
                                                             <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                                                                <div class="col-md-4">
+                                                                @if(d.VisiblePrecios)
+                                                                {
+                                                                    <div class="col-md-4">
                                                                     <div><small>Precio</small></div>
                                                                     <small>
                                                                         <strong>
@@ -638,7 +648,11 @@ else
                                                                         </strong>
                                                                     </small>
                                                                 </div>
-                                                                <div class="col-md-4">
+                                                                }
+                                                                
+                                                                @if (d.VisibleDtos)
+                                                                {
+                                                                    <div class="col-md-4">
                                                                     <div><small>Dto.</small></div>
                                                                     <small>
                                                                         <strong>
@@ -646,6 +660,9 @@ else
                                                                         </strong>
                                                                     </small>
                                                                 </div>
+
+                                                                }
+                                                                
                                                             </div>
                                                         }
 
