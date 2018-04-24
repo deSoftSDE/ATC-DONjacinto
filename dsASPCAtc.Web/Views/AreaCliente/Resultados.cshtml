@@ -258,10 +258,12 @@ else
 
 
                     </div>
-                    @if(d.VisiblePrecioListado)
+                    @if(d.VisiblePrecioListado && d.VisiblePrecios)
                     {
                         <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                        <div class="col-md-6">
+                        @if(d.VisiblePrecios)
+                        {
+                            <div class="col-md-6">
                             <div><small>Precio</small></div>
                             <small>
                                  @if (ud.Precio == 0)
@@ -278,7 +280,11 @@ else
                                             }
                             </small>
                         </div>
-                        <div class="col-md-6">
+
+                        }
+                        @if(d.VisibleDtos)
+                        {
+                            <div class="col-md-6">
                             <div><small>Desct.</small></div>
                             <small>
                                 <strong>
@@ -286,6 +292,9 @@ else
                                 </strong>
                             </small>
                         </div>
+
+                        }
+                        
                     </div>
 
                     }
@@ -549,29 +558,35 @@ else
 
 
                         </div>
-                        @if (d.VisiblePrecioListado)
+                        @if (d.VisiblePrecioListado && d.VisiblePrecios)
         {
                 <div class="row text-center" style="background-color:#f5f5f5;border-radius:5px!important;padding-bottom:3px;">
-                    <div class="col-md-6">
-                        <div><small>Precio</small></div>
-                        <small>
-                            @if (ud.Precio == 0)
-            {
-                <strong>No disponible</strong>
+                    @if(d.VisiblePrecios)
+                    {
+                                                <div class="col-md-6">
+                                                <div><small>Precio</small></div>
+                                                <small>
+                                                    @if (ud.Precio == 0)
+                                    {
+                                        <strong>No disponible</strong>
 
-}
-else
-{
-                <strong>
+                                    }
+                                    else
+                                    {
+                                                    <strong>
 
-                    @ud.Precio.ToString("N2") €
-                </strong>
+                                                        @ud.Precio.ToString("N2") €
+                                                    </strong>
 
-}
+                                    }
 
-                        </small>
-                    </div>
-                    <div class="col-md-6">
+                                                </small>
+                                            </div>
+
+                    }
+                    @if(d.VisibleDtos)
+                    {
+                        <div class="col-md-6">
                         <div><small>Dto.</small></div>
                         <small>
                             <strong>
@@ -579,6 +594,9 @@ else
                             </strong>
                         </small>
                     </div>
+
+                    }
+                    
                 </div>
 }
 

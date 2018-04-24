@@ -3,6 +3,7 @@ using dsASPCAtc.Web.ViewModels;
 using EntidadesAtc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace dsASPCAtc.Web.Controllers
         public InicioController(IConfiguration configuration)
         {
             _configuration = configuration;
+
         }
         //public IActionResult Index()
         //{

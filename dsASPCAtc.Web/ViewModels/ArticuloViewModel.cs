@@ -11,20 +11,20 @@ namespace dsASPCAtc.Web.ViewModels
     public class ArticuloViewModel
     {
         public BuscaArticulo articulo;
-        public ArticuloViewModel(IConfiguration configuration, int id, int? idcliente)
+        public ArticuloViewModel(IConfiguration configuration, int id, int? idcliente, int? idUsuarioWeb, EntidadEurocodes entidadEurocodes)
         {
             if (id > 0)
             {
                 var ad = new AdaptadorAtc(configuration);
-                var res = ad.ArticulosLeerPorID(id, idcliente);
+                var res = ad.ArticulosLeerPorID(id, idcliente, idUsuarioWeb);
                 articulo = res;
-                var le = new LectorEurocode(articulo.Codigo);
+                var le = new LectorEurocode(articulo.Codigo, entidadEurocodes);
                 articulo.Eurocode = le.Leer();
                 foreach (Categoria ct in articulo.Accesorios)
                 {
                     foreach (BuscaArticulo ar in ct.Articulos)
                     {
-                        var lo = new LectorEurocode(ar.Codigo);
+                        var lo = new LectorEurocode(ar.Codigo, entidadEurocodes);
                         ar.Eurocode = lo.Leer();
                     }
                 }

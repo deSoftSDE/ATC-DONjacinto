@@ -11,10 +11,19 @@
                         <tr class="d-flex">
                             <th class="col-md-6">Artículo</th>
                             <th class="col-md-3">Cantidad</th>
-                            <th>Precio</th>
-                            <th>Dto.</th>
-                            <th>Bon.</th>
-                            <th>Importe</th>
+                            @if(d.DatosEmpresa.VisiblePrecios)
+                            {
+                                <th>Precio Unidad</th>
+                            }
+                            @if (d.DatosEmpresa.VisibleDtos)
+                            {
+                                <th>Dto.</th>
+                                <th>Bon.</th>
+                            }
+                            @if (d.DatosEmpresa.VisiblePrecios && d.DatosEmpresa.VisibleDtos)
+                            {
+                                <th>Importe</th>
+                            }
                             <th>Eliminar</th>
 
                         </tr>
@@ -43,18 +52,31 @@
 
 
                             </td>
-                            <td>
+                            @if(d.DatosEmpresa.VisiblePrecios)
+                            {
+                                <td>
                                 {{articulo.precioUd.toFixed(2)}}€
                             </td>
-                            <td>
+
+                            }
+                            @if (d.DatosEmpresa.VisibleDtos)
+                            {
+                                <td>
                                 {{articulo.dto1.toFixed(2)}}%
                             </td>
                             <td>
                                 {{articulo.bon1.toFixed(2)}}%
                             </td>
-                            <td>
-                                {{articulo.precio.toFixed(2)}} €
-                            </td>
+
+                            }
+                            @if (d.DatosEmpresa.VisiblePrecios && d.DatosEmpresa.VisibleDtos)
+                            {
+                                <td>
+                                    {{articulo.precio.toFixed(2)}} €
+                                </td>
+
+                            }
+                            
                             <td>
                                 <input type="submit" value="Eliminar" class="form-control" ng-click="eliminarArticulo(articulo.idArticulo, true)" />
                             </td>
@@ -110,7 +132,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table">
+                        @if(d.DatosEmpresa.VisibleTotalCompra && d.DatosEmpresa.VisiblePrecios)
+                        {
+                            <table class="table">
                             <tr>
                                 <th>
                                     % IVA
@@ -144,6 +168,9 @@
                                 <h4>Total pedido:</h4>	<h3>{{carrito.totalPedido.toFixed(2)}} €</h3>
                             </div>
                         </div>
+
+                        }
+                        
                         <div class="panel-body panel-body-default">
                             <input type="hidden" name="usuario" value="@d.IdUsuarioWeb" />
                             <button type="button" class="btn btn-danger" ng-click="eliminarCarrito()"><i class="glyphicon glyphicon-remove"></i>Limpiar Carrito</button>

@@ -691,6 +691,12 @@ namespace EntidadesAtc
         public string Copyright { get; set; }
         [DataMember]
         public Boolean VisiblePrecioListado { get; set; }
+        [DataMember]
+        public Boolean VisiblePrecios { get; set; }
+        [DataMember]
+        public Boolean VisibleDtos { get; set; }
+        [DataMember]
+        public Boolean VisibleTotalCompra { get; set; }
     }
     [DataContract]
     public class FormularioBajoPedido
@@ -1366,6 +1372,39 @@ namespace EntidadesAtc
         public string CoordenadasCodigo { get; set; }
         [DataMember]
         public string CoordenadasCantidad { get; set; }
+    }
+
+
+    public class CustomSection1
+    {
+        public string Hi { get; set; }
+        public string Hello { get; set; }
+    }
+
+    public class CustomSection2
+    {
+        public string Bye { get; set; }
+    }
+    public class PropiedadYValor
+    {
+        public string euro { get; set; }
+        public string desc { get; set; }
+    }
+    public class EntidadEurocodes
+    {
+        public List<PropiedadYValor> TiposVidrio { get; set; }
+        public List<PropiedadYValor> Color { get; set; }
+        public List<PropiedadYValor> Luneta { get; set; }
+        public List<PropiedadYValor> CaracLuneta { get; set; }
+        public List<PropiedadYValor> TopTins { get; set; }
+        public List<PropiedadYValor> CaracParabrisas { get; set; }
+        public List<PropiedadYValor> CarroceriasVehiculos { get; set; }
+        public List<PropiedadYValor> PosicionesVidrios { get; set; }
+        public List<PropiedadYValor> CaracLateralesTechos { get; set; }
+        public List<PropiedadYValor> TipoAccesorioSK { get; set; }
+        public List<PropiedadYValor> TipoAccesorioX { get; set; }
+        public List<PropiedadYValor> CaracAccesorioSK { get; set; }
+        public List<PropiedadYValor> CaracAccesorioX { get; set; }
     }
 
 }
