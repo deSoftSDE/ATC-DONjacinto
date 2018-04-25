@@ -14,6 +14,8 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
         alert("Holi")
     }
 
+    $scope.rutaBuscador = rutaBuscador;
+    $scope.rutaArticulo = rutaArticulo;
 
     $scope.popupOptions = {
         width: 660,
@@ -115,7 +117,8 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
     }
     $scope.buscarConCadena = function () {
         if ($scope.cadena.length > 3) {
-            window.location.href = "/AreaCliente/Resultados?euro=" + $scope.cadena;
+            buscarCadena($scope.cadena);
+            //window.location.href = "/AreaCliente/Resultados?euro=" + $scope.cadena;
         }
 
     }
@@ -237,7 +240,8 @@ atc.controller('main', function ($scope, $http, Llamada, $timeout, Carrito) {
             })
     }
     $scope.verPaginaCarrito = function() { 
-            window.location.href = "/AreaCliente/Pedido";
+            //window.location.href = "/AreaCliente/Pedido";
+        verCarrito();
     }
     if (window.location.href.indexOf("/AreaCliente/Pedido") > -1) {
         Carrito.verCarrito(true)

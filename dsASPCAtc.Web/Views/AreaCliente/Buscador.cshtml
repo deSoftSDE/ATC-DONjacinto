@@ -110,7 +110,7 @@
                         <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(@vehiculo.IDTipoVehiculo)}}">
 
                             <a ng-click="seleccionarVehiculo(@vehiculo.IDTipoVehiculo, '@vehiculo.Descripcion')">
-                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'" />
 
                                 <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
                             </a>
@@ -118,7 +118,7 @@
 }
                                             <div class="m-grid-col m-grid-col-middle m-grid-col-center m-inter {{selectedTipoVehiculo(0)}}">
                                                 <a ng-click="seleccionarVehiculo(0,'Todos los vehículos')">
-                                                    <img class="img-fluid" src="~/img/todos.png" style="width:50px" onerror="this.src='../../img/spinner.gif'" />
+                                                    <img class="img-fluid" src="~/img/todos.png" style="width:50px" onerror="this.src='../img/spinner.gif'" />
 
                                                     <p class="texto-prod"><small class="d-block">Todos los Tipos</small></p>
                                                 </a>
@@ -152,7 +152,7 @@
                                             <div data-options="dxTemplate: { name: 'item' }">
                                                 <div class="custom-item">
                                                     <div class="row">
-                                                        <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
+                                                        <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../images/escudo.png'" /></div>
                                                         <div class="col-md-3">
                                                             <div class="product-name">
                                                                 {{product.descripcionSeccion}}
@@ -241,7 +241,7 @@
                                                             <div class="row margin-bottom-10">
                                                                 <a href="javascript:;">
                                                                     <div class="col-12">
-                                                                        <img class="img-responsive img-marca" ng-src="{{marca.url}}" onerror="this.src='../../images/escudo.png'" />
+                                                                        <img class="img-responsive img-marca" ng-src="{{marca.url}}" onerror="this.src='../images/escudo.png'" />
                                                                     </div>
                                                                     <div class="col-12 text-center">
                                                                         {{marca.descripcionSeccion}}
@@ -283,7 +283,7 @@
                                         <div data-options="dxTemplate: { name: 'item' }">
                                             <div class="custom-item">
                                                 <div class="row">
-                                                    <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../../images/escudo.png'" /></div>
+                                                    <div class="col-md-3"><img ng-src="{{product.url}}" style="width:20px" onerror="this.src='../images/escudo.png'" /></div>
                                                     <div class="col-md-3">
                                                         <div class="product-name">
                                                             {{product.descripcionFamilia}}
@@ -307,7 +307,7 @@
                                         <div class="row margin-bottom-10">
                                             <a href="javascript:;">
                                                 <div class="col-12">
-                                                    <img class="img-responsive img-marca" ng-src="{{modelo.url}}" onerror="this.src='../../images/escudo.png'" />
+                                                    <img class="img-responsive img-marca" ng-src="{{modelo.url}}" onerror="this.src='../images/escudo.png'" />
                                                 </div>
                                                 <div class="col-12 text-center">
                                                     {{modelo.descripcionFamilia}}

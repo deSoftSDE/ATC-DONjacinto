@@ -13,6 +13,10 @@
         var url = '@Url.Action("Productos", "AreaCliente")';
         window.location.href = url + "?producto=" + parameters;
     }
+    function buscarCadena(cadena) {
+        var url = '@Url.Action("Resultados", "AreaCliente")';
+        window.location.href = url + "?euro=" + cadena;
+    }
 </script>
 <div ng-controller="generico" class="page-bar">
     <ul class="page-breadcrumb">
@@ -129,20 +133,20 @@
                                                     <tbody>
                                                         <tr ng-if="!loading" class="" ng-repeat="resultado in resultadobusqueda">
                                                             <td class="">
-                                                                <a  onclick="clickCapaCargando()" class="resul-search" href="/AreaCliente/Articulo/{{resultado.idArticulo}}">
+                                                                <a  onclick="clickCapaCargando()" class="resul-search" href="{{rutaArticulo}}/{{resultado.idArticulo}}">
                                                                     {{resultado.descripcion}}
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         <tr ng-if="!loading" class="" ng-repeat="resultado in resultadomarcas">
                                                             <td class="">
-                                                                <a class="resul-search" href="/AreaCliente/Buscador?marca={{resultado.idSeccion}}">
+                                                                <a class="resul-search" href="{{rutaBuscador}}?marca={{resultado.idSeccion}}">
                                                                     {{resultado.descripcionSeccion}}
                                                                 </a>
                                                                 <table class="tablaresultados2">
                                                                     <tr ng-repeat="modelo in resultado.modelos">
                                                                         <td class="">
-                                                                            <a class="resul-search" href="/AreaCliente/Buscador?modelo={{modelo.idFamilia}}">
+                                                                            <a class="resul-search" href="{{rutaBuscador}}?modelo={{modelo.idFamilia}}">
                                                                                 {{modelo.descripcionFamilia}}
                                                                             </a>
                                                                         </td>
@@ -201,7 +205,7 @@
                                         {
                                         <div class="col-md-3 text-center m-t btn-vehiculo">
                                             <a class="texto-prod" asp-controller="AreaCliente" asp-action="Buscador" asp-route-vehiculo="@vehiculo.IDTipoVehiculo">
-                                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='../img/spinner.gif'" />
+                                                <img class="img-fluid" src="@vehiculo.url" style="width:50px" onerror="this.src='img/spinner.gif'" />
                                                 <p class="texto-prod"><small class="d-block">@vehiculo.Descripcion</small></p>
                                             </a>
                                         </div>

@@ -49,15 +49,24 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/number.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/currency.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/date.js"></script>
+    <script type="text/javascript">
+
+        function verCarrito() {
+            var url = '@Url.Action("Pedido", "AreaCliente")';
+            window.location.href = url
+
+        }
+        var rutaBuscador = '@Url.Action("Buscador", "AreaCliente")';
+        var rutaArticulo = '@Url.Action("Buscador", "AreaCliente")';
+    </script>
 
 
-   
 
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" ng-controller="main">
     @*CAPA CARGANDO*@
-    
+
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
@@ -91,6 +100,7 @@
                             </li>
 
                         }
+/**/
                         @if (d.VisibleIP)
                         {
                             <li class="nav-item">
@@ -99,6 +109,7 @@
                             </li>
 
                         }
+/**/
                         @if (d.VisibleMensajes)
                         {
                             <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
@@ -227,32 +238,37 @@
                                 </a>
                             </li>
                         }
+/**/
                         @if (d.VisibleFacturas || d.VisibleFinanzas)
                         {
                             <li class="heading">
                             <h3 class="uppercase">
                                 @if(d.VisibleFacturas)
                                 {
-                                    
+
                                 <span>FACTURAS</span>
 
                                 }
+/**/
+/**/
                                 @if (d.VisibleFinanzas && d.VisibleFacturas)
                                 {
-                                    
+
                                 <span>Y</span>
 
                                 }
+/**/
+/**/
                                 @if(d.VisibleFinanzas)
                                 {
-                                    
+
                                 <span>FINANZAS</span>
 
                                 }
                             </h3>
                         </li>
                         }
-                            
+
                         @if(d.VisibleFacturas)
                         {
                         <li class="nav-item  {{esRutaActiva('Facturas')}} ">
@@ -264,6 +280,7 @@
                         </li>
 
         }
+/**/
                         @if (d.VisibleFinanzas)
                         {
                             @*<li class="heading">
@@ -340,6 +357,7 @@
                     </li>
 
         }
+/**/
                         @if (d.VisibleCategorias)
                 {
                     <li class="nav-item  ">
@@ -372,10 +390,10 @@
             </div>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
-            
+
             <div class="page-content-wrapper">
-                <!-- BEGIN CONTENT BODY --> 
-                
+                <!-- BEGIN CONTENT BODY -->
+
                 <div class="page-content">
                     <div id="capa_cargando" style="width: 100%; height: 100%; z-index:1000;position:fixed; background-color:rgba(255,255,255,0.5);margin-top: -25px;margin-left: -20px;">
                         <div id="contenido_capa_cargando">
@@ -486,10 +504,10 @@
                                                         <th>Fecha</th>
                                                         <th>Importe</th>
                                                         <th>Estado</th>
-                                                    </tr>  
+                                                    </tr>
                                                 </thead>
                                                     @foreach (Pedido pd in c.Pedidos)
-                                                    
+
             {
 
                                         <tr>
@@ -509,7 +527,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
@@ -694,12 +712,12 @@
 
     <!-- FIN JAVASCRIPT AÑADIDO -->
     <script>
-        $(document).ready(function () {
-            $('#clickmewow').click(function () {
-                $('#radio1003').attr('checked', 'checked');
-            });
+                $(document).ready(function () {
+                    $('#clickmewow').click(function () {
+                        $('#radio1003').attr('checked', 'checked');
+                    });
 
-        })
+                })
 
     </script>
     <div dx-popup="popupOptions">
@@ -724,6 +742,9 @@
         </div>
     </div>
 
-    @RenderSection("Scripts", required: false)
-</body>
+    @*@fault
+#line hidden
+            }
+#*@
+    </body>
 </html>
