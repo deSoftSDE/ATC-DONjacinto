@@ -9,10 +9,12 @@ using dsASPCAtc.DataAccess;
 using System.Net;
 using dsASPCAtc.Web.ViewModels;
 using EntidadesAtc;
+using Microsoft.AspNetCore.Cors;
 
 namespace dsASPCAtc.Web.Controllers
 {
     [Produces("application/json")]
+    [EnableCors("AllowAllOrigins")]
     public class DataController : Controller
     {
         private IConfiguration _configuration;

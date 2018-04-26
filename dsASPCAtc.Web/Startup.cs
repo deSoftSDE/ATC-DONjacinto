@@ -38,6 +38,18 @@ namespace dsASPCAtc.Web
             services.AddMvc();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .WithExposedHeaders("content-disposition")
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
             services.AddSession();
         }
 

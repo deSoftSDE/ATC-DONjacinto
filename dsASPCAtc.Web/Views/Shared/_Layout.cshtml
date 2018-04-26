@@ -1,6 +1,7 @@
 ﻿@{ 
     var c = (UsuarioWeb)ViewData["Usuario"];
     var d = c.DatosEmpresa;
+    var api = ViewData["Api"];
 }
 <!DOCTYPE html>
 <html lang="es" ng-app="atcapp">
@@ -58,6 +59,9 @@
         }
         var rutaBuscador = '@Url.Action("Buscador", "AreaCliente")';
         var rutaArticulo = '@Url.Action("Buscador", "AreaCliente")';
+    </script>
+    <script type="text/javascript">
+        var Endpoint = '@api';
     </script>
 
 

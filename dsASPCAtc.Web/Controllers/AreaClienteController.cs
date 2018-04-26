@@ -25,11 +25,13 @@ namespace dsASPCAtc.Web.Controllers
         private EntidadEurocodes _entidadEurocodes;
         private string _defaultPage = "Index";
         private string _defaultController ="Inicio";
+        private string _endPoint;
         public AreaClienteController(IConfiguration configuration, IHttpContextAccessor accessor, IOptions<EntidadEurocodes> EntidadEurocodes)
         {
             _configuration = configuration;
             _accessor = accessor;
             _entidadEurocodes = EntidadEurocodes.Value;
+            _endPoint = _configuration.GetSection("JSApi")["api"];
 
         }
         public IActionResult Index()
@@ -48,12 +50,14 @@ namespace dsASPCAtc.Web.Controllers
             ViewData["UnClick"] = vm.UnClick;
             ViewData["Novedades"] = vm.Novedades;
             ViewData["Test"] = HttpContext.Session.GetString("Test");
+            ViewData["Api"] = _endPoint;
             return View();
         }
         [HttpPost]
         public IActionResult Index([FromForm] Login login)
         {
             //HttpContext.Session.SetString("Test", "Ben Rules!");
+            ViewData["Api"] = _endPoint;
             var ad = new AdaptadorAtc(_configuration);
             var ipaddress = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
             var us = ad.UsuariosLogin(login.email, login.password, ipaddress);
@@ -79,6 +83,7 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult Pedido()
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -92,6 +97,7 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult About()
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -108,6 +114,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpPost]
         public IActionResult Procesar([FromForm] ProcesoPedido pr)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -133,6 +140,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpPost]
         public IActionResult SubirExcel([FromForm] FormularioExcel a)
         {
+            ViewData["Api"] = _endPoint;
             var us = HttpContext.Session.GetObjectFromJson<UsuarioWeb>("Login");
             if (!ComprobarLogin())
             {
@@ -236,6 +244,7 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult ErrorPedido(MensajeError ex)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -251,6 +260,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpPost]
         public IActionResult Productos(CampoBusqueda cm)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -265,6 +275,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Cuenta()
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -279,6 +290,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpPost]
         public IActionResult Cuenta([FromForm] FormularioCambioPassword form)
         {
+            ViewData["Api"] = _endPoint;
             var me = new MensajeError();
             if (!ComprobarLogin())
             {
@@ -309,6 +321,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Productos(string producto)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -325,6 +338,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Resultados(int? modelo, int? periodo, int? carroceria, int? vidrio, string euro, int? marca, int? categoria)
         {
+            ViewData["Api"] = _endPoint;
             var cl = new UsuarioWeb();
             cl.Cliente = new Cliente();
             if (!ComprobarLogin())
@@ -367,6 +381,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Buscador(int? vehiculo, int? modelo, int? marca)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -388,6 +403,7 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult Vehiculos(int id)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -405,6 +421,7 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Articulo(int id)
         {
+            ViewData["Api"] = _endPoint;
             var cl = new UsuarioWeb();
             cl.Cliente = new Cliente();
             if (!ComprobarLogin())
@@ -430,6 +447,7 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Facturas()
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -443,6 +461,7 @@ namespace dsASPCAtc.Web.Controllers
         }
         public IActionResult Pedidos()
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -457,6 +476,7 @@ namespace dsASPCAtc.Web.Controllers
         [HttpGet]
         public IActionResult Finanzas(int? p)
         {
+            ViewData["Api"] = _endPoint;
             if (!ComprobarLogin())
             {
                 return RedirectToAction(_defaultPage, _defaultController);
@@ -475,6 +495,7 @@ namespace dsASPCAtc.Web.Controllers
 
         public IActionResult Logout()
         {
+            ViewData["Api"] = _endPoint;
             HttpContext.Session.SetObjectAsJson("Login", null);
             return RedirectToAction(_defaultPage, _defaultController);
         }

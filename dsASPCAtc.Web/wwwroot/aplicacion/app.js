@@ -1,9 +1,13 @@
 atc = angular.module('atcapp', ['dx', 'ngSanitize',  'ui.bootstrap'] )
 
 atc.factory('Llamada', function ($http, $q) {
-    var api_url = "http://" + location.host + "/Data/";
-    var api_stream = "http://" + location.host + "/StreamFiles/";
-    var api_carrito = "http://" + location.host + "/Carrito/";
+    //var api_url = "http://" + location.host + "/Data/";
+    //var api_stream = "http://" + location.host + "/StreamFiles/";
+    //var api_carrito = "http://" + location.host + "/Carrito/";
+    var api_url = Endpoint + "Data/";
+    var api_stream = Endpoint + "/StreamFiles/";
+    var api_carrito = Endpoint + "/Carrito/";
+
     var http = {
         get: function (url) {
             var deferred = $q.defer();
@@ -43,7 +47,7 @@ atc.factory('Llamada', function ($http, $q) {
     return http;
 });
 atc.factory('Carrito', function ($http, $q) {
-    var api_carrito = "http://" + location.host + "/Carrito/";
+    var api_carrito = Endpoint + "/Carrito/";
     var idUsuario = document.getElementById("idusuarioweb").value;
     var http = {
         anadirArticulo: function (idArticulo, Cantidad, idUnidadManipulacion, enProcesar) {
