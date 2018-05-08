@@ -150,6 +150,8 @@ namespace EntidadesAtc
         public Boolean Manual { get; set; }
         public string TipoTrans { get; set; }
         public List<LineaPedidoVentas> Articulos { get; set; }
+        public int IdPorcentajeIva { get; set; }
+        public int idTipoIvaLeeEste { get; set; }
     }
     [DataContract]
     public class CampoBusqueda

@@ -2041,11 +2041,13 @@ namespace dsASPCAtc.DataAccess
                 {
                     var li = new LineaIva
                     {
-                        IdTipoIva = AsignaEntero("IdTipoIva"),
+                        IdTipoIva = AsignaEntero("IdPorcentajeIva"),
+                        idTipoIvaLeeEste = AsignaEntero("IdTipoIva"),
                         PoIva = AsignaDecimal("PorcentajeIva"),
                         PoRE = AsignaDecimal("PorcentajeRe"),
                         TipoTrans = "Insercion",
                         Articulos = new List<LineaPedidoVentas>(),
+                        IdPorcentajeIva = AsignaEntero("IdPorcentajeIva"),
                     };
                     pw.LineasIva.Add(li);
                 }
@@ -2062,7 +2064,7 @@ namespace dsASPCAtc.DataAccess
 
                 foreach (LineaIva tiva in pw.LineasIva)
                 {
-                    if (tiva.IdTipoIva == ar.IdTipoIva)
+                    if (tiva.idTipoIvaLeeEste == ar.IdTipoIva)
                     {
                         if (pw.AplicarRe)
                         {
@@ -2072,6 +2074,7 @@ namespace dsASPCAtc.DataAccess
                         {
                             ar.PoIva = tiva.PoIva;
                         }
+                        ar.IdPoIva = tiva.IdPorcentajeIva;
                         tiva.Articulos.Add(ar);
                     }
                 }
